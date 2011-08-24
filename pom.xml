@@ -15,7 +15,7 @@
 	<packaging>pom</packaging>
 	<url>http://kuali.org/mobility</url>
 	<inceptionYear>2011</inceptionYear>
-	<version>1.0.0-BETA-1</version>
+	<version>1.0.0-PRE-BETA-1</version>
 	<scm>
 		<connection>scm:svn:https://svn.kuali.org/repos/mobility/trunk</connection>
 		<developerConnection>scm:svn:https://svn.kuali.org/repos/mobility/trunk</developerConnection>
@@ -40,27 +40,27 @@
 		<commons-logging.version>1.1.1</commons-logging.version>
 		<junit.version>4.8.2</junit.version>
 		
-		<tool.shared.version>1.0.0-BETA-1</tool.shared.version>
-		<tool.user.version>1.0.0-BETA-1</tool.user.version>
-		<tool.admin.version>1.0.0-BETA-1</tool.admin.version>
-		<tool.alerts.version>1.0.0-BETA-1</tool.alerts.version>
-		<tool.askiu.version>1.0.0-BETA-1</tool.askiu.version>
-		<tool.athletics.version>1.0.0-BETA-1</tool.athletics.version>
-		<tool.bus.version>1.0.0-BETA-1</tool.bus.version>
-		<tool.computerlabs.version>1.0.0-BETA-1</tool.computerlabs.version>
-		<tool.configparams.version>1.0.0-BETA-1</tool.configparams.version>
-		<tool.dining.version>1.0.0-BETA-1</tool.dining.version>
-		<tool.email.version>1.0.0-BETA-1</tool.email.version>
-		<tool.emergencyinfo.version>1.0.0-BETA-1</tool.emergencyinfo.version>
-		<tool.events.version>1.0.0-BETA-1</tool.events.version>
-		<tool.feedback.version>1.0.0-BETA-1</tool.feedback.version>
-		<tool.itnotices.version>1.0.0-BETA-1</tool.itnotices.version>
-		<tool.knowledgebase.version>1.0.0-BETA-1</tool.knowledgebase.version>
-		<tool.maps.version>1.0.0-BETA-1</tool.maps.version>
-		<tool.news.version>1.0.0-BETA-1</tool.news.version>
-		<tool.people.version>1.0.0-BETA-1</tool.people.version>
-		<tool.sakai.version>1.0.0-BETA-1</tool.sakai.version>
-		<tool.socialmedia.version>1.0.0-BETA-1</tool.socialmedia.version>	
+		<tool.shared.version>1.0.0-PRE-BETA-1</tool.shared.version>
+		<tool.user.version>1.0.0-PRE-BETA-1</tool.user.version>
+		<tool.admin.version>1.0.0-PRE-BETA-1</tool.admin.version>
+		<tool.alerts.version>1.0.0-PRE-BETA-1</tool.alerts.version>
+		<tool.askiu.version>1.0.0-PRE-BETA-1</tool.askiu.version>
+		<tool.athletics.version>1.0.0-PRE-BETA-1</tool.athletics.version>
+		<tool.bus.version>1.0.0-PRE-BETA-1</tool.bus.version>
+		<tool.computerlabs.version>1.0.0-PRE-BETA-1</tool.computerlabs.version>
+		<tool.configparams.version>1.0.0-PRE-BETA-1</tool.configparams.version>
+		<tool.dining.version>1.0.0-PRE-BETA-1</tool.dining.version>
+		<tool.email.version>1.0.0-PRE-BETA-1</tool.email.version>
+		<tool.emergencyinfo.version>1.0.0-PRE-BETA-1</tool.emergencyinfo.version>
+		<tool.events.version>1.0.0-PRE-BETA-1</tool.events.version>
+		<tool.feedback.version>1.0.0-PRE-BETA-1</tool.feedback.version>
+		<tool.itnotices.version>1.0.0-PRE-BETA-1</tool.itnotices.version>
+		<tool.knowledgebase.version>1.0.0-PRE-BETA-1</tool.knowledgebase.version>
+		<tool.maps.version>1.0.0-PRE-BETA-1</tool.maps.version>
+		<tool.news.version>1.0.0-PRE-BETA-1</tool.news.version>
+		<tool.people.version>1.0.0-PRE-BETA-1</tool.people.version>
+		<tool.sakai.version>1.0.0-PRE-BETA-1</tool.sakai.version>
+		<tool.socialmedia.version>1.0.0-PRE-BETA-1</tool.socialmedia.version>	
 		
 		<iu.edu.es.espd.oauth-consumer.version>1.0.0</iu.edu.es.espd.oauth-consumer.version>
 		<ccl-oauth-consumer.version>1.0.0</ccl-oauth-consumer.version>
