@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import org.jdom.Document;
-import org.jdom.Element;
+import org.jdom.Element; 
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.kuali.mobility.alerts.entity.Alert;

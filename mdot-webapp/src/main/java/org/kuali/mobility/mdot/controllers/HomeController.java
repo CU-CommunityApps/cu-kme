@@ -140,6 +140,9 @@ public class HomeController {
     	}
     	
     	home = adminService.getCachedHomeScreenByAlias(alias);
+    	if (home == null) {
+    		home = adminService.getCachedHomeScreenByAlias("PUBLIC");
+    	}
     	
     	List<HomeTool> copy = new ArrayList<HomeTool>(home.getHomeTools());
     	

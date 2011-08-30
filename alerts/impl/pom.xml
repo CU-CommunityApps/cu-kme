@@ -61,6 +61,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
+        <!-- XML dependencies -->
+        <dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+		</dependency>
         <!-- JSON dependencies -->
         <dependency>
             <groupId>net.sf.flexjson</groupId>

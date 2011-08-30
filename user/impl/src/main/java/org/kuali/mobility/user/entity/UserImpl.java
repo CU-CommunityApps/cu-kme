@@ -28,7 +28,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -40,8 +39,9 @@ public class UserImpl implements User, Serializable {
 	private static final long serialVersionUID = -2720266083487368287L;
 
 	@Id
-	@SequenceGenerator(name = "user_sequence", sequenceName = "SEQ_USR_T", initialValue = 1000, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+//	@SequenceGenerator(name = "user_sequence", sequenceName = "SEQ_USR_T", initialValue = 1000, allocationSize = 1)
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "PERSON_ID")
 	private Long principalId;
 

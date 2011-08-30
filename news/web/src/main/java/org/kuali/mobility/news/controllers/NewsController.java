@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/news")
 public class NewsController {
     
-    @Autowired
+    //@Autowired
     private NewsService newsService;
     public void setNewsService(NewsService newsService) {
         this.newsService = newsService;

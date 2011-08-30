@@ -22,7 +22,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -35,8 +34,9 @@ public class EmergencyInfo implements Serializable {
     private static final long serialVersionUID = 8753764116073085733L;
 
     @Id
-    @SequenceGenerator(name="em_info_maint_sequence", sequenceName="SEQ_EM_INFO_MAINT_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="em_info_maint_sequence")
+//    @SequenceGenerator(name="em_info_maint_sequence", sequenceName="SEQ_EM_INFO_MAINT_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="em_info_maint_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="EM_INFO_ID")
     private Long emergencyInfoId;
 

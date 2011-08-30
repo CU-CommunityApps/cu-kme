@@ -30,7 +30,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -43,8 +42,9 @@ public class MapsGroup implements Serializable {
 	private static final long serialVersionUID = -4775149005202188253L;
 
 	@Id
-    @SequenceGenerator(name="maps_group_maint_sequence", sequenceName="SEQ_MAPS_GROUP_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="maps_group_maint_sequence")
+//    @SequenceGenerator(name="maps_group_maint_sequence", sequenceName="SEQ_MAPS_GROUP_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="maps_group_maint_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="GROUP_ID")
 	private Long groupId;
 	

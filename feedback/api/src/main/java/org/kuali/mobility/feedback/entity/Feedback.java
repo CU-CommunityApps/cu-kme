@@ -23,7 +23,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -34,8 +33,9 @@ public class Feedback implements Serializable {
 	private static final long serialVersionUID = 7273789153652061359L;
 
 	@Id
-    @SequenceGenerator(name="feedback_sequence", sequenceName="SEQ_FEEDBACK_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="feedback_sequence")
+//    @SequenceGenerator(name="feedback_sequence", sequenceName="SEQ_FEEDBACK_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="feedback_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="FEEDBACK_ID")
     private Long feedbackId;
 

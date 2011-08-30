@@ -22,7 +22,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -34,9 +33,10 @@ public class Tool implements Serializable, Comparable<Tool> {
 	private static final long serialVersionUID = 4709451428489759275L;
 
 	@Id
-    @SequenceGenerator(name="tool_sequence", sequenceName="SEQ_TOOL_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="tool_sequence")
-    @Column(name="TOOL_ID")
+    //@SequenceGenerator(name="tool_sequence", sequenceName="SEQ_TOOL_T", allocationSize=1)
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="tool_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Column(name="TOOL_ID")
 	private Long toolId;
 	
 	@Column(name="ALIAS")

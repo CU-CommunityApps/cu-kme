@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/events")
 public class EventsController {
 
-	@Autowired
+	//@Autowired
 	private EventsService eventsService;
 
 	public void setEventsService(EventsService eventsService) {

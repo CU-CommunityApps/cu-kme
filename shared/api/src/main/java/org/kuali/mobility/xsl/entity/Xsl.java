@@ -23,7 +23,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -34,8 +33,9 @@ public class Xsl implements Serializable {
     private static final long serialVersionUID = -5761311057726925895L;
 
     @Id
-    @SequenceGenerator(name="xsl_maint_sequence", sequenceName="SEQ_XSL_MAINT_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="xsl_maint_sequence")
+//    @SequenceGenerator(name="xsl_maint_sequence", sequenceName="SEQ_XSL_MAINT_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="xsl_maint_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="XSL_ID")
     private Long xslId;
 

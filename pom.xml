@@ -77,55 +77,27 @@
                 <module>admin</module>
 				<module>alerts</module>
 				<module>askiu</module>
-				<module>athletics</module>
+				<!-- <module>athletics</module> -->
                 <module>bus</module>
 				<module>computerlabs</module>
 				<module>configparams</module>
                 <module>dining</module>
                 <module>email</module>
 				<module>emergencyinfo</module>
-				<module>events</module>
+				<!-- <module>events</module> -->
                 <module>feedback</module>
 				<module>itnotices</module>
 				<module>knowledgebase</module>
 				<module>maps</module>
-				<module>news</module>
+				<!-- <module>news</module> -->
 				<module>people</module>
 				<module>sakai</module>
 				<module>socialmedia</module>
 				<module>mdot-webapp</module>
 			</modules>
 		</profile>
-		<profile>
-			<id>mdot-admin</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<modules>
-				<module>shared</module>
-				<module>user</module>
-				<module>alerts</module>
-				<module>askiu</module>
-				<module>athletics</module>
-                <module>bus</module>
-				<module>computerlabs</module>
-				<module>configparams</module>
-                <module>dining</module>
-                <module>email</module>
-				<module>emergencyinfo</module>
-				<module>events</module>
-                <module>feedback</module>
-				<module>itnotices</module>
-				<module>knowledgebase</module>
-				<module>maps</module>
-				<module>news</module>
-				<module>people</module>
-				<module>sakai</module>
-				<module>socialmedia</module>
-				<module>mdotadmin-webapp</module>
-			</modules>
-		</profile>
 	</profiles>
+	<!--  
     <repositories>
         <repository>
             <id>kuali.nexus</id>
@@ -139,6 +111,7 @@
             </snapshots>
         </repository>
     </repositories>
+    -->
 	<licenses>
 		<license>
 			<name>Educational Community License, Version 2.0</name>
@@ -656,12 +629,28 @@
 				<artifactId>spring-security-oauth</artifactId>
 				<version>${spring.security.oauth.version}</version>
 			</dependency>
-			<!-- Rice dependencies -->
+			<!-- Database dependencies -->
 			<dependency>
 				<groupId>hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>3.4.0.GA</version>
 			</dependency>
+			<dependency>
+			    <groupId>org.apache.derby</groupId>
+			    <artifactId>derby</artifactId>
+			    <version>10.8.1.2</version>
+			</dependency>
+			
+		
+		
+			<!-- Rice dependencies -->
+		
+			<!-- 
+			<dependency>
+				<groupId>hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>3.4.0.GA</version>
+			</dependency>			
 			<dependency>
 				<groupId>com.experlog</groupId>
 				<artifactId>xapool</artifactId>
@@ -964,6 +953,9 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			
+			-->
+			 
 			<!-- JSON dependencies -->
 			<dependency>
 				<groupId>net.sf.flexjson</groupId>

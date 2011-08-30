@@ -62,6 +62,7 @@ public class AdminServiceImpl implements AdminService {
     	homeScreenReloaderThread = null;
     }
 	
+	@Transactional(readOnly = true)
 	public HomeScreen getCachedHomeScreenByAlias(String alias) {
 		HomeScreen homeScreen = homeScreens.get(alias);
 		if (homeScreen == null) {
@@ -71,51 +72,56 @@ public class AdminServiceImpl implements AdminService {
 		return homeScreen;
  	}
 
+	@Transactional
 	@Override
 	public List<HomeScreen> getAllHomeScreens() {
 		return adminDao.getAllHomeScreens();
 	}
 	
+	@Transactional
 	@Override
 	public HomeScreen getHomeScreenById(long homeScreenId) {
 		return adminDao.getHomeScreenById(homeScreenId);
 	}
 	
+	@Transactional
 	@Override
 	public HomeScreen getHomeScreenByAlias(String alias) {
 		return adminDao.getHomeScreenByAlias(alias);
 	}
 	
-	@Override
 	@Transactional
+	@Override
 	public Long saveHomeScreen(HomeScreen homeScreen) {
 		return adminDao.saveHomeScreen(homeScreen);
 	}
 
-	@Override
 	@Transactional
+	@Override
 	public void deleteHomeScreenById(long homeScreenId) {
 		adminDao.deleteHomeScreenById(homeScreenId);
 	}
 	
+	@Transactional
 	@Override
 	public List<Tool> getAllTools() {
 		return adminDao.getAllTools();
 	}
 	
+	@Transactional
 	@Override
 	public Tool getToolById(long toolId) {
 		return adminDao.getToolById(toolId);
 	}
 	
-	@Override
 	@Transactional
+	@Override
 	public Long saveTool(Tool tool) {
 		return adminDao.saveTool(tool);
 	}
 
-	@Override
 	@Transactional
+	@Override
 	public void deleteToolById(long toolId) {
 		adminDao.deleteToolById(toolId);
 	}

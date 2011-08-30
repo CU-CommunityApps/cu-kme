@@ -23,7 +23,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,8 +35,9 @@ public class Notification implements Serializable {
 	private static final long serialVersionUID = -95981285235712123L;
 
     @Id
-    @SequenceGenerator(name="notification_sequence", sequenceName="SEQ_NOTIFICATION_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="notification_sequence")
+//    @SequenceGenerator(name="notification_sequence", sequenceName="SEQ_NOTIFICATION_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="notification_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="NOTIFICATION_ID")
     private Long notificationId;
 

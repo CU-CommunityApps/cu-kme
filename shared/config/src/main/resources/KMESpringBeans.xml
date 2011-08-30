@@ -17,6 +17,14 @@
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+	    	<list>
+	        	<value>classpath:kme.config.properties</value>
+	    	</list>
+	    </property>
+	</bean>
+	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
 		<property name="driverClassName" value="${datasource.driver.name}" />
 		<property name="url" value="${datasource.url}" />
@@ -27,6 +35,23 @@
 		<property name="username" value="${datasource.username}" />
 		<property name="password" value="${datasource.password}" />
 		<property name="accessToUnderlyingConnectionAllowed" value="${datasource.accessToUnderlyingConnectionAllowed}" />
+	</bean>
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="${entitymanager.showSql}" />
+				<property name="generateDdl" value="${entitymanager.generateDdl}" />
+				<property name="database" value="${entitymanager.database}" />
+				<property name="databasePlatform" value="${entitymanager.databasePlatform}" />
+			</bean>
+		</property>
+		<property name="jpaPropertyMap">
+			<props>
+	            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+	        </props>
+		</property>
 	</bean>
 
 	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

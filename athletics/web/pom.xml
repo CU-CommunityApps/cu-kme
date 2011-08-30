@@ -43,7 +43,14 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>news-web</artifactId>
 		</dependency>
-        
+        <dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>user-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>user-impl</artifactId>
+		</dependency>
         <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>

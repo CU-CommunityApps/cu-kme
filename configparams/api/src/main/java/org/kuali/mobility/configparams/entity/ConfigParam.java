@@ -22,7 +22,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -35,8 +34,9 @@ public class ConfigParam implements Serializable {
     private static final long serialVersionUID = -7425581809827657649L;
 
     @Id
-    @SequenceGenerator(name="config_param_maint_sequence", sequenceName="SEQ_CONFIG_PARAM_MAINT_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="config_param_maint_sequence")
+//    @SequenceGenerator(name="config_param_maint_sequence", sequenceName="SEQ_CONFIG_PARAM_MAINT_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="config_param_maint_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="CONFIG_PARAM_ID")
     private Long configParamId;
 

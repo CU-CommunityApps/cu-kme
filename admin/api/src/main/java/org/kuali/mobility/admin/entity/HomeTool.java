@@ -24,7 +24,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -35,8 +34,9 @@ public class HomeTool implements Serializable, Comparable<HomeTool> {
 	private static final long serialVersionUID = -8942674782383943102L;
 
 	@Id
-    @SequenceGenerator(name="home_tool_sequence", sequenceName="SEQ_HOME_TOOL_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="home_tool_sequence")
+//    @SequenceGenerator(name="home_tool_sequence", sequenceName="SEQ_HOME_TOOL_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="home_tool_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="HOME_TOOL_ID")
     private Long homeToolId;
 	

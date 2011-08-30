@@ -36,6 +36,9 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
+		<listener-class>org.kuali.mobility.mdot.listeners.BootstrapListener</listener-class>
+	</listener>
+	<listener>
 		<listener-class>org.kuali.mobility.configparams.listeners.ConfigParamListener</listener-class>
 	</listener>
 	<listener>
@@ -46,10 +49,11 @@
 		<listener-class>org.kuali.mobility.socialmedia.listener.SocialMediaListener</listener-class>
 	</listener>
 	-->
+	<!--  
 	<listener>
 		<listener-class>edu.iu.m.news.listener.NewsListener</listener-class>
 	</listener>
-
+	-->
     <filter>
         <filter-name>cas</filter-name>
 		<filter-class>org.kuali.mobility.mdot.filters.LoginFilter</filter-class>
@@ -122,6 +126,7 @@
 		<servlet-name>rest</servlet-name>
 	</filter-mapping>
 
+	<!--  
     <servlet>
 		<servlet-name>remoting</servlet-name>
 		<servlet-class>org.kuali.rice.ksb.messaging.servlet.KSBDispatcherServlet</servlet-class>
@@ -132,14 +137,17 @@
 		<servlet-name>remoting</servlet-name>
 		<url-pattern>/remoting/*</url-pattern>
 	</servlet-mapping>
+	-->
 	 
     <servlet>
         <servlet-name>rest</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/webmvc-config.xml</param-value>
         </init-param>
+        -->
         <load-on-startup>2</load-on-startup>
     </servlet>
   

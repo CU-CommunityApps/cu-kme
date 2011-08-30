@@ -28,7 +28,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -44,8 +43,9 @@ public class Location implements Serializable {
 	private static final long serialVersionUID = -2588912315204722978L;
 
 	@Id
-    @SequenceGenerator(name="maps_location_maint_sequence", sequenceName="SEQ_MAPS_LOCATION_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="maps_location_maint_sequence")
+//    @SequenceGenerator(name="maps_location_maint_sequence", sequenceName="SEQ_MAPS_LOCATION_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="maps_location_maint_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="LOCATION_ID")
 	private Long locationId;
     

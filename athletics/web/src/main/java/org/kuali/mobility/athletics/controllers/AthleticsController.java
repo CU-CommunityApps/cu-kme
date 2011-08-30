@@ -41,14 +41,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/athletics")
 public class AthleticsController {
 
-	@Autowired
+	//@Autowired
 	private AthleticsService athleticsService;
 
 	public void setAthleticsService(AthleticsService athleticsService) {
 		this.athleticsService = athleticsService;
 	}
 
-	@Autowired
+	//@Autowired
 	private NewsService newsService;
 
 	public void setNewsService(NewsService newsService) {

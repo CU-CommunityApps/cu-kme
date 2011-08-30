@@ -27,16 +27,6 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>events-api</artifactId>
 		</dependency>
-		<!-- Persistence dependencies -->
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-		</dependency>
-		<!-- Spring dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>news-api</artifactId>
@@ -48,6 +38,24 @@
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>news-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>configparams-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>configparams-impl</artifactId>
+		</dependency>
+		<!-- Persistence dependencies -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+		</dependency>
+		<!-- Spring dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
 		</dependency>
 		<!-- OAuth dependencies -->
 		<dependency>

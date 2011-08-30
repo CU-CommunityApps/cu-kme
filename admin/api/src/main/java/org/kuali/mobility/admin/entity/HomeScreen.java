@@ -28,7 +28,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -39,8 +38,9 @@ public class HomeScreen implements Serializable {
 	private static final long serialVersionUID = 4947101996672004361L;
 
 	@Id
-    @SequenceGenerator(name="home_sequence", sequenceName="SEQ_HOME_T", initialValue=1000, allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="home_sequence")
+//    @SequenceGenerator(name="home_sequence", sequenceName="SEQ_HOME_T", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="home_sequence")
+	@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="HOME_ID")
     private Long homeScreenId;
 	
