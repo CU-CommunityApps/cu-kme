@@ -28,38 +28,36 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@Entity(name="Notification")
-@Table(name="NOTIFICATION_T")
+@Entity
+@Table(name="KME_NTFY_T")
 public class Notification implements Serializable {
 
 	private static final long serialVersionUID = -95981285235712123L;
 
     @Id
-//    @SequenceGenerator(name="notification_sequence", sequenceName="SEQ_NOTIFICATION_T", allocationSize=1)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="notification_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="NOTIFICATION_ID")
+    @Column(name="ID")
     private Long notificationId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="START_DT")
+    @Column(name="STRT_DT")
 	private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="END_DT")
 	private Date endDate;
 
-    @Column(name="TITLE")
+    @Column(name="TTL")
 	private String title;
 
-    @Column(name="MESSAGE")
+    @Column(name="MSG")
     private String message;
 
     // TODO: This needs to be refactored to be a set of generic user attributes, permissions, etc
-    @Column(name="PCAMPUS")
+    @Column(name="PRI_CMPS")
     private String primaryCampus;
 
-    @Column(name="NOTIFICATION_TYPE")
+    @Column(name="TYP")
     private Long notificationType;
 
     @Version

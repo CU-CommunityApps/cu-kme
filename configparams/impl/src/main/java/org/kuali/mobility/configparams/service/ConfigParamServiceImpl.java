@@ -41,7 +41,7 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 
 	private static ConcurrentMap<String, ConfigParam> configParams;
 
-	private static Thread homeScreenReloaderThread = null;
+	private static Thread configParamReloaderThread = null;
 
 	static {
 		configParams = new ConcurrentHashMap<String, ConfigParam>();
@@ -49,15 +49,15 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 
 	@Override
 	public void startCache() {
-		homeScreenReloaderThread = new Thread(new ConfigParamReloader());
-		homeScreenReloaderThread.setDaemon(true);
-		homeScreenReloaderThread.start();
+		configParamReloaderThread = new Thread(new ConfigParamReloader());
+		configParamReloaderThread.setDaemon(true);
+		configParamReloaderThread.start();
 	}
 
 	@Override
 	public void stopCache() {
-		homeScreenReloaderThread.interrupt();
-		homeScreenReloaderThread = null;
+		configParamReloaderThread.interrupt();
+		configParamReloaderThread = null;
 	}
 
 	@Autowired
@@ -126,14 +126,13 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 			Calendar updateCalendar = Calendar.getInstance();
 			Date nextCacheUpdate = new Date();
 
-			// Cache loop
 			while (true) {
 				Date now = new Date();
 				if (now.after(nextCacheUpdate)) {
 					try {
 						reloadConfigParams();
 					} catch (Exception e) {
-						LOG.error("Error reloading home screen cache.", e);
+						LOG.error("Error reloading config param cache.", e);
 					}
 					updateCalendar.add(Calendar.MINUTE, CONFIG_PARAM_UPDATE_INTERVAL);
 					nextCacheUpdate = new Date(updateCalendar.getTimeInMillis());

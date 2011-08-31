@@ -35,29 +35,27 @@ import javax.persistence.Version;
 
 import flexjson.JSONSerializer;
 
-@Entity(name="MapsGroup")
-@Table(name="MAPS_GROUP_T")
+@Entity
+@Table(name="KME_MPS_GRP_T")
 public class MapsGroup implements Serializable {
 
 	private static final long serialVersionUID = -4775149005202188253L;
 
 	@Id
-//    @SequenceGenerator(name="maps_group_maint_sequence", sequenceName="SEQ_MAPS_GROUP_T", allocationSize=1)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="maps_group_maint_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="GROUP_ID")
+    @Column(name="ID")
 	private Long groupId;
 	
-    @Column(name="GROUP_CODE")
+    @Column(name="GRP_CD")
 	private String groupCode;
 	
-    @Column(name="SHORT_NAME")
+    @Column(name="SHRT_NM")
 	private String shortName;
 	
-    @Column(name="LONG_NAME")
+    @Column(name="LNG_NM")
 	private String name;
     
-    @Column(name="ACTIVE")
+    @Column(name="ACTV")
 	private boolean active;
 	
     @Version
@@ -65,17 +63,11 @@ public class MapsGroup implements Serializable {
     protected Long versionNumber;
     
     @ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
-    @JoinTable(
-    		name="MAPS_LOCATION_GROUP_T",
-    		joinColumns={@JoinColumn(name="GROUP_ID", referencedColumnName="GROUP_ID")},
-    		inverseJoinColumns={@JoinColumn(name="LOCATION_ID", referencedColumnName="LOCATION_ID")}
-    )
+    @JoinTable(name="KME_LOC_GRP_T")
     private Set<Location> mapsLocations;
 
     @ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
-    @JoinColumn(
-    	name="PARENT_ID", nullable=true
-    )
+    @JoinColumn(name="PRNT_ID", nullable=true)
     private MapsGroup mapsGroupParent;
     
     @OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.MERGE}, mappedBy="mapsGroupParent")

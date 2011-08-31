@@ -27,23 +27,21 @@ import javax.persistence.Version;
 
 import flexjson.JSONSerializer;
 
-@Entity(name="ConfigParam")
-@Table(name="CONFIG_PARAM_MAINT_T")
+@Entity
+@Table(name="KME_CNFG_PARM_T")
 public class ConfigParam implements Serializable {
 
     private static final long serialVersionUID = -7425581809827657649L;
 
     @Id
-//    @SequenceGenerator(name="config_param_maint_sequence", sequenceName="SEQ_CONFIG_PARAM_MAINT_T", allocationSize=1)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="config_param_maint_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="CONFIG_PARAM_ID")
+    @Column(name="ID")
     private Long configParamId;
 
-    @Column(name="NAME")
+    @Column(name="NM")
 	private String name;
 
-    @Column(name="VALUE")
+    @Column(name="VAL")
     private String value;
 
     @Version

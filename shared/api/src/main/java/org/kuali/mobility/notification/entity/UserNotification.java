@@ -28,30 +28,28 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@Entity(name="UserNotification")
-@Table(name="USER_NOTIFICATION_T")
+@Entity
+@Table(name="KME_USR_NTFY_T")
 public class UserNotification implements Serializable {
 
 	private static final long serialVersionUID = -95981285235712123L;
 
     @Id
-//    @SequenceGenerator(name="user_notification_sequence", sequenceName="SEQ_USER_NOTIFICATION_T", allocationSize=1)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="user_notification_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="USER_NOTIFICATION_ID")
+    @Column(name="ID")
     private Long userNotificationId;
 
-    @Column(name="NOTIFICATION_ID")
+    @Column(name="NTFY_ID")
     private Long notificationId;
 
-    @Column(name="PERSON_ID")
+    @Column(name="PRSN_ID")
     private Long personId;
 
-    @Column(name="DEVICE_ID")
+    @Column(name="DEV_ID")
     private String deviceId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="NOTIFY_DT")
+    @Column(name="NTFY_DT")
 	private Date notifyDate;
 
     @Version

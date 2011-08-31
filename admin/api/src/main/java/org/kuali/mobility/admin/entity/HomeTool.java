@@ -27,43 +27,39 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-@Entity(name="HomeTool")
-@Table(name="HOME_TOOL_T")
+@Entity
+@Table(name="KME_HM_TL_T")
 public class HomeTool implements Serializable, Comparable<HomeTool> {
 	
 	private static final long serialVersionUID = -8942674782383943102L;
 
 	@Id
-//    @SequenceGenerator(name="home_tool_sequence", sequenceName="SEQ_HOME_TOOL_T", allocationSize=1)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="home_tool_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="HOME_TOOL_ID")
+    @Column(name="ID")
     private Long homeToolId;
 	
-    @Column(name="HOME_ID", insertable=false, updatable=false)
+    @Column(name="HM_SCRN_ID", insertable=false, updatable=false)
     private Long homeScreenId;
 	
-    @Column(name="TOOL_ID", insertable=false, updatable=false)
+    @Column(name="TL_ID", insertable=false, updatable=false)
     private Long toolId;
 	
 	@Column(name="ORDR")
 	private int order;
+		
+	@ManyToOne
+	@JoinColumn(name="HM_SCRN_ID")
+	private HomeScreen homeScreen;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="TL_ID")
+	private Tool tool;
 	
 	@Version
     @Column(name="VER_NBR")
     private Long versionNumber;
-	
-	@ManyToOne
-	@JoinColumn(name="HOME_ID")
-	private HomeScreen homeScreen;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="TOOL_ID")
-	private Tool tool;
-	
-	public HomeTool() {
-		
-	}
+
+	public HomeTool() {}
 	
 	public HomeTool(HomeScreen homeScreen, Tool tool, int order) {
 		this.homeScreen = homeScreen;
@@ -130,7 +126,11 @@ public class HomeTool implements Serializable, Comparable<HomeTool> {
 	}
 
 	@Override
-	public int compareTo(HomeTool arg0) {
-		return order - arg0.order;
+	public int compareTo(HomeTool that) {
+		if (that == null) {
+			return -1;
+		}
+		return this.order - that.order;
 	}	
+	
 }

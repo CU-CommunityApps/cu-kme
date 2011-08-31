@@ -26,40 +26,38 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
-@Entity(name="Tool")
-@Table(name="TOOL_T")
+@Entity
+@Table(name="TL_T")
 public class Tool implements Serializable, Comparable<Tool> {
 
 	private static final long serialVersionUID = 4709451428489759275L;
 
 	@Id
-    //@SequenceGenerator(name="tool_sequence", sequenceName="SEQ_TOOL_T", allocationSize=1)
-    //@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="tool_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name="TOOL_ID")
+	@Column(name="ID")
 	private Long toolId;
 	
 	@Column(name="ALIAS")
 	private String alias;
 
-	@Column(name="TITLE")
+	@Column(name="TTL")
 	private String title;
 	
 	@Column(name="URL")
 	private String url;
 	
-	@Column(name="DESCRIPTION")
+	@Column(name="DESC_TXT")
 	private String description;
-	
-	@Transient
-	private String badgeCount;
-	
-	@Column(name="ICON_URL")
+		
+	@Column(name="ICN_URL")
 	private String iconUrl;
 	
 	@Version
     @Column(name="VER_NBR")
     private Long versionNumber;	
+	
+	@Transient
+	private String badgeCount;
 
 	public Long getToolId() {
 		return toolId;
@@ -126,14 +124,20 @@ public class Tool implements Serializable, Comparable<Tool> {
 	}
 
 	@Override
-	public int compareTo(Tool arg0) {
-		return title.compareTo(arg0.title);
+	public int compareTo(Tool that) {
+		if (that == null) {
+			return -1;
+		}
+		return this.title.compareTo(that.title);
 	}
 	
 	@Override
-	public boolean equals(Object arg0) {
-		if (arg0 instanceof Tool) {
-			return toolId.equals(((Tool)arg0).toolId);
+	public boolean equals(Object that) {
+		if (that == null) {
+			return false;
+		}
+		if (that instanceof Tool) {
+			return this.toolId.equals(((Tool)that).toolId);
 		}
 		return false;
 	}

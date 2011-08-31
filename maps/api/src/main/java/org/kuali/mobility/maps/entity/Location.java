@@ -33,65 +33,60 @@ import javax.persistence.Version;
 
 import flexjson.JSONSerializer;
 
-/*
- * Modifying the Location object? Remember to update the copy method.
- */
-@Entity(name="Location")
-@Table(name="MAPS_LOCATION_T")
+@Entity
+@Table(name="KME_LOC_T")
 public class Location implements Serializable {
 
 	private static final long serialVersionUID = -2588912315204722978L;
 
 	@Id
-//    @SequenceGenerator(name="maps_location_maint_sequence", sequenceName="SEQ_MAPS_LOCATION_T", allocationSize=1)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="maps_location_maint_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="LOCATION_ID")
+    @Column(name="ID")
 	private Long locationId;
     
-    @Column(name="CODE")
+    @Column(name="CD")
 	private String code;
 	
-    @Column(name="SHORT_NAME")
+    @Column(name="SHRT_NM")
 	private String shortName;
 	
-    @Column(name="LONG_NAME")
+    @Column(name="LNG_NM")
 	private String name;
 	
-    @Column(name="STREET")
+    @Column(name="STRT")
 	private String street;
 	
-    @Column(name="CITY")
+    @Column(name="CTY")
 	private String city;
 	
-    @Column(name="STATE")
+    @Column(name="ST")
 	private String state;
 	
     @Column(name="ZIP")
 	private String zip;
 	
-    @Column(name="LATITUDE")
+    @Column(name="LAT")
 	private Double latitude;
 	
-    @Column(name="LONGITUDE")
+    @Column(name="LONG")
 	private Double longitude;
 	
-    @Column(name="ACTIVE")
+    @Column(name="ACTV")
 	private boolean active;
 	
-    @Column(name="OVERRIDE")
+    @Column(name="OVRRD")
 	private boolean override;
     
-    @Column(name="SHORT_CODE")
+    @Column(name="SHRT_CD")
     private String shortCode;
     
-    @Column(name="BLDG_CODE")
+    @Column(name="BLDG_CD")
     private String buildingCode;
     
-    @Column(name="NOTE_INT")
+    @Column(name="NTE_INT")
     private String noteInternal;
     
-    @Column(name="NOTE_EXT")
+    @Column(name="NTE_EXT")
     private String noteExternal;
 	
     @Version
@@ -99,16 +94,10 @@ public class Location implements Serializable {
     protected Long versionNumber;
     
     @ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
-    @JoinTable(
-    		name="MAPS_LOCATION_GROUP_T",
-    		joinColumns={@JoinColumn(name="LOCATION_ID", referencedColumnName="LOCATION_ID")},
-    		inverseJoinColumns={@JoinColumn(name="GROUP_ID", referencedColumnName="GROUP_ID")}
-    )
+    @JoinTable(name="KME_LOC_GRP_T")
     private Set<MapsGroup> mapsGroups;
 
-	public Location() {
-		
-	}
+	public Location() {}
 	
 	public Location(String code, String shortname, String name, String street, String city, String state) {
 		this.code = code;

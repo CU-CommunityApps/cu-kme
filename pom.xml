@@ -77,19 +77,19 @@
                 <module>admin</module>
 				<module>alerts</module>
 				<module>askiu</module>
-				<!-- <module>athletics</module> -->
+				<module>athletics</module>
                 <module>bus</module>
 				<module>computerlabs</module>
 				<module>configparams</module>
                 <module>dining</module>
                 <module>email</module>
 				<module>emergencyinfo</module>
-				<!-- <module>events</module> -->
+				<module>events</module>
                 <module>feedback</module>
 				<module>itnotices</module>
 				<module>knowledgebase</module>
 				<module>maps</module>
-				<!-- <module>news</module> -->
+				<module>news</module>
 				<module>people</module>
 				<module>sakai</module>
 				<module>socialmedia</module>

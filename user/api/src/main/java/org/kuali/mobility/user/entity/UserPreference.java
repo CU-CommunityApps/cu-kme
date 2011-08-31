@@ -31,22 +31,20 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name="USR_PREF_T")
+@Table(name="KME_USR_PRF_T")
 public class UserPreference implements Serializable {
 
 	private static final long serialVersionUID = -9145594618847463951L;
 
     @Id
-//    @SequenceGenerator(name="usr_pref_sequence", sequenceName="SEQ_USR_PREF_T", allocationSize=1)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="usr_pref_sequence")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="PREF_ID")
+    @Column(name="ID")
 	private Long preferenceId;
 
-    @Column(name="PERSON_ID")
+    @Column(name="PRNCPL_ID")
 	private Long principalId;
 
-    @Column(name="PREF_NM")
+    @Column(name="PRF_NM")
 	private String preferenceName;
 
     @Version
