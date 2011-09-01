@@ -27,7 +27,7 @@ import org.kuali.mobility.computerlabs.entity.ComputerLab;
 import org.kuali.mobility.computerlabs.entity.LabLocation;
 import org.kuali.mobility.maps.entity.Location;
 import org.kuali.mobility.maps.entity.MapsGroup;
-import org.kuali.mobility.maps.service.LocationService;
+import org.kuali.mobility.maps.service.MapsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,9 +38,9 @@ import flexjson.JSONSerializer;
 public class ComputerLabsServiceImpl implements ComputerLabsService {
 
     @Autowired
-    private LocationService locationService;
-    public void setLocationService(LocationService locationService) {
-        this.locationService = locationService;
+    private MapsService mapsService;
+    public void setMapsService(MapsService mapsService) {
+        this.mapsService = mapsService;
     }
 	
     @Transactional
@@ -48,20 +48,20 @@ public class ComputerLabsServiceImpl implements ComputerLabsService {
 		ComputerLabsSeatParser parser = new ComputerLabsSeatParser();
 		List<ComputerLab> labs = parser.parseSeats(campus);
 		
-		MapsGroup group = locationService.getMapsGroupByCode("BL");
+		MapsGroup group = mapsService.getMapsGroupById(campus);
 		Set<Location> locations = group.getMapsLocations();
 		Map<String, Location> locationMap = new HashMap<String, Location>();
 		for (Location loc : locations) {
-			if (loc.getShortCode() != null) {
-				locationMap.put(loc.getShortCode(), loc);	
+			if (loc.getId() != null) {
+				locationMap.put(loc.getId(), loc);	
 			}
 		}
 
 		for (ComputerLab lab : labs) {
-			if (lab.getBuildingShortCode() != null) {
-				Location loc = locationMap.get(lab.getBuildingShortCode());
+			if (lab.getBuildingCode() != null) {
+				Location loc = locationMap.get(lab.getBuildingCode());
 				if (loc != null) {
-					lab.setBuildingCode(loc.getBuildingCode());
+					lab.setBuildingCode(loc.getId());
 				}
 			}
 		}

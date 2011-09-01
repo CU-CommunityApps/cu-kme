@@ -15,6 +15,7 @@
 
 <kme:page title="Campus Maps" id="maps" backButton="true" homeButton="true" cssFilename="home" jsFilename="maps" usesGoogleMaps="true">
 	<kme:content>
+		<script src="${pageContext.request.contextPath}/js/arcgislink.js" type="text/javascript"></script>
 		<form:form action="${pageContext.request.contextPath}/maps/building/search" commandName="mapsearchform" data-ajax="false">
 			<fieldset>
 			<!-- <label for="searchCampus">Campus:</label> -->
@@ -54,7 +55,7 @@ $('#maps').live("pagebeforeshow", function() {
 	
 	setContextPath("${pageContext.request.contextPath}");
 	deleteOverlays(markersArray);
-	map = initialize("map_canvas", 39.788, -86.165);
+	map = initialize("map_canvas", 39.788, -86.165, "${arcGisUrl}");
 	var campus = $("#searchCampus").val();
 	// Bounds will be for the state of Indiana for anything other than the valid values.
 	var bounds = getCampusBounds(campus);

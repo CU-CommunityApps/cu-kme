@@ -90,6 +90,10 @@ public class BootstrapListener implements ServletContextListener {
 		home.setHomeTools(tools);
 		
 		adminService.saveHomeScreen(home);
+		
+		//Can't be done here.  Server hasn't started yet.  Doing it on first click now.
+		//MapsService mapsService = (MapsService) ctx.getBean("mapsService");
+		//mapsService.loadKml();
 
 		ConfigParamService configParamService = (ConfigParamService) ctx.getBean("ConfigParamService");
 

@@ -17,7 +17,7 @@ function setContextPath(path) {
 	contextPath = path;
 }
 
-function initialize(id, lat, lng) {
+function initialize(id, lat, lng, arcGisServerUrl) {
 	var latlng = new google.maps.LatLng(lat, lng);
 	var myOptions = {
 		zoom: 13,
@@ -35,6 +35,12 @@ function initialize(id, lat, lng) {
 	newmap.controls[google.maps.ControlPosition.TOP_LEFT].push(trackerControlDiv);
 	
 	google.maps.event.trigger(newmap, 'resize');
+	
+	if (arcGisServerUrl) {
+		var agsType = new  gmaps.ags.MapType(arcGisServerUrl,{name:'ArcGIS', opacity:1.0});
+		newmap.overlayMapTypes.insertAt(0, agsType);
+	}
+    
     return newmap;
 }
 

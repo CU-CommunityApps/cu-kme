@@ -53,6 +53,11 @@
 	        </props>
 		</property>
 	</bean>
+	
+	<bean id="mapsService" class="org.kuali.mobility.maps.service.MapsServiceImpl">
+		<property name="kmlUrl" value="${maps.kml.url}" />
+		<property name="arcGisUrl" value="${maps.arcgis.url}" />
+	</bean>
 
 	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />

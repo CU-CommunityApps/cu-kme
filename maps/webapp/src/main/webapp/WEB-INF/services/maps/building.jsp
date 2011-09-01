@@ -32,7 +32,7 @@
 <script type="text/javascript">
 var markersArray = [];
 var userMarkersArray = [];
-var buildingCode = "${buildingCode}";
+var buildingCode = "${id}";
 
 $('#mapsbuilding').live("pageshow", function() {
 	setContextPath("${pageContext.request.contextPath}");
