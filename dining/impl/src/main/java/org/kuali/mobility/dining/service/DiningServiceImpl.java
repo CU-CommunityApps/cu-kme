@@ -121,9 +121,6 @@ public class DiningServiceImpl implements DiningService {
 		return doc;
 	}
 
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
 }
 
 

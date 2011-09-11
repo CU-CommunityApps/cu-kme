@@ -37,9 +37,6 @@ public class ComputerLabsController {
 
     @Autowired
     private ComputerLabsService computerLabsService;
-    public void setComputerLabsService(ComputerLabsService computerLabsService) {
-        this.computerLabsService = computerLabsService;
-    }
     
     @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody

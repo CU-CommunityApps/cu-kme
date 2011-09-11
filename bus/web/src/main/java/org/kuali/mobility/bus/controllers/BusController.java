@@ -27,9 +27,6 @@ public class BusController {
     
     @Autowired
     private BusService busService;
-    public void setBusService(BusService busService) {
-        this.busService = busService;
-    }
     
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model uiModel) {

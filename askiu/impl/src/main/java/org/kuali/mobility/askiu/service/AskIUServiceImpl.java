@@ -25,15 +25,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AskIUServiceImpl implements AskIUService {
 
+	private static final String PARAM_ASKIU_EMAIL_VALIDATION_REGEX = "AskIU.Email.Validation.Regex";
+	private static final String PARAM_ASKIU_SEND_EMAILADDRESS = "AskIU.Send.EmailAddress";
+
 	@Autowired
 	private EmailService emailService;
 	
 	@Autowired
 	private ConfigParamService configParamService;
-	
-	private static final String PARAM_ASKIU_EMAIL_VALIDATION_REGEX = "AskIU.Email.Validation.Regex";
-	private static final String PARAM_ASKIU_SEND_EMAILADDRESS = "AskIU.Send.EmailAddress";
-	
+		
 	public boolean postQuery(AskIU ask){
 		String sendAddress = this.getAskIUEmail();
 		if (sendAddress != null && this.isValidEmail(sendAddress)) {

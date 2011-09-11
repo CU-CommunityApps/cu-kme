@@ -45,9 +45,6 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
     private AdminDao adminDao;
-	public void setAdminDao(AdminDao adminDao) {
-		this.adminDao = adminDao;
-	}
 	
 	@Override
 	public void startCache() {

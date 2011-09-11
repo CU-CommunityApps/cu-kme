@@ -45,9 +45,6 @@ public class KnowledgeBaseController {
 
     @Autowired
     private KnowledgeBaseService knowledgeBaseService;
-    public void setEmergencyInfoService(KnowledgeBaseService knowledgeBaseService) {
-        this.knowledgeBaseService = knowledgeBaseService;
-    }
     
     @RequestMapping(method = RequestMethod.GET)
     public String getHome(Model uiModel) {

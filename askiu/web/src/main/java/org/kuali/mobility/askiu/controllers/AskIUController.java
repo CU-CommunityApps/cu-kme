@@ -77,7 +77,4 @@ public class AskIUController {
     	return !hasErrors;
     }
     
-    public void setAskIUService(AskIUService askiuService) {
-        this.askiuService = askiuService;
-    }    
 }

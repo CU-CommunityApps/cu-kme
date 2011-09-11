@@ -62,23 +62,17 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 	
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(KnowledgeBaseServiceImpl.class);
 	
+	private static final String PARAM_KB_URL_DOCUMENT = "KB.Url.Document";		// http://remote.kb.iu.edu/REST/v0.2/document/
+	private static final String PARAM_KB_URL_SEARCH = "KB.Url.Search";			
+
     @Autowired
     private XslDao xslDao;
-    public void setXslDao(XslDao xslDao) {
-        this.xslDao = xslDao;
-    }
     
     @Autowired
     private ConfigParamService configParamService;
-    public void setConfigParamService(ConfigParamService configParamService) {
-    	this.configParamService = configParamService;
-    }
 	
 	private String username;
 	private String password;
-
-	private static final String PARAM_KB_URL_DOCUMENT = "KB.Url.Document";		// http://remote.kb.iu.edu/REST/v0.2/document/
-	private static final String PARAM_KB_URL_SEARCH = "KB.Url.Search";			//
 	
     public String toJson(KnowledgeBaseSearchResultContainer container) {
         return new JSONSerializer().exclude("*.class").include("results").serialize(container);
@@ -88,7 +82,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 		Xsl xsl = xslDao.findXslByCode(templatesCode);
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Templates templates = transformerFactory.newTemplates(new StreamSource(new ByteArrayInputStream(xsl.getValue().getBytes())));
-//		Templates templates = transformerFactory.newTemplates(new StreamSource(new ByteArrayInputStream("test".getBytes())));
 		return templates;
 	}
 	
@@ -96,8 +89,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 		KnowledgeBaseSearchResultContainer container = null;
 		try {
 			// We could probably just return a document for this and use an XSL to transform it in the mobile service implementation.
-//			String url = this.getCacheService().findConfigParamValueByName(PARAM_KB_URL_SEARCH);
-//			String url = "http://remote.kb.iu.edu/REST/v0.2/document/search//";
 			String url = this.configParamService.findValueByName(PARAM_KB_URL_SEARCH);
 			String content = "query=" + URLEncoder.encode(query, "UTF-8");
 			if (index > 0) {
@@ -108,7 +99,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 			}
 			RequestEntity requestEntity = new StringRequestEntity(content, null, "UTF-8");
 			
-//			Document doc = this.callKnowledgeBase(url, requestEntity, true);
 			String searchXml = this.callKnowledgeBase(url, requestEntity, true);
 			
 			SAXBuilder builder = new SAXBuilder();
@@ -175,9 +165,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 						count++;
 					}
 				}
-				// TESTING
-//			String xml = new XMLOutputter().outputString(doc);
-//			LOG.info(xml);
 			}
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
@@ -194,8 +181,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 	public String getKnowledgeBaseDocument(String documentId) {
 		String docStr = "";
 		try {
-//			String urlFormat = "http://remote.kb.iu.edu/REST/v0.2/document/%s";
-//			String urlFormat = this.getCacheService().findConfigParamValueByName(PARAM_KB_URL_DOCUMENT);
 			String urlFormat = this.configParamService.findValueByName(PARAM_KB_URL_DOCUMENT);
 			String args[] = { documentId };
 			String url = String.format(Locale.US, urlFormat, (Object[]) args); //"http://remote.kb.iu.edu/REST/v0.2/document/" + documentId;
@@ -211,7 +196,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 		String output = "";
 		try {
 			Templates templates = this.getXslTemplates(templatesCode);
-//			Templates templates = this.cacheService.findCachedXSLTemplates(templatesCode);
 			Transformer transformer = templates.newTransformer();
 			for (String key :transformerParameters.keySet()) {
 				transformer.setParameter(key, transformerParameters.get(key));
@@ -227,9 +211,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 
 	private String callKnowledgeBase(String url, RequestEntity requestEntity, boolean isPost) throws Exception {
 		String output = null;
-//		Document doc = null;
-//		SAXBuilder builder = new SAXBuilder();
-//		BufferedReader in = null;
 		
 		HttpClient client = null;
 		client = new HttpClient();
@@ -243,16 +224,12 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 		}
 		method.setDoAuthentication(true);
 		
-//		int timeout = getSocketTimeout(Constants.RSS_SOCKET_TIMEOUT_SECONDS, Constants.RSS_SOCKET_DEFAULT_TIMEOUT);
 		int timeout = getSocketTimeout("blah", 5000);
 		client.getParams().setParameter(HttpClientParams.SO_TIMEOUT, new Integer(timeout));
 		client.getParams().setParameter(HttpClientParams.CONNECTION_MANAGER_TIMEOUT, new Long(timeout));
 		client.getParams().setParameter(HttpConnectionParams.CONNECTION_TIMEOUT, new Integer(timeout));
 		try {
             int status = client.executeMethod(method);
-//            System.out.println(status + "\n" + get.getResponseBodyAsString());
-//            in = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream()));
-//            doc = builder.build(in);
             output = this.inputStreamToString(method.getResponseBodyAsStream());
         } finally {
         	method.releaseConnection();
@@ -281,7 +258,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 				scanner.close();
 			}
 		} catch (Exception e) {
-//			LOG.error("Error retrieving XSL: ", e);
 		}
 		return sb.toString();
 	}
@@ -293,14 +269,11 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
 	private String escapeInvalidEntities(String xml) {
 		try {
 			String replacements[] = this.getReplacementTokens().split(",");
-			// LOG.info("start getting rssDescription tokens:" + url);
 			for (String replacement : replacements) {
 				String[] tokens = replacement.split("=");
 				xml = xml.replace(tokens[0].trim(), tokens[1].trim());
 			}
-			// LOG.info("end getting rssDescription tokens:" + url);
 		} catch (Exception e) {
-//			LOG.error("Problem escaping invalid entities for XML: " + xml, e);
 		}
 		return xml;
 	}
@@ -330,10 +303,6 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
         */
         return timeout;
     }
-    
-    /*
-     * Services
-     */
 
 	public void setUsername(String username) {
 		this.username = username;

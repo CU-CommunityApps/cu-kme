@@ -60,10 +60,6 @@ public class CalendarController {
 	@Autowired
 	private CalendarEventOAuthService calendarEventOAuthService;
 
-	public void setCalendarEventOAuthService(CalendarEventOAuthService calendarEventOAuthService) {
-		this.calendarEventOAuthService = calendarEventOAuthService;
-	}
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(HttpServletRequest request, Model uiModel, @RequestParam(required = false) String date) {
 		return month(request, uiModel, date);

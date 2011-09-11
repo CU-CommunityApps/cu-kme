@@ -31,9 +31,6 @@ public class DiningController {
     
     @Autowired
     private DiningService diningService;
-    public void setDiningService(DiningService diningService) {
-        this.diningService = diningService;
-    }
     
     @RequestMapping(method = RequestMethod.GET)
     public String getList(Model uiModel) {

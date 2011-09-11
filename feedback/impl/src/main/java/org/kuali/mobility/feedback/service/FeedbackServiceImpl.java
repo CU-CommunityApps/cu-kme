@@ -28,6 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
 	
+	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(FeedbackServiceImpl.class);
+
 	@Autowired
     private FeedbackDao feedbackDao;
 	
@@ -37,8 +39,6 @@ public class FeedbackServiceImpl implements FeedbackService {
 	@Autowired
 	private EmailService emailService;
 	
-	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(FeedbackServiceImpl.class);
-
     @Override
     @Transactional
 	public void saveFeedback(Feedback feedback) {
@@ -62,17 +62,6 @@ public class FeedbackServiceImpl implements FeedbackService {
     	}
     }
     
-    public FeedbackDao getFeedbackDao() {
-        return feedbackDao;
-    }
-
-    public void setFeedbackDao(FeedbackDao feedbackDao) {
-        this.feedbackDao = feedbackDao;
-    }
-    
-    public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
 }
 
 

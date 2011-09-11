@@ -39,9 +39,6 @@ public class ComputerLabsServiceImpl implements ComputerLabsService {
 
     @Autowired
     private MapsService mapsService;
-    public void setMapsService(MapsService mapsService) {
-        this.mapsService = mapsService;
-    }
 	
     @Transactional
 	public List<ComputerLab> findAllComputerLabsByCampus(String campus) {
@@ -67,7 +64,6 @@ public class ComputerLabsServiceImpl implements ComputerLabsService {
 		}
 		
 		return labs;
-//		return new ArrayList<ComputerLab>();
 	}
     
     @Transactional
@@ -77,8 +73,6 @@ public class ComputerLabsServiceImpl implements ComputerLabsService {
 		for (ComputerLab lab : labs) {
 			LabLocation labLocation = labMap.get(lab.getBuildingNameOnly());
 			if (labLocation == null) {
-//				Location location = this.getStcLocation(campus, lab.getBuildingCode(), lab.getBuildingShortCode());
-				// Location can be null
 				labLocation = new LabLocation(lab.getBuildingNameOnly());
 				labMap.put(lab.getBuildingNameOnly(), labLocation);
 			}
@@ -92,13 +86,10 @@ public class ComputerLabsServiceImpl implements ComputerLabsService {
 	
     public String toJson(Collection<ComputerLab> collection) {
         return new JSONSerializer().exclude("*.class").include("avList").serialize(collection);
-//    	return new JSONSerializer().include("", "").serialize(collection);
     }
     
     public String toJsonLabLocation(Collection<LabLocation> collection) {
     	return new JSONSerializer().exclude("*.class").deepSerialize(collection);
-//        return new JSONSerializer().exclude("*.class").include("labs").serialize(collection);
-//    	return new JSONSerializer().include("", "").serialize(collection);
     }
 	
 }

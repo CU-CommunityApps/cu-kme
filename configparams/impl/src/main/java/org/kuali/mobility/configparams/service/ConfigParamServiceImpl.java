@@ -63,10 +63,6 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 	@Autowired
 	private ConfigParamDao configParamDao;
 
-	public void setConfigParamDao(ConfigParamDao configParamDao) {
-		this.configParamDao = configParamDao;
-	}
-
 	@Transactional
 	public void deleteConfigParamById(Long id) {
 		configParamDao.deleteConfigParamById(id);

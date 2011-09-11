@@ -24,7 +24,6 @@ import org.kuali.mobility.events.entity.Event;
 import org.kuali.mobility.events.service.EventsService;
 import org.kuali.mobility.shared.Constants;
 import org.kuali.mobility.user.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/events")
 public class EventsController {
 
-	//@Autowired
 	private EventsService eventsService;
-
 	public void setEventsService(EventsService eventsService) {
 		this.eventsService = eventsService;
 	}

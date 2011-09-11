@@ -33,9 +33,6 @@ public class ITNoticesController {
  
     @Autowired
     private ITNoticesService itNoticesService;
-    public void setComputerLabsService(ITNoticesService itNoticesService) {
-        this.itNoticesService = itNoticesService;
-    }
 	
     @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody

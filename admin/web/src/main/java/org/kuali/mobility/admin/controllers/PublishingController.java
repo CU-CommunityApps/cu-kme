@@ -49,19 +49,12 @@ public class PublishingController {
     
     @Autowired
     private AdminService adminService;
-    public void setAdminService(AdminService adminService) {
-        this.adminService = adminService;
-    }
     
     @Autowired
     private NotificationService notificationService;
-    public void setNotificationService(NotificationService notificationService) {
-		this.notificationService = notificationService;
-	}
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(Model uiModel) {
-
     	return "publishing/index";
     }
 	

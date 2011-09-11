@@ -46,8 +46,6 @@ public class AlertsServiceImpl implements AlertsService {
 
 	private static ConcurrentMap<String, CampusAlerts> cachedAlerts;
 
-	// private static final String CP_JSON_ALERTS_URL = "Alerts.Json.Url";
-
 	private static final ConcurrentMap<String, String> campusCodeMap;
 
 	@Autowired
@@ -254,7 +252,4 @@ public class AlertsServiceImpl implements AlertsService {
 		return doc;
 	}
 
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
 }

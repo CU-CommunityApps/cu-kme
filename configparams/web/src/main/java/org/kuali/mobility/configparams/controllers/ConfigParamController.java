@@ -36,9 +36,6 @@ public class ConfigParamController {
     
     @Autowired
     private ConfigParamService configParamService;
-    public void setConfigParamService(ConfigParamService configParamService) {
-        this.configParamService = configParamService;
-    }
     
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model uiModel) {

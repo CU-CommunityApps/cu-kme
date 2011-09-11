@@ -70,15 +70,6 @@ public class FeedbackController{
     @RequestMapping(method = RequestMethod.POST)
     public String submitFeedback(Model uiModel, @ModelAttribute("feedback") Feedback feedback, BindingResult result) {
     	feedback.setPostedTimestamp(new Timestamp(System.currentTimeMillis()));
-//        feedback.setAffiliation(page.getUser().getAffiliation());   
-//        feedback.setCampus(page.getUser().getCampus());
-//        if (params.get("uid") != null) {
-//            feedback.setUserId(params.get("uid"));
-//        } else {
-//            if (page.getUser().isCasAuthenticated()) {
-//            	feedback.setUserId(page.getUser().getPerson().getUserId());
-//            }
-//        }
         if (isValidFeedback(feedback, result)) {
             feedbackService.saveFeedback(feedback);
             return "feedback/thanks";                	
@@ -106,10 +97,6 @@ public class FeedbackController{
      		hasErrors = true;    		
      	}
     	return !hasErrors;
-    }
-    
-    public void setFeedbackService(FeedbackService feedbackService) {
-        this.feedbackService = feedbackService;
     }
     
 }
