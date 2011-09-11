@@ -43,16 +43,16 @@ public class PeopleServiceImpl implements PeopleService {
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(PeopleServiceImpl.class);
 
 	@Autowired
-	private PeopleAdsService adsService;
+	private PeopleAdsService peopleAdsService;
 
 	@Override
 	public List<Person> performSearch(Search search) {
 		List<Person> persons = null;
-		int resultLimit = adsService.getResultLimit();
+		int resultLimit = peopleAdsService.getResultLimit();
 		try {
 			List<AdsPerson> adsPersons = new ArrayList<AdsPerson>();
 			if (search.getUserName() != null && !search.getUserName().trim().isEmpty()) {
-				AdsPerson adsPerson = this.getPeopleAdsService().getAdsPerson(search.getUserName());
+				AdsPerson adsPerson = peopleAdsService.getAdsPerson(search.getUserName());
 				if (adsPerson != null) {
 					if (ferpaRestricted(adsPerson)) {
 						return persons;
@@ -60,7 +60,7 @@ public class PeopleServiceImpl implements PeopleService {
 					adsPersons.add(adsPerson);
 				}
 			} else {
-				adsPersons = this.getPeopleAdsService().getAdsPersons(search.getLastName(), search.getFirstName(), search.getStatus(), search.getLocation(), search.isExactLastName(), resultLimit);
+				adsPersons = peopleAdsService.getAdsPersons(search.getLastName(), search.getFirstName(), search.getStatus(), search.getLocation(), search.isExactLastName(), resultLimit);
 			}
 			// int initialResultSize = adsPersons.size();
 			// Filtering will remove users that should not be displayed
@@ -98,7 +98,7 @@ public class PeopleServiceImpl implements PeopleService {
 	public Person getUserDetails(String userName) {
 		AdsPerson adsPerson;
 		try {
-			adsPerson = adsService.getAdsPerson(userName);
+			adsPerson = peopleAdsService.getAdsPerson(userName);
 			if (ferpaRestricted(adsPerson)) {
 				return null;
 			}
@@ -271,11 +271,4 @@ public class PeopleServiceImpl implements PeopleService {
 		return name.trim();
 	}
 
-	public PeopleAdsService getPeopleAdsService() {
-		return adsService;
-	}
-
-	public void setPeopleAdsService(PeopleAdsService adsService) {
-		this.adsService = adsService;
-	}
 }

@@ -137,7 +137,6 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 			}
 			
 			url = configParamService.findValueByName("Sakai.Url.Base") + "site.json";
-			//url = configParamService.findValueByName("Sakai.Url.Base") + "site/allMySites.json";
 			is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
 			String siteJson = IOUtils.toString(is.getBody(), "UTF-8");
 	
@@ -205,23 +204,6 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
         			other.add(item);
         		}
             }
-            
-            
-//            try {
-//				List<ViewDetailedEvent> listViewEvents = calendarEventOAuthService.retrieveCourseEvents(user, courseSiteIdList);
-//				for (ViewDetailedEvent event : listViewEvents) {
-//					Site site = courseSiteMap.get(event.getOncourseSiteId());
-//					if (event.getRecurrenceMessage() != null && !event.getRecurrenceMessage().isEmpty()) {
-//						site.setMeetingTime(event.getRecurrenceMessage());
-//					} else {
-//						site.setMeetingTime(event.getDisplayDate());
-//					}
-//					site.setLocation(event.getLocation());
-//					site.setBuildingCode(event.getLocationId());
-//				}
-//			} catch (Exception e) {
-//				LOG.error(e.getMessage(), e);
-//			}
             
             for (Map.Entry<String, Term> entry : courseMap.entrySet()) {
             	courses.add(entry.getValue());
@@ -352,9 +334,7 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
                 String entityTitle = announcment.getString("entityTitle");
                 String entityReference = announcment.getString("entityReference");
                 String entityURL = announcment.getString("entityURL");
-//                String siteId = itemArray.getJSONObject(i).getString("siteId");
-//                String siteTitle = itemArray.getJSONObject(i).getString("siteTitle");
-//                
+                
                 JSONArray attachments = itemArray.getJSONObject(i).getJSONArray("attachments");
                 List<Attachment> attach = new ArrayList<Attachment>();
                 if (attachments != null && !attachments.isEmpty()) {
@@ -379,8 +359,6 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
                 trs.setEntityTitle(entityTitle);
                 trs.setEntityReference(entityReference);
                 trs.setEntityURL(entityURL);
-//                trs.setSiteId(siteId);
-//                trs.setSiteTitle(siteTitle);
                 trs.setAttachments(attach);
                 anns.add(trs);
             }
@@ -746,8 +724,5 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 		}
 		return null;
 	}
-	
-	public void setCalendarEventOAuthService(CalendarEventOAuthService calendarEventOAuthService) {
-		this.calendarEventOAuthService = calendarEventOAuthService;
-	}
+
 }

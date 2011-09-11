@@ -176,7 +176,4 @@ public class PeopleController {
 		return !hasErrors;
 	}
 
-	public void setPeopleService(PeopleService peopleService) {
-		this.peopleService = peopleService;
-	}
 }

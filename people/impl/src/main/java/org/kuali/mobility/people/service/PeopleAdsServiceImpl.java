@@ -128,7 +128,4 @@ public class PeopleAdsServiceImpl implements PeopleAdsService {
 		return this.getCachedResultLimit();
 	}
 
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
 }

@@ -30,7 +30,7 @@
 
     <mvc:annotation-driven />
     <mvc:interceptors>
-    	<bean class="org.kuali.mobility.mdot.interceptors.LoginInterceptor" />
+    	<bean class="org.kuali.mobility.shared.interceptors.LoginInterceptor" />
     </mvc:interceptors>
     <mvc:default-servlet-handler />
 	
@@ -52,7 +52,7 @@
         <security:authentication-provider user-service-ref="MobileUserDetailsService" />
     </security:authentication-manager>
    
-    <bean name="MobileUserDetailsService" class="org.kuali.mobility.mdot.userdetails.MobileUserDetailsService" />
+    <bean name="MobileUserDetailsService" class="org.kuali.mobility.shared.userdetails.MobileUserDetailsService" />
     
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

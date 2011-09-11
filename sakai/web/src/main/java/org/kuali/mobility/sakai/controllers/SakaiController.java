@@ -340,32 +340,5 @@ public class SakaiController {
 			return resourceId.substring(index +1 );
 		}
 	}
-	
-	public void setSakaiSiteService(SakaiSiteService sakaiSiteService) {
-		this.sakaiSiteService = sakaiSiteService;
-	}
-	
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
-	
-	public void setOncourseOAuthService(OAuth2LegService oncourseOAuthService) {
-		this.oncourseOAuthService = oncourseOAuthService;
-	}
 
-	public SakaiForumService getSakaiForumService() {
-		return sakaiForumService;
-	}
-
-	public void setSakaiForumService(SakaiForumService sakaiForumService) {
-		this.sakaiForumService = sakaiForumService;
-	}
-
-	public SakaiPrivateTopicService getSakaiPrivateTopicService() {
-		return sakaiPrivateTopicService;
-	}
-
-	public void setSakaiPrivateTopicService(SakaiPrivateTopicService sakaiPrivateTopicService) {
-		this.sakaiPrivateTopicService = sakaiPrivateTopicService;
-	}
 }

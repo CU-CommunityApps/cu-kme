@@ -227,14 +227,8 @@ public class SakaiPrivateTopicServiceImpl implements SakaiPrivateTopicService {
 			jsonString += "\"replies\":" + "null" + ", ";
 			jsonString += "\"replyTo\":" + message.getInReplyTo() + ", ";
 			jsonString += "\"title\":\"" + message.getTitle() + "\", ";
-//			jsonString += "\"topicId\":\"" + null + "\", ";
-//			jsonString += "\"typeUuid\":\""+ "4d9593ed-aaee-4826-b74a-b3c3432b384c" + "\", ";
 			jsonString += "\"siteId\":\""+ siteId + "\", ";
 			jsonString += "\"read\":" + "false" + ", ";
-//			jsonString += "\"entityReference\":\"" + "\\/forum_message" + "\", ";
-			//jsonString += "\"entityURL\":\"" + "http:\\/\\/localhost:8080\\/direct\\/forum_message" + "\", ";
-			//jsonString += "\"entityTitle\":\"" + subject + "\"";
-
 			jsonString += "}";
 
 			String url = configParamService.findValueByName("Sakai.Url.Base") + "forum_message/new.json";
@@ -277,14 +271,6 @@ public class SakaiPrivateTopicServiceImpl implements SakaiPrivateTopicService {
     	} catch(Exception e) {
     		return FileType.GENERIC;
     	}
-	}
-	
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
-
-	public void setOncourseOAuthService(OAuth2LegService oncourseOAuthService) {
-		this.oncourseOAuthService = oncourseOAuthService;
 	}
 
 }

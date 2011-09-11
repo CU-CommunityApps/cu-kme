@@ -428,8 +428,6 @@ public class SakaiForumServiceImpl implements SakaiForumService {
 			jsonString += "\"forumId\":\"" + message.getForumId() + "\", ";
 			jsonString += "\"read\":" + "false" + ", ";
 			jsonString += "\"entityReference\":\"" + "\\/forum_message" + "\"";
-			//jsonString += "\"entityURL\":\"" + "http:\\/\\/localhost:8080\\/direct\\/forum_message" + "\", ";
-			//jsonString += "\"entityTitle\":\"" + subject + "\"";
 
 			jsonString += "}";
 
@@ -475,12 +473,5 @@ public class SakaiForumServiceImpl implements SakaiForumService {
 			return new ResponseEntity<String>(HttpStatus.METHOD_FAILURE);
 		}
 	}
-	
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
-	
-	public void setOncourseOAuthService(OAuth2LegService oncourseOAuthService) {
-		this.oncourseOAuthService = oncourseOAuthService;
-	}
+
 }

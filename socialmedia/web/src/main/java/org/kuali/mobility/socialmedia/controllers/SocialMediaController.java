@@ -38,8 +38,5 @@ public class SocialMediaController {
 		uiModel.addAttribute("tweets", tweets);
 		return "socialmedia/list";
 	}
-
-	public void setTwitterService(TwitterService twitterService) {
-		this.twitterService = twitterService;
-	}
+	
 }

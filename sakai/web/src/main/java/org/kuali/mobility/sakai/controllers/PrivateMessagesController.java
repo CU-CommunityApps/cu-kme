@@ -142,7 +142,4 @@ public class PrivateMessagesController {
     	return !hasErrors;
     }
 	
-	public void setSakaiPrivateTopicService(SakaiPrivateTopicService sakaiPrivateTopicService) {
-		this.sakaiPrivateTopicService = sakaiPrivateTopicService;
-	}
 }

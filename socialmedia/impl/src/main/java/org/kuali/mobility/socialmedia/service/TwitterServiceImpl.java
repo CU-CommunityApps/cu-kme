@@ -54,9 +54,6 @@ public class TwitterServiceImpl implements TwitterService {
 	
 	@Autowired
 	private ConfigParamService configParamService;
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
 	
 	static {
 		twitterFeeds = new ConcurrentHashMap<String, TwitterFeed>();

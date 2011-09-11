@@ -39,8 +39,13 @@ public class PageTag extends SimpleTagSupport {
     private boolean loginButton;
     private String loginButtonURL;
     private String logoutButtonURL;
+    private String manifestFilename;
     
-    public void setId(String id) {
+    public void setManifestFilename(String manifestFilename) {
+		this.manifestFilename = manifestFilename;
+	}
+
+	public void setId(String id) {
         this.id = id;
     }
 
@@ -99,7 +104,11 @@ public class PageTag extends SimpleTagSupport {
         JspWriter out = pageContext.getOut();
         try {
             out.println("<!DOCTYPE html>");
-            out.println("<html>");
+            if (manifestFilename == null || manifestFilename.trim().equals("")) {
+            	out.println("<html>");
+            } else {
+            	out.println("<html manifest=\"" + contextPath + "/" + manifestFilename.trim() + "\">");
+            }
             out.println("<head>");
             out.println("<title>" + title + "</title>");
             out.println("<link href=\"http://www.iu.edu/favicon.ico\" rel=\"icon\" />");

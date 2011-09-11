@@ -46,11 +46,7 @@ public class ForumsController {
 
 	@Autowired
 	private SakaiForumService sakaiForumService;
-
-	public void setSakaiForumService(SakaiForumService sakaiForumService) {
-		this.sakaiForumService = sakaiForumService;
-	}
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getForums(HttpServletRequest request, @PathVariable("siteId") String siteId, Model uiModel) {
 		try {
