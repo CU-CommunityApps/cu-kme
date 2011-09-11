@@ -28,16 +28,30 @@
     <context:component-scan base-package="org.kuali.mobility" />
 
     <mvc:annotation-driven />
-	  
     <mvc:interceptors>
     	<bean class="org.kuali.mobility.shared.interceptors.LoginInterceptor" />
     </mvc:interceptors>
-    
     <mvc:default-servlet-handler />
 	
     <tx:annotation-driven proxy-target-class="true" transaction-manager="jpaTransactionManager" />
 
     <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver" />
+    
+    <bean name="oauthProcessingFilterEntryPoint" class="org.springframework.security.oauth.provider.OAuthProcessingFilterEntryPoint" />
+
+    <security:http auto-config='true' entry-point-ref="oauthProcessingFilterEntryPoint">
+        <security:intercept-url access="ROLE_USER" pattern="/oauth/**" />
+        <security:intercept-url access="ROLE_USER" pattern="/myclasses/**" />
+        <security:intercept-url access="ROLE_USER" pattern="/calendar/**" />
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:anonymous granted-authority="ROLE_USER" />
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="MobileUserDetailsService" />
+    </security:authentication-manager>
+   
+    <bean name="MobileUserDetailsService" class="org.kuali.mobility.shared.userdetails.MobileUserDetailsService" />
     
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

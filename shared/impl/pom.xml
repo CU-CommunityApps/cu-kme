@@ -32,6 +32,7 @@
 			<artifactId>user-impl</artifactId>
 		</dependency>
 		<!-- UIS Utilities dependencies -->
+		<!-- 
 		<dependency>
 			<groupId>uisutilities</groupId>
 			<artifactId>uisutilities</artifactId>
@@ -42,6 +43,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.1</version>
 		</dependency>
+		-->
 		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>

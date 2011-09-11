@@ -24,10 +24,6 @@
 		<param-value>/WEB-INF/SpringBeans.xml /WEB-INF/webmvc-config.xml</param-value> 
 	</context-param>
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
 	<context-param>
 		<param-name>FullPathToLog4jProperties</param-name>
 		<param-value>/opt/j2ee/dev/edu/iu/uis/settings/kme/log4j.properties</param-value>
@@ -37,56 +33,16 @@
 		<listener-class>org.kuali.mobility.shared.listeners.LoggingInitListener</listener-class>
 	</listener>
 	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
 		<listener-class>org.kuali.mobility.maps.listeners.MapsBootstrapListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>org.kuali.mobility.configparams.listeners.ConfigParamListener</listener-class>
 	</listener>
 
-    <filter>
-        <filter-name>cas</filter-name>
-		<filter-class>org.kuali.mobility.shared.filters.LoginFilter</filter-class>
-
-        <init-param>
-            <param-name>cassvc</param-name>
-            <param-value>MOBANY</param-value>
-        </init-param>
-        <init-param>
-            <param-name>loginURL</param-name>
-            <param-value>https://cas.iu.edu/cas/login</param-value>
-        </init-param>
-        <init-param>
-            <param-name>validationURL</param-name>
-            <param-value>https://cas.iu.edu/cas/serviceValidate</param-value>
-        </init-param>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>cas</filter-name>
-        <servlet-name>rest</servlet-name>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>access</filter-name>
-		<filter-class>org.kuali.mobility.shared.filters.AccessFilter</filter-class>
-	</filter>
-
-    <filter-mapping>
-        <filter-name>access</filter-name>
-        <servlet-name>rest</servlet-name>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>backdoor</filter-name>
-		<filter-class>org.kuali.mobility.shared.filters.BackdoorFilter</filter-class>
-	</filter>
-
-    <filter-mapping>
-        <filter-name>backdoor</filter-name>
-        <servlet-name>rest</servlet-name>
-    </filter-mapping>
-	
-	<filter>
+ 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
 
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -105,7 +61,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!--  
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -115,7 +70,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<servlet-name>rest</servlet-name>
 	</filter-mapping>
-	-->
 
     <servlet>
         <servlet-name>rest</servlet-name>

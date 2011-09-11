@@ -28,12 +28,6 @@
 
     <import resource="classpath:KMESpringBeans.xml" />
 	
-	<!-- 
-	https://performance.oncourse.iu.edu/
-	X-Mapping-bmipgloi
-	https://regression.oncourse.iu.edu
-	X-Mapping-jfafkpgg
-	-->
     <bean id="oncourseOAuthService" class="edu.iu.es.espd.oauth.OAuth2LegServiceImpl">
         <property name="providerPublicURL" value="${sakai.oauth.baseUrl}/direct/describe" />
         <property name="providerRequestTokenURL" value="${sakai.oauth.baseUrl}/oauthdirect/oauth/request_token" />
@@ -69,39 +63,11 @@
         </property>
     </bean>
          
-    <!-- 
-    <bean class="org.kuali.mobility.athletics.service.AthleticsServiceImpl">
-        <property name="socketTimeout" value="30000" />
-        <property name="connectionManagerTimeout" value="10000" />
-        <property name="connectionTimeout" value="10000" />
-        <property name="athleticsURL" value="${athletics.baseUrl}" />
-    </bean>
-    -->
-    
     <bean class="org.kuali.mobility.knowledgebase.service.KnowledgeBaseServiceImpl">
         <!-- inject any dependencies required by this bean -->
 		<property name="username" value="${kb.username}" />
 		<property name="password" value="${kb.password}" />
     </bean>
-    
-    <bean class="org.kuali.mobility.email.service.IUEmailServiceImpl">
-		<property name="username" value="${kerberos.username}" />
-		<property name="password" value="${kerberos.password}" />
-    </bean>
-    
-    <bean class="org.kuali.mobility.people.service.PeopleAdsServiceImpl">
-    	<property name="adsUsername" value="${ads.username}" />
-		<property name="adsPassword" value="${ads.password}" />
-    </bean>
-    
-    <bean class="edu.iu.m.auth.AdsServiceImpl">
-	    <property name="adsUsername" value="${ads.username}" />
-		<property name="adsPassword" value="${ads.password}" />
-	</bean>
-    
-    <!--  
-    <bean class="edu.iu.m.news.service.RssCacheServiceImpl" />
-    -->
-    
+        
 </beans>
  

@@ -31,22 +31,6 @@
             <groupId>edu.iu.es.espd</groupId>
             <artifactId>ccl-oauth-consumer</artifactId>
         </dependency>
-		<!-- CAS dependencies -->
-		<dependency>
-    	<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-cas-client</artifactId>
-    		<version>3.0.5.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jasig.cas</groupId>
-			<artifactId>cas-client-core</artifactId>
-			<version>3.1.10</version>
-		</dependency>
-        <dependency>
-            <groupId>edu.iu.es.esi</groupId>
-            <artifactId>casfilter</artifactId>
-            <version>1.11</version>
-        </dependency>        
         <!-- Webapp dependencies -->
    		<dependency>
 			<groupId>javax.servlet</groupId>

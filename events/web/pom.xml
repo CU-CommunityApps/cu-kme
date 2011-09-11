@@ -69,11 +69,6 @@
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
-		<dependency>
-			<groupId>edu.iu.es.esi</groupId>
-			<artifactId>casfilter</artifactId>
-			<version>1.11</version>
-		</dependency>
 		<!-- Testing dependencies -->
 		<dependency>
 			<groupId>org.mortbay.jetty</groupId>

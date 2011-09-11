@@ -19,8 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.iu.uis.cas.filter.CASFilter;
-
 public class LoginInterceptor implements HandlerInterceptor {
 
 	private static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(LoginInterceptor.class);
@@ -67,12 +65,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (user == null || user.isPublicUser()) {
 			Timestamp now = new Timestamp(new Date().getTime());
 
-			user = userService.findUserByPrincipalName(CASFilter.getRemoteUser(request));
+			user = null; //userService.findUserByPrincipalName(CASFilter.getRemoteUser(request));
 			if (user == null) {
 				user = new UserImpl(false);
 				user.setFirstLogin(now);
 			}
-			user.setPrincipalName(CASFilter.getRemoteUser(request));
+			user.setPrincipalName("public user"); //CASFilter.getRemoteUser(request));
 			user.setLastLogin(now);
 			userService.saveUser(user);
 

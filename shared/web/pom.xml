@@ -91,23 +91,7 @@
 		    <groupId>commons-fileupload</groupId>
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.2.2</version>
-		</dependency>
-		<!-- CAS dependencies -->
-		<dependency>
-    	<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-cas-client</artifactId>
-    		<version>3.0.5.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jasig.cas</groupId>
-			<artifactId>cas-client-core</artifactId>
-			<version>3.1.10</version>
-		</dependency>
-        <dependency>
-            <groupId>edu.iu.es.esi</groupId>
-            <artifactId>casfilter</artifactId>
-            <version>1.11</version>
-        </dependency>        
+		</dependency>       
         <!-- Logging dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -166,10 +150,12 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>3.0.5.RELEASE</version>
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth</artifactId>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
