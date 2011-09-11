@@ -67,16 +67,10 @@ public class MapsController {
 	
 	@Autowired
     private MapsService mapsService;
-    public void setMapsService(MapsService mapsService) {
-        this.mapsService = mapsService;
-    }
     
     @Autowired
 	private ConfigParamService configParamService;
-	public void setConfigParamService(ConfigParamService configParamService) {
-		this.configParamService = configParamService;
-	}
-    
+  
 	/*
 	 * Initial view
 	 */
@@ -97,42 +91,17 @@ public class MapsController {
     }
 
     @RequestMapping(value = "/location", method = RequestMethod.GET)
-    public Object get(Model uiModel, @RequestParam(required = false) String latitude, 
-    		@RequestParam(required = false) String longitude) {
-//        List<Location> locations = locationService.getLocationsByBuildingCode(buildingCode);
-//        if (locations == null || locations.size() < 1) {
-//            // Error?
-//        } else {
-//        	Location location = locations.get(0);
-//        	uiModel.addAttribute("location", location);
-//        }
+    public Object get(Model uiModel, @RequestParam(required = false) String latitude, @RequestParam(required = false) String longitude) {
         return "maps/location";
     }
     
     @RequestMapping(value = "/form", method = RequestMethod.GET)
     public Object getForm(Model uiModel) {
 		MapsFormSearch form = new MapsFormSearch();
-//		MapsGroup group = locationService.getMapsGroupByCode(groupCode);
     	uiModel.addAttribute("mapsearchform", form);
         return "maps/formtest";
     }
-    
-/*    @RequestMapping(value = "/{buildingCode}", method = RequestMethod.GET)
-    @ResponseBody
-    public Object get(Model uiModel, @PathVariable("buildingCode") String buildingCode) {
-        List<Location> locations = locationService.getLocationsByBuildingCode(buildingCode);
-        if (locations == null || locations.size() < 1) {
-            // Error?
-        } else {
-        	Location location = locations.get(0);
-        	uiModel.addAttribute("location", location);
-        }
-        return "maps/location";
-    }*/
-    
-    /*
-     * Group with Buildings JSON, get by Group Code
-     */
+        
     @RequestMapping(value = "/group/{groupCode}", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public Object getBuildings(@PathVariable("groupCode") String groupId) {
@@ -147,9 +116,6 @@ public class MapsController {
     	return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
     }
     
-    /*
-     * Buildings JSON, get by Building Code
-     */
     @RequestMapping(value = "/building/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public Object get(@PathVariable("id") String id) {
@@ -170,28 +136,17 @@ public class MapsController {
         return "maps/building";
     }
     
-    /*
-     * Buildings search
-     */
 	@RequestMapping(value = "/building/search", method = RequestMethod.GET)
-	public String searchBuildings(Model uiModel, 
-			@RequestParam(required = true) String criteria, 
-			@RequestParam(required = true) String groupCode) {
+	public String searchBuildings(Model uiModel, @RequestParam(required = true) String criteria, @RequestParam(required = true) String groupCode) {
 		criteria = criteria.trim();
 		LOG.info("Search: " + groupCode + " : " + criteria);
 		MapsFormSearchResultContainer container = search(criteria, groupCode);
 		uiModel.addAttribute("container", container);
-//		uiModel.addAttribute("message", pageLevelException.getMessage());
 		return "maps/search";
 	}
-	
-    /*
-     * Buildings search autocomplete
-     */
+
 	@RequestMapping(value = "/building/searchassist", method = RequestMethod.GET)
-	public String searchBuildingsAutocomplete(Model uiModel, 
-			@RequestParam(required = true) String criteria, 
-			@RequestParam(required = true) String groupCode) {
+	public String searchBuildingsAutocomplete(Model uiModel, @RequestParam(required = true) String criteria, @RequestParam(required = true) String groupCode) {
 		criteria = criteria.trim();
 		LOG.info("Search: " + groupCode + " : " + criteria);
 		MapsFormSearchResultContainer container = search(criteria, groupCode);
@@ -199,9 +154,6 @@ public class MapsController {
 		return "maps/searchautocomplete";
 	}
 
-    /*
-     * Buildings search form results
-     */
 	@RequestMapping(value = "/building/search", method = RequestMethod.POST)
 	public String searchBuildings(HttpServletRequest request, @ModelAttribute("mapsearchform") MapsFormSearch mapsFormSearch, BindingResult bindingResult, SessionStatus status, Model uiModel) {
 		String searchString = mapsFormSearch.getSearchText();
@@ -209,45 +161,7 @@ public class MapsController {
 		String searchCampus = mapsFormSearch.getSearchCampus();
 		MapsFormSearchResultContainer container = search(searchString, searchCampus);
 		uiModel.addAttribute("container", container);
-//		uiModel.addAttribute("message", pageLevelException.getMessage());
 		return "maps/home";
-	}
-
-	private MapsFormSearchResultContainer search(String searchString, String searchGroupId) {
-    	MapsFormSearchResultContainer container = new MapsFormSearchResultContainer();
-    	try {
-    		List<MapsFormSearchResult> results = new ArrayList<MapsFormSearchResult>();
-    		MapsGroup group = mapsService.getMapsGroupById(searchGroupId);
-    		if (group != null) {
-	    		Set<Location> locationSet = group.getMapsLocations();
-	    		List<Location> locations = new ArrayList<Location>();
-	    		locations.addAll(locationSet);
-	    		Collections.sort(locations, new LocationSort());
-	    		for (Location location : locations) {
-	    			boolean addLocation = false;
-	    			if (location.getName() != null && location.getName().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
-	    				addLocation = true;
-	    			} else if (location.getDescription() != null && location.getDescription().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
-	    				addLocation = true;
-	    			} else if (location.getId() != null && location.getId().toLowerCase().trim().equals(searchString.toLowerCase().trim())) {
-	    				addLocation = true;
-	    			}
-	    			if (addLocation) {
-	        			MapsFormSearchResult result = new MapsFormSearchResult();
-	        			result.setName(location.getName());
-	        			result.setCode(location.getId());
-	        			result.setLatitude(location.getLatitude());
-	        			result.setLongitude(location.getLongitude());
-	    				results.add(result);
-	    			}
-	    		}
-    		}
-    		container.setResults(results);
-    		
-    	} catch (Exception e) {
-    		LOG.error(e.getMessage(), e);
-    	}
-    	return container;
 	}
 	
 	@RequestMapping(value = "/foursquare", method = RequestMethod.GET)
@@ -334,4 +248,42 @@ public class MapsController {
         }
         return null;
     }
+	
+	private MapsFormSearchResultContainer search(String searchString, String searchGroupId) {
+    	MapsFormSearchResultContainer container = new MapsFormSearchResultContainer();
+    	try {
+    		List<MapsFormSearchResult> results = new ArrayList<MapsFormSearchResult>();
+    		MapsGroup group = mapsService.getMapsGroupById(searchGroupId);
+    		if (group != null) {
+	    		Set<Location> locationSet = group.getMapsLocations();
+	    		List<Location> locations = new ArrayList<Location>();
+	    		locations.addAll(locationSet);
+	    		Collections.sort(locations, new LocationSort());
+	    		for (Location location : locations) {
+	    			boolean addLocation = false;
+	    			if (location.getName() != null && location.getName().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
+	    				addLocation = true;
+	    			} else if (location.getDescription() != null && location.getDescription().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
+	    				addLocation = true;
+	    			} else if (location.getId() != null && location.getId().toLowerCase().trim().equals(searchString.toLowerCase().trim())) {
+	    				addLocation = true;
+	    			}
+	    			if (addLocation) {
+	        			MapsFormSearchResult result = new MapsFormSearchResult();
+	        			result.setName(location.getName());
+	        			result.setCode(location.getId());
+	        			result.setLatitude(location.getLatitude());
+	        			result.setLongitude(location.getLongitude());
+	    				results.add(result);
+	    			}
+	    		}
+    		}
+    		container.setResults(results);
+    		
+    	} catch (Exception e) {
+    		LOG.error(e.getMessage(), e);
+    	}
+    	return container;
+	}
+	
 }
