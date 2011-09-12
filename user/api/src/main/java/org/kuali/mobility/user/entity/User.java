@@ -29,6 +29,8 @@ public interface User {
 	Long getPrincipalId();
 	String getPrincipalName();
 	String getEmail();
+	public String getIpAddress();
+	public void setIpAddress(String ipAddress);
 	void setFirstLogin(Timestamp firstLogin);
 	void setLastLogin(Timestamp firstLogin);
 
@@ -53,5 +55,9 @@ public interface User {
     boolean isFaculty();
     boolean isStaff();
     boolean isAlumnus();
+    
+    UserCacheObject getFromCache(String key);
+    void removeFromCache(String key);
+    void putInCache(String key, Object item);
     
 }

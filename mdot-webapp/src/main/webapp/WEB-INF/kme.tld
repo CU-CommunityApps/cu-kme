@@ -84,7 +84,7 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>manifestFilename</name>
+            <name>appcacheFilename</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

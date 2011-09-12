@@ -52,6 +52,7 @@ import org.kuali.mobility.shared.Constants;
 import org.kuali.mobility.shared.Constants.FileType;
 import org.kuali.mobility.shared.Constants.FileTypes;
 import org.kuali.mobility.user.entity.User;
+import org.kuali.mobility.user.entity.UserCacheObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -78,10 +79,34 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 	@Autowired
 	private CalendarEventOAuthService calendarEventOAuthService;
 	
+	private Map<String, byte[]> imageCache = new HashMap<String, byte[]>();
+	
+	private final String SAKAI_SITE = "Sakai.Sites"; //cache key  Extended as SAKAI_SITE.{siteId}.{tool}
+	private final String SAKAI_SITE_TIMEOUT = "Sakai.Sites.Timeout"; //config param
+	private final String SAKAI_SITE_ROSTER_TIMEOUT = "Sakai.Site.Roster.Timeout"; //config param
+	private final String SAKAI_SITE_RESOURCES_TIMEOUT = "Sakai.Site.Resources.Timeout"; //config param
+	
 	@SuppressWarnings("unchecked")
 	public Home findSakaiHome(User user, String shortDate) {
 		try {
 			boolean showTodayTab = user.isStudent();
+			
+			try {
+				UserCacheObject cacheObject = user.getFromCache(SAKAI_SITE);
+				if (cacheObject != null && cacheObject.getItem() != null) {
+					Integer timeout;
+					try {
+						timeout = Integer.parseInt(configParamService.findValueByName(SAKAI_SITE_TIMEOUT));
+					} catch (Exception e) {
+						timeout = 30;
+					}
+					if ((cacheObject.getLastUpdateTime() + timeout*60000) > (new Date()).getTime()) {
+						return (Home)cacheObject.getItem();
+					}
+				}
+			} catch (Exception e){
+				LOG.error(e.getMessage(), e);
+			}
 			
 			String url = configParamService.findValueByName("Sakai.Url.Base") + "user_prefs.json";
 			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
@@ -137,6 +162,7 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 			}
 			
 			url = configParamService.findValueByName("Sakai.Url.Base") + "site.json";
+			//url = configParamService.findValueByName("Sakai.Url.Base") + "site/allMySites.json";
 			is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
 			String siteJson = IOUtils.toString(is.getBody(), "UTF-8");
 	
@@ -205,11 +231,31 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
         		}
             }
             
+            
+//            try {
+//				List<ViewDetailedEvent> listViewEvents = calendarEventOAuthService.retrieveCourseEvents(user, courseSiteIdList);
+//				for (ViewDetailedEvent event : listViewEvents) {
+//					Site site = courseSiteMap.get(event.getOncourseSiteId());
+//					if (event.getRecurrenceMessage() != null && !event.getRecurrenceMessage().isEmpty()) {
+//						site.setMeetingTime(event.getRecurrenceMessage());
+//					} else {
+//						site.setMeetingTime(event.getDisplayDate());
+//					}
+//					site.setLocation(event.getLocation());
+//					site.setBuildingCode(event.getLocationId());
+//				}
+//			} catch (Exception e) {
+//				LOG.error(e.getMessage(), e);
+//			}
+            
             for (Map.Entry<String, Term> entry : courseMap.entrySet()) {
             	courses.add(entry.getValue());
             }
             Collections.sort(courses);
             Collections.reverse(courses);
+            
+            user.putInCache(SAKAI_SITE, home);
+            
 			return home;
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
@@ -217,22 +263,41 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 		}
 	}
 	
-	public Site findSite(String siteId, String user) {
+	public Site findSite(User user, String siteId) {
 		Site site = new Site();
 		String instructorName = null;
 		String instructorId = null;
 		String courseDescription = null;
 		String courseTitle = null;
 		try {
+			
+			try {
+				UserCacheObject cacheObject = user.getFromCache(SAKAI_SITE + "." + siteId);
+				if (cacheObject != null && cacheObject.getItem() != null) {
+					Integer timeout;
+					try {
+						timeout = Integer.parseInt(configParamService.findValueByName(SAKAI_SITE_TIMEOUT));
+					} catch (Exception e) {
+						timeout = 30;
+					}
+					if ((cacheObject.getLastUpdateTime() + timeout*60000) > (new Date()).getTime()) {
+						return (Site)cacheObject.getItem();
+					}
+				}
+			} catch (Exception e){
+				LOG.error(e.getMessage(), e);
+			}
+			
+			
 			String url = configParamService.findValueByName("Sakai.Url.Base") + "site/" + siteId + ".json";
-			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(user, url, "text/html");
+			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
 			String json = IOUtils.toString(is.getBody(), "UTF-8");
 			JSONObject jsonObj = (JSONObject) JSONSerializer.toJSON(json);
 			courseDescription = jsonObj.getString("shortDescription");
 			courseTitle = jsonObj.getString("title");
 			
 			url = configParamService.findValueByName("Sakai.Url.Base") + "participant.json?siteId=" + siteId;
-			is = oncourseOAuthService.oAuthGetRequest(user, url, "text/html");
+			is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
 			json = IOUtils.toString(is.getBody(), "UTF-8");
 			jsonObj = (JSONObject) JSONSerializer.toJSON(json);
 			JSONArray itemArray = jsonObj.getJSONArray("participant_collection");
@@ -246,7 +311,7 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 			
 			//check for available tools
 			url = configParamService.findValueByName("Sakai.Url.Base") + "site/" + siteId + "/pages.json";
-			is = oncourseOAuthService.oAuthGetRequest(user, url, "text/html");
+			is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
 			json = IOUtils.toString(is.getBody(), "UTF-8");
 			itemArray = (JSONArray) JSONSerializer.toJSON(json);
 			List<String> availableTools = new ArrayList<String>();
@@ -264,6 +329,7 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 			if (availableTools.contains("Messages")) site.setHasMessagesTool(true);
 			if (availableTools.contains("Resources")) site.setHasResourcesTool(true);
 			if (availableTools.contains("Roster")) site.setHasRosterTool(true);
+			if (availableTools.contains("Syllabus")) site.setHasSyllabusTool(true);
 
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
@@ -278,7 +344,7 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 		try {
 			List<String> courseSiteIdList = new ArrayList<String>();
 			courseSiteIdList.add(site.getId());
-			List<ViewDetailedEvent> listViewEvents = calendarEventOAuthService.retrieveCourseEvents(user, courseSiteIdList);
+			List<ViewDetailedEvent> listViewEvents = calendarEventOAuthService.retrieveCourseEvents(user.getPrincipalName(), courseSiteIdList);
 			for (ViewDetailedEvent event : listViewEvents) {
 				if (event.getRecurrenceMessage() != null && !event.getRecurrenceMessage().isEmpty()) {
 					site.setMeetingTime(event.getRecurrenceMessage().replace("This event recurs", "This class meets"));
@@ -293,6 +359,8 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 		}
+		
+		user.putInCache(SAKAI_SITE + "." + siteId, site);
 		
 		return site;
 	}
@@ -334,7 +402,9 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
                 String entityTitle = announcment.getString("entityTitle");
                 String entityReference = announcment.getString("entityReference");
                 String entityURL = announcment.getString("entityURL");
-                
+//                String siteId = itemArray.getJSONObject(i).getString("siteId");
+//                String siteTitle = itemArray.getJSONObject(i).getString("siteTitle");
+//                
                 JSONArray attachments = itemArray.getJSONObject(i).getJSONArray("attachments");
                 List<Attachment> attach = new ArrayList<Attachment>();
                 if (attachments != null && !attachments.isEmpty()) {
@@ -359,6 +429,8 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
                 trs.setEntityTitle(entityTitle);
                 trs.setEntityReference(entityReference);
                 trs.setEntityURL(entityURL);
+//                trs.setSiteId(siteId);
+//                trs.setSiteTitle(siteTitle);
                 trs.setAttachments(attach);
                 anns.add(trs);
             }
@@ -512,11 +584,29 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 		return courseGrade;
 	}
 	
-	public List<Roster> findRoster(String siteId, String userId) {
+	@SuppressWarnings("unchecked")
+	public List<Roster> findRoster(User user, String siteId) {
 		List<Roster> roster = new ArrayList<Roster>();
     	try {
+    		try {
+				UserCacheObject cacheObject = user.getFromCache(SAKAI_SITE + "." + siteId + ".Roster");
+				if (cacheObject != null && cacheObject.getItem() != null) {
+					Integer timeout;
+					try {
+						timeout = Integer.parseInt(configParamService.findValueByName(SAKAI_SITE_ROSTER_TIMEOUT));
+					} catch (Exception e) {
+						timeout = 30;
+					}
+					if ((cacheObject.getLastUpdateTime() + timeout*60000) > (new Date()).getTime()) {
+						return (List<Roster>)cacheObject.getItem();
+					}
+				}
+			} catch (Exception e){
+				LOG.error(e.getMessage(), e);
+			}
+    		
     		String url = configParamService.findValueByName("Sakai.Url.Base") + "participant.json?siteId=" + siteId;
-			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(userId, url, "text/html");
+			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
 			String json = IOUtils.toString(is.getBody(), "UTF-8");
 			
             JSONObject jsonObj = (JSONObject) JSONSerializer.toJSON(json);
@@ -553,10 +643,13 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
     		LOG.error(e.getMessage(), e);
         }
     	Collections.sort(roster);
+    	
+    	user.putInCache(SAKAI_SITE + "." + siteId + ".Roster", roster);
+    	
 		return roster;
 	}
 	
-	public Roster findParticipantDetails(String json, String displayId) {
+ 	public Roster findParticipantDetails(String json, String displayId) {
     	try {
             JSONObject jsonObj = (JSONObject) JSONSerializer.toJSON(json);
             JSONArray itemArray = jsonObj.getJSONArray("participant_collection");
@@ -597,11 +690,34 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 		return null;
 	}
 	
-	public List<Resource> findSiteResources(String siteId, String userId, String resId) {
+	@SuppressWarnings("unchecked")
+	public List<Resource> findSiteResources(User user, String siteId, String resId) {
 		List<Resource> resources = new ArrayList<Resource>();
 		try {
+			try {
+				UserCacheObject cacheObject;
+				if (resId != null) {
+					cacheObject = user.getFromCache(SAKAI_SITE + "." + siteId + ".Resources." + resId);
+				} else {
+					cacheObject = user.getFromCache(SAKAI_SITE + "." + siteId + ".Resources");
+				}
+				if (cacheObject != null && cacheObject.getItem() != null) {
+					Integer timeout;
+					try {
+						timeout = Integer.parseInt(configParamService.findValueByName(SAKAI_SITE_RESOURCES_TIMEOUT));
+					} catch (Exception e) {
+						timeout = 10;
+					}
+					if ((cacheObject.getLastUpdateTime() + timeout*60000) > (new Date()).getTime()) {
+						return (List<Resource>)cacheObject.getItem();
+					}
+				}
+			} catch (Exception e){
+				LOG.error(e.getMessage(), e);
+			}
+			
 			String url = configParamService.findValueByName("Sakai.Url.Base") + "resources.json?siteId=" + siteId;
-			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(userId, url, "text/html");
+			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
 			String json = IOUtils.toString(is.getBody(), "UTF-8");
 			
             JSONObject jsonObj = (JSONObject) JSONSerializer.toJSON(json);
@@ -665,6 +781,65 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
         } catch (Exception e) {
         	LOG.error(e.getMessage(), e);
         }
+		
+		if (resId != null) {
+			user.putInCache(SAKAI_SITE + "." + siteId + ".Resources." + resId, resources);
+		} else {
+			user.putInCache(SAKAI_SITE + "." + siteId + ".Resources", resources);
+		}
+		
+		return resources;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Resource> findSiteSyllabus(User user, String siteId, String resId) {
+		List<Resource> resources = new ArrayList<Resource>();
+		try {
+			try {
+				UserCacheObject cacheObject;
+				if (resId != null) {
+					cacheObject = user.getFromCache(SAKAI_SITE + "." + siteId + ".Syllabus." + resId);
+				} else {
+					cacheObject = user.getFromCache(SAKAI_SITE + "." + siteId + ".Syllabus");
+				}
+				if (cacheObject != null && cacheObject.getItem() != null) {
+					Integer timeout;
+					try {
+						timeout = Integer.parseInt(configParamService.findValueByName(SAKAI_SITE_RESOURCES_TIMEOUT));
+					} catch (Exception e) {
+						timeout = 10;
+					}
+					if ((cacheObject.getLastUpdateTime() + timeout*60000) > (new Date()).getTime()) {
+						return (List<Resource>)cacheObject.getItem();
+					}
+				}
+			} catch (Exception e){
+				LOG.error(e.getMessage(), e);
+			}
+			
+			String url = configParamService.findValueByName("Sakai.Url.Base") + "syllabus.json?siteId=" + siteId;
+			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(user.getPrincipalName(), url, "text/html");
+			String json = IOUtils.toString(is.getBody(), "UTF-8");
+			
+		} catch (OAuthException e) {
+			BufferedReader br = new BufferedReader(new InputStreamReader(e.getResponseBody()));
+			String body = "";
+			try {
+				body = br.readLine();
+			} catch (IOException e1) {
+			}
+			LOG.error(e.getResponseCode() + ", " + body, e);
+        } catch (Exception e) {
+        	LOG.error(e.getMessage(), e);
+        }
+		
+		if (resId != null) {
+			user.putInCache(SAKAI_SITE + "." + siteId + ".Syllabus." + resId, resources);
+		} else {
+			user.putInCache(SAKAI_SITE + "." + siteId + ".Syllabus", resources);
+		}
+		
 		return resources;
 	}
 	
@@ -724,5 +899,31 @@ public class SakaiSiteServiceImpl implements SakaiSiteService {
 		}
 		return null;
 	}
-
+	
+	public byte[] getImage(String imgUrl, String userId) {
+		try {
+			if (imageCache.containsKey(imgUrl)) {
+				return imageCache.get(imgUrl);
+			}
+			ResponseEntity<InputStream> is = oncourseOAuthService.oAuthGetRequest(userId, imgUrl, "application/octet-stream");
+			byte[] imageData = IOUtils.toByteArray(is.getBody());
+			imageCache.put(imgUrl, imageData);
+			return imageData;
+		} catch (OAuthException e) {
+			BufferedReader br = new BufferedReader(new InputStreamReader(e.getResponseBody()));
+			String body = "";
+			try {
+				body = br.readLine();
+			} catch (IOException e1) {
+			}
+			LOG.error(e.getResponseCode() + ", " + body, e);
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+		}
+		return null;
+	}
+	
+	public void setCalendarEventOAuthService(CalendarEventOAuthService calendarEventOAuthService) {
+		this.calendarEventOAuthService = calendarEventOAuthService;
+	}
 }

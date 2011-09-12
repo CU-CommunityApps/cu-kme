@@ -16,6 +16,29 @@
 <kme:page title="Computer Labs" id="computerlabs" homeButton="true" backButton="true" cssFilename="computerlabs">
     <kme:content>
         <kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b" filter="false">
+        
+        <script type="text/javascript">
+			$('[data-role=page][id=computerlabs]').live('pagebeforeshow', function(event, ui) {
+				$('#clListTemplate').template('clListTemplate');
+				refreshTemplate('computerlabs?campus=${campus}', '#computerlablist', 'clListTemplate', '<li>No labs were found</li>', function() {$('#computerlablist').listview('refresh');});
+			});
+		</script>
+		<script id="clListTemplate" type="text/x-jquery-tmpl">
+			<li data-role="list-divider">\${name}</li>
+			{{each(i,lab) computerLabs}}
+      			<li data-id="\${buildingCode}" detailId="\${labCode}">
+					{{if buildingCode}}
+						<a href="/mdot/maps?id=\${buildingCode}">
+        					<h3>\${labCode}</h3>
+        					<p>\${availability} seats available</p>
+						</a>
+					{{else}}
+						<h3>\${labCode}</h3><p>\${availability} seats available</p>
+					{{/if}}
+      			</li>
+			{{/each}}
+		</script>
+        <%--
             <c:forEach items="${lablocations}" var="location" varStatus="status">
                 <kme:listItem dataTheme="b" dataRole="list-divider">${location.name}</kme:listItem>
 	            <c:forEach items="${location.computerLabs}" var="computerlab" varStatus="status">
@@ -31,6 +54,7 @@
 	                </kme:listItem>
 	            </c:forEach>
             </c:forEach>
+        --%>
         </kme:listView>
     </kme:content>
 </kme:page>

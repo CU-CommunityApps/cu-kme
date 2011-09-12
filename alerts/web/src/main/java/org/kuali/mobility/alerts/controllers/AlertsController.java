@@ -30,6 +30,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import flexjson.JSONSerializer;
 
 @Controller 
 @RequestMapping("/alerts")
@@ -54,6 +57,19 @@ public class AlertsController {
  
    	    uiModel.addAttribute("alerts", alerts);
     	return "alerts/list";
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
+    @ResponseBody
+    public String getListJson(HttpServletRequest request, Model uiModel) {
+    	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
+    	String selectedCampus = user.getViewCampus();
+    	
+    	Map<String, String> criteria = new HashMap<String, String>();
+    	criteria.put("campus", selectedCampus);
+    	List<Alert> alerts = alertsService.findAllAlertsByCriteria(criteria);
+ 
+   		return new JSONSerializer().exclude("*.class").deepSerialize(alerts);
     }
     
 }

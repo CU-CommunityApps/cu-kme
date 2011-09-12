@@ -80,11 +80,18 @@ public class UserImpl implements User, Serializable {
 	@Transient
 	private boolean publicUser;
 
+	@Transient
+	private UserCache cache;
+
+	@Transient
+	private String ipAddress;
+
 	public UserImpl() {
 		publicUser = false;
 		userAttributes = new HashMap<String, String>();
 		groups = new ArrayList<String>();
 		affiliations = new ArrayList<String>();
+		cache = new UserCache();
 	}
 
 	public UserImpl(boolean publicUser) {
@@ -251,4 +258,29 @@ public class UserImpl implements User, Serializable {
 		this.email = email;
 	}
 
+	@Override
+	public String getIpAddress() {
+		return ipAddress;
+	}
+	
+	@Override
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+
+	@Override
+	public UserCacheObject getFromCache(String key) {
+		return cache.get(key);
+	}
+
+	@Override
+	public void putInCache(String key, Object item) {
+		cache.put(key, item);
+	}
+
+	@Override
+	public void removeFromCache(String key) {
+		cache.remove(key);
+	}
+	
 }

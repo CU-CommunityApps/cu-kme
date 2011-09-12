@@ -24,6 +24,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import flexjson.JSONSerializer;
 
 @Controller 
 @RequestMapping("/dining")
@@ -38,4 +41,12 @@ public class DiningController {
     	uiModel.addAttribute("menus", menus);
     	return "dining/list";
     }
+    
+    @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
+    @ResponseBody
+    public String getListJson() {
+    	List<Menu> menus = diningService.getMenus("SE");
+    	return new JSONSerializer().exclude("*.class").deepSerialize(menus);
+    }
+
 }

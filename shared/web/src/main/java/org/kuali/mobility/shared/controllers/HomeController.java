@@ -64,10 +64,11 @@ public class HomeController {
     	uiModel.addAttribute("ipAddress", ipAddress);
     	return "index";
     }
-
+    
     @RequestMapping(value = "kme.appcache", method = RequestMethod.GET)
     public String cachemanifest(HttpServletRequest request, HttpServletResponse response, Model uiModel) {      
-    	return "homeManifest";
+    	//response.setContentType("text/cache-manifest");
+    	return "cacheManifest";
     }
     
     @RequestMapping(value = "logout", method = RequestMethod.GET)
@@ -96,7 +97,6 @@ public class HomeController {
     */
 
     private void buildHomeScreen(HttpServletRequest request, Model uiModel) {
-    	
     	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
     	Backdoor backdoor = (Backdoor) request.getSession().getAttribute(Constants.KME_BACKDOOR_USER_KEY);
     	 
