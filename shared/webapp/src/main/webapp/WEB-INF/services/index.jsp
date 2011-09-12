@@ -21,10 +21,8 @@
 	
 		<div id="cacheProgressModal">
 			<div id="cacheProgressMessage">
-			<h3>Downloading resources to improve performance.  Please wait.</h3>
-			<p>
-				Progress: <span id="cacheProgress">&nbsp;</span>
-			</p>
+			<h3>Optimizing performance.  Please wait.</h3>
+			<p><span id="cacheProgress">&nbsp;</span></p>
 			
 			<input id="reloadButton" type="button" value="Reload" onClick="window.location.reload()">
 		 
@@ -89,7 +87,7 @@
 			// Now, grab the cache manifest file.
 			$.ajax({
 				type: "get",
-				url: "./iumobile.appcache",
+				url: "./kme.appcache",
 				dataType: "text",
 				cache: false,
 				success: function( content ){
@@ -282,7 +280,10 @@
 		$( appCache ).bind(
 			"error",
 			function( event ){
+				//alert('error!');
 				logEvent( "An error occurred" );
+				$('div#cacheProgressModal').fadeOut();
+				$('div#cacheProgressMessage').fadeOut();
 			}
 		);
  

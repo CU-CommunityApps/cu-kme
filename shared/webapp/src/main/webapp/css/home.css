@@ -37,6 +37,7 @@ div#cacheProgressMessage {
 div#cacheProgressMessage h3 {
 	padding:0;
 	margin:3px 0 10px 0;
+	text-align:center;
 }
 
 div#cacheProgressMessage #reloadButton {
