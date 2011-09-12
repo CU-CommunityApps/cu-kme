@@ -41,13 +41,23 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
 		tool = new Tool();
+		tool.setAlias("conference");
+		tool.setTitle("Conference");
+		tool.setUrl("conference");
+		tool.setDescription("Sessions, attendees, and your favorite pub crawl tours!");
+		tool.setIconUrl("images/service-icons/srvc-maps.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 3);
+		tools.add(ht);
+
+		tool = new Tool();
 		tool.setAlias("labs");
 		tool.setTitle("Computer Labs");
 		tool.setUrl("computerlabs");
 		tool.setDescription("See which campus computers labs have an open seat.");
 		tool.setIconUrl("images/service-icons/srvc-stc.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 3);
+		ht = new HomeTool(home, tool, 4);
 		tools.add(ht);
 
 		tool = new Tool();
@@ -57,7 +67,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tool.setDescription("See a list of active campus alert messages.");
 		tool.setIconUrl("images/service-icons/srvc-alerts-green.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 4);
+		ht = new HomeTool(home, tool, 5);
 		tools.add(ht);
 
 		home.setHomeTools(tools);
