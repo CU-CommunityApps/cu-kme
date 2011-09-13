@@ -148,7 +148,28 @@
 			<version>${tool.admin.version}</version>
             <type>war</type>
             <scope>runtime</scope>
-        </dependency>   
+        </dependency>
+           
+        <dependency>
+            <groupId>org.kuali.mobility</groupId>
+            <artifactId>polling-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kuali.mobility</groupId>
+            <artifactId>polling-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kuali.mobility</groupId>
+            <artifactId>polling-web</artifactId>
+        </dependency>
+        <dependency> 
+            <groupId>org.kuali.mobility</groupId>
+            <artifactId>polling-webapp</artifactId>
+			<version>${tool.polling.version}</version>
+            <type>war</type>
+            <scope>runtime</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>dining-api</artifactId>

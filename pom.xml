@@ -61,6 +61,7 @@
 		<tool.maps.version>1.0.0-PRE-BETA-F2F</tool.maps.version>
 		<tool.news.version>1.0.0-PRE-BETA-F2F</tool.news.version>
 		<tool.people.version>1.0.0-PRE-BETA-F2F</tool.people.version>
+		<tool.polling.version>1.0-SNAPSHOT</tool.polling.version>
 		<tool.sakai.version>1.0.0-PRE-BETA-F2F</tool.sakai.version>
 		<tool.socialmedia.version>1.0.0-PRE-BETA-F2F</tool.socialmedia.version>	
 		
@@ -94,6 +95,7 @@
 				<module>maps</module>
 				<module>news</module>
 				<module>people</module>
+				<module>polling</module>
 				<module>sakai</module>
 				<module>socialmedia</module>
 				<module>mdot-webapp</module>
@@ -549,6 +551,27 @@
                 <groupId>org.kuali.mobility</groupId>
                 <artifactId>people-webapp</artifactId>
                 <version>${tool.people.version}</version>
+            </dependency>
+ 			<!-- Polling Service -->
+ 			<dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>polling-api</artifactId>
+                <version>${tool.polling.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>polling-impl</artifactId>
+                <version>${tool.polling.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>polling-web</artifactId>
+                <version>${tool.polling.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>polling-webapp</artifactId>
+                <version>${tool.polling.version}</version>
             </dependency>
 			<!-- Sakai Service -->
 			<dependency>

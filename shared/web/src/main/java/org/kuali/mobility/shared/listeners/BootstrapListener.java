@@ -66,6 +66,27 @@ public abstract class BootstrapListener implements ServletContextListener {
 		param.setValue("https://es-nd.ucs.indiana.edu:9000/my2-unt/DataExport.do?__p_dispatch__=campusStatus&campus=BL");
 		configParamService.saveConfigParam(param);
 		
+		/*
+		 * Poll poll = new Poll();
+		poll.setQuestion("What's your favorite color?");
+		
+		List<Answer> answers = new ArrayList<Answer>();
+		Answer answer = new Answer();
+		answer.setAnswer("Red");
+		answer.setPoll(poll);
+		answers.add(answer);
+		answer = new Answer();
+		answer.setAnswer("Green");
+		answer.setPoll(poll);
+		answers.add(answer);
+		answer = new Answer();
+		answer.setAnswer("Blue");
+		answer.setPoll(poll);
+		answers.add(answer);
+		poll.setAnswers(answers);
+		 */
+		
+		
 		LOG.info("Count: " + adminService.getAllHomeScreens().size());
 		
 		LOG.info("BootstrapListener finished initializing.");

@@ -7,10 +7,12 @@ import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.entity.HomeTool;
 import org.kuali.mobility.admin.entity.Tool;
 import org.kuali.mobility.admin.service.AdminService;
+import org.kuali.mobility.polling.entity.Answer;
+import org.kuali.mobility.polling.entity.Poll;
 import org.kuali.mobility.shared.listeners.BootstrapListener;
 
 public class KMEBootstrapListener extends BootstrapListener {
-
+	
 	@Override
 	public HomeScreen bootstrapHomeScreenTools(AdminService adminService) {
 		HomeScreen home = new HomeScreen();
@@ -70,6 +72,16 @@ public class KMEBootstrapListener extends BootstrapListener {
 		ht = new HomeTool(home, tool, 5);
 		tools.add(ht);
 
+		tool = new Tool();
+		tool.setAlias("polling");
+		tool.setTitle("Polling");
+		tool.setUrl("polling");
+		tool.setDescription("Poll of the day.");
+		tool.setIconUrl("images/service-icons/srvc-alerts-green.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 5);
+		tools.add(ht);
+		
 		home.setHomeTools(tools);
 		return home;
 	}
