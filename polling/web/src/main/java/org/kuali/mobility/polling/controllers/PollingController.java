@@ -15,10 +15,12 @@
 
 package org.kuali.mobility.polling.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.kuali.mobility.polling.entity.Answer;
 import org.kuali.mobility.polling.entity.Poll;
+import org.kuali.mobility.polling.entity.Stats;
 import org.kuali.mobility.polling.entity.Vote;
 import org.kuali.mobility.polling.service.PollingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +48,19 @@ public class PollingController {
     	return "polling/index";
     }
     
-    @RequestMapping(value = "/viewx/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String viewPoll(Model uiModel, @PathVariable("id") Long id) {
     	Poll poll = service.lookup(id);
     	uiModel.addAttribute("poll", poll);
     	uiModel.addAttribute("vote", new Vote());
     	return "polling/view";
+    }
+    
+    @RequestMapping(value = "/stats/{id}", method = RequestMethod.GET)
+    public String viewPollStats(Model uiModel, @PathVariable("id") Long id) {
+    	Stats stats = service.findPollResults(id);
+    	uiModel.addAttribute("stats", stats);
+    	return "polling/results";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -77,13 +86,17 @@ public class PollingController {
     		errors.rejectValue("question", "", "Please provide a question.");
         	return "polling/form";
     	}
+    	for (Answer answer : poll.getAnswers()){
+    		answer.setPoll(poll);
+    	}
     	service.save(poll);
     	return "polling/success";
     }
     
     @RequestMapping(value = "/vote", method = RequestMethod.POST)
     public String saveVote(Model uiModel, @ModelAttribute("vote") Vote vote) {
-    	
+    	vote.setTimestamp(new Date().getTime());
+    	service.saveVote(vote);
     	return "polling/success";
     }
     
@@ -91,6 +104,5 @@ public class PollingController {
     public String results(Model uiModel) {
     	return "polling/results";
     }
-
     
 }

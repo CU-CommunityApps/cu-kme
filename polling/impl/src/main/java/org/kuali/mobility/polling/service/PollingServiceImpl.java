@@ -16,9 +16,13 @@
 package org.kuali.mobility.polling.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kuali.mobility.polling.dao.PollingDao;
+import org.kuali.mobility.polling.entity.Answer;
 import org.kuali.mobility.polling.entity.Poll;
+import org.kuali.mobility.polling.entity.Stats;
+import org.kuali.mobility.polling.entity.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,13 +33,13 @@ public class PollingServiceImpl implements PollingService {
     @Autowired
     private PollingDao pollingDao;
 
-    @Transactional(readOnly=true)
+    @Transactional
 	@Override
 	public Poll lookup(Long id) {
 		return pollingDao.lookup(id);
 	}
 
-    @Transactional(readOnly=true)
+    @Transactional
 	@Override
 	public List<Poll> findAllPolls() {
 		return pollingDao.findAllPolls();
@@ -52,5 +56,27 @@ public class PollingServiceImpl implements PollingService {
 	public Poll delete(Poll poll) {
 		return pollingDao.delete(poll);
 	}
-
+	
+	@Override
+	@Transactional
+	public Vote saveVote(Vote vote) {
+		return pollingDao.saveVote(vote);
+	}
+	
+	@Override
+	@Transactional
+	public Stats findPollResults(Long pollId){
+		Stats stats = new Stats();
+		Poll poll = pollingDao.lookup(pollId);
+		stats.setPoll(poll);
+		Map<String, Integer> answerStats = stats.getAnswerStats();
+		
+		for (Answer answer : poll.getAnswers()){
+			List<Vote> votes = pollingDao.getVotes(answer.getId());
+			int numVotes = votes.size();
+			answerStats.put(answer.getAnswer(), numVotes);
+			stats.setTotalVotes(stats.getTotalVotes() + numVotes);
+		}
+		return stats;
+	}
 }

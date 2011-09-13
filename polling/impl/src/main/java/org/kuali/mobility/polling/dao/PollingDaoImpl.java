@@ -24,6 +24,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.kuali.mobility.polling.entity.Poll;
+import org.kuali.mobility.polling.entity.Vote;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -37,7 +38,8 @@ public class PollingDaoImpl implements PollingDao {
 		Query query = entityManager.createQuery("select p from Poll p where p.id = :id");
         query.setParameter("id", id);
         try {
-        	return (Poll) query.getSingleResult();
+        	Poll p = (Poll)query.getSingleResult();
+        	return p;
         } catch (Exception e) {
         	return null;
         }
@@ -77,6 +79,35 @@ public class PollingDaoImpl implements PollingDao {
         query.setParameter("id", poll.getId());
         query.executeUpdate();
         return poll;
+	}
+
+	@Override
+	public Vote saveVote(Vote vote) {
+		if (vote == null) {
+            return null;
+        }
+        try {
+	        if (vote.getId() == null) {
+	            entityManager.persist(vote);
+	        } else {
+	            entityManager.merge(vote);
+	        }
+        } catch (OptimisticLockException oe) {
+            return null;
+        }
+        return vote;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Vote> getVotes(Long id) {
+		Query query = entityManager.createQuery("select v from Vote v where v.answerId = :id");
+		query.setParameter("id", id);
+        try { 
+        	return query.getResultList();
+        } catch (Exception e) {        	
+        	return new ArrayList<Vote>();
+        }
 	}
 
 }

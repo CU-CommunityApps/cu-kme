@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,14 +23,14 @@ public class Answer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name="ID")
 	private Long id;
-
-    @Column(name="POLL_ID", insertable=false, updatable=false)
-	private Long pollId;
 	
 	@Column(name="ANSWR")
 	private String answer;
+	
+	@Column(name="POLL_ID", insertable=false, updatable=false)
+	private Long pollId;
 		
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="POLL_ID")
 	private Poll poll;
 	

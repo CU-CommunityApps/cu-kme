@@ -18,6 +18,7 @@ package org.kuali.mobility.polling.dao;
 import java.util.List;
 
 import org.kuali.mobility.polling.entity.Poll;
+import org.kuali.mobility.polling.entity.Vote;
 
 public interface PollingDao {
 
@@ -27,4 +28,6 @@ public interface PollingDao {
 	Poll save(Poll poll);
 	Poll delete(Poll poll);
 	
+	Vote saveVote(Vote vote);
+	List<Vote> getVotes(Long id);
 }

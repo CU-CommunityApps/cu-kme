@@ -18,6 +18,8 @@ package org.kuali.mobility.polling.service;
 import java.util.List;
 
 import org.kuali.mobility.polling.entity.Poll;
+import org.kuali.mobility.polling.entity.Stats;
+import org.kuali.mobility.polling.entity.Vote;
 
 public interface PollingService {
 	
@@ -26,5 +28,7 @@ public interface PollingService {
 
 	Poll save(Poll poll);
 	Poll delete(Poll poll);
+	Vote saveVote(Vote vote);
+	Stats findPollResults(Long pollId);
 		
 }

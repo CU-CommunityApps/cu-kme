@@ -17,21 +17,17 @@
 
 <kme:page title="polling" id="polling-webapp" backButton="true" homeButton="true" cssFilename="polling" jsFilename="polling">
 	<kme:content>
-		<form:form action="${pageContext.request.contextPath}/polling/vote" commandName="vote" data-ajax="false" method="post">
-			<h3>${poll.question}</h3>
-			
-			<form:radiobuttons items="${poll.answers}" itemLabel="answer" itemValue="id" path="answerId" />
-
-			<div data-inline="true">
-                <div class="ui-grid-a">
-                    <div class="ui-block-a"><a data-theme="c"  href="${pageContext.request.contextPath}/polling" data-role="button">Cancel</a></div>
-                    <div class="ui-block-b">
-                        <input data-theme="a" class="submit" type="submit" value="Save" />
-                    </div>
-                </div>
-            </div>
-        </form:form>
-        
-        <a href="${pageContext.request.contextPath}/polling/stats/${poll.id}">View Results</a>
+		<p>${stats.poll.question}</p>
+		<p>Total votes: ${stats.totalVotes}</p>
+			<table>
+				<c:forEach items="${stats.answerStats}" var="answerStat" varStatus="status">
+					<tr>
+						<td>${answerStat.key}</td>
+						<td>
+							${answerStat.value}
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
 	</kme:content>
 </kme:page>
