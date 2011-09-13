@@ -39,14 +39,14 @@ public class PollingController {
     @Autowired
     private PollingService service;
 	    
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String index(Model uiModel) {
     	List<Poll> polls = service.findAllPolls();
     	uiModel.addAttribute("polls", polls);
     	return "polling/index";
     }
     
-    @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/viewx/{id}", method = RequestMethod.GET)
     public String viewPoll(Model uiModel, @PathVariable("id") Long id) {
     	Poll poll = service.lookup(id);
     	uiModel.addAttribute("poll", poll);

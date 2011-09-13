@@ -19,7 +19,7 @@
 		<kme:listView>
 			<c:forEach items="${polls}" var="poll" varStatus="status">
 				<kme:listItem>
-					<a href="${pageContext.request.contextPath}/polling/index/${poll.id}">${poll.question}</a>
+					<a href="${pageContext.request.contextPath}/polling/view/${poll.id}">${poll.question}</a>
 				</kme:listItem>
 			</c:forEach>
 		</kme:listView>

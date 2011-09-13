@@ -17,6 +17,6 @@
 <kme:page title="polling" id="polling-webapp" backButton="true" homeButton="true" cssFilename="polling" jsFilename="polling">
 	<kme:content>
 		<p>Save successful.</p>
-		<p><a href="${pageContext.request.contextPath}/polling/index">go home</a></p>
+		<p><a href="${pageContext.request.contextPath}/polling">go home</a></p>
 	</kme:content>
 </kme:page>
