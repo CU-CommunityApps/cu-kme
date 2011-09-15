@@ -58,6 +58,12 @@
             <groupId>org.jdom</groupId>
             <artifactId>jdom</artifactId>
         </dependency>
+        <dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.1</version>
+			<scope>compile</scope>
+		</dependency>
         <!-- Testing dependencies -->
         <dependency>
             <groupId>org.mortbay.jetty</groupId>

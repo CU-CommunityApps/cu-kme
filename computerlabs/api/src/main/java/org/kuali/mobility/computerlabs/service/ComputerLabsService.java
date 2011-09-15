@@ -18,17 +18,11 @@ package org.kuali.mobility.computerlabs.service;
 import java.util.Collection;
 import java.util.List;
 
-import org.kuali.mobility.computerlabs.entity.ComputerLab;
-import org.kuali.mobility.computerlabs.entity.LabLocation;
+import org.kuali.mobility.computerlabs.entity.Seat;
 
 public interface ComputerLabsService {
 
-	public List<LabLocation> findAllLabLocationsByCampus(String campus);
-	
-	public List<ComputerLab> findAllComputerLabsByCampus(String campus);
-	
-	public String toJson(Collection<ComputerLab> collection);
-	
-	public String toJsonLabLocation(Collection<LabLocation> collection);
+	public String toJson(Collection<Seat> seats);
+	public List<Seat> findAllSeats();
 	
 }

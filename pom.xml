@@ -64,6 +64,8 @@
 		<tool.polling.version>1.0-SNAPSHOT</tool.polling.version>
 		<tool.sakai.version>1.0.0-PRE-BETA-F2F</tool.sakai.version>
 		<tool.socialmedia.version>1.0.0-PRE-BETA-F2F</tool.socialmedia.version>	
+
+        <util.webservice.adapter>1.0-SNAPSHOT</util.webservice.adapter>
 		
 		<iu.edu.es.espd.oauth-consumer.version>1.0.0</iu.edu.es.espd.oauth-consumer.version>
 		<ccl-oauth-consumer.version>1.0.0</ccl-oauth-consumer.version>
@@ -75,6 +77,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
+                <module>util.webservice.adapter</module>
 				<module>shared</module>
 				<module>user</module>
                 <module>admin</module>
@@ -126,6 +129,11 @@
 	</licenses>
 	<dependencyManagement>
 		<dependencies>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>util.webservice.adapter</artifactId>
+                <version>${util.webservice.adapter}</version>
+            </dependency>
 			<!-- Persistence dependencies -->
 			<dependency>
 				<groupId>javax.persistence</groupId>

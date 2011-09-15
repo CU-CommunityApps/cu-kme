@@ -19,7 +19,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.kuali.mobility.computerlabs.entity.LabLocation;
+import org.kuali.mobility.computerlabs.entity.Seat;
 import org.kuali.mobility.computerlabs.service.ComputerLabsService;
 import org.kuali.mobility.shared.Constants;
 import org.kuali.mobility.user.entity.User;
@@ -48,8 +48,9 @@ public class ComputerLabsController {
     	} else {
     		selectedCampus = user.getViewCampus();
     	}
-    	List<LabLocation> labLocations = computerLabsService.findAllLabLocationsByCampus(selectedCampus);
-    	return computerLabsService.toJsonLabLocation(labLocations);
+
+   		List<Seat> seats = computerLabsService.findAllSeats();
+    	return computerLabsService.toJson(seats);
     }
     
     @RequestMapping(method = RequestMethod.GET)
@@ -61,8 +62,9 @@ public class ComputerLabsController {
     	} else {
     		selectedCampus = user.getViewCampus();
     	}
-   		List<LabLocation> labLocations = computerLabsService.findAllLabLocationsByCampus(selectedCampus);
-   		uiModel.addAttribute("lablocations", labLocations);
+
+    	List<Seat> seats = computerLabsService.findAllSeats();
+    	uiModel.addAttribute("seats", seats);
     	return "computerlabs/list";
     }
 

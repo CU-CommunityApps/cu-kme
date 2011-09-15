@@ -24,7 +24,9 @@
 			});
 		</script>
 		<script id="clListTemplate" type="text/x-jquery-tmpl">
-			<li data-role="list-divider">\${name}</li>
+			<li data-role="list-divider">\${lab}</li>
+			<h3>\${building}</h3><p>\${availability} seats available</p>
+			<%--
 			{{each(i,lab) computerLabs}}
       			<li data-id="\${buildingCode}" detailId="\${labCode}">
 					{{if buildingCode}}
@@ -37,10 +39,15 @@
 					{{/if}}
       			</li>
 			{{/each}}
+			--%>
 		</script>
-        <%--
-            <c:forEach items="${lablocations}" var="location" varStatus="status">
-                <kme:listItem dataTheme="b" dataRole="list-divider">${location.name}</kme:listItem>
+        
+            <c:forEach items="${seats}" var="seat" varStatus="status">
+                <kme:listItem dataTheme="b" dataRole="list-divider">${seat.lab}</kme:listItem>
+	            <kme:listItem cssClass="link-gps">
+	            <h3>${seat.building}</h3><p>${seat.availability} seats available</p>
+	            </kme:listItem>
+	            <%-- 
 	            <c:forEach items="${location.computerLabs}" var="computerlab" varStatus="status">
 	                <kme:listItem cssClass="link-gps">
 				       <c:choose>
@@ -53,8 +60,9 @@
 			            </c:choose>
 	                </kme:listItem>
 	            </c:forEach>
+	            --%>
             </c:forEach>
-        --%>
+        
         </kme:listView>
     </kme:content>
 </kme:page>

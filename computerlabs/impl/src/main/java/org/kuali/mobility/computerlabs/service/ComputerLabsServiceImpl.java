@@ -15,31 +15,30 @@
 
 package org.kuali.mobility.computerlabs.service;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import org.kuali.mobility.computerlabs.entity.ComputerLab;
-import org.kuali.mobility.computerlabs.entity.LabLocation;
-import org.kuali.mobility.maps.entity.Location;
-import org.kuali.mobility.maps.entity.MapsGroup;
+import org.kuali.mobility.computerlabs.entity.Seat;
 import org.kuali.mobility.maps.service.MapsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import com.thoughtworks.xstream.XStream;
 
 import flexjson.JSONSerializer;
 
 @Service
 public class ComputerLabsServiceImpl implements ComputerLabsService {
 
+	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ComputerLabsServiceImpl.class);
+
     @Autowired
     private MapsService mapsService;
 	
+    /*
     @Transactional
 	public List<ComputerLab> findAllComputerLabsByCampus(String campus) {
 		ComputerLabsSeatParser parser = new ComputerLabsSeatParser();
@@ -83,13 +82,36 @@ public class ComputerLabsServiceImpl implements ComputerLabsService {
 		Collections.sort(labLocations);
 		return labLocations;
 	}
-	
-    public String toJson(Collection<ComputerLab> collection) {
-        return new JSONSerializer().exclude("*.class").include("avList").serialize(collection);
-    }
+	*/
     
-    public String toJsonLabLocation(Collection<LabLocation> collection) {
-    	return new JSONSerializer().exclude("*.class").deepSerialize(collection);
+	@SuppressWarnings("unchecked")
+	public List<Seat> findAllSeats() {
+		String url = "http://ulib.iupui.edu/utility/seats.php?show=locations&type=data";
+		
+		XStream xs = new XStream();
+		
+		xs.processAnnotations(Seat.class);
+		
+		xs.alias("seats", List.class);
+		xs.alias("seat", Seat.class);
+		
+		xs.aliasAttribute(Seat.class, "buildingCode", "building-code");
+		xs.aliasAttribute(Seat.class, "windowsAvailability", "windows-availability");
+		xs.aliasAttribute(Seat.class, "macAvailability", "mac-availability");
+		xs.aliasAttribute(Seat.class, "softwareAvailability", "software-availability");
+		
+		List<Seat> seats = new ArrayList<Seat>();
+		try {
+			seats = (List<Seat>) xs.fromXML(new URL(url));
+		} catch (MalformedURLException e) {
+			LOG.error(e.getMessage(), e);
+		}
+		
+		return seats;
+	}
+
+    public String toJson(Collection<Seat> seats) {
+        return new JSONSerializer().exclude("*.class").serialize(seats);
     }
-	
+    	
 }
