@@ -20,6 +20,9 @@ import java.util.List;
 import org.kuali.mobility.news.entity.NewsSource;
 
 public interface NewsDao {
-	public List<NewsSource> getAllActiveNewsSourcesByLocationCode(String locationCode);
-	public NewsSource getNewsSourceById(String sourceId);
+	public List<NewsSource> findAllActiveNewsSources();
+	public List<NewsSource> findAllNewsSources();
+	public NewsSource lookup(Long id);
+	public NewsSource save(NewsSource newsSource);
+	public NewsSource delete(NewsSource newsSource);
 }

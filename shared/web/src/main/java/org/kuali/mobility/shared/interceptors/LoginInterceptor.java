@@ -39,14 +39,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 		user.setPrimaryCampus("BL");
 		user.setViewCampus("BL");
 		
-		if (user != null && user.getUserAttribute("acked") == null && (HttpUtil.needsAuthenticated(request.getServletPath()) || "yes".equals(request.getParameter("login")))) {
-			try {
-				user.setUserAttribute("service", request.getServletPath());
-				response.sendRedirect(request.getContextPath() + "/mobileCasAck");
-			} catch (IOException e) {
-				LOG.error(e.getMessage(), e);
-			}
-		}
+//		if (user != null && user.getUserAttribute("acked") == null && (HttpUtil.needsAuthenticated(request.getServletPath()) || "yes".equals(request.getParameter("login")))) {
+//			try {
+//				user.setUserAttribute("service", request.getServletPath());
+//				response.sendRedirect(request.getContextPath() + "/mobileCasAck");
+//			} catch (IOException e) {
+//				LOG.error(e.getMessage(), e);
+//			}
+//		}
 
 		return true;
 	}

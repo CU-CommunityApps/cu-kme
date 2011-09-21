@@ -132,3 +132,7 @@ li.streamTitle a {
 	color:#999999;
 }
 
+li.expander {
+	display:none;
+}
+

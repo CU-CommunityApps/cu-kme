@@ -12,19 +12,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
 
-<kme:page title="${newsStream.title}" id="news" homeButton="true" backButton="true" cssFilename="news">
+<kme:page title="${feed.title}" id="news" homeButton="true" backButton="true" cssFilename="news">
     <kme:content>
 		<ul data-role="listview" data-theme="c" class="news-index">
 			<c:choose>
-				<c:when test="${not empty newsStream.articles}">
-					<c:forEach items="${newsStream.articles}" var="day" varStatus="status">
-						<c:forEach items="${day.articles}" var="article" varStatus="status">
-							<li>
-								<a href="${pageContext.request.contextPath}/news/${sourceId}?articleId=${article.articleId}&referrer=stream">
-									<p class="news-title">${article.title}</p>
-								</a>
-							</li>
-						</c:forEach>
+				<c:when test="${not empty feed.articles}">
+					<c:forEach items="${feed.articles}" var="article" varStatus="status">
+						<li>
+							<a href="${pageContext.request.contextPath}/news/${feed.sourceId}?articleId=${article.articleId}&referrer=stream">
+								<p class="news-title">${article.title}</p>
+							</a>
+						</li>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>

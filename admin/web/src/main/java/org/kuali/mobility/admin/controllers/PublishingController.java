@@ -27,6 +27,8 @@ import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.entity.HomeTool;
 import org.kuali.mobility.admin.entity.Tool;
 import org.kuali.mobility.admin.service.AdminService;
+import org.kuali.mobility.news.entity.NewsSource;
+import org.kuali.mobility.news.service.NewsService;
 import org.kuali.mobility.notification.entity.Notification;
 import org.kuali.mobility.notification.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,9 @@ public class PublishingController {
     
     @Autowired
     private NotificationService notificationService;
+    
+    @Autowired
+    private NewsService newsService;
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(Model uiModel) {
@@ -296,5 +301,57 @@ public class PublishingController {
     	}
     	return !hasErrors;
     }
-
+    
+  //----------------News------------------
+    @RequestMapping(value = "news", method = RequestMethod.GET)
+    public String news(Model uiModel) {
+    	uiModel.addAttribute("sources", newsService.getAllNewsSources());
+    	return "publishing/news";
+    }
+    
+    @RequestMapping(value = "news/add", method = RequestMethod.GET)
+    public String editNews(Model uiModel) {
+    	NewsSource source = new NewsSource();
+    	source.setOrder(newsService.getAllNewsSources().size());
+    	source.setActive(true);
+    	uiModel.addAttribute("source", source);
+    	return "publishing/editNews";
+    }
+    
+    @RequestMapping(value = "news/edit/{id}", method = RequestMethod.GET)
+    public String editNews(Model uiModel, @PathVariable("id") long id) {
+    	NewsSource newsSource = newsService.getNewsSourceById(id);
+    	uiModel.addAttribute("source", newsSource);
+    	return "publishing/editNews";
+    }
+    
+    @RequestMapping(value = "news/delete/{id}", method = RequestMethod.GET)
+    public String deleteNewsSource(Model uiModel, @PathVariable("id") long id) {
+    	newsService.deleteNewsSourcebyId(id);
+    	return news(uiModel);
+    }
+    
+    @RequestMapping(value = "news/edit", method = RequestMethod.POST)
+    public String editNewsSource(Model uiModel, @ModelAttribute("source") NewsSource source, BindingResult result) {
+    	if ("".equals(source.getUrl().trim())) {
+    		Errors errors = (Errors)result;
+    		errors.rejectValue("url", "", "Please enter a Url to an RSS or Atom feed.");
+    		return "publishing/editNews";
+    	}
+    	source.setUrl(source.getUrl().trim());
+    	newsService.saveNewsSource(source);
+    	return news(uiModel);
+    }
+    
+    @RequestMapping(value = "news/up/{id}", method = RequestMethod.GET)
+    public String moveUp(Model uiModel, @PathVariable("id") long id) {
+    	newsService.moveNewsSourceUp(id);
+    	return news(uiModel);
+    }
+    
+    @RequestMapping(value = "news/down/{id}", method = RequestMethod.GET)
+    public String moveDown(Model uiModel, @PathVariable("id") long id) {
+    	newsService.moveNewsSourceDown(id);
+    	return news(uiModel);
+    }
 }

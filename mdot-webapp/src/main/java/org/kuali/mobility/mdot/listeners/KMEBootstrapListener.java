@@ -7,8 +7,6 @@ import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.entity.HomeTool;
 import org.kuali.mobility.admin.entity.Tool;
 import org.kuali.mobility.admin.service.AdminService;
-import org.kuali.mobility.polling.entity.Answer;
-import org.kuali.mobility.polling.entity.Poll;
 import org.kuali.mobility.shared.listeners.BootstrapListener;
 
 public class KMEBootstrapListener extends BootstrapListener {

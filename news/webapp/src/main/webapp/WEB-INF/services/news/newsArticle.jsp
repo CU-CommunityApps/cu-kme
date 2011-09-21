@@ -12,9 +12,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
 
-<kme:page title="${sourceTitle}" id="news" homeButton="true" backButton="true" cssFilename="news">
+<kme:page title="${feedTitle}" id="news" homeButton="true" backButton="true" cssFilename="news">
     <kme:content cssClass="news-story">
-		<h3>${newsArticle.title}</h3>
+		<h3>${article.title}</h3>
+		<h4>${article.publishDateDisplay}</h4>
 		<p>
 			<%-- <c:if test="${!empty topArticle.thumbnailImageUrl}">
 				<div class="image-caption">
@@ -22,7 +23,8 @@
 			    	<p><!-- Caption--!></p>
 			   	</div>
 		   	</c:if>--%>
-			${newsArticle.description}
+			${article.description}
 		</p>
+		<p><a href="${article.link}">Full Article</a></p>
 	</kme:content>
 </kme:page>

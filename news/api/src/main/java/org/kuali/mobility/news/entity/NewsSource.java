@@ -1,61 +1,101 @@
 package org.kuali.mobility.news.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+@Entity
+@Table(name="NEWS_SRC_T")
 public class NewsSource {
 
-	private String locationCode;
-	private String sourceUrl;
-	private String sourceName;
-	private String sourceId;
-	private NewsStream newsStream;
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Column(name="ID")
+	private Long id;
 	
-	public NewsSource copy() {
-		NewsSource copy = new NewsSource();
-		if (locationCode!=null) {
-			copy.setLocationCode(new String(locationCode));
-		}
-		if (sourceUrl!=null) {
-			copy.setSourceUrl(new String(sourceUrl));
-		}
-		if (sourceName!=null) {
-			copy.setSourceName(new String(sourceName));
-		}
-		if (sourceId!=null) {
-			copy.setSourceId(new String(sourceId));
-		}
-		if (newsStream != null) {
-			copy.setNewsStream(newsStream.copy());
-		}
-		return copy;
+	@Column(name="NAME")
+	private String name;
+	
+	@Column(name="URL")
+	private String url;
+	
+	@Column(name="ACTIVE")
+	private boolean active;
+	
+	@Column(name="ORDR")
+	private int order;
+	
+	@Version
+    @Column(name="VER_NBR")
+    private Long versionNumber;
+	
+	public Long getId() {
+		return id;
 	}
 	
-	public String getLocationCode() {
-		return locationCode;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setLocationCode(String locationCode) {
-		this.locationCode = locationCode;
+	
+	public String getUrl() {
+		return url;
 	}
-	public String getSourceUrl() {
-		return sourceUrl;
+	
+	public void setUrl(String url) {
+		this.url = url;
 	}
-	public void setSourceUrl(String sourceUrl) {
-		this.sourceUrl = sourceUrl;
+	
+	public Long getVersionNumber() {
+		return versionNumber;
 	}
-	public String getSourceName() {
-		return sourceName;
+	
+	public void setVersionNumber(Long versionNumber) {
+		this.versionNumber = versionNumber;
 	}
-	public void setSourceName(String sourceName) {
-		this.sourceName = sourceName;
+
+	/**
+	 * @return whether the feed is active or not
+	 */
+	public boolean isActive() {
+		return active;
 	}
-	public String getSourceId() {
-		return sourceId;
+
+	/**
+	 * @param active set this feed active or inactive
+	 */
+	public void setActive(boolean active) {
+		this.active = active;
 	}
-	public void setSourceId(String sourceId) {
-		this.sourceId = sourceId;
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
 	}
-	public NewsStream getNewsStream() {
-		return newsStream;
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setNewsStream(NewsStream newsStream) {
-		this.newsStream = newsStream;
+
+	/**
+	 * @return the display order
+	 */
+	public int getOrder() {
+		return order;
+	}
+
+	/**
+	 * @param order the display order of this source
+	 */
+	public void setOrder(int order) {
+		this.order = order;
 	}
 }

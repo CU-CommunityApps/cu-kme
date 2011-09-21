@@ -15,18 +15,14 @@
 
 package org.kuali.mobility.news.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.kuali.mobility.news.entity.NewsArticle;
-import org.kuali.mobility.news.entity.NewsDay;
-import org.kuali.mobility.news.entity.NewsSource;
-import org.kuali.mobility.news.entity.NewsStream;
+import org.kuali.mobility.configparams.service.ConfigParamService;
+import org.kuali.mobility.news.entity.NewsFeed;
 import org.kuali.mobility.news.service.NewsService;
-import org.kuali.mobility.shared.Constants;
-import org.kuali.mobility.user.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,71 +34,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/news")
 public class NewsController {
     
+	@Autowired
     private NewsService newsService;
     public void setNewsService(NewsService newsService) {
         this.newsService = newsService;
     }
     
+    @Autowired
+	ConfigParamService configParamService;
+	public void setConfigParamService(ConfigParamService configParamService) {
+		this.configParamService = configParamService;
+	}
+    
     @RequestMapping(method = RequestMethod.GET)
     public String newsHome(Model uiModel, HttpServletRequest request) {	
-    	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-    	String selectedCampus = null;
-    	if (user.getViewCampus() == null) {
-    		return "redirect:campus?toolName=news";
-    	} else {
-    		selectedCampus = user.getViewCampus();
+    	List<NewsFeed> feeds = newsService.getAllActiveNewsFeeds();
+    	int sampleSize = 2;
+    	try {
+    		String configSampleSize = configParamService.findValueByName("News.Sample.Size");
+    		sampleSize = Integer.parseInt(configSampleSize);
+    	} catch (Exception e) {
+    		
     	}
-
-    	List<NewsSource> sources = newsService.getAllNewsSourcesByLocation(selectedCampus);
-    	List<NewsStream> newsStreams = new ArrayList<NewsStream>();
-    	String defaultSourceId = newsService.getDefaultNewsSourceId(selectedCampus);
-    	NewsArticle topNewsArticle = null; 
-    	for (NewsSource source : sources) {
-    		NewsStream news = newsService.getNewsStream(source.getSourceId(), selectedCampus, true);
-    		if (news != null) {
-    			newsStreams.add(news);
-    			if (source.getSourceId().equals(defaultSourceId)) {
-    				if (news.getArticles() != null && !news.getArticles().isEmpty()) {
-    					NewsDay day = news.getArticles().get(0);
-    					if (day.getArticles() != null && !day.getArticles().isEmpty()) {
-        					topNewsArticle = day.getArticles().get(0);
-        				}
-    				}
-    			}
-    		}
-    	}
-    	uiModel.addAttribute("newsStreams", newsStreams);
-    	uiModel.addAttribute("topArticle", topNewsArticle);
-    	uiModel.addAttribute("topArticleSourceId", defaultSourceId);
-    	
+    	uiModel.addAttribute("newsFeeds", feeds);
+    	uiModel.addAttribute("sampleSize", sampleSize);
     	return "news/newsHome";
     }
     
     @RequestMapping(value = "/{sourceId}", method = RequestMethod.GET)
-    public String getNewsArticle(HttpServletRequest request, @PathVariable("sourceId") String sourceId, @RequestParam(value = "articleId", required = false) String articleId, @RequestParam(value = "referrer", required = false) String referrer, Model uiModel) {
-    	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-		String selectedCampus = "UA";
-    	if (user.getViewCampus() == null) {
-    		return "redirect:/campus?toolName=news";
-    	} else {
-    		selectedCampus = user.getViewCampus();
-    	}
+    public String getNewsArticle(HttpServletRequest request, @PathVariable("sourceId") long sourceId, @RequestParam(value = "articleId", required = false) String articleId, Model uiModel) {
     	if (articleId != null && articleId != "") {
-    		NewsArticle newsArticle = newsService.getNewsArticle(sourceId, articleId, selectedCampus);
-    		NewsSource news = newsService.getNewsSourceById(sourceId);
-        	uiModel.addAttribute("newsArticle", newsArticle);
-        	uiModel.addAttribute("sourceId", sourceId);
-        	uiModel.addAttribute("sourceTitle", news.getSourceName());
-        	uiModel.addAttribute("referrer", referrer);
+    		uiModel.addAttribute("article", newsService.getNewsArticle(articleId, sourceId));
+    		uiModel.addAttribute("feedTitle", newsService.getNewsFeed(sourceId).getTitle());
         	return "news/newsArticle";
     	} else {
-    		NewsStream news = newsService.getNewsStream(sourceId, selectedCampus, false);
-        	uiModel.addAttribute("newsStream", news);
-        	uiModel.addAttribute("sourceId", sourceId);
-        	
-        	List<NewsSource> sources = newsService.getAllNewsSourcesByLocation(selectedCampus);
-        	uiModel.addAttribute("newsSources", sources);
-        	
+    		uiModel.addAttribute("feed", newsService.getNewsFeed(sourceId));
         	return "news/newsStream";
     	}
     }

@@ -60,6 +60,16 @@ public abstract class BootstrapListener implements ServletContextListener {
 		param.setName("Alerts.CacheUpdate.Minute");
 		param.setValue("5");
 		configParamService.saveConfigParam(param);
+		
+		param = new ConfigParam();
+		param.setName("News.CacheUpdate.Minute");
+		param.setValue("5");
+		configParamService.saveConfigParam(param);
+		
+		param = new ConfigParam();
+		param.setName("News.Sample.Size");
+		param.setValue("3");
+		configParamService.saveConfigParam(param);
 
 		param = new ConfigParam();
 		param.setName("CAMPUS_STATUS_XML_URL");

@@ -11,49 +11,47 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<kme:page title="News" id="news" homeButton="true" backButton="true" backButtonURL="${pageContext.request.contextPath}/home" cssFilename="news">
+<kme:page title="News" id="news" homeButton="true" backButton="true" backButtonURL="${pageContext.request.contextPath}/home" cssFilename="news" jsFilename="news">
     <kme:content>
 		<!-- <ul data-role="listview" data-theme="c" class="news-index"> -->
 		<kme:listView dataTheme="c" cssClass="news-index">
-			<c:if test="${topArticle != null}">
-				<kme:listItem cssClass="news-topstory">
-			        <div class="bottom-fade"></div>
-			        <a href="${pageContext.request.contextPath}/news/${topArticleSourceId}?articleId=${topArticle.articleId}&referrer=home">
-			        	<c:choose>
-			        		<c:when test="${!empty topArticle.thumbnailImageUrl}">
-						    	<img src="${topArticle.thumbnailImageUrl}" alt="topstory">
-						    </c:when>
-						    <c:otherwise>
-						    	<img src="images/news-generic.png" alt="topstory">
-						    </c:otherwise>
-						</c:choose>
-				        <div>
-				          <p class="news-title">${topArticle.title}</p>
-				          <p class="news-teaser">${topArticle.description}</p>
-				        </div>
-			        </a> 
-		        </kme:listItem>
-	        </c:if>
-		
-			<c:forEach items="${newsStreams}" var="stream" varStatus="status">
+			<c:forEach items="${newsFeeds}" var="feed" varStatus="status">
 			
 				<!-- <li data-role="" class="" data-theme="b" data-icon="listview" > -->
 				<kme:listItem dataRole="list-divider" dataTheme="b" dataIcon="listview" cssClass="streamTitle">
-					<a href="${pageContext.request.contextPath}/news/${stream.sourceId}">${stream.title}</a>
+					<a href="${pageContext.request.contextPath}/news/${feed.sourceId}">${feed.title}</a>
 				</kme:listItem>
 				<!-- </li> --> 
 				
-				<c:forEach items="${stream.articles}" var="day" varStatus="status">
-					<c:forEach items="${day.articles}" var="article" varStatus="status">
-						<kme:listItem>
-							<a href="${pageContext.request.contextPath}/news/${stream.sourceId}?articleId=${article.articleId}&referrer=home">
-				        		<!-- <p class="news-title">${article.title}</p>-->
-				        		<p class="wrap">${article.title}</p>
-				        	</a>
-				        </kme:listItem>
-					</c:forEach>
+				<c:forEach items="${feed.articles}" var="article" varStatus="status">
+					<c:choose>
+						<c:when test="${status.index < sampleSize}">
+							<kme:listItem cssClass="sample">
+								<a href="${pageContext.request.contextPath}/news/${feed.sourceId}?articleId=${article.articleId}&referrer=home">
+					        		<!-- <p class="news-title">${article.title}</p>-->
+					        		<p class="wrap">${article.title}</p>
+					        	</a>
+					        </kme:listItem>
+						</c:when>
+						<c:otherwise>
+							<kme:listItem cssClass="extra feed${feed.sourceId}">
+								<a href="${pageContext.request.contextPath}/news/${feed.sourceId}?articleId=${article.articleId}&referrer=home">
+					        		<!-- <p class="news-title">${article.title}</p>-->
+					        		<p class="wrap">${article.title}</p>
+					        	</a>
+					        </kme:listItem>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
+				<c:if test="${fn:length(feed.articles) > sampleSize}">
+					<kme:listItem cssClass="expander feed${feed.sourceId} collapsed" dataIcon="arrow-d">
+						<a onclick="javascript:toggleVisibility('feed${feed.sourceId}')">
+			        		<p><strong>Expand</strong></p>
+			        	</a>
+					</kme:listItem>
+				</c:if>
 			</c:forEach>
 		</kme:listView>
 	</kme:content>

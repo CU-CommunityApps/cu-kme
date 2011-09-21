@@ -17,14 +17,24 @@ package org.kuali.mobility.news.service;
 import java.util.List;
 
 import org.kuali.mobility.news.entity.NewsArticle;
+import org.kuali.mobility.news.entity.NewsFeed;
 import org.kuali.mobility.news.entity.NewsSource;
-import org.kuali.mobility.news.entity.NewsStream;
 
 public interface NewsService {
 
-	public List<NewsSource> getAllNewsSourcesByLocation(String locationId);
-	public NewsStream getNewsStream(String rssShortCode, String locationId, boolean sample);
-	public NewsArticle getNewsArticle(String sourceId, String articleId, String locationId);
-	public String getDefaultNewsSourceId(String locationId);
-	NewsSource getNewsSourceById(String sourceId);
+	public List<NewsSource> getAllNewsSources();
+	public List<NewsSource> getAllActiveNewsSources();
+	public NewsSource deleteNewsSourcebyId(long id);
+	public NewsSource saveNewsSource(NewsSource newsSource);
+	public NewsSource getNewsSourceById(Long id);
+	public void moveNewsSourceUp(long id);
+	public void moveNewsSourceDown(long id);
+	
+	public NewsFeed getNewsFeed(long newsSourceId);
+	public List<NewsFeed> getAllActiveNewsFeeds();
+	
+	public NewsArticle getNewsArticle(String articleId, long sourceId);
+	
+	public void startCache();
+	public void stopCache();
 }
