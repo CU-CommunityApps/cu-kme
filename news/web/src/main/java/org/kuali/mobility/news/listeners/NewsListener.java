@@ -24,7 +24,7 @@ import org.springframework.context.ApplicationContext;
 /**
  * A listener to start the news cache when the application has started. It is configured in web.xml.
  * 
- * @authorKuali Mobility Team (moblitiy.collab@kuali.org)
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
  */
 public class NewsListener implements ServletContextListener {
 	
