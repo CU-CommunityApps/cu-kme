@@ -1,3 +1,18 @@
+/**
+ * Copyright 2011 The Kuali Foundation Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package org.kuali.mobility.news.service;
 
 import java.io.InputStreamReader;
@@ -30,6 +45,12 @@ import com.sun.syndication.feed.synd.SyndEntryImpl;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 
+/**
+ * Service for actually doing the work of interacting with the nedws entity objects
+ * 
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ * @see org.kuali.mobility.news.service.NewsService
+ */
 @Service(value = "NewsService")
 public class NewsServiceImpl implements NewsService {
 
@@ -175,6 +196,11 @@ public class NewsServiceImpl implements NewsService {
 		return null;
 	}
 	
+	/**
+	 * Update the cache for a single NewsSource. Called when a NewsSource is saved.
+	 * 
+	 * @param source the NewsSource that was saved
+	 */
 	private void updateCache(NewsSource source) {
 		if (source.isActive()) {
 			cachedSources.put(source.getId(), source);
@@ -190,6 +216,12 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 	
+	/**
+	 * Does the actual work of updating a news feed and its articles
+	 * 
+	 * @param feed the NewsFeed to update
+	 * @param source the NewsSource that defines the feed to update
+	 */
 	@SuppressWarnings("unchecked")
 	private void updateFeed(NewsFeed feed, NewsSource source) {
 		feed.setOrder(source.getOrder());
@@ -232,7 +264,6 @@ public class NewsServiceImpl implements NewsService {
 				articles.add(article);
 			}
 			feed.setArticles(articles);
-			feed.setLastUpdateTimestamp(new Date().getTime());
 		}
 	}
 	
@@ -249,8 +280,16 @@ public class NewsServiceImpl implements NewsService {
 		newsCacheReloaderThread = null;
     }
 	
+	/**
+	 * A class to serve as our background thread for keeping the cache up-to-date
+	 * 
+	 * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+	 */
 	private class NewsCacheReloader implements Runnable {
         
+		/**
+		 * The main entry point for the cache reloader.  Continually calls reloadCache() on specified intervals.
+		 */
         public void run() {    
             Calendar updateCalendar = Calendar.getInstance();
             Date nextCacheUpdate = new Date();
@@ -282,6 +321,10 @@ public class NewsServiceImpl implements NewsService {
             }
         }
 
+        /**
+         * Iterates through all the active NewsSource objects and updates their corresponding NewsFeed objects.  
+         * Any NewsSources that have been deactivated have their NewsFeed objects removed from the cache.
+         */
 		private void reloadCache() {
 			List<NewsSource> newsSources = newsDao.findAllActiveNewsSources();
 			Set<Long> sourceIdsToRemove = new HashSet<Long>(cachedSources.keySet());

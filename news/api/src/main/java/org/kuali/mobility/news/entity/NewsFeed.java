@@ -19,6 +19,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a full news feed.  Each NewsFeed object corresponds to one NewsSource object and contains a list of NewsArticle objects.
+ * 
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 public class NewsFeed implements Serializable, Comparable<NewsFeed> {
 
 	private static final long serialVersionUID = 475441282491797666L;
@@ -27,7 +32,6 @@ public class NewsFeed implements Serializable, Comparable<NewsFeed> {
 	private String author;
 	private String description;
 	private long sourceId;
-	private long lastUpdateTimestamp;
 	private List<NewsArticle> articles;
 	private int order;
 	
@@ -51,7 +55,6 @@ public class NewsFeed implements Serializable, Comparable<NewsFeed> {
 			}
 			copy.setArticles(articlesCopy);
 		}
-		copy.lastUpdateTimestamp = lastUpdateTimestamp;
 		return copy;
 	}
     
@@ -63,46 +66,19 @@ public class NewsFeed implements Serializable, Comparable<NewsFeed> {
 	public int compareTo(NewsFeed o) {
 		return order - o.order;
 	}
-	
+
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
+
+	/**
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public List<NewsArticle> getArticles() {
-		return articles;
-	}
-	public void setArticles(List<NewsArticle> articles) {
-		this.articles = articles;
-	}
-
-	public long getSourceId() {
-		return sourceId;
-	}
-
-	public void setSourceId(long sourceId) {
-		this.sourceId = sourceId;
-	}
-
-	/**
-	 * @return the lastUpdateTimestamp
-	 */
-	public long getLastUpdateTimestamp() {
-		return lastUpdateTimestamp;
-	}
-
-	/**
-	 * @param lastUpdateTimestamp the lastUpdateTimestamp to set
-	 */
-	public void setLastUpdateTimestamp(long lastUpdateTimestamp) {
-		this.lastUpdateTimestamp = lastUpdateTimestamp;
 	}
 
 	/**
@@ -120,14 +96,56 @@ public class NewsFeed implements Serializable, Comparable<NewsFeed> {
 	}
 
 	/**
-	 * @return the order
+	 * @return the description of the feed
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description of the feed
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the id of the associated NewsSource
+	 */
+	public long getSourceId() {
+		return sourceId;
+	}
+
+	/**
+	 * @param sourceId id of the associated NewsSource
+	 */
+	public void setSourceId(long sourceId) {
+		this.sourceId = sourceId;
+	}
+
+	/**
+	 * @return the articles
+	 */
+	public List<NewsArticle> getArticles() {
+		return articles;
+	}
+
+	/**
+	 * @param articles the articles to set
+	 */
+	public void setArticles(List<NewsArticle> articles) {
+		this.articles = articles;
+	}
+
+	/**
+	 * @return the display order
 	 */
 	public int getOrder() {
 		return order;
 	}
 
 	/**
-	 * @param order the order to set
+	 * @param order the display order to set
 	 */
 	public void setOrder(int order) {
 		this.order = order;

@@ -30,6 +30,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * A controller for handling requests for the News tool.
+ * 
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Controller 
 @RequestMapping("/news")
 public class NewsController {
@@ -46,6 +51,13 @@ public class NewsController {
 		this.configParamService = configParamService;
 	}
     
+	/**
+	 * The main entry point for the News tool.  Sets an ordered list of active NewsFeed objects to the view.
+	 * 
+	 * @param uiModel
+	 * @param request
+	 * @return the path to the home page
+	 */
     @RequestMapping(method = RequestMethod.GET)
     public String newsHome(Model uiModel, HttpServletRequest request) {	
     	List<NewsFeed> feeds = newsService.getAllActiveNewsFeeds();
@@ -61,6 +73,15 @@ public class NewsController {
     	return "news/newsHome";
     }
     
+    /**
+     * Handles requests for feeds and articles.
+     * 
+     * @param request
+     * @param sourceId the id of the NewsSource for the feed/article to retrieve
+     * @param articleId (optional) the id of an article to retrieve. If this is not present, the whole feed is returned.
+     * @param uiModel
+     * @return the path to the feed page or the article page, depending on the presence of articleId
+     */
     @RequestMapping(value = "/{sourceId}", method = RequestMethod.GET)
     public String getNewsArticle(HttpServletRequest request, @PathVariable("sourceId") long sourceId, @RequestParam(value = "articleId", required = false) String articleId, Model uiModel) {
     	if (articleId != null && articleId != "") {
