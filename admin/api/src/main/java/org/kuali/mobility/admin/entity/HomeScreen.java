@@ -31,6 +31,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+/**
+ * Defines a home screen with a collection of tools
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Entity
 @Table(name="KME_HM_SCRN_T")
 public class HomeScreen implements Serializable {
@@ -59,14 +63,25 @@ public class HomeScreen implements Serializable {
 		homeTools = new ArrayList<HomeTool>();
 	}
 
+	/**
+	 * @return the HomeTool objects associated with this HomeScreen
+	 */
 	public List<HomeTool> getHomeTools() {
 		return homeTools;
 	}
 
+	/**
+	 * set the HomeTool objects
+	 * @param homeTools
+	 */
 	public void setHomeTools(List<HomeTool> homeTools) {
 		this.homeTools = homeTools;
 	}
 	
+	/**
+	 * set the HomeTools collection with an array
+	 * @param homeTools
+	 */
 	public void setHomeTools(HomeTool[] homeTools) {
 		this.homeTools = Arrays.asList(homeTools);
 	}

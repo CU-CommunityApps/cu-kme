@@ -26,6 +26,11 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
+/**
+ * Defines a "tool" to show on a home screen. It can be assigned to HomeScreens through HomeTool objects.
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ *
+ */
 @Entity
 @Table(name="TL_T")
 public class Tool implements Serializable, Comparable<Tool> {
@@ -99,10 +104,17 @@ public class Tool implements Serializable, Comparable<Tool> {
 		this.description = description;
 	}
 
+	/**
+	 * @return a value to show on the home screen.  Example would be for an "unread count" in an email tool.
+	 */
 	public String getBadgeCount() {
 		return badgeCount;
 	}
 
+	/**
+	 * set the value to show on the home screen
+	 * @param badgeCount
+	 */
 	public void setBadgeCount(String badgeCount) {
 		this.badgeCount = badgeCount;
 	}

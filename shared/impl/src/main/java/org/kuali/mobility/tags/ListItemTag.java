@@ -19,6 +19,12 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+/**
+ * The backing class for the ListItem JSP tag.  Renders an li appropriate for the mobile framework.
+ * 
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ *
+ */
 public class ListItemTag extends SimpleTagSupport {
     
     private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ListItemTag.class);

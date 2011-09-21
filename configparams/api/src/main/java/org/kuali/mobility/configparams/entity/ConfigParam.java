@@ -27,6 +27,10 @@ import javax.persistence.Version;
 
 import flexjson.JSONSerializer;
 
+/**
+ * Class defining a configuration parameter
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Entity
 @Table(name="KME_CNFG_PARM_T")
 public class ConfigParam implements Serializable {
@@ -51,6 +55,9 @@ public class ConfigParam implements Serializable {
 	public ConfigParam() {
 	}
 	
+	/**
+	 * @return the ConfigParam in a JSON format
+	 */
     public String toJson() {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }

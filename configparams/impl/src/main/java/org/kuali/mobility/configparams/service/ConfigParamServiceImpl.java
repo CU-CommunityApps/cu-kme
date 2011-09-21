@@ -32,6 +32,10 @@ import org.springframework.transaction.annotation.Transactional;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 
+/**
+ * Service to perform manipulation of configuration parameters
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Service(value = "ConfigParamService")
 public class ConfigParamServiceImpl implements ConfigParamService {
 
@@ -116,8 +120,16 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 		return new JSONDeserializer<List<ConfigParam>>().use(null, ArrayList.class).use("values", ConfigParam.class).deserialize(json);
 	}
 
+	/**
+	 * Class to be used for the cache background thread
+	 * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+	 *
+	 */
 	private class ConfigParamReloader implements Runnable {
 
+		/**
+		 * The main entry point for the cache reloader. Loops infinitely until shut down.
+		 */
 		public void run() {
 			Calendar updateCalendar = Calendar.getInstance();
 			Date nextCacheUpdate = new Date();
@@ -141,6 +153,9 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 			}
 		}
 
+		/**
+		 * Does the real work of updating the cache
+		 */
 		private void reloadConfigParams() {
 			List<ConfigParam> params = configParamDao.findAllConfigParam();
 			for (ConfigParam configParam : params) {

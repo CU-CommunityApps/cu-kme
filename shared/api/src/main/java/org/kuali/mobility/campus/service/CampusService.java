@@ -18,8 +18,15 @@ import java.util.List;
 
 import org.kuali.mobility.campus.entity.Campus;
 
+/**
+ * Interface for a contract for interacting with Campus objects
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 public interface CampusService {
     
+	/**
+	 * @return a list of all available Campus objects
+	 */
     public List<Campus> getCampuses();
     
 }

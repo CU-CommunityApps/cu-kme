@@ -30,6 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Controller for manipulating configuration parameters
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Controller 
 @RequestMapping("/configparams")
 public class ConfigParamController {
@@ -37,6 +41,11 @@ public class ConfigParamController {
     @Autowired
     private ConfigParamService configParamService;
     
+    /**
+     * The main entry point
+     * @param uiModel
+     * @return the configuration parameter entry page
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model uiModel) {
     	return "configparams/home";

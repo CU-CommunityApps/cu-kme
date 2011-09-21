@@ -20,6 +20,10 @@ import java.util.List;
 import org.kuali.mobility.campus.entity.Campus;
 import org.springframework.stereotype.Service;
 
+/**
+ * A service for doing the actual work of interacting with Campus objects.
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Service
 public class CampusServiceImpl implements CampusService {
 

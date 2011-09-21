@@ -19,6 +19,12 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+/**
+ * The backing class for the ListView JSP tag.  Renders a ul to contain a list of ListItem tags.
+ * 
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ *
+ */
 public class ListViewTag extends SimpleTagSupport {
     
     private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ListViewTag.class);

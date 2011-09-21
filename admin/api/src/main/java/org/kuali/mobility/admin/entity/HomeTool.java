@@ -27,6 +27,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+/**
+ * Defines an object to link HomeScreen objects with Tool objects
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Entity
 @Table(name="KME_HM_TL_T")
 public class HomeTool implements Serializable, Comparable<HomeTool> {
@@ -85,10 +89,17 @@ public class HomeTool implements Serializable, Comparable<HomeTool> {
 		this.toolId = toolId;
 	}
 
+	/**
+	 * @return the display order of the Tool for the associated HomeScreen
+	 */
 	public int getOrder() {
 		return order;
 	}
 
+	/**
+	 * set the display order of the Tool for the associated HomeScreen
+	 * @param order
+	 */
 	public void setOrder(int order) {
 		this.order = order;
 	}
@@ -109,18 +120,32 @@ public class HomeTool implements Serializable, Comparable<HomeTool> {
 		this.homeToolId = homeToolId;
 	}
 
+	/**
+	 * @return the HomeScreen associated with the Tool
+	 */
 	public HomeScreen getHomeScreen() {
 		return homeScreen;
 	}
 
+	/**
+	 * set the HomeScreen to associate with the Tool
+	 * @param homeScreen
+	 */
 	public void setHomeScreen(HomeScreen homeScreen) {
 		this.homeScreen = homeScreen;
 	}
 
+	/**
+	 * @return the Tool associated with the HomeScreen
+	 */
 	public Tool getTool() {
 		return tool;
 	}
 
+	/**
+	 * set the Tool to associate with the HomeScren
+	 * @param tool
+	 */
 	public void setTool(Tool tool) {
 		this.tool = tool;
 	}
@@ -132,5 +157,4 @@ public class HomeTool implements Serializable, Comparable<HomeTool> {
 		}
 		return this.order - that.order;
 	}	
-	
 }

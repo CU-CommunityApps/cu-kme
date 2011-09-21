@@ -28,6 +28,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Service for actually performing administrative tasks
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ */
 @Service(value = "AdminService")
 public class AdminServiceImpl implements AdminService {
 	
@@ -123,8 +127,16 @@ public class AdminServiceImpl implements AdminService {
 		adminDao.deleteToolById(toolId);
 	}
 	
+	/**
+	 * Class to be used as the cache reloader background thread.
+	 * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+	 *
+	 */
 	private class HomeScreenReloader implements Runnable {
         
+		/**
+		 * Main entry point for the cache reloader
+		 */
         public void run() {    
             Calendar updateCalendar = Calendar.getInstance();
             Date nextCacheUpdate = new Date();
@@ -149,6 +161,9 @@ public class AdminServiceImpl implements AdminService {
             }
         }
 
+        /**
+         * Does the actual work of updating the home screens
+         */
 		private void reloadHomeScreens() {
 			List<HomeScreen> names = adminDao.getAllHomeScreens();
 			for (HomeScreen homeScreen : names) {

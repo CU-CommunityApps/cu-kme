@@ -27,6 +27,11 @@ import org.kuali.mobility.admin.entity.HomeTool;
 import org.kuali.mobility.admin.entity.Tool;
 import org.springframework.stereotype.Repository;
 
+/**
+ * The DAO for actually performing administrative tasks on the data store.
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ *
+ */
 @Repository
 public class AdminDaoImpl implements AdminDao {
 
@@ -97,6 +102,10 @@ public class AdminDaoImpl implements AdminDao {
         return homeScreen.getHomeScreenId();
 	}
 	
+	/**
+	 * Deletes all the HomeTool objects associated with the given HomeScreen.  This effectively removes all Tool associations from a HomeScreen.
+	 * @param homeScreenId
+	 */
 	private void deleteHomeToolsByHomeScreenId(long homeScreenId) {
 		Query query = entityManager.createQuery("delete from HomeTool ht where ht.homeScreenId = :id");
         query.setParameter("id", homeScreenId);

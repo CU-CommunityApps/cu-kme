@@ -22,6 +22,12 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import org.kuali.mobility.shared.Constants;
 import org.kuali.mobility.user.entity.User;
 
+/**
+ * The backing class for the Page JSP tag.  Renders everything necessary for the page excluding the actual content.
+ * 
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ *
+ */
 public class PageTag extends SimpleTagSupport {
 
     private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(PageTag.class);
@@ -41,59 +47,113 @@ public class PageTag extends SimpleTagSupport {
     private String loginButtonURL;
 	private String logoutButtonURL;
     
+	/**
+	 * @param id the id of the div containing the page content
+	 */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @param title the title that will appear in the the header bar
+     */
     public void setTitle(String title) {
         this.title = title;
     }
     
+    /**
+     * Enable the home button
+     * @param homeButton
+     */
     public void setHomeButton(boolean homeButton) {
         this.homeButton = homeButton;
     }
     
+    /**
+     * enable the back button
+     * @param backButton
+     */
     public void setBackButton(boolean backButton) {
         this.backButton = backButton;
     }
     
+    /**
+     * set the URL that the back button points to.  If null, the back button uses the browser history.
+     * @param backButtonURL
+     */
     public void setBackButtonURL(String backButtonURL) {
         this.backButtonURL = backButtonURL;
     }
     
+    /**
+     * enable a preferences button
+     * @param preferencesButton
+     */
     public void setPreferencesButton(boolean preferencesButton) {
 		this.preferencesButton = preferencesButton;
 	}
 
+    /**
+     * the URL for preferences.  If null, the context path + "/preferences" will be used.
+     * @param preferencesButtonURL
+     */
 	public void setPreferencesButtonURL(String preferencesButtonURL) {
 		this.preferencesButtonURL = preferencesButtonURL;
 	}
 	
+	/**
+	 * select whether to include the Google Maps API v3 javascript
+	 * @param usesGoogleMaps
+	 */
 	public void setUsesGoogleMaps(boolean usesGoogleMaps) {
 		this.usesGoogleMaps = usesGoogleMaps;
 	}
 	
+	/**
+	 * Enables the HTML5 app cache and specifies the manifest file name.
+	 * @param appcacheFilename
+	 */
     public void setAppcacheFilename(String appcacheFilename) {
     	this.appcacheFilename = appcacheFilename;
     }
 	
+    /**
+     * the name of the css file without the .css extension
+     * @param cssFilename
+     */
 	public void setCssFilename(String cssFilename) {
 		this.cssFilename = cssFilename;
 	}
     
+	/**
+	 * the name of the javascript file without the .js extension
+	 * @param jsFilename
+	 */
     public void setJsFilename(String jsFilename) {
         this.jsFilename = jsFilename;
     }
 
+    /**
+     * enable a login/logout button
+     * @param loginButton
+     */
 	public void setLoginButton(boolean loginButton) {
 		this.loginButton = loginButton;
 	}
 
+	/**
+     * the URL to log in.  If null, the context path + "/login" will be used.
+     * @param loginButtonURL
+     */
 	public void setLoginButtonURL(String loginButtonURL) {
 		this.loginButtonURL = loginButtonURL;
 	}
 
-	public void setButtonLogoutURL(String logoutButtonURL) {
+	/**
+     * the URL to log out.  If null, the context path + "/logout" will be used.
+     * @param logoutButtonURL
+     */
+	public void setLogoutButtonURL(String logoutButtonURL) {
 		this.logoutButtonURL = logoutButtonURL;
 	}
 

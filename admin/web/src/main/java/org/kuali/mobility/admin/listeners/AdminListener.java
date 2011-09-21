@@ -21,12 +21,20 @@ import javax.servlet.ServletContextListener;
 import org.kuali.mobility.admin.service.AdminService;
 import org.springframework.context.ApplicationContext;
 
+/**
+ * Listener for starting and stopping the admin cache.  Configured in web.xml.
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ *
+ */
 public class AdminListener implements ServletContextListener {
 	
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(AdminListener.class);
 
 	private AdminService adminService;
 
+	/**
+	 * Start the admin cache.  Called on application startup.
+	 */
 	public void contextInitialized(final ServletContextEvent event) {
 		ApplicationContext ctx = org.springframework.web.context.support.WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
 		adminService = (AdminService) ctx.getBean("AdminService");
@@ -36,6 +44,9 @@ public class AdminListener implements ServletContextListener {
 		LOG.info("Admin cache thread started");
 	}
 
+	/**
+	 * Stop the admin cache.  Called on application shutdown.
+	 */
 	public void contextDestroyed(final ServletContextEvent event) {
 		if (adminService != null) {
 			LOG.info("Stopping the Admin cache thread");

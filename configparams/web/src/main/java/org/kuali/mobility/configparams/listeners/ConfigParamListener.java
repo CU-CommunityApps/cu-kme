@@ -21,12 +21,20 @@ import javax.servlet.ServletContextListener;
 import org.kuali.mobility.configparams.service.ConfigParamService;
 import org.springframework.context.ApplicationContext;
 
+/**
+ * Listener to start and stop the configuration parameter cache.
+ * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
+ *
+ */
 public class ConfigParamListener implements ServletContextListener {
 	
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ConfigParamListener.class);
 
 	private ConfigParamService configParamService;
 
+	/**
+	 * Start the cache on application startup
+	 */
 	public void contextInitialized(final ServletContextEvent event) {
 		ApplicationContext ctx = org.springframework.web.context.support.WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
 		configParamService = (ConfigParamService) ctx.getBean("ConfigParamService");
@@ -36,6 +44,9 @@ public class ConfigParamListener implements ServletContextListener {
 		LOG.info("ConfigParam cache thread started");
 	}
 
+	/**
+	 * Stop the cache on application shutdown
+	 */
 	public void contextDestroyed(final ServletContextEvent event) {
 		if (configParamService != null) {
 			LOG.info("Stopping the ConfigParam cache thread");
