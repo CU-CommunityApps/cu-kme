@@ -9,6 +9,7 @@
   express or implied. See the License for the specific language governing
   permissions and limitations under the License.
 -->
+
 <beans xmlns="http://www.springframework.org/schema/beans" 
        xmlns:aop="http://www.springframework.org/schema/aop" 
        xmlns:context="http://www.springframework.org/schema/context" 
@@ -68,6 +69,10 @@
 		<property name="username" value="${kb.username}" />
 		<property name="password" value="${kb.password}" />
     </bean>
+    
+    <bean id="coreService" class="org.kuali.mobility.shared.CoreServiceImpl" >
+		<property name="googleAnalyticsProfileId" value="UA-22767268-2" />
+	</bean>
         
 </beans>
  

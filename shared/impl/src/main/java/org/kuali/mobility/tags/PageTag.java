@@ -14,13 +14,17 @@
  */
 package org.kuali.mobility.tags;
 
+import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.kuali.mobility.shared.Constants;
+import org.kuali.mobility.shared.CoreService;
 import org.kuali.mobility.user.entity.User;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * The backing class for the Page JSP tag.  Renders everything necessary for the page excluding the actual content.
@@ -46,6 +50,7 @@ public class PageTag extends SimpleTagSupport {
     private boolean loginButton;
     private String loginButtonURL;
 	private String logoutButtonURL;
+	private boolean disableGoogleAnalytics;
     
 	/**
 	 * @param id the id of the div containing the page content
@@ -159,8 +164,11 @@ public class PageTag extends SimpleTagSupport {
 
 	public void doTag() throws JspException {
         PageContext pageContext = (PageContext) getJspContext();
+        ServletContext servletContext = pageContext.getServletContext();
+		WebApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		CoreService coreService = (CoreService) ac.getBean("coreService");
         User user = (User) pageContext.getSession().getAttribute(Constants.KME_USER_KEY);
-        String contextPath = pageContext.getServletContext().getContextPath();
+        String contextPath = servletContext.getContextPath();
         JspWriter out = pageContext.getOut();
         try {
             out.println("<!DOCTYPE html>");
@@ -188,6 +196,21 @@ public class PageTag extends SimpleTagSupport {
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.validate.js\"></script>");
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.validate.ready.js\"></script>");
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.templates.js\"></script>");
+            
+            String profileId = coreService.findGoogleAnalyticsProfileId().trim();
+            if (!disableGoogleAnalytics && profileId.length() > 0) {
+            	out.println("<script type=\"text/javascript\">");
+            	out.println("var _gaq = _gaq || [];");
+            	out.println("_gaq.push(['_setAccount', '" + profileId + "']);");
+            	out.println("_gaq.push(['_trackPageview']);");
+            	out.println("(function() {");
+            	out.println("var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;");
+            	out.println("ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';");
+            	out.println("var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);");
+            	out.println("})();");
+            	out.println("</script>");
+            }
+            
             if (usesGoogleMaps) {
             	out.println("<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>");
             }
@@ -225,4 +248,18 @@ public class PageTag extends SimpleTagSupport {
             LOG.error(e.getMessage(), e);
         }
     }
+
+	/**
+	 * @return the disableGoogleAnalytics
+	 */
+	public boolean isDisableGoogleAnalytics() {
+		return disableGoogleAnalytics;
+	}
+
+	/**
+	 * @param disableGoogleAnalytics the disableGoogleAnalytics to set
+	 */
+	public void setDisableGoogleAnalytics(boolean disableGoogleAnalytics) {
+		this.disableGoogleAnalytics = disableGoogleAnalytics;
+	}
 }
