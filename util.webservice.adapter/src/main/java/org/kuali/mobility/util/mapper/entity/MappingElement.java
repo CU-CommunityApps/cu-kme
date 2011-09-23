@@ -2,15 +2,22 @@ package org.kuali.mobility.util.mapper.entity;
 
 import java.io.Serializable;
 
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+
 public class MappingElement implements Serializable
 {
 
 	private static final long serialVersionUID = -7978581905560378671L;
 
+	@XStreamAsAttribute
 	private String mapTo;
+	@XStreamAsAttribute
 	private String mapFrom;
+	@XStreamAsAttribute
 	private boolean list;
+	@XStreamAsAttribute
 	private String type;
+	@XStreamAsAttribute
 	private boolean isAttribute;
 	
     /**

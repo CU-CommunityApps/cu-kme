@@ -4,14 +4,21 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 @XStreamAlias("dataMapping")
 public class DataMapping implements Serializable 
 {
 	private static final long serialVersionUID = 4848897251857351688L;
 
+	@XStreamAsAttribute
 	private String id;
+	@XStreamAsAttribute
 	private String className;
+	@XStreamAsAttribute
+	private boolean list;
+	@XStreamAsAttribute
+	private String rootElement;
 	
 	private List<MappingElement> mappings;
 
@@ -37,5 +44,21 @@ public class DataMapping implements Serializable
 
 	public void setMappings(List<MappingElement> mappings) {
 		this.mappings = mappings;
+	}
+
+	public boolean isList() {
+		return list;
+	}
+
+	public void setList(boolean list) {
+		this.list = list;
+	}
+
+	public String getRootElement() {
+		return rootElement;
+	}
+
+	public void setRootElement(String rootElement) {
+		this.rootElement = rootElement;
 	}
 }

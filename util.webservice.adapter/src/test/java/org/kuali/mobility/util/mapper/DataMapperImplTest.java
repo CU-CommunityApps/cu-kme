@@ -1,20 +1,22 @@
 package org.kuali.mobility.util.mapper;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.kuali.mobility.util.mapper.domain.Seat;
 
 public class DataMapperImplTest {
 
-	public static final String sourceUrl = "http://ulib.iupui.edu/utility/seats.php?show=locations&type=data";
+	private static final Logger logger = Logger.getLogger( DataMapperImplTest.class );
+	
+	public static final String DATA_URL = "http://ulib.iupui.edu/utility/seats.php?show=locations&type=data";
 
-	public static final String mappingFile = "/Users/joseswan/Documents/kuali/workspace/kme.xstream.mapper/src/test/resources/seatMapping.xml";
+	public static final String DATA_FILE = "seatSampleData.xml";
+	public static final String MAPPING_FILE = "seatMapping.xml";
 	
 	@Test
 	public void testMapData() {
@@ -22,36 +24,24 @@ public class DataMapperImplTest {
 		List<Seat> seats = new ArrayList<Seat>();
 		try
 		{
-			URL url = new URL( sourceUrl );
 			DataMapperImpl mapper = new DataMapperImpl();
-			seats = mapper.mapData( seats, url, mappingFile);
-			
-			if( seats == null || seats.isEmpty() )
-			{
-				System.out.println( "No seats parsed." );
-			}
-			else
-			{
-				for( Seat s : seats )
-				{
-					System.out.println( s.getLab() );
-					System.out.println( "\t"+ s.getFloor() );
-					System.out.println( "\t"+ s.getBuildingCode() );
-					System.out.println( "\t"+ s.getAvailability() );
-					System.out.println( "\t"+ s.getWindowsAvailability() );
-					System.out.println( "\t"+ s.getMacAvailability() );
-				}
-			}
-		}
-		catch( MalformedURLException mue )
-		{
-			
+			seats = mapper.mapData( seats, DATA_FILE, MAPPING_FILE);
 		}
 		catch( ClassNotFoundException cnfe )
 		{
-			
+			logger.error( cnfe );
 		}
-		fail("Not yet implemented");
-	}
+		
+		assertTrue( "failed to parse file.", seats != null && seats.size() == 16 );
 
+		for( Seat s : seats )
+		{
+			logger.debug( s.getLab() );
+			logger.debug( "\t"+ s.getFloor() );
+			logger.debug( "\t"+ s.getBuildingCode() );
+			logger.debug( "\t"+ s.getAvailability() );
+			logger.debug( "\t"+ s.getWindowsAvailability() );
+			logger.debug( "\t"+ s.getMacAvailability() );
+		}
+	}
 }

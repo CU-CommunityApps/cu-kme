@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataMapping>
-	<id>seat</id>
-	<className>org.kuali.mobility.util.mapper.domain.Seat</className>
+<dataMapping id="seat" className="org.kuali.mobility.util.mapper.domain.Seat" list="true" rootElement="seats">
 	<mapping mapTo="lab" attribute="true"/>
 	<mapping mapTo="floor" attribute="true"/>
 	<mapping mapTo="buildingCode" mapFrom="building-code" attribute="true"/>

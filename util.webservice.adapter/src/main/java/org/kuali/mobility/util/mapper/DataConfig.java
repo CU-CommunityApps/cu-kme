@@ -1,9 +1,9 @@
 package org.kuali.mobility.util.mapper;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
 import org.kuali.mobility.util.mapper.entity.DataMapping;
@@ -25,6 +25,7 @@ public class DataConfig {
         xstream.aliasAttribute(MappingElement.class, "isAttribute", "attribute");
         xstream.aliasAttribute(MappingElement.class, "list", "list");
         xstream.aliasAttribute(MappingElement.class, "type", "type");
+        xstream.processAnnotations(DataMapping.class);
 
         final DataMapping dm = (DataMapping)xstream.fromXML(xml);
         return dm;
@@ -37,11 +38,13 @@ public class DataConfig {
 		if (fileName == null || fileName.isEmpty()) {
 			throw new IOException("File name not provided.");
 		} else {
-			FileReader reader = null;
+			InputStream inputStream = null;
+			InputStreamReader reader = null;
 			BufferedReader buffer = null;
 			final StringBuilder builder = new StringBuilder();
 			try {
-				reader = new FileReader(fileName);
+				inputStream = this.getClass().getClassLoader().getResourceAsStream( fileName );
+				reader = new InputStreamReader( inputStream );
 				buffer = new BufferedReader(reader);
 				String line;
 				while ((line = buffer.readLine()) != null) {
@@ -49,6 +52,7 @@ public class DataConfig {
 				}
 				buffer.close();
 				reader.close();
+				inputStream.close();
 			} catch (Exception e) {
 				logger.error(e);
 			} finally {
@@ -64,7 +68,15 @@ public class DataConfig {
 					try {
 						reader.close();
 					} catch (Exception e) {
-						logger.error("Could not close the file reader.");
+						logger.error("Could not close the input stream reader.");
+						logger.error(e);
+					}
+				}
+				if (inputStream != null) {
+					try {
+						inputStream.close();
+					} catch (Exception e) {
+						logger.error("Could not close the input stream.");
 						logger.error(e);
 					}
 				}
