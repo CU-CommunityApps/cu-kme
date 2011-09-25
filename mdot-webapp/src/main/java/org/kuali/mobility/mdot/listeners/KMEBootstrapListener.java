@@ -21,23 +21,13 @@ public class KMEBootstrapListener extends BootstrapListener {
 		List<HomeTool> tools = new ArrayList<HomeTool>();
 		
 		Tool tool = new Tool();
-		tool.setAlias("myclasses");
-		tool.setTitle("My Classes");
-		tool.setUrl("myclasses");
-		tool.setDescription("Class information; Oncourse  forums, resources, and more!");
-		tool.setIconUrl("images/service-icons/srvc-myclasses.png");
-		adminService.saveTool(tool);
-		HomeTool ht = new HomeTool(home, tool, 1);
-		tools.add(ht);
-		
-		tool = new Tool();
 		tool.setAlias("maps");
 		tool.setTitle("Maps");
 		tool.setUrl("maps");
 		tool.setDescription("Get from here to there. Search for buildings by name.");
 		tool.setIconUrl("images/service-icons/srvc-maps.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 2);
+		HomeTool ht = new HomeTool(home, tool, 2);
 		tools.add(ht);
 
 		tool = new Tool();
