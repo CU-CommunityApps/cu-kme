@@ -26,9 +26,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<spring.security.version>3.0.5.RELEASE</spring.security.version>
-		<spring.security.oauth.version>1.0.0.M3</spring.security.oauth.version>
-		<rice.version>1.0.3-iu</rice.version>
-		<hsqldb.version>1.8.0.10</hsqldb.version>
 		<jetty.version>6.1.26</jetty.version>
 		<jdom.version>1.1</jdom.version>
 		<persistence-api.version>1.0</persistence-api.version>
@@ -45,30 +42,21 @@
 		<tool.user.version>1.0.0-PRE-BETA-F2F</tool.user.version>
 		<tool.admin.version>1.0.0-PRE-BETA-F2F</tool.admin.version>
 		<tool.alerts.version>1.0.0-PRE-BETA-F2F</tool.alerts.version>
-		<tool.askiu.version>1.0.0-PRE-BETA-F2F</tool.askiu.version>
-		<tool.athletics.version>1.0.0-PRE-BETA-F2F</tool.athletics.version>
-		<tool.bus.version>1.0.0-PRE-BETA-F2F</tool.bus.version>
 		<tool.computerlabs.version>1.0.0-PRE-BETA-F2F</tool.computerlabs.version>
 		<tool.conference.version>1.0.0-PRE-BETA-F2F</tool.conference.version>
 		<tool.configparams.version>1.0.0-PRE-BETA-F2F</tool.configparams.version>
 		<tool.dining.version>1.0.0-PRE-BETA-F2F</tool.dining.version>
-		<tool.email.version>1.0.0-PRE-BETA-F2F</tool.email.version>
 		<tool.emergencyinfo.version>1.0.0-PRE-BETA-F2F</tool.emergencyinfo.version>
-		<tool.events.version>1.0.0-PRE-BETA-F2F</tool.events.version>
 		<tool.feedback.version>1.0.0-PRE-BETA-F2F</tool.feedback.version>
 		<tool.itnotices.version>1.0.0-PRE-BETA-F2F</tool.itnotices.version>
 		<tool.knowledgebase.version>1.0.0-PRE-BETA-F2F</tool.knowledgebase.version>
 		<tool.maps.version>1.0.0-PRE-BETA-F2F</tool.maps.version>
 		<tool.news.version>1.0.0-PRE-BETA-F2F</tool.news.version>
-		<tool.people.version>1.0.0-PRE-BETA-F2F</tool.people.version>
+        <tool.people.version>1.0.0-PRE-BETA-F2F</tool.people.version>
 		<tool.polling.version>1.0-SNAPSHOT</tool.polling.version>
-		<tool.sakai.version>1.0.0-PRE-BETA-F2F</tool.sakai.version>
 		<tool.socialmedia.version>1.0.0-PRE-BETA-F2F</tool.socialmedia.version>	
 
         <util.webservice.adapter>1.0-SNAPSHOT</util.webservice.adapter>
-		
-		<iu.edu.es.espd.oauth-consumer.version>1.0.0</iu.edu.es.espd.oauth-consumer.version>
-		<ccl-oauth-consumer.version>1.0.0</ccl-oauth-consumer.version>
 	</properties>
 	<profiles>
 		<profile>
@@ -82,25 +70,18 @@
 				<module>user</module>
                 <module>admin</module>
 				<module>alerts</module>
-				<module>askiu</module>
-				<module>athletics</module>
-                <module>bus</module>
 				<module>computerlabs</module>
                 <module>conference</module>
 				<module>configparams</module>
                 <module>dining</module>
-                <module>email</module>
 				<module>emergencyinfo</module>
-				<module>events</module>
                 <module>feedback</module>
 				<module>itnotices</module>
 				<module>knowledgebase</module>
 				<module>maps</module>
 				<module>news</module>
-				<module>people</module>
 				<module>polling</module>
-				<module>sakai</module>
-				<module>socialmedia</module>
+                <module>socialmedia</module>
 				<module>mdot-webapp</module>
 			</modules>
 		</profile>
@@ -139,17 +120,6 @@
 				<groupId>javax.persistence</groupId>
 				<artifactId>persistence-api</artifactId>
 				<version>${persistence-api.version}</version>
-			</dependency>
-			<!-- IU OAuth dependencies -->
-			<dependency>
-				<groupId>edu.iu.es.espd</groupId>
-				<artifactId>oauth-consumer</artifactId>
-				<version>${iu.edu.es.espd.oauth-consumer.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.iu.es.espd</groupId>
-				<artifactId>ccl-oauth-consumer</artifactId>
-				<version>${ccl-oauth-consumer.version}</version>
 			</dependency>
 			<!-- Service dependencies -->
 			<dependency>
@@ -229,90 +199,6 @@
 				<artifactId>alerts-webapp</artifactId>
 				<version>${tool.alerts.version}</version>
 			</dependency>
-			<!-- AskIU Service -->
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>askiu-api</artifactId>
-				<version>${tool.askiu.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>askiu-impl</artifactId>
-				<version>${tool.askiu.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>askiu-web</artifactId>
-				<version>${tool.askiu.version}</version>
-			</dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>askiu-webapp</artifactId>
-                <version>${tool.askiu.version}</version>
-            </dependency>
-            <!-- Athletics Service -->
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>athletics-api</artifactId>
-                <version>${tool.athletics.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>athletics-impl</artifactId>
-                <version>${tool.athletics.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>athletics-web</artifactId>
-                <version>${tool.athletics.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>athletics-webapp</artifactId>
-                <version>${tool.athletics.version}</version>
-            </dependency>
-   			<!-- Bus Service -->
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>bus-api</artifactId>
-				<version>${tool.bus.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>bus-impl</artifactId>
-				<version>${tool.bus.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>bus-web</artifactId>
-				<version>${tool.bus.version}</version>
-			</dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>bus-webapp</artifactId>
-                <version>${tool.bus.version}</version>
-            </dependency>
-   			<!-- Email Service -->
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>email-api</artifactId>
-				<version>${tool.email.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>email-impl</artifactId>
-				<version>${tool.email.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>email-web</artifactId>
-				<version>${tool.email.version}</version>
-			</dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>email-webapp</artifactId>
-                <version>${tool.email.version}</version>
-            </dependency>            
 			<!-- Computer Labs Service -->
 			<dependency>
 				<groupId>org.kuali.mobility</groupId>
@@ -412,27 +298,6 @@
                 <groupId>org.kuali.mobility</groupId>
                 <artifactId>emergencyinfo-webapp</artifactId>
                 <version>${tool.emergencyinfo.version}</version>
-            </dependency>
-			<!-- Events Service -->
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>events-api</artifactId>
-				<version>${tool.events.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>events-impl</artifactId>
-				<version>${tool.events.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>events-web</artifactId>
-				<version>${tool.events.version}</version>
-			</dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>events-webapp</artifactId>
-                <version>${tool.events.version}</version>
             </dependency>
             <!-- Feedback Service -->
             <dependency>
@@ -580,27 +445,6 @@
                 <groupId>org.kuali.mobility</groupId>
                 <artifactId>polling-webapp</artifactId>
                 <version>${tool.polling.version}</version>
-            </dependency>
-			<!-- Sakai Service -->
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>sakai-api</artifactId>
-				<version>${tool.sakai.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>sakai-impl</artifactId>
-				<version>${tool.sakai.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>sakai-web</artifactId>
-				<version>${tool.sakai.version}</version>
-			</dependency>
-            <dependency>
-                <groupId>org.kuali.mobility</groupId>
-                <artifactId>sakai-webapp</artifactId>
-                <version>${tool.sakai.version}</version>
             </dependency>
 			<!-- Social Media Service -->
 			<dependency>

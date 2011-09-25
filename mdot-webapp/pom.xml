@@ -22,15 +22,6 @@
         <version>1.0.0-PRE-BETA-F2F</version>
    	</parent>
 	<dependencies>
-		<!-- IU OAuth dependencies -->
-		<dependency>
-			<groupId>edu.iu.es.espd</groupId>
-			<artifactId>oauth-consumer</artifactId>
-		</dependency>
-        <dependency>
-            <groupId>edu.iu.es.espd</groupId>
-            <artifactId>ccl-oauth-consumer</artifactId>
-        </dependency>
         <!-- Webapp dependencies -->
    		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -247,44 +238,6 @@
             <scope>runtime</scope>
         </dependency>   
         <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>email-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>email-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>email-web</artifactId>
-        </dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>email-webapp</artifactId>
-			<version>${tool.email.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency> 
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>bus-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>bus-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>bus-web</artifactId>
-        </dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>bus-webapp</artifactId>
-			<version>${tool.bus.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
-        <dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>emergencyinfo-api</artifactId>
 		</dependency>
@@ -362,25 +315,6 @@
     	</dependency>    	
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>events-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>events-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>events-web</artifactId>
-		</dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>events-webapp</artifactId>
-			<version>${tool.events.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
 			<artifactId>news-api</artifactId>
 		</dependency>
 		<dependency>
@@ -395,44 +329,6 @@
             <groupId>org.kuali.mobility</groupId>
             <artifactId>news-webapp</artifactId>
 			<version>${tool.news.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
-		<!-- <dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>athletics-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>athletics-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>athletics-web</artifactId>
-		</dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>athletics-webapp</artifactId>
-			<version>${tool.athletics.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>    -->
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>askiu-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>askiu-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>askiu-web</artifactId>
-		</dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>askiu-webapp</artifactId>
-			<version>${tool.askiu.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>   
@@ -471,25 +367,6 @@
             <groupId>org.kuali.mobility</groupId>
             <artifactId>people-webapp</artifactId>
 			<version>${tool.people.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>sakai-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>sakai-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>sakai-web</artifactId>
-		</dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>sakai-webapp</artifactId>
-			<version>${tool.sakai.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>   
@@ -537,10 +414,6 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>3.0.5.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
