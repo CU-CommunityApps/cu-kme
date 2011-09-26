@@ -15,103 +15,71 @@
 
 package org.kuali.mobility.computerlabs.service;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.kuali.mobility.computerlabs.entity.Seat;
-import org.kuali.mobility.maps.service.MapsService;
+import org.kuali.mobility.computerlabs.entity.Lab;
+import org.kuali.mobility.computerlabs.entity.Location;
+import org.kuali.mobility.util.mapper.DataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.thoughtworks.xstream.XStream;
-
-import flexjson.JSONSerializer;
-
-@Service
 public class ComputerLabsServiceImpl implements ComputerLabsService {
 
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ComputerLabsServiceImpl.class);
 
-    @Autowired
-    private MapsService mapsService;
-	
-    /*
-    @Transactional
-	public List<ComputerLab> findAllComputerLabsByCampus(String campus) {
-		ComputerLabsSeatParser parser = new ComputerLabsSeatParser();
-		List<ComputerLab> labs = parser.parseSeats(campus);
-		
-		MapsGroup group = mapsService.getMapsGroupById(campus);
-		Set<Location> locations = group.getMapsLocations();
-		Map<String, Location> locationMap = new HashMap<String, Location>();
-		for (Location loc : locations) {
-			if (loc.getId() != null) {
-				locationMap.put(loc.getId(), loc);	
-			}
-		}
+	private Map<String, List<String>> labUrls;
 
-		for (ComputerLab lab : labs) {
-			if (lab.getBuildingCode() != null) {
-				Location loc = locationMap.get(lab.getBuildingCode());
-				if (loc != null) {
-					lab.setBuildingCode(loc.getId());
+	@Autowired
+	private DataMapper dataMapper;
+
+	private String dataMappingUrl;
+
+	public Collection<Location> findAllLabsByCampus(String campus) {
+		Map<String, Location> locations = new HashMap<String, Location>();
+		for (String sourceUrl : labUrls.get(campus)) {
+			try {
+				URL url = new URL(sourceUrl);
+				List<Lab> labs = new ArrayList<Lab>();
+				if (dataMappingUrl != null && !"".equals(dataMappingUrl.trim())) {
+					labs = dataMapper.mapData(labs, url, new URL(dataMappingUrl));
+				} else {
+					labs = dataMapper.mapData(labs, url, "labMapping.xml");
 				}
+				for (Lab lab : labs) {
+					Location location = null;
+					if (locations.get(lab.getBuildingCode()) != null) {
+						location = locations.get(lab.getBuildingCode());
+					} else {
+						location = new Location(lab.getBuilding());
+						locations.put(lab.getBuildingCode(), location);
+					}
+					location.getLabs().add(lab);
+				}
+			} catch (Exception e) {
+				LOG.error("errors", e);
 			}
 		}
-		
-		return labs;
-	}
-    
-    @Transactional
-	public List<LabLocation> findAllLabLocationsByCampus(String campus) {
-		List<ComputerLab> labs = this.findAllComputerLabsByCampus(campus);
-		Map<String, LabLocation> labMap = new HashMap<String, LabLocation>();
-		for (ComputerLab lab : labs) {
-			LabLocation labLocation = labMap.get(lab.getBuildingNameOnly());
-			if (labLocation == null) {
-				labLocation = new LabLocation(lab.getBuildingNameOnly());
-				labMap.put(lab.getBuildingNameOnly(), labLocation);
-			}
-			labLocation.getComputerLabs().add(lab);	
-		}
-		List<LabLocation> labLocations = new ArrayList<LabLocation>();
-		labLocations.addAll(labMap.values());
-		Collections.sort(labLocations);
-		return labLocations;
-	}
-	*/
-    
-	@SuppressWarnings("unchecked")
-	public List<Seat> findAllSeats() {
-		String url = "http://ulib.iupui.edu/utility/seats.php?show=locations&type=data";
-		
-		XStream xs = new XStream();
-		
-		xs.processAnnotations(Seat.class);
-		
-		xs.alias("seats", List.class);
-		xs.alias("seat", Seat.class);
-		
-		xs.aliasAttribute(Seat.class, "buildingCode", "building-code");
-		xs.aliasAttribute(Seat.class, "windowsAvailability", "windows-availability");
-		xs.aliasAttribute(Seat.class, "macAvailability", "mac-availability");
-		xs.aliasAttribute(Seat.class, "softwareAvailability", "software-availability");
-		
-		List<Seat> seats = new ArrayList<Seat>();
-		try {
-			seats = (List<Seat>) xs.fromXML(new URL(url));
-		} catch (MalformedURLException e) {
-			LOG.error(e.getMessage(), e);
-		}
-		
-		return seats;
+		return locations.values();
 	}
 
-    public String toJson(Collection<Seat> seats) {
-        return new JSONSerializer().exclude("*.class").serialize(seats);
-    }
-    	
+	public String getDataMappingUrl() {
+		return dataMappingUrl;
+	}
+
+	public void setDataMappingUrl(String dataMappingUrl) {
+		this.dataMappingUrl = dataMappingUrl;
+	}
+
+	public Map<String, List<String>> getLabUrls() {
+		return labUrls;
+	}
+
+	public void setLabUrls(Map<String, List<String>> labUrls) {
+		this.labUrls = labUrls;
+	}
+
 }

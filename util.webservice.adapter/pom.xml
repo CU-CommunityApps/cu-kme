@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <name>XStream Dynamic Mapper</name>
-    <artifactId>util.webservice.adapter</artifactId>
-    <packaging>jar</packaging>
-    <parent>
-        <artifactId>mobility</artifactId>
-        <groupId>org.kuali.mobility</groupId>
-        <version>1.0.0-PRE-BETA-F2F</version>
-    </parent>
-    <build>
- 		<plugins>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>XStream Dynamic Mapper</name>
+	<artifactId>util.webservice.adapter</artifactId>
+	<packaging>jar</packaging>
+	<parent>
+		<artifactId>mobility</artifactId>
+		<groupId>org.kuali.mobility</groupId>
+		<version>1.0.0-PRE-BETA-F2F</version>
+	</parent>
+	<build>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -39,8 +38,13 @@
 				</executions>
 			</plugin>
 		</plugins>
-    </build>
+	</build>
 	<dependencies>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.0</version>
+		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -153,7 +157,7 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	 <distributionManagement>
-        </distributionManagement>
-	
+	<distributionManagement>
+	</distributionManagement>
+
 </project>

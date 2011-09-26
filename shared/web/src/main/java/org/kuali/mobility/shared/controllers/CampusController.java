@@ -15,8 +15,11 @@
 
 package org.kuali.mobility.shared.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.kuali.mobility.campus.entity.Campus;
 import org.kuali.mobility.campus.service.CampusService;
 import org.kuali.mobility.shared.Constants;
 import org.kuali.mobility.user.entity.User;
@@ -36,7 +39,17 @@ public class CampusController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getList(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String toolName) {
-		uiModel.addAttribute("campuses", campusService.getCampuses());
+		List<Campus> campuses = campusService.findCampusesByTool(toolName);
+		if (campuses == null || campuses.isEmpty()) {
+			User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
+			user.setViewCampus("ALL");
+			return "redirect:/" + toolName;
+		} else if (campuses.size() == 1) {
+			User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
+			user.setViewCampus(campuses.get(0).getCode());
+			return "redirect:/" + toolName;
+		}
+		uiModel.addAttribute("campuses", campuses);
 		uiModel.addAttribute("toolName", toolName);
 		return "campus";
 	}

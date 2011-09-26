@@ -7,8 +7,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 @XStreamAlias("dataMapping")
-public class DataMapping implements Serializable 
-{
+public class DataMapping implements Serializable {
 	private static final long serialVersionUID = 4848897251857351688L;
 
 	@XStreamAsAttribute
@@ -19,7 +18,9 @@ public class DataMapping implements Serializable
 	private boolean list;
 	@XStreamAsAttribute
 	private String rootElement;
-	
+	@XStreamAsAttribute
+	private String rootElementClassName;
+
 	private List<MappingElement> mappings;
 
 	public String getId() {
@@ -61,4 +62,13 @@ public class DataMapping implements Serializable
 	public void setRootElement(String rootElement) {
 		this.rootElement = rootElement;
 	}
+
+	public String getRootElementClassName() {
+		return rootElementClassName;
+	}
+
+	public void setRootElementClassName(String rootElementClassName) {
+		this.rootElementClassName = rootElementClassName;
+	}
+
 }

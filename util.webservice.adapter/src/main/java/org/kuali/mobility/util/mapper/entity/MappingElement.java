@@ -19,8 +19,8 @@ public class MappingElement implements Serializable
 	private String type;
 	@XStreamAsAttribute
 	private boolean isAttribute;
-	
-    /**
+
+	/**
      * @return the list
      */
     public boolean isList() {

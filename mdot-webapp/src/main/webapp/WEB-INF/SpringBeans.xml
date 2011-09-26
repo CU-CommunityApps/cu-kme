@@ -27,16 +27,15 @@
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-    <import resource="classpath:KMESpringBeans.xml" />
-         
-    <bean class="org.kuali.mobility.knowledgebase.service.KnowledgeBaseServiceImpl">
+	<import resource="classpath:KMESpringBeans.xml" />
+	<import resource="classpath:CampusSpringBeans.xml" />
+	<import resource="classpath:AlertsSpringBeans.xml" />
+	<import resource="classpath:ComputerLabsSpringBeans.xml" />
+
+	<bean class="org.kuali.mobility.knowledgebase.service.KnowledgeBaseServiceImpl">
 		<property name="username" value="${kb.username}" />
 		<property name="password" value="${kb.password}" />
-    </bean>
-    
-    <bean id="coreService" class="org.kuali.mobility.shared.CoreServiceImpl" >
-		<property name="googleAnalyticsProfileId" value="UA-22767268-2" />
 	</bean>
-        
+
 </beans>
  

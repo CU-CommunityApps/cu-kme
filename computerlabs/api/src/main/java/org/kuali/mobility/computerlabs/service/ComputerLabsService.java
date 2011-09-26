@@ -16,13 +16,22 @@
 package org.kuali.mobility.computerlabs.service;
 
 import java.util.Collection;
-import java.util.List;
 
-import org.kuali.mobility.computerlabs.entity.Seat;
+import org.kuali.mobility.computerlabs.entity.Location;
 
+/**
+ * Provides service methods for retrieving <code>Location</code> and <code>Lab</code> instances.
+ * 
+ * @author Kuali Mobility Team 
+ */
 public interface ComputerLabsService {
 
-	public String toJson(Collection<Seat> seats);
-	public List<Seat> findAllSeats();
+	/**
+	 * Finds all labs for the given campus.
+	 * @param campus - campus to find labs on.
+	 * @return <code>Collection&lt;Location&gt;</code> filtered by the campus or an empty 
+	 * 			<code>Collection</code>. 
+	 */
+	public Collection<Location> findAllLabsByCampus(String campus);
 	
 }

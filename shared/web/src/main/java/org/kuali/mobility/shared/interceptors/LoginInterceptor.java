@@ -34,11 +34,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 		
 		User user = (User) request.getSession(true).getAttribute(Constants.KME_USER_KEY);
-
-		// TODO: This is a temp fix to ensure campus select screen is not used in this branch.
-		user.setPrimaryCampus("BL");
-		user.setViewCampus("BL");
-		
 //		if (user != null && user.getUserAttribute("acked") == null && (HttpUtil.needsAuthenticated(request.getServletPath()) || "yes".equals(request.getParameter("login")))) {
 //			try {
 //				user.setUserAttribute("service", request.getServletPath());

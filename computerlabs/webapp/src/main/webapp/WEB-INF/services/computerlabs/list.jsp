@@ -9,60 +9,41 @@
   permissions and limitations under the License.
 --%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="kme" uri="http://kuali.org/mobility"%>
 
-<kme:page title="Computer Labs" id="computerlabs" homeButton="true" backButton="true" cssFilename="computerlabs">
-    <kme:content>
-        <kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b" filter="false">
-        
-        <script type="text/javascript">
-			$('[data-role=page][id=computerlabs]').live('pagebeforeshow', function(event, ui) {
-				$('#clListTemplate').template('clListTemplate');
-				refreshTemplate('computerlabs?campus=${campus}', '#computerlablist', 'clListTemplate', '<li>No labs were found</li>', function() {$('#computerlablist').listview('refresh');});
-			});
+<kme:page title="Computer Labs" id="computerlabs" homeButton="true"
+	backButton="true" cssFilename="computerlabs">
+	<kme:content>
+		<kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b"
+			filter="false">
+
+			<script type="text/javascript">
+				$('[data-role=page][id=computerlabs]').live(
+						'pagebeforeshow',
+						function(event, ui) {
+							$('#clListTemplate').template('clListTemplate');
+							refreshTemplate('computerlabs?campus=${campus}',
+									'#computerlablist', 'clListTemplate',
+									'<li>No labs were found</li>', function() {
+										$('#computerlablist').listview(
+												'refresh');
+									});
+						});
+			</script>
+			<script id="clListTemplate" type="text/x-jquery-tmpl">
+				<li data-role="list-divider" data-theme="b" data-icon="listview" >\${name}</li>
+    			{{each labs}}
+    				<li>
+						<a href="${pageContext.request.contextPath}/maps?id=\${buildingCode}">
+		    	   			<h3>\${lab}</h3><p>\${availability} seats available</p>
+  						</a>
+					</li>
+				{{/each}}
 		</script>
-		<script id="clListTemplate" type="text/x-jquery-tmpl">
-			<li data-role="list-divider">\${lab}</li>
-			<h3>\${building}</h3><p>\${availability} seats available</p>
-			<%--
-			{{each(i,lab) computerLabs}}
-      			<li data-id="\${buildingCode}" detailId="\${labCode}">
-					{{if buildingCode}}
-						<a href="/mdot/maps?id=\${buildingCode}">
-        					<h3>\${labCode}</h3>
-        					<p>\${availability} seats available</p>
-						</a>
-					{{else}}
-						<h3>\${labCode}</h3><p>\${availability} seats available</p>
-					{{/if}}
-      			</li>
-			{{/each}}
-			--%>
-		</script>
-        
-            <c:forEach items="${seats}" var="seat" varStatus="status">
-                <kme:listItem dataTheme="b" dataRole="list-divider">${seat.lab}</kme:listItem>
-	            <kme:listItem cssClass="link-gps">
-	            <h3>${seat.building}</h3><p>${seat.availability} seats available</p>
-	            </kme:listItem>
-	            <%-- 
-	            <c:forEach items="${location.computerLabs}" var="computerlab" varStatus="status">
-	                <kme:listItem cssClass="link-gps">
-				       <c:choose>
-			                <c:when test="${!empty computerlab.buildingCode}">
-                                <a href="${pageContext.request.contextPath}/maps/location?id=${computerlab.buildingCode}"><h3>${computerlab.labCode}</h3><p>${computerlab.availability} seats available</p></a>
-			                </c:when>
-			                <c:otherwise>
-                                <h3>${computerlab.labCode}</h3><p>${computerlab.availability} seats available</p>
-			                </c:otherwise>
-			            </c:choose>
-	                </kme:listItem>
-	            </c:forEach>
-	            --%>
-            </c:forEach>
-        
-        </kme:listView>
-    </kme:content>
+
+		</kme:listView>
+	</kme:content>
 </kme:page>

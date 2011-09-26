@@ -27,6 +27,10 @@ public interface CampusService {
 	/**
 	 * @return a list of all available Campus objects
 	 */
-    public List<Campus> getCampuses();
+    public List<Campus> findCampusesByTool(String toolName);
     
+	/**
+	 * @return a boolean if this tool needs a different campus selected.  If a tool has no campuses, true is always returned.
+	 */
+    public boolean needToSelectDifferentCampusForTool(String tool, String campus);
 }

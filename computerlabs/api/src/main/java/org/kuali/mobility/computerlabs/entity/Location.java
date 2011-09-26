@@ -19,23 +19,31 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LabLocation implements Serializable, Comparable<LabLocation> {
+/**
+ * An object representing a location for a computer lab.  This most 
+ * likely would be a building. Location contains the name of the building
+ * and a <code>List&lt;Lab&gt;</code> of labs or rooms in the building
+ * containing available computers.
+ * 
+ * @author Kuali Mobility Team
+ */
+public class Location implements Serializable, Comparable<Location> {
 
 	private static final long serialVersionUID = -4991494626566555287L;
 	
 	private String name;
-	private List<ComputerLab> labs;
+	private List<Lab> labs;
 	
-	public LabLocation(String name) {
+	public Location(String name) {
 		this.name = name;
-		this.labs = new ArrayList<ComputerLab>();
+		this.labs = new ArrayList<Lab>();
 	}
 
-	public List<ComputerLab> getComputerLabs() {
+	public List<Lab> getLabs() {
 		return labs;
 	}
 
-	public void setComputerLabs(List<ComputerLab> labs) {
+	public void setLabs(List<Lab> labs) {
 		this.labs = labs;
 	}
 
@@ -47,7 +55,7 @@ public class LabLocation implements Serializable, Comparable<LabLocation> {
 		this.name = name;
 	}
 
-	public int compareTo(LabLocation that) {
+	public int compareTo(Location that) {
         if (this == null || that == null) {
             return -1;
         }

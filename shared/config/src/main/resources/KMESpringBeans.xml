@@ -64,4 +64,12 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<bean id="dataMapper" class="org.kuali.mobility.util.mapper.DataMapperImpl">
+		<property name="readTimeoutMs" value="3000" />
+		<property name="connectionTimeoutMs" value="10000" />
+	</bean>
+
+	<bean id="coreService" class="org.kuali.mobility.shared.CoreServiceImpl" >
+		<property name="googleAnalyticsProfileId" value="UA-22767268-2" />
+	</bean>
 </beans>

@@ -73,7 +73,7 @@ public abstract class BootstrapListener implements ServletContextListener {
 
 		param = new ConfigParam();
 		param.setName("CAMPUS_STATUS_XML_URL");
-		param.setValue("https://es-nd.ucs.indiana.edu:9000/my2-unt/DataExport.do?__p_dispatch__=campusStatus&campus=BL");
+		param.setValue("https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&campus=");
 		configParamService.saveConfigParam(param);
 		
 		/*

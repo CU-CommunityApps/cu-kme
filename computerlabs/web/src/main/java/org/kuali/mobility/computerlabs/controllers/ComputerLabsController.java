@@ -15,11 +15,12 @@
 
 package org.kuali.mobility.computerlabs.controllers;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.kuali.mobility.computerlabs.entity.Seat;
+import org.kuali.mobility.campus.service.CampusService;
+import org.kuali.mobility.computerlabs.entity.Location;
 import org.kuali.mobility.computerlabs.service.ComputerLabsService;
 import org.kuali.mobility.shared.Constants;
 import org.kuali.mobility.user.entity.User;
@@ -31,41 +32,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller 
+import flexjson.JSONSerializer;
+
+@Controller
 @RequestMapping("/computerlabs")
 public class ComputerLabsController {
 
-    @Autowired
-    private ComputerLabsService computerLabsService;
-    
-    @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
-    @ResponseBody
-    public String findAllComputerLabsByCampus(@RequestParam(value = "campus", required = true) String campus, HttpServletRequest request) {
-    	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-		String selectedCampus = "UA";
-    	if (user.getViewCampus() == null) {
-    		return "redirect:/campus?toolName=computerlabs";
-    	} else {
-    		selectedCampus = user.getViewCampus();
-    	}
+	@Autowired
+	private ComputerLabsService computerLabsService;
 
-   		List<Seat> seats = computerLabsService.findAllSeats();
-    	return computerLabsService.toJson(seats);
-    }
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public String getList(Model uiModel, HttpServletRequest request) {
-    	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-		String selectedCampus = "UA";
-    	if (user.getViewCampus() == null) {
-    		return "redirect:/campus?toolName=computerlabs";
-    	} else {
-    		selectedCampus = user.getViewCampus();
-    	}
+	@Autowired
+	private CampusService campusService;
 
-    	List<Seat> seats = computerLabsService.findAllSeats();
-    	uiModel.addAttribute("seats", seats);
-    	return "computerlabs/list";
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	public String getList(Model uiModel, HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
+		if (user.getViewCampus() == null) {
+			return "redirect:/campus?toolName=computerlabs";
+		} else {
+			if (campusService.needToSelectDifferentCampusForTool("computerlabs", user.getViewCampus())) {
+				return "redirect:/campus?toolName=computerlabs";
+			}
+		}
+		return "computerlabs/list";
+	}
 
+	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
+	@ResponseBody
+	public String findAllComputerLabsByCampus(@RequestParam(value = "campus", required = true) String campus, HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
+		Collection<Location> labs = computerLabsService.findAllLabsByCampus(user.getViewCampus());
+		return new JSONSerializer().exclude("*.class").deepSerialize(labs);
+	}
 }

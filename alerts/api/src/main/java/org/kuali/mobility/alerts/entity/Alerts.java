@@ -17,12 +17,12 @@ package org.kuali.mobility.alerts.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CampusAlerts {
+public class Alerts {
 	private String campusCode;
 	private long updateTime;
 	private List<Alert> alerts;
 	
-	public CampusAlerts() {
+	public Alerts() {
 		alerts = new ArrayList<Alert>();
 	}
 	

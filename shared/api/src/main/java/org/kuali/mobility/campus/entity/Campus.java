@@ -15,6 +15,8 @@
 package org.kuali.mobility.campus.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Defines a campus
@@ -28,9 +30,18 @@ public class Campus implements Serializable {
 
 	private String code;
 
-	public Campus(String code, String name) {
-		this.name = name;
-		this.code = code;
+	private List<String> tools;
+
+	public Campus() {
+		tools = new ArrayList<String>();
+	}
+
+	public List<String> getTools() {
+		return tools;
+	}
+
+	public void setTools(List<String> tools) {
+		this.tools = tools;
 	}
 
 	/**
