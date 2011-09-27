@@ -23,11 +23,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/SpringBeans.xml /WEB-INF/webmvc-config.xml</param-value> 
 	</context-param>
-
-	<context-param>
-		<param-name>FullPathToLog4jProperties</param-name>
-		<param-value>/opt/j2ee/dev/edu/iu/uis/settings/kme/log4j.properties</param-value>
-	</context-param>
 	
 	<listener>
 		<listener-class>org.kuali.mobility.shared.listeners.LoggingInitListener</listener-class>

@@ -75,27 +75,11 @@ public abstract class BootstrapListener implements ServletContextListener {
 		param.setName("CAMPUS_STATUS_XML_URL");
 		param.setValue("https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&campus=");
 		configParamService.saveConfigParam(param);
-		
-		/*
-		 * Poll poll = new Poll();
-		poll.setQuestion("What's your favorite color?");
-		
-		List<Answer> answers = new ArrayList<Answer>();
-		Answer answer = new Answer();
-		answer.setAnswer("Red");
-		answer.setPoll(poll);
-		answers.add(answer);
-		answer = new Answer();
-		answer.setAnswer("Green");
-		answer.setPoll(poll);
-		answers.add(answer);
-		answer = new Answer();
-		answer.setAnswer("Blue");
-		answer.setPoll(poll);
-		answers.add(answer);
-		poll.setAnswers(answers);
-		 */
-		
+				
+		param = new ConfigParam();
+		param.setName("Food.Url.Southeast");
+		param.setValue("http://gus.ius.edu/dining-services/feed/?format=xml");
+		configParamService.saveConfigParam(param);
 		
 		LOG.info("Count: " + adminService.getAllHomeScreens().size());
 		

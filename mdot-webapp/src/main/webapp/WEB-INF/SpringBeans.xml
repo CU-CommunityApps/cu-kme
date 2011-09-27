@@ -32,10 +32,5 @@
 	<import resource="classpath:AlertsSpringBeans.xml" />
 	<import resource="classpath:ComputerLabsSpringBeans.xml" />
 
-	<bean class="org.kuali.mobility.knowledgebase.service.KnowledgeBaseServiceImpl">
-		<property name="username" value="${kb.username}" />
-		<property name="password" value="${kb.password}" />
-	</bean>
-
 </beans>
  

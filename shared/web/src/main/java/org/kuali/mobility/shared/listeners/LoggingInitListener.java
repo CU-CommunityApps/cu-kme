@@ -23,7 +23,7 @@ public class LoggingInitListener implements ServletContextListener {
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(LoggingInitListener.class);
 
 	public void contextInitialized(ServletContextEvent event) {
-		org.apache.log4j.PropertyConfigurator.configureAndWatch(event.getServletContext().getInitParameter("FullPathToLog4jProperties"), 5 * 60 * 1000);
+		org.apache.log4j.PropertyConfigurator.configureAndWatch("classpath:log4j.properties", 5 * 60 * 1000);
 		LOG.info("LoggingInitListener finished initializing log4j");
 	}
 

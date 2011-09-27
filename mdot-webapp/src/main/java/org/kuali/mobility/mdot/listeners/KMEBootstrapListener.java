@@ -35,7 +35,47 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tool.setTitle("Conference");
 		tool.setUrl("conference");
 		tool.setDescription("Sessions, attendees, and your favorite pub crawl tours!");
-		tool.setIconUrl("images/service-icons/srvc-maps.png");
+		tool.setIconUrl("images/service-icons/srvc-itstatewide.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 3);
+		tools.add(ht);
+
+		tool = new Tool();
+		tool.setAlias("dining");
+		tool.setTitle("Dining");
+		tool.setUrl("dining");
+		tool.setDescription("Find out what's cooking at your dining hall!");
+		tool.setIconUrl("images/service-icons/srvc-dining.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 3);
+		tools.add(ht);
+
+		tool = new Tool();
+		tool.setAlias("news");
+		tool.setTitle("News");
+		tool.setUrl("news");
+		tool.setDescription("The latest buzz on IU's exciting events and achievements.");
+		tool.setIconUrl("images/service-icons/srvc-news.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 3);
+		tools.add(ht);
+
+		tool = new Tool();
+		tool.setAlias("emergency");
+		tool.setTitle("Emergency Contacts");
+		tool.setUrl("emergency");
+		tool.setDescription("Police and medical phone numbers.");
+		tool.setIconUrl("images/service-icons/srvc-emergency.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 3);
+		tools.add(ht);
+
+		tool = new Tool();
+		tool.setAlias("feedback");
+		tool.setTitle("Feedback");
+		tool.setUrl("feedback");
+		tool.setDescription("Submit questions and comments about IU Mobile.");
+		tool.setIconUrl("images/service-icons/srvc-feedback.png");
 		adminService.saveTool(tool);
 		ht = new HomeTool(home, tool, 3);
 		tools.add(ht);
