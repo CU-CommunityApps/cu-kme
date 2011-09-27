@@ -19,7 +19,7 @@
     <parent>
 		<artifactId>feedback</artifactId>
 		<groupId>org.kuali.mobility</groupId>
-        <version>1.0.0-PRE-BETA-F2F</version>
+        <version>1.0.0-GA-RELEASE</version>
     </parent>
     <dependencies>
         <!-- Internal dependencies -->

@@ -19,7 +19,7 @@
 	<parent>
         <artifactId>mobility</artifactId>
         <groupId>org.kuali.mobility</groupId>
-        <version>1.0.0-PRE-BETA-F2F</version>
+        <version>1.0.0-GA-RELEASE</version>
    	</parent>
 	<dependencies>
         <!-- Webapp dependencies -->
@@ -27,7 +27,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.1.0</version>
-			<!-- <scope>provided</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -38,21 +37,18 @@
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
-			<!-- <scope>provided</scope> -->
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>c</artifactId>
 			<version>1.1.1</version>
-			<!-- <scope>provided</scope> -->
 			<type>tld</type>
 		</dependency>
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>fmt</artifactId>
 			<version>1.1.1</version>
-			<!-- <scope>provided</scope> -->
 			<type>tld</type>
 		</dependency>
 		<dependency>
@@ -140,27 +136,6 @@
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
-           
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>polling-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>polling-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>polling-web</artifactId>
-        </dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>polling-webapp</artifactId>
-			<version>${tool.polling.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>dining-api</artifactId>
@@ -196,25 +171,6 @@
             <groupId>org.kuali.mobility</groupId>
             <artifactId>conference-webapp</artifactId>
 			<version>${tool.conference.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>socialmedia-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>socialmedia-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>socialmedia-web</artifactId>
-        </dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>socialmedia-webapp</artifactId>
-			<version>${tool.socialmedia.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>   
@@ -275,25 +231,6 @@
             <type>war</type>
             <scope>runtime</scope>
         </dependency>   
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>itnotices-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>itnotices-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>itnotices-web</artifactId>
-		</dependency>
-		<dependency> 
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>itnotices-webapp</artifactId>
-			<version>${tool.itnotices.version}</version>
-      		<type>war</type>
-      		<scope>runtime</scope>
-    	</dependency>   
    		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>alerts-api</artifactId>
@@ -329,44 +266,6 @@
             <groupId>org.kuali.mobility</groupId>
             <artifactId>news-webapp</artifactId>
 			<version>${tool.news.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>knowledgebase-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>knowledgebase-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>knowledgebase-web</artifactId>
-		</dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>knowledgebase-webapp</artifactId>
-			<version>${tool.knowledgebase.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>people-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>people-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>people-web</artifactId>
-		</dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>people-webapp</artifactId>
-			<version>${tool.people.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>   
