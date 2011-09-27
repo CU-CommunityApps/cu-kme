@@ -1,4 +1,4 @@
-/*
+<%--
   Copyright 2011 The Kuali Foundation Licensed under the Educational Community
   License, Version 2.0 (the "License"); you may not use this file except in
   compliance with the License. You may obtain a copy of the License at
@@ -7,45 +7,16 @@
   on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
   express or implied. See the License for the specific language governing
   permissions and limitations under the License.
-*/
+--%>
 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-li p.ui-li-desc {
-	margin: 0 0 10px 0;
-	padding: 0;
-	font-size: 14px;
-	white-space: normal;
-}
-
-a.ui-link-inherit {
-	padding-right:35px !important;
-}
-
-p.tightPadding {
-	padding-right: 0 !important;
-}
-
-
-ul.statewideIT li {
-	padding: 15px !important;
-}
-
-ul.statewideIT .ui-li-thumb {
-	width: auto;
-	height: auto;
-	position: static;
-	float: right;
-	margin: 0 0 15px 15px;
-}
-
-div#daySelectTabs {
-	margin: -15px;
-	height: 30px;
-	padding: 5px;
-}
-
-div#daySelectTabs a {
-	padding:3px 5px;
-	margin:0;
-}
+<kme:page title="Session Feedback" id="conference" backButton="true" homeButton="true" cssFilename="conference">
+	<kme:content>
+		Thank you for your feedback! 
+	</kme:content>
+</kme:page>

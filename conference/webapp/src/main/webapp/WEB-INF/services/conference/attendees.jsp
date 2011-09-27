@@ -20,7 +20,7 @@
 			<!--<kme:listItem dataTheme="b" dataRole="list-divider">Conference Attendees</kme:listItem>-->
 			<c:forEach items="${attendees}" var="attendee" varStatus="status">
 		    	<kme:listItem>
-		    		<a href="attendeeDetails?id=${status.index}">
+		    		<a href="attendeeDetails/${attendee.id}">
 		    			<h3 class="wrap">
 		    				${attendee.firstName} ${attendee.lastName}
 		    			</h3>

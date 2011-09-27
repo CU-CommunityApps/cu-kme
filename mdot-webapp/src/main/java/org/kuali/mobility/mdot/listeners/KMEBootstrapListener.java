@@ -59,16 +59,6 @@ public class KMEBootstrapListener extends BootstrapListener {
 		adminService.saveTool(tool);
 		ht = new HomeTool(home, tool, 5);
 		tools.add(ht);
-
-		tool = new Tool();
-		tool.setAlias("polling");
-		tool.setTitle("Polling");
-		tool.setUrl("polling");
-		tool.setDescription("Poll of the day.");
-		tool.setIconUrl("images/service-icons/srvc-alerts-green.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 5);
-		tools.add(ht);
 		
 		home.setHomeTools(tools);
 		return home;
