@@ -22,6 +22,8 @@ import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.service.AdminService;
 import org.kuali.mobility.configparams.entity.ConfigParam;
 import org.kuali.mobility.configparams.service.ConfigParamService;
+import org.kuali.mobility.news.entity.NewsSource;
+import org.kuali.mobility.news.service.NewsService;
 import org.springframework.context.ApplicationContext;
 
 public abstract class BootstrapListener implements ServletContextListener {
@@ -40,6 +42,7 @@ public abstract class BootstrapListener implements ServletContextListener {
 		adminService.saveHomeScreen(home);
 		
 		ConfigParamService configParamService = (ConfigParamService) ctx.getBean("ConfigParamService");
+		NewsService newsService = (NewsService) ctx.getBean("NewsService");
 
 		ConfigParam param = new ConfigParam();
 		param.setName("Admin.Group.Name");
@@ -80,6 +83,37 @@ public abstract class BootstrapListener implements ServletContextListener {
 		param.setName("Food.Url.SE");
 		param.setValue("http://gus.ius.edu/dining-services/feed/?format=xml");
 		configParamService.saveConfigParam(param);
+		
+		//Some default feeds to get News going out of the box
+		NewsSource newsSource = new NewsSource();
+		newsSource.setActive(true);
+		newsSource.setOrder(4);
+		newsSource.setUrl("http://rss.cnn.com/rss/cnn_allpolitics.rss");
+		newsService.saveNewsSource(newsSource);
+		
+		newsSource = new NewsSource();
+		newsSource.setActive(true);
+		newsSource.setOrder(3);
+		newsSource.setUrl("http://rss.cnn.com/rss/cnn_tech.rss");
+		newsService.saveNewsSource(newsSource);
+		
+		newsSource = new NewsSource();
+		newsSource.setActive(true);
+		newsSource.setOrder(0);
+		newsSource.setUrl("http://feeds.bbci.co.uk/news/rss.xml");
+		newsService.saveNewsSource(newsSource);
+		
+		newsSource = new NewsSource();
+		newsSource.setActive(true);
+		newsSource.setOrder(1);
+		newsSource.setUrl("http://rss.cnn.com/rss/cnn_world.rss");
+		newsService.saveNewsSource(newsSource);
+		
+		newsSource = new NewsSource();
+		newsSource.setActive(true);
+		newsSource.setOrder(2);
+		newsSource.setUrl("http://rss.cnn.com/rss/cnn_health.rss");
+		newsService.saveNewsSource(newsSource);			
 		
 		LOG.info("Count: " + adminService.getAllHomeScreens().size());
 		

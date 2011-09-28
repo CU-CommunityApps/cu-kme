@@ -129,6 +129,14 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
+			<artifactId>news-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>news-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-api</artifactId>
 		</dependency>
 		<dependency>
