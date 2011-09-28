@@ -77,7 +77,7 @@ public abstract class BootstrapListener implements ServletContextListener {
 		configParamService.saveConfigParam(param);
 				
 		param = new ConfigParam();
-		param.setName("Food.Url.Southeast");
+		param.setName("Food.Url.SE");
 		param.setValue("http://gus.ius.edu/dining-services/feed/?format=xml");
 		configParamService.saveConfigParam(param);
 		

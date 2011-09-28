@@ -61,9 +61,9 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
 		tool = new Tool();
-		tool.setAlias("emergency");
+		tool.setAlias("emergencycontacts");
 		tool.setTitle("Emergency Contacts");
-		tool.setUrl("emergency");
+		tool.setUrl("emergencycontacts");
 		tool.setDescription("Police and medical phone numbers.");
 		tool.setIconUrl("images/service-icons/srvc-emergency.png");
 		adminService.saveTool(tool);
