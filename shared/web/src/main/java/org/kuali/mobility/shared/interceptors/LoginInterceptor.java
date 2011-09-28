@@ -1,11 +1,11 @@
 package org.kuali.mobility.shared.interceptors;
 
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,6 +45,17 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		return true;
 	}
+	
+	private String getCampusCookieValue(HttpServletRequest request) {
+		if (request != null && request.getCookies() != null) {
+			for (Cookie c : request.getCookies()) {
+				if ("campusSelection".equals(c.getName())) {
+					return c.getValue().trim();
+				}
+			}
+		}
+		return null;
+	}
 
 	private void publicLogin(HttpServletRequest request) {
 		User user = (User) request.getSession(true).getAttribute(Constants.KME_USER_KEY);
@@ -52,6 +63,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 			user = new UserImpl(true);
 			user.setPrincipalName("public_" + Math.random());
 			request.getSession().setAttribute(Constants.KME_USER_KEY, user);
+		}
+		String cookieVal = getCampusCookieValue(request);
+		if (cookieVal != null && cookieVal.length() > 0) {
+			user.setViewCampus(cookieVal);
 		}
 	}
 
@@ -83,6 +98,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 			request.getSession().setAttribute(Constants.KME_USER_KEY, user);
 			LOG.info("User id: " + user.getPrincipalName() + " logging in.");
+		}
+		String cookieVal = getCampusCookieValue(request);
+		if (cookieVal != null && cookieVal.length() > 0) {
+			user.setViewCampus(cookieVal);
 		}
 		return user;
 	}

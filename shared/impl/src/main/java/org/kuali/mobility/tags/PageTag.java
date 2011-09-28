@@ -185,12 +185,15 @@ public class PageTag extends SimpleTagSupport {
             out.println("<link rel=\"apple-touch-icon\" href=\"" + contextPath + "/apple-touch-icon.png\"/>");
             out.println("<link href=\"" + contextPath + "/css/jquery.mobile.css\" rel=\"stylesheet\" type=\"text/css\" />");
             out.println("<link href=\"" + contextPath + "/css/jquery-mobile-fluid960.css\" rel=\"stylesheet\" type=\"text/css\" />");
-            out.println("<link href=\"" + contextPath + "/css/custom.css\" rel=\"stylesheet\" type=\"text/css\" />");
+            out.println("<link href=\"" + contextPath + "/css/kme.css\" rel=\"stylesheet\" type=\"text/css\" />");
+            out.println("<link href=\"" + contextPath + "/css/custom\" rel=\"stylesheet\" type=\"text/css\" />");
             if (cssFilename != null && !cssFilename.trim().equals("")) {
             	out.println("<link href=\"" + contextPath + "/css/" + cssFilename + ".css\" rel=\"stylesheet\" type=\"text/css\" />");
             }
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.js\"></script>");
+            out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.cookie.js\"></script>");
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/custom.js\"></script>");
+            out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/applyStylize.js\"></script>");
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.mobile.js\"></script>");
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.tmpl.js\"></script>");
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.validate.js\"></script>");

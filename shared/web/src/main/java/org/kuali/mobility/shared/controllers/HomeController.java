@@ -29,8 +29,11 @@ import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.entity.HomeTool;
 import org.kuali.mobility.admin.entity.Tool;
 import org.kuali.mobility.admin.service.AdminService;
+import org.kuali.mobility.campus.entity.Campus;
+import org.kuali.mobility.campus.service.CampusService;
 import org.kuali.mobility.configparams.service.ConfigParamService;
 import org.kuali.mobility.shared.Constants;
+import org.kuali.mobility.shared.CoreService;
 import org.kuali.mobility.shared.entity.Backdoor;
 import org.kuali.mobility.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +53,12 @@ public class HomeController {
 
 	@Autowired
 	private ConfigParamService configParamService;
+	
+	@Autowired
+	private CampusService campusService;
+	
+	@Autowired
+	private CoreService coreService;
     
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(HttpServletRequest request, Model uiModel) {      
@@ -63,6 +72,21 @@ public class HomeController {
     	}
     	uiModel.addAttribute("ipAddress", ipAddress);
     	return "index";
+    }
+    
+    @RequestMapping(value = "preferences", method = RequestMethod.GET)
+    public String preferences(HttpServletRequest request, Model uiModel) {   
+    	String homeToolName = "home";
+    	List<Campus> campuses = campusService.findCampusesByTool(homeToolName);
+		uiModel.addAttribute("campuses", campuses);
+		uiModel.addAttribute("toolName", homeToolName);
+    	return "preferences";
+    }
+    
+    @RequestMapping(value = "stylize")
+    public String stylize(HttpServletRequest request, Model uiModel) {      
+    	uiModel.addAttribute("styles", coreService.getCssCustomizations());
+    	return "stylize";
     }
     
     @RequestMapping(value = "kme.appcache", method = RequestMethod.GET)
