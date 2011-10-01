@@ -22,8 +22,10 @@ import org.kuali.mobility.conference.entity.ContentBlock;
 import org.kuali.mobility.conference.entity.Session;
 
 public interface ConferenceService {
+
 	List<ContentBlock> findAllContentBlocks();
-	List<Attendee> findAllAttendees();
+	List<ContentBlock> findFeaturedSpeakers();
+	List<Attendee> findAllAttendees(char start, char end);
 	List<Session> findAllSessions(String date);
 	Attendee findAttendeeById(String id);
 	Session findSessionById(String id);
