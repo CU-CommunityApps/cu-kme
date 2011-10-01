@@ -22,8 +22,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.kuali.mobility.conference.entity.Attendee;
 import org.kuali.mobility.conference.entity.ContentBlock;
 import org.kuali.mobility.conference.entity.Session;
@@ -31,8 +29,6 @@ import org.kuali.mobility.conference.entity.SessionFeedback;
 import org.kuali.mobility.conference.service.ConferenceService;
 import org.kuali.mobility.configparams.service.ConfigParamService;
 import org.kuali.mobility.email.service.EmailService;
-import org.kuali.mobility.shared.Constants;
-import org.kuali.mobility.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -121,10 +117,8 @@ public class ConferenceController {
 	}
 
 	@RequestMapping(value = "/sessionFeedback", method = RequestMethod.POST)
-	public String submitFeedback(Model uiModel, HttpServletRequest request, @ModelAttribute("sessionFeedback") SessionFeedback sessionFeedback) {
-		User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
+	public String submitFeedback(Model uiModel, @ModelAttribute("sessionFeedback") SessionFeedback sessionFeedback) {
 		sessionFeedback.setTimePosted(new Timestamp(System.currentTimeMillis()));
-		sessionFeedback.setPrincipalName(user.getPrincipalName());
 		sendEmail(sessionFeedback);
 		return "conference/sessionFeedbackThanks";
 	}
@@ -146,7 +140,6 @@ public class ConferenceController {
 			}
 		} catch (Exception e) {
 		}
-		//System.out.println(f.toString());
 	}
 
 }

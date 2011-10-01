@@ -37,14 +37,12 @@
 		        <kme:listItem dataRole="list-divider">Speakers</kme:listItem>   
 		        <c:forEach items="${session.speakers}" var="speaker" varStatus="status">
 			    	<kme:listItem>
-			    		<%--<a href="sessionSpeakerDetails?id=${status.index}"> --%>
-			    			<h3 class="wrap">
-			    				${speaker.firstName} ${speaker.lastName}
-			    			</h3>
-			    			<p class="wrap">${speaker.email}</p>
-			    			<p class="wrap">${speaker.title}</p>
-			    			<p class="wrap">${speaker.institution}</p>
-			    		<%-- </a> --%>
+		    			<h3 class="wrap">
+		    				${speaker.firstName} ${speaker.lastName}
+		    			</h3>
+		    			<p class="wrap">${speaker.email}</p>
+		    			<p class="wrap">${speaker.title}</p>
+		    			<p class="wrap">${speaker.institution}</p>
 			    	</kme:listItem>            
 			    </c:forEach>
 		    </c:if>

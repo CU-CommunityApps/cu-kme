@@ -84,7 +84,6 @@ public abstract class BootstrapListener implements ServletContextListener {
 		param.setValue("http://gus.ius.edu/dining-services/feed/?format=xml");
 		configParamService.saveConfigParam(param);
 		
-		//Some default feeds to get News going out of the box
 		NewsSource newsSource = new NewsSource();
 		newsSource.setActive(true);
 		newsSource.setOrder(4);
