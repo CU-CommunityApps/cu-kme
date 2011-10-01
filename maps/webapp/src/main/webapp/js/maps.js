@@ -209,7 +209,6 @@ function showBuildingByCode(map, buildingCode) {
 }
 
 function retrieveBuildingsForGroup(groupCode) {
-	// http://localhost:9999/mdot/maps/group/BL
 	$('#searchBuilding').empty();
 	$('#searchBuilding').append($("<option></option>").attr("value", "").text(""));
 	$.getJSON('${pageContext.request.contextPath}/maps/group/' + groupCode, function(data) {

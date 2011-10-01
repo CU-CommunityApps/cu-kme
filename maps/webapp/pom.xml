@@ -115,13 +115,6 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>shared-config</artifactId>
 		</dependency>
-        <dependency> 
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>shared-webapp</artifactId>
-			<version>${tool.shared.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>   
   		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-api</artifactId>
