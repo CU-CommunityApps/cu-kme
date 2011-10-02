@@ -31,6 +31,7 @@
 	<import resource="classpath:CampusSpringBeans.xml" />
 	<import resource="classpath:AlertsSpringBeans.xml" />
 	<import resource="classpath:ComputerLabsSpringBeans.xml" />
-
+    <import resource="classpath:ConferenceSpringBeans.xml" />
+    
 </beans>
  

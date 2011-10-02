@@ -20,14 +20,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.kuali.mobility.conference.entity.Attendee;
 import org.kuali.mobility.conference.entity.ContentBlock;
 import org.kuali.mobility.conference.entity.Session;
 import org.kuali.mobility.conference.entity.SessionFeedback;
 import org.kuali.mobility.conference.service.ConferenceService;
-import org.kuali.mobility.configparams.service.ConfigParamService;
 import org.kuali.mobility.email.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,9 +42,6 @@ public class ConferenceController {
 
 	@Autowired
 	private ConferenceService conferenceService;
-
-	@Autowired
-	private ConfigParamService configParamService;
 
 	@Autowired
 	private EmailService emailService;
@@ -132,12 +127,7 @@ public class ConferenceController {
 
 	private void sendEmail(SessionFeedback f) {
 		try {
-			String emailAddress = configParamService.findValueByName("Feedback.SendEmail.EmailAddress");
-			StringTokenizer stringTokenizer = new StringTokenizer(emailAddress);
-			while (stringTokenizer.hasMoreTokens()) {
-				String email = stringTokenizer.nextToken();
-				emailService.sendEmail(f.toString(), "SWITC Feedback; "+f.getSessionId()+":"+f.getRating(), email, configParamService.findValueByName("Core.EmailAddress"));
-			}
+			emailService.sendEmail(f.toString(), "SWITC Feedback; "+f.getSessionId()+":"+f.getRating(), conferenceService.getToEmailAddress(), conferenceService.getFromEmailAddress());
 		} catch (Exception e) {
 		}
 	}

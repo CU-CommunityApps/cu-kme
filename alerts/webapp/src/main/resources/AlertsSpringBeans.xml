@@ -23,42 +23,42 @@
 			<map>
 				<entry key="BL">
 					<list>
-						<value>https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&amp;campus=BL</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 				<entry key="CO">
 					<list>
-						<value>https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&amp;campus=CO</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 				<entry key="KO">
 					<list>
-						<value>https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&amp;campus=KO</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 				<entry key="NW">
 					<list>
-						<value>https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&amp;campus=NW</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 				<entry key="SB">
 					<list>
-						<value>https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&amp;campus=SB</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 				<entry key="SE">
 					<list>
-						<value>https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&amp;campus=SE</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 				<entry key="IN">
 					<list>
-						<value>http://www.iupui.edu/rss/jagalert_iu.xml</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 				<entry key="EA">
 					<list>
-						<value>http://www.iue.edu/emergency/feed.php</value>
+						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
 					</list>
 				</entry>
 			</map>

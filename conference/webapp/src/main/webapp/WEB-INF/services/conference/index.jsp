@@ -50,7 +50,7 @@
 	    		</a>
 	    	</kme:listItem>
 	    	<kme:listItem>
-	    		<a href="http://statewideit.iu.edu/files/images/imumap10.jpg">
+	    		<a href="http://localhost:9999/mdot/testdata/imumap10.jpg">
 	    			<h3 class="wrap">
 	    				Indiana Memorial Union Map
 	    			</h3>

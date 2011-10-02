@@ -29,4 +29,7 @@ public interface ConferenceService {
 	List<Session> findAllSessions(String date);
 	Attendee findAttendeeById(String id);
 	Session findSessionById(String id);
+	String getToEmailAddress();
+	String getFromEmailAddress();
+
 }

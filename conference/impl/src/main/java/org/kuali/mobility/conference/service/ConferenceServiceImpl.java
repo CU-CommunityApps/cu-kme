@@ -36,19 +36,24 @@ import net.sf.json.JSONSerializer;
 import org.kuali.mobility.conference.entity.Attendee;
 import org.kuali.mobility.conference.entity.ContentBlock;
 import org.kuali.mobility.conference.entity.Session;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ConferenceServiceImpl implements ConferenceService {
 
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ConferenceServiceImpl.class);
 
+	private String attendeesFeedUrl;
+	private String featuredSpeakersFeedUrl;
+	private String sessionsFeedUrl;
+	private String welcomeFeedUrl;
+	private String toEmailAddress;
+	private String fromEmailAddress;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ContentBlock> findAllContentBlocks() {
 		List<ContentBlock> contentBlocks = new ArrayList<ContentBlock>();
 		try {
-			String json = retrieveJSON("http://statewideit.iu.edu/program/sessions/welcome.json");
+			String json = retrieveJSON(welcomeFeedUrl);
 
 			JSONArray simpleContentArray = (JSONArray) JSONSerializer.toJSON(json);
 			
@@ -76,7 +81,7 @@ public class ConferenceServiceImpl implements ConferenceService {
 	public List<ContentBlock> findFeaturedSpeakers() {
 		List<ContentBlock> contentBlocks = new ArrayList<ContentBlock>();
 		try {
-			String json = retrieveJSON("http://www.indiana.edu/~spea/featuredSpeakers.json");
+			String json = retrieveJSON(featuredSpeakersFeedUrl);
 
 			JSONArray simpleContentArray = (JSONArray) JSONSerializer.toJSON(json);
 			
@@ -105,7 +110,7 @@ public class ConferenceServiceImpl implements ConferenceService {
 		
 		List<Attendee> attendees = new ArrayList<Attendee>();
 		try {
-			String json = retrieveJSON("http://statewideit.iu.edu/program/sessions/attendeesfeed.php");
+			String json = retrieveJSON(attendeesFeedUrl);
 
 			JSONArray attendeeArray = (JSONArray) JSONSerializer.toJSON(json);
 			
@@ -115,20 +120,12 @@ public class ConferenceServiceImpl implements ConferenceService {
 					
 					Attendee attendee = new Attendee();
 					attendee.setId(attendeeObject.getString("id"));
-					//attendee.setCellPhone(attendeeObject.getString("cellPhone"));
-					//attendee.setWorkPhone(attendeeObject.getString("workPhone"));
 					attendee.setEmail(attendeeObject.getString("email"));
 					attendee.setFirstName(attendeeObject.getString("firstName"));
 					attendee.setLastName(attendeeObject.getString("lastName"));
 					attendee.setInstitution(attendeeObject.getString("institution"));
 					attendee.setCampus(attendeeObject.getString("campus"));
 					attendee.setTitle(attendeeObject.getString("title"));
-					//attendee.setWorkAddress1(attendeeObject.getString("workAddress1"));
-					//attendee.setWorkAddress2(attendeeObject.getString("workAddress2"));
-					//attendee.setWorkCity(attendeeObject.getString("workCity"));
-					//attendee.setWorkState(attendeeObject.getString("workState"));
-					//attendee.setWorkZip(attendeeObject.getString("workZip"));
-					//attendee.setCountry(attendeeObject.getString("country"));
 					
 					char c = attendee.getLastName().toUpperCase().charAt(0);
 					if (c >= start && c <= end) {						
@@ -146,14 +143,13 @@ public class ConferenceServiceImpl implements ConferenceService {
 	}
 
 	@SuppressWarnings("unchecked")
-	//@Override
+	@Override
 	public List<Session> findAllSessions(String date) {
 	
 		List<Session> sessions = new ArrayList<Session>();
 		try {
-			//String json = retrieveJSON("http://localhost:9999/mdot/testdata/conferenceSessions.json");
 			String dateString = (null == date ? "" : date);
-			String json = retrieveJSON("http://statewideit.iu.edu/program/sessions/programfeed.php?d=" + dateString);
+			String json = retrieveJSON(sessionsFeedUrl + "?d=" + dateString);
 
 			JSONArray sessionArray = (JSONArray) JSONSerializer.toJSON(json);
 			
@@ -176,8 +172,6 @@ public class ConferenceServiceImpl implements ConferenceService {
 						DateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 						Date startDate = (Date)parser.parse(str_startDate);
 						Date endDate = (Date)parser.parse(str_endDate);
-						//DateFormat formatter = new SimpleDateFormat("E, MMM dd yyyy hh:mm a z");
-						//DateFormat formatter = new SimpleDateFormat("hh:mm a");
 						DateFormat formatter = new SimpleDateFormat("E hh:mm a");
 						String formattedStartDate, formattedEndDate;
 						formattedStartDate = formatter.format(startDate);
@@ -185,7 +179,6 @@ public class ConferenceServiceImpl implements ConferenceService {
 						session.setStartTime(formattedStartDate);
 						session.setEndTime(formattedEndDate);
 					} catch (ParseException e) {
-						//System.out.println("Exception :" + e);
 					}
 
 					
@@ -256,5 +249,53 @@ public class ConferenceServiceImpl implements ConferenceService {
         }
 	    return null;
     }
+
+	public String getAttendeesFeedUrl() {
+		return attendeesFeedUrl;
+	}
+
+	public void setAttendeesFeedUrl(String attendeesFeedUrl) {
+		this.attendeesFeedUrl = attendeesFeedUrl;
+	}
+
+	public String getFeaturedSpeakersFeedUrl() {
+		return featuredSpeakersFeedUrl;
+	}
+
+	public void setFeaturedSpeakersFeedUrl(String featuredSpeakersFeedUrl) {
+		this.featuredSpeakersFeedUrl = featuredSpeakersFeedUrl;
+	}
+
+	public String getSessionsFeedUrl() {
+		return sessionsFeedUrl;
+	}
+
+	public void setSessionsFeedUrl(String sessionsFeedUrl) {
+		this.sessionsFeedUrl = sessionsFeedUrl;
+	}
+
+	public String getWelcomeFeedUrl() {
+		return welcomeFeedUrl;
+	}
+
+	public void setWelcomeFeedUrl(String welcomeFeedUrl) {
+		this.welcomeFeedUrl = welcomeFeedUrl;
+	}
+
+	public String getToEmailAddress() {
+		return toEmailAddress;
+	}
+
+	public void setToEmailAddress(String toEmailAddress) {
+		this.toEmailAddress = toEmailAddress;
+	}
+
+	public String getFromEmailAddress() {
+		return fromEmailAddress;
+	}
+
+	public void setFromEmailAddress(String fromEmailAddress) {
+		this.fromEmailAddress = fromEmailAddress;
+	}
 	
 }
