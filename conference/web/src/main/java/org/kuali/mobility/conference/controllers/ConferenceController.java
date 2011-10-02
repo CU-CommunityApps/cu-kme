@@ -128,8 +128,7 @@ public class ConferenceController {
 	private void sendEmail(SessionFeedback f) {
 		try {
 			emailService.sendEmail(f.toString(), "SWITC Feedback; "+f.getSessionId()+":"+f.getRating(), conferenceService.getToEmailAddress(), conferenceService.getFromEmailAddress());
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 	}
 
 }
