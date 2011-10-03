@@ -22,6 +22,8 @@ import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.service.AdminService;
 import org.kuali.mobility.configparams.entity.ConfigParam;
 import org.kuali.mobility.configparams.service.ConfigParamService;
+import org.kuali.mobility.emergencyinfo.entity.EmergencyInfo;
+import org.kuali.mobility.emergencyinfo.service.EmergencyInfoService;
 import org.kuali.mobility.news.entity.NewsSource;
 import org.kuali.mobility.news.service.NewsService;
 import org.springframework.context.ApplicationContext;
@@ -43,6 +45,70 @@ public abstract class BootstrapListener implements ServletContextListener {
 		
 		ConfigParamService configParamService = (ConfigParamService) ctx.getBean("ConfigParamService");
 		NewsService newsService = (NewsService) ctx.getBean("NewsService");
+		EmergencyInfoService emergencyInfoService = (EmergencyInfoService) ctx.getBean("EmergencyInfoService");
+		
+		EmergencyInfo ei = new EmergencyInfo();
+		ei.setCampus("UA");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("BL");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("IN");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("CO");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("EA");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("KO");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("NW");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("SB");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
+
+		ei = new EmergencyInfo();
+		ei.setCampus("SE");
+		ei.setLink("1-812-555-1234");
+		ei.setTitle("Police");
+		ei.setType("PHONE");
+		emergencyInfoService.saveEmergencyInfo(ei);
 
 		ConfigParam param = new ConfigParam();
 		param.setName("Admin.Group.Name");
@@ -113,6 +179,9 @@ public abstract class BootstrapListener implements ServletContextListener {
 		newsSource.setOrder(2);
 		newsSource.setUrl("http://rss.cnn.com/rss/cnn_health.rss");
 		newsService.saveNewsSource(newsSource);			
+		
+		
+		
 		
 		LOG.info("Count: " + adminService.getAllHomeScreens().size());
 		

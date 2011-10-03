@@ -14,9 +14,10 @@
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
 
-<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences" loginButton="true" loginButtonURL="home?login=yes">
+<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences">
 	<kme:content>
 	
+	<%-- 
 		<!-- <p><a id="manualUpdate" href="#">Check for an updated Cache</a></p> -->
 	
 		<div id="cacheProgressModal">
@@ -30,6 +31,7 @@
 			</ul> -->
 			</div>
 	 	</div>
+ 	--%>
  	
 	    <kme:listView id="homeserviceslist" filter="false">
 	        <c:forEach items="${tools}" var="homeTool" varStatus="status">	            
@@ -47,6 +49,7 @@
 	    <c:if test="${not empty ipAddress}">${ipAddress}</c:if>
 	</kme:content>
 	
+	<%-- 
 	<!-- When the DOM is ready (ie. Now), run the scripts. -->
 	<script type="text/javascript">
  
@@ -288,6 +291,7 @@
 		);
  
 	</script>
+	--%>
 	
 </kme:page>
 

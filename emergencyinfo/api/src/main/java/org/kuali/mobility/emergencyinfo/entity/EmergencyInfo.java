@@ -18,6 +18,7 @@ package org.kuali.mobility.emergencyinfo.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ import javax.persistence.Version;
 
 import flexjson.JSONSerializer;
 
+@Entity
 @Table(name="KME_EM_INFO_T")
 public class EmergencyInfo implements Serializable {
 

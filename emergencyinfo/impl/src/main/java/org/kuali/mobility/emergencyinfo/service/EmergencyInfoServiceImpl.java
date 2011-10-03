@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 
-@Service
+@Service(value="EmergencyInfoService")
 public class EmergencyInfoServiceImpl implements EmergencyInfoService {
   
     @Autowired

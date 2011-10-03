@@ -70,10 +70,7 @@ public class MapsController {
     
     @Autowired
 	private ConfigParamService configParamService;
-  
-	/*
-	 * Initial view
-	 */
+
     @RequestMapping(method = RequestMethod.GET)
     public String getHome(Model uiModel, HttpServletRequest request) {
     	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);

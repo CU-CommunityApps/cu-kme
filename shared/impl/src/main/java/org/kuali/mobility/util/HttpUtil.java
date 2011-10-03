@@ -49,26 +49,14 @@ public class HttpUtil {
 		if (path.startsWith("/oauth") 
 				|| path.startsWith("/backdoor") 
 				|| path.startsWith("/admin") 
-				|| path.startsWith("/publishing") 
-				|| path.startsWith("/myclasses") 
-				|| path.startsWith("/calendar")) {
+				|| path.startsWith("/publishing")) {
 			return true;
 		}
 		return false;
 	}
 
 	public static boolean backdoorRestricted(String path) {
-		if (path.indexOf("/myclasses") >= 0 && 
-				(path.indexOf("/assignments") >= 0 
-				|| path.indexOf("/announcements") >= 0
-				|| path.indexOf("/attachment") >= 0
-				|| path.indexOf("/grades") >= 0
-				|| path.indexOf("/roster") >= 0
-				|| path.indexOf("/resources") >= 0
-				|| path.indexOf("/forums") >= 0
-				|| path.indexOf("/messages") >= 0)) {
-			return true;
-		}
+		
 		return false;
 	}
 

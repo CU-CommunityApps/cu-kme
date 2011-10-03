@@ -27,22 +27,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 	private UserService userService;
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		if (HttpUtil.needsAuthenticated(request.getServletPath()) || "yes".equals(request.getParameter("login"))) {
+		if (HttpUtil.needsAuthenticated(request.getServletPath())) {
 			login(request);
 		} else {
 			publicLogin(request);
 		}
-		
-		User user = (User) request.getSession(true).getAttribute(Constants.KME_USER_KEY);
-//		if (user != null && user.getUserAttribute("acked") == null && (HttpUtil.needsAuthenticated(request.getServletPath()) || "yes".equals(request.getParameter("login")))) {
-//			try {
-//				user.setUserAttribute("service", request.getServletPath());
-//				response.sendRedirect(request.getContextPath() + "/mobileCasAck");
-//			} catch (IOException e) {
-//				LOG.error(e.getMessage(), e);
-//			}
-//		}
-
+	
 		return true;
 	}
 	
@@ -75,12 +65,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (user == null || user.isPublicUser()) {
 			Timestamp now = new Timestamp(new Date().getTime());
 
-			user = null; //userService.findUserByPrincipalName(CASFilter.getRemoteUser(request));
+			user = null; 
 			if (user == null) {
 				user = new UserImpl(false);
 				user.setFirstLogin(now);
 			}
-			user.setPrincipalName("public user"); //CASFilter.getRemoteUser(request));
+			user.setPrincipalName("public user"); 
 			user.setLastLogin(now);
 			userService.saveUser(user);
 
@@ -99,19 +89,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 			request.getSession().setAttribute(Constants.KME_USER_KEY, user);
 			LOG.info("User id: " + user.getPrincipalName() + " logging in.");
 		}
+		
 		String cookieVal = getCampusCookieValue(request);
 		if (cookieVal != null && cookieVal.length() > 0) {
 			user.setViewCampus(cookieVal);
 		}
+		
 		return user;
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView e) throws Exception {
-	}
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView e) throws Exception {}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) throws Exception {
-	}
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) throws Exception {}
 
 }
