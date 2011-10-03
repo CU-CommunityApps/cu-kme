@@ -79,7 +79,8 @@ public class ConferenceController {
 	
 	@RequestMapping(value = "/attendeeGroups", method = RequestMethod.GET)
 	public String attendeeGroups(Model uiModel) {
-		return "conference/attendeeGroups";
+		return attendees("A", "Z", uiModel);
+		//return "conference/attendeeGroups";
 	}
 
 	@RequestMapping(value = "/attendees", method = RequestMethod.GET)
