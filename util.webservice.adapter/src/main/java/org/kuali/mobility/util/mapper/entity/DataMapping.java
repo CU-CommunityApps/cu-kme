@@ -20,6 +20,8 @@ public class DataMapping implements Serializable {
 	private String rootElement;
 	@XStreamAsAttribute
 	private String rootElementClassName;
+	@XStreamAsAttribute
+	private String mimeType;
 
 	private List<MappingElement> mappings;
 
@@ -69,6 +71,14 @@ public class DataMapping implements Serializable {
 
 	public void setRootElementClassName(String rootElementClassName) {
 		this.rootElementClassName = rootElementClassName;
+	}
+
+	public String getMimeType() {
+		return mimeType;
+	}
+
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
 	}
 
 }

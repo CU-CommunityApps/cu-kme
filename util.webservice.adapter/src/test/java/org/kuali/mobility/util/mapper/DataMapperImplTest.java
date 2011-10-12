@@ -18,6 +18,9 @@ public class DataMapperImplTest {
 	public static final String DATA_FILE = "seatSampleData.xml";
 	public static final String MAPPING_FILE = "seatMapping.xml";
 	
+	public static final String JSON_DATA_FILE = "sampleJsonData.json";
+	public static final String JSON_MAPPING_FILE = "sampleJsonMapping.xml";
+	
 	@Test
 	public void testMapData() {
 		
@@ -33,6 +36,33 @@ public class DataMapperImplTest {
 		}
 		
 		assertTrue( "failed to parse file.", seats != null && seats.size() == 16 );
+
+		for( Seat s : seats )
+		{
+			logger.debug( s.getLab() );
+			logger.debug( "\t"+ s.getFloor() );
+			logger.debug( "\t"+ s.getBuildingCode() );
+			logger.debug( "\t"+ s.getAvailability() );
+			logger.debug( "\t"+ s.getWindowsAvailability() );
+			logger.debug( "\t"+ s.getMacAvailability() );
+		}
+	}
+
+	@Test
+	public void testMapJsonData() {
+		
+		List<Seat> seats = new ArrayList<Seat>();
+		try
+		{
+			DataMapperImpl mapper = new DataMapperImpl();
+			seats = mapper.mapData( seats, JSON_DATA_FILE, JSON_MAPPING_FILE);
+		}
+		catch( ClassNotFoundException cnfe )
+		{
+			logger.error( cnfe );
+		}
+		
+		assertTrue( "failed to parse file.", seats != null && seats.size() == 3 );
 
 		for( Seat s : seats )
 		{

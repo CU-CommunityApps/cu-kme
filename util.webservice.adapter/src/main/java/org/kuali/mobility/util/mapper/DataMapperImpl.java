@@ -12,6 +12,7 @@ import org.kuali.mobility.util.mapper.entity.DataMapping;
 import org.kuali.mobility.util.mapper.entity.MappingElement;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
 
 public class DataMapperImpl implements DataMapper {
@@ -106,24 +107,50 @@ public class DataMapperImpl implements DataMapper {
 			}
 			final String objectClass = mapping.getClassName();
 
-			XStream xstream = new XStream() {
-				@Override
-				protected MapperWrapper wrapMapper(MapperWrapper next) {
-					return new MapperWrapper(next) {
-						@Override
-						public boolean shouldSerializeMember(Class definedIn, String fieldName) {
-							try {
-								if (!fields.contains(fieldName) && definedIn == Class.forName(objectClass)) {
+			XStream xstream;
+			if( mapping.getMimeType() != null && "application/json".equalsIgnoreCase(mapping.getMimeType()) )
+			{
+				logger.debug( "Loading xstream jettison mapped xml driver.");
+				xstream = new XStream(new JettisonMappedXmlDriver()) {
+					@Override
+					protected MapperWrapper wrapMapper(MapperWrapper next) {
+						return new MapperWrapper(next) {
+							@Override
+							public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+								try {
+									if (!fields.contains(fieldName) && definedIn == Class.forName(objectClass)) {
+										return false;
+									}
+								} catch (ClassNotFoundException e) {
 									return false;
 								}
-							} catch (ClassNotFoundException e) {
-								return false;
+								return super.shouldSerializeMember(definedIn, fieldName);
 							}
-							return super.shouldSerializeMember(definedIn, fieldName);
-						}
-					};
-				}
-			};
+						};
+					}
+				};
+			}
+			else
+			{
+				xstream = new XStream() {
+					@Override
+					protected MapperWrapper wrapMapper(MapperWrapper next) {
+						return new MapperWrapper(next) {
+							@Override
+							public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+								try {
+									if (!fields.contains(fieldName) && definedIn == Class.forName(objectClass)) {
+										return false;
+									}
+								} catch (ClassNotFoundException e) {
+									return false;
+								}
+								return super.shouldSerializeMember(definedIn, fieldName);
+							}
+						};
+					}
+				};
+			}
 			xstream.alias(mapping.getId(), Class.forName(mapping.getClassName()));
 			if (mapping.getRootElement() != null && !"".equalsIgnoreCase(mapping.getRootElement())) {
 				if (mapping.getRootElementClassName() != null && !"".equals(mapping.getRootElementClassName().trim())) {
