@@ -66,7 +66,7 @@ public interface AdminService {
 	 */
 	public Long saveTool(Tool tool);
 	/**
-	 * @param toolId the it of the tool to retrieve
+	 * @param toolId the id of the tool to retrieve
 	 * @return the Tool matching the id
 	 */
 	public Tool getToolById(long toolId);

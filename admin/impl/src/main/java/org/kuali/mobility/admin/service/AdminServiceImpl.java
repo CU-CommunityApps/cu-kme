@@ -65,12 +65,15 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Transactional(readOnly = true)
 	public HomeScreen getCachedHomeScreenByAlias(String alias) {
+		return getHomeScreenByAlias(alias);
+		/* TODO: Add caching back in when publishing works properly
 		HomeScreen homeScreen = homeScreens.get(alias);
 		if (homeScreen == null) {
 			LOG.warn("Cannot find homeScreen with alias: " + alias + " in the cache. Fetching from database");
 			return getHomeScreenByAlias(alias);
 		}
 		return homeScreen;
+		*/
  	}
 
 	@Transactional

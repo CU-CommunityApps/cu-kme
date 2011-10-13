@@ -36,5 +36,7 @@ public interface AlertsService {
 	 * 			<code>List</code>. 
 	 */
 	public List<Alert> findAlertsByCampus(String campus);
+
+	int findAlertCountByCampus(String campus);
 	
 }

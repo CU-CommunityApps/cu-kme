@@ -67,7 +67,7 @@ public class PublishingController {
      * @param uiModel
      * @return
      */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(Model uiModel) {
     	return "publishing/index";
     }
@@ -185,6 +185,10 @@ public class PublishingController {
      */
     @RequestMapping(value = "layout/edit", method = RequestMethod.POST)
     public String editLayout(Model uiModel, @ModelAttribute("layout") HomeScreen homeScreen, BindingResult result) {
+    	int index = 0;
+    	for (HomeTool ht : homeScreen.getHomeTools()) {
+			ht.setOrder(index++);
+		}
     	adminService.saveHomeScreen(homeScreen);
     	return layout(uiModel);
     }
@@ -249,12 +253,11 @@ public class PublishingController {
     		}
     	}
     	if (removedOrder != null) {
-    		for (HomeTool ht : homeScreen.getHomeTools()) {
-    			if (ht.getOrder() > removedOrder) {
-    				ht.setOrder(ht.getOrder() - 1);
-    			}
+        	int index = 0;
+        	for (HomeTool ht : homeScreen.getHomeTools()) {
+    			ht.setOrder(index++);
     		}
-    	}
+        }
     	Collections.sort(homeScreen.getHomeTools());
     	uiModel.addAttribute("layout", homeScreen);
     	uiModel.addAttribute("availableTools", adminService.getAllTools());
@@ -282,8 +285,9 @@ public class PublishingController {
     	if (selectedHomeTool != null && selectedHomeTool.getOrder() > 0) {
     		for (HomeTool ht : homeScreen.getHomeTools()) {
     			if (ht.getOrder() == selectedHomeTool.getOrder() - 1) {
-    				ht.setOrder(ht.getOrder() + 1);
-    				selectedHomeTool.setOrder(selectedHomeTool.getOrder() - 1);
+    				int swap = ht.getOrder();
+    				ht.setOrder(selectedHomeTool.getOrder());
+    				selectedHomeTool.setOrder(swap);
     				break;
     			}
     		}
@@ -315,8 +319,9 @@ public class PublishingController {
     	if (selectedHomeTool != null) {
     		for (HomeTool ht : homeScreen.getHomeTools()) {
     			if (ht.getOrder() == selectedHomeTool.getOrder() + 1) {
-    				ht.setOrder(ht.getOrder() + 1);
-    				selectedHomeTool.setOrder(selectedHomeTool.getOrder() - 1);
+    				int swap = ht.getOrder();
+    				ht.setOrder(selectedHomeTool.getOrder());
+    				selectedHomeTool.setOrder(swap);
     				break;
     			}
     		}

@@ -86,6 +86,32 @@ public class AlertsServiceImpl implements AlertsService {
 		}
 		return campusStatuses;
 	}
+	
+	@Override
+	public int findAlertCountByCampus(String campus) {
+		String selectedCampus = "ALL";
+		if (campus != null && !"".equals(campus.trim())) {
+			selectedCampus = campus;
+		}
+
+		List<Alert> campusStatuses = this.getAlertsByCode(selectedCampus);
+		if (campusStatuses != null && campusStatuses.size() > 1) {
+			List<Alert> filteredStatuses = new ArrayList<Alert>();
+			Iterator<Alert> iter = campusStatuses.iterator();
+			while (iter.hasNext()) {
+				Alert status = (Alert) iter.next();
+				if (isAlertToReport(status) && !filteredStatuses.contains(status)) {
+					filteredStatuses.add(status);
+				}
+			}
+			campusStatuses = filteredStatuses;
+		}
+		if (campusStatuses == null || campusStatuses.isEmpty()) {
+			return 0;
+		} else {
+			return campusStatuses.size();
+		}
+	}
 
 	private List<Alert> getAlertsByCode(String campus) {
 		if ("ALL".equals(campus)) {
@@ -129,6 +155,9 @@ public class AlertsServiceImpl implements AlertsService {
 
 	private List<Alert> parseAlerts(String campus) {
 		List<Alert> alerts = new ArrayList<Alert>();
+		if (alertUrls == null || alertUrls.get(campus) == null) {
+			return alerts;
+		}
 		for (String sourceUrl : alertUrls.get(campus)) {
 			try {
 				URL url = new URL(sourceUrl);

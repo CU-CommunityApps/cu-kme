@@ -29,6 +29,7 @@ import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.entity.HomeTool;
 import org.kuali.mobility.admin.entity.Tool;
 import org.kuali.mobility.admin.service.AdminService;
+import org.kuali.mobility.alerts.service.AlertsService;
 import org.kuali.mobility.campus.entity.Campus;
 import org.kuali.mobility.campus.service.CampusService;
 import org.kuali.mobility.configparams.service.ConfigParamService;
@@ -50,6 +51,9 @@ public class HomeController {
 	
 	@Autowired
     private AdminService adminService;
+	
+	@Autowired
+    private AlertsService alertsService;
 
 	@Autowired
 	private ConfigParamService configParamService;
@@ -153,6 +157,21 @@ public class HomeController {
     	}
  	
     	Collections.sort(copy);
+    	
+    	for (HomeTool homeTool : copy) {
+    		tool = homeTool.getTool();
+    		if ("alerts".equals(tool.getAlias())) {
+    			int count = alertsService.findAlertCountByCampus(user.getViewCampus());
+    			if (count > 0) {
+    				tool.setBadgeCount(Integer.toString(count));
+    				tool.setIconUrl("images/service-icons/srvc-alerts-red.png");
+    			} else {
+    				tool.setBadgeCount(null);
+    				tool.setIconUrl("images/service-icons/srvc-alerts-green.png");
+    			}
+    			break;
+    		}
+    	}
     	
     	uiModel.addAttribute("title", home.getTitle());    
     	uiModel.addAttribute("tools", copy);    

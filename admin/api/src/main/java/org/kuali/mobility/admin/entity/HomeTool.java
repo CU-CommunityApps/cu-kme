@@ -143,7 +143,7 @@ public class HomeTool implements Serializable, Comparable<HomeTool> {
 	}
 
 	/**
-	 * set the Tool to associate with the HomeScren
+	 * set the Tool to associate with the HomeScreen
 	 * @param tool
 	 */
 	public void setTool(Tool tool) {
@@ -155,6 +155,10 @@ public class HomeTool implements Serializable, Comparable<HomeTool> {
 		if (that == null) {
 			return -1;
 		}
-		return this.order - that.order;
+		if (this.order == that.order) {
+			return 0;
+		}
+		return this.order < that.order ? -1 : 1;
 	}	
+	
 }

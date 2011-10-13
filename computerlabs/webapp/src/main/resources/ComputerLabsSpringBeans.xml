@@ -22,33 +22,32 @@
 			<map>
 				<entry key="BL">
 					<list>
-						<value>http://stcweb.stc.indiana.edu/public/Seatfinder/seatfinder.xml</value>
+						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
 					</list>
 				</entry>
 				<entry key="CO">
 					<list>
-						<value>http://www.iupuc.edu/SeatFinderService/Default.aspx</value>
+						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
 					</list>
 				</entry>
 				<entry key="SB">
 					<list>
-						<value>http://it.iusb.edu/miuxml/mcpu.php</value>
+						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
 					</list>
 				</entry>
 				<entry key="SE">
 					<list>
-						<value>http://seatfinder.ius.edu/feed/</value>
+						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
 					</list>
 				</entry>
 				<entry key="IN">
 					<list>
-						<value>http://stc.iupui.edu/seatfinderxml.php</value>
-						<value>http://ulib.iupui.edu/utility/seats.php?show=locations&amp;type=data</value>
+						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
 					</list>
 				</entry>
 				<entry key="EA">
 					<list>
-						<value>http://www.iue.edu/it/STC/stc_machines.xml</value>
+						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
 					</list>
 				</entry>
 			</map>

@@ -51,6 +51,7 @@
 		<tool.maps.version>1.0.0-M2-RELEASE</tool.maps.version>
 		<tool.news.version>1.0.0-M2-RELEASE</tool.news.version>
 
+        <util.testing>1.0.0-M2-RELEASE</util.testing>
         <util.webservice.adapter>1.0.0-M2-RELEASE</util.webservice.adapter>
 	</properties>
 	<profiles>
@@ -60,6 +61,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
+                <!-- <module>util.testing</module> -->
                 <module>util.webservice.adapter</module>
 				<module>shared</module>
 				<module>user</module>
@@ -101,6 +103,11 @@
 	</licenses>
 	<dependencyManagement>
 		<dependencies>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>util.testing</artifactId>
+                <version>${util.testing}</version>
+            </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
                 <artifactId>util.webservice.adapter</artifactId>

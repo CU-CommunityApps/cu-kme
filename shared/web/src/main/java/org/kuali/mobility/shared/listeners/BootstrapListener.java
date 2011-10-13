@@ -178,10 +178,7 @@ public abstract class BootstrapListener implements ServletContextListener {
 		newsSource.setActive(true);
 		newsSource.setOrder(2);
 		newsSource.setUrl("http://rss.cnn.com/rss/cnn_health.rss");
-		newsService.saveNewsSource(newsSource);			
-		
-		
-		
+		newsService.saveNewsSource(newsSource);					
 		
 		LOG.info("Count: " + adminService.getAllHomeScreens().size());
 		

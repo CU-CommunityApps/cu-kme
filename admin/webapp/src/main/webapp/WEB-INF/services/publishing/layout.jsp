@@ -23,7 +23,7 @@
 	<table>
 		<c:forEach items="${layouts}" var="layout" varStatus="status">
 			<tr>
-				<td>${layout.homeScreenName}</td>
+				<td>${layout.title}</td>
 				<td><a href="${pageContext.request.contextPath}/publishing/layout/edit/${layout.homeScreenId}">edit</a> <a href="${pageContext.request.contextPath}/publishing/layout/delete/${layout.homeScreenId}">delete</a></td>
 			</tr>
 		</c:forEach>

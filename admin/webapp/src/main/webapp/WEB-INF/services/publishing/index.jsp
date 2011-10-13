@@ -22,7 +22,6 @@
 
 <a href="tool">Tools</a><br/>
 <a href="layout">Home Screens</a><br/>
-<a href="notifications">Notifications</a><br/>
 
 </body>
 </html>
