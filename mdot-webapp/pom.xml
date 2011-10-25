@@ -376,9 +376,25 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1H.14.1</version>				
 				<configuration>
-					<contextPath>/mdot</contextPath>
+				    <scanIntervalSeconds>5</scanIntervalSeconds>
+				    <webAppConfig>
+						<contextPath>/mdot</contextPath>
+				    </webAppConfig>
+				    <scanTargets>
+				   		<scanTarget>../admin/api/target/classes;../admin/impl/target/classes;../admin/web/target/classes;../admin/webapp/target/classes</scanTarget>
+				   		<scanTarget>../alerts/api/target/classes;../alerts/impl/target/classes;../alerts/web/target/classes;../alerts/webapp/target/classes</scanTarget>
+				   		<scanTarget>../computerlabs/api/target/classes;../computerlabs/impl/target/classes;../computerlabs/web/target/classes;../computerlabs/webapp/target/classes</scanTarget>
+				   		<scanTarget>../conference/api/target/classes;../conference/impl/target/classes;../conference/web/target/classes;../conference/webapp/target/classes</scanTarget>
+				   		<scanTarget>../configparams/api/target/classes;../configparams/impl/target/classes;../configparams/web/target/classes;../configparams/webapp/target/classes</scanTarget>
+				   		<scanTarget>../dining/api/target/classes;../dining/impl/target/classes;../dining/web/target/classes;../dining/webapp/target/classes</scanTarget>
+				   		<scanTarget>../emergencyinfo/api/target/classes;../emergencyinfo/impl/target/classes;../emergencyinfo/web/target/classes;../emergencyinfo/webapp/target/classes</scanTarget>
+				   		<scanTarget>../feedback/api/target/classes;../feedback/impl/target/classes;../feedback/web/target/classes;../feedback/webapp/target/classes</scanTarget>
+				   		<scanTarget>../maps/api/target/classes;../maps/impl/target/classes;../maps/web/target/classes;../maps/webapp/target/classes</scanTarget>
+				   		<scanTarget>../news/api/target/classes;../news/impl/target/classes;../news/web/target/classes;../news/webapp/target/classes</scanTarget>
+				   		<scanTarget>../shared/api/target/classes;../shared/impl/target/classes;../shared/web/target/classes;../shared/webapp/target/classes</scanTarget>
+				   		<scanTarget>../user/api/target/classes;../user/impl/target/classes;../user/web/target/classes;../user/webapp/target/classes</scanTarget>
+				    </scanTargets>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
 							<port>9999</port>
