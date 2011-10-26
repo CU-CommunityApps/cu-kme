@@ -10,12 +10,19 @@
 --%>
 
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<kme:page title="Maps" id="mapslocation" backButton="true" homeButton="true" cssFilename="location" jsFilename="maps" usesGoogleMaps="true">
+
+
+<spring:message code="maps.title" var="title"/>
+<c:set var="localeCode" value="${pageContext.response.locale}" />
+
+
+<kme:page title="${title}" id="mapslocation" backButton="true" homeButton="true" cssFilename="location" jsFilename="maps" usesGoogleMaps="true" mapLocale="${localeCode}">
 	<kme:content>
 	
 <div id="map_canvas" style="height:300px;"></div>
