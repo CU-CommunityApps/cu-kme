@@ -34,6 +34,73 @@
 	<import resource="classpath:ComputerLabsSpringBeans.xml" />
     <import resource="classpath:ConferenceSpringBeans.xml" />
     <import resource="classpath:FeedbackSpringBeans.xml" />
+
+
+<!-- 
+This is where the basenames for the i18n files are defined. The files themselves
+will be located in */webapp/src/main/resouces/ folder for each tool. Once compiled 
+they will also be in */webapp/target/classes/ folder. 
+
+They name of the i18n files will be of the following format where the language and 
+location codes are the standardize form. 
+<tool name>_<language code>_<location code>.properties.
+
+for example;
+	"alert_en_UK.properties" for the British English version.
+	"alert_zh_CN.properties" for the Mainland China/Simplfied Chinese version.
+	"alert_es.properties" for the Spanish.
+-->
+
+<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<property name="basenames">
+		<list>
+			<value>WEB-INF/classes/admin</value>
+			<value>WEB-INF/classes/alert</value>
+			<value>WEB-INF/classes/computerlabs</value>	
+			<value>WEB-INF/classes/conference</value>
+			<value>WEB-INF/classes/dining</value>	
+			<value>WEB-INF/classes/emergencyinfo</value>	
+			<value>WEB-INF/classes/feedback</value>
+			<value>WEB-INF/classes/maps</value>	
+			<value>WEB-INF/classes/news</value>	
+			<value>WEB-INF/classes/shared</value>	
+		</list>
+	</property>
+    <property name="defaultEncoding" value="UTF-8"/>
+</bean>
+
+<!-- 
+	The following 3 beans are for setting up i18n/L10n handling. 
+	the ?lang=<language code> suffix can be postpended to a URL to 
+	set a cookie to the preferred locale which in turn sets the 
+	language set used. Example;
+	
+	/conference?lang=en sets the locale to English.
+	/conference?lang=zh_CN sets the locale to Mainland China
+
+	This will be mostly used to allow the user to set the locale in;
+	/shared/webapp/src/main/webapp/WEB-INF/services/preferences.jsp
+--> 
+<bean id="localeChangeInterceptor"
+    class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+    <property name="paramName" value="lang" />
+</bean>
+ 
+<bean id="localeResolver"
+    class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    <property name="defaultLocale" value="en"/>
+</bean>
+ 
+<bean id="handlerMapping"
+    class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    <property name="interceptors">
+        <ref bean="localeChangeInterceptor" />
+    </property>
+</bean>
+
+
+
+
     
 </beans>
  

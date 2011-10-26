@@ -25,5 +25,5 @@
         <property name="toEmailAddress" value="${conference.email.to}" />
         <property name="fromEmailAddress" value="${conference.email.from}" />
 	</bean>
-
+ 
 </beans>

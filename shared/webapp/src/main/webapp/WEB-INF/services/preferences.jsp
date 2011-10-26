@@ -9,16 +9,25 @@
   permissions and limitations under the License.
 --%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<kme:page title="Preferences" id="preferences" backButton="true" homeButton="true">
+<c:set var="localeCode" value="${pageContext.response.locale}" />
+<c:set var="myCampusCode" value="${cookie.campusSelection.value}" />
+
+<spring:message code="preferences.title" var="title"/>
+<spring:message code="preferences.selectcampus" var="selectcampus"/>
+<spring:message code="preferences.demotools" var="demotools"/>
+<spring:message code="preferences.languages" var="languages"/>
+
+<kme:page title="${title}" id="preferences" backButton="true" homeButton="true">
 	<kme:content>
 		<kme:listView id="campuslist" dataTheme="c" dataDividerTheme="b">
 			<kme:listItem dataRole="list-divider" dataTheme="b">
-				Select Your Campus
+				${selectcampus}
 			</kme:listItem>
 			<c:forEach items="${campuses}" var="campus" varStatus="status">
 				<kme:listItem>
@@ -27,17 +36,56 @@
 						<c:param name="campus" value="${campus.code}" />
 					</c:url>
 					<a href="${campusUrl}"> <c:out value="${campus.name}" />
+					<c:if test="${campus.code == myCampusCode }">
+						 <span class="ui-check-char">✓</span>
+					</c:if>					
 					</a>
 				</kme:listItem>
 			</c:forEach>
 			<kme:listItem dataRole="list-divider" dataTheme="b">
-				Demo Tools
+				${demotools}
 			</kme:listItem>
 			<kme:listItem >
 				<a href="${pageContext.request.contextPath}/stylize">
 					Personalize KME Styles
 				</a>
 			</kme:listItem>
+			<kme:listItem dataRole="list-divider" dataTheme="b">
+				${languages}
+			</kme:listItem>
+			<kme:listItem >
+				<a href="?lang=en">
+					English
+					<c:if test="${localeCode == 'en'}">
+						 <span class="ui-check-char">✓</span>
+					</c:if>
+				</a>
+			</kme:listItem>
+			<kme:listItem >
+				<a href="?lang=de">
+					Deutsch - stub
+					<c:if test="${localeCode == 'de'}">
+						 <span class="ui-check-char">✓	</span>
+					</c:if>
+				</a>
+			</kme:listItem>
+			<kme:listItem >
+				<a href="?lang=zh_CN">
+					中文（简体）
+					<c:if test="${localeCode == 'zh_CN'}">
+						 <span class="ui-check-char">✓	</span>
+					</c:if>
+				</a>
+			</kme:listItem>
+			<kme:listItem >
+				<a href="?lang=zh_TW">
+					中文（繁體）- stub
+					<c:if test="${localeCode == 'zh_TW'}">
+						 <span class="ui-check-char">✓	</span>
+					</c:if>
+				</a>
+			</kme:listItem>
+
 		</kme:listView>
 	</kme:content>
 </kme:page>

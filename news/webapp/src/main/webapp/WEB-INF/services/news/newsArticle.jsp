@@ -8,9 +8,13 @@
   express or implied. See the License for the specific language governing
   permissions and limitations under the License.
 --%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
+
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:message code="news.fullarticle" var="fullarticle"/>
 
 <kme:page title="${feedTitle}" id="news" homeButton="true" backButton="true" cssFilename="news">
     <kme:content cssClass="news-story">
@@ -25,6 +29,6 @@
 		   	</c:if>--%>
 			${article.description}
 		</p>
-		<p><a href="${article.link}">Full Article</a></p>
+		<p><a href="${article.link}">${fullarticle}</a></p>
 	</kme:content>
 </kme:page>

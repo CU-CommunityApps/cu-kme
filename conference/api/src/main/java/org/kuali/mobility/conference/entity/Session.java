@@ -17,6 +17,7 @@ package org.kuali.mobility.conference.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Date;
 
 public class Session implements Serializable {
 
@@ -26,6 +27,8 @@ public class Session implements Serializable {
 	private String title;
 	private String startTime;
 	private String endTime;
+	private Date dstartTime;
+	private Date dendTime;
 	private String description;
 	private String location;
 	private String latitude;
@@ -69,6 +72,30 @@ public class Session implements Serializable {
 		return title;
 	}
 
+	
+	
+	public Date getdStartTime() {
+		//System.out.println("getdstartDate");
+		return dstartTime;	
+    }
+
+	public void setdStartTime(Date dstartTime) {
+		this.dstartTime = dstartTime;
+		//System.out.println("setdstartDate");
+	}
+
+	public Date getdEndTime() {
+		//System.out.println("getdendDate");
+		return dendTime;
+    }
+
+	public void setdEndTime(Date dendTime) {
+		this.dendTime = dendTime;
+		//System.out.println("setdendDate");
+	}
+	
+	
+	
 	public String getStartTime() {
     	return startTime;
     }

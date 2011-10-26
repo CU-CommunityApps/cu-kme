@@ -46,7 +46,8 @@ public class PageTag extends SimpleTagSupport {
     private boolean usesGoogleMaps;
     private String appcacheFilename;
 	private String cssFilename;
-    private String jsFilename;
+	private String mapLocale;
+	private String jsFilename;
     private boolean loginButton;
     private String loginButtonURL;
 	private String logoutButtonURL;
@@ -65,6 +66,13 @@ public class PageTag extends SimpleTagSupport {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * @param locale that will be used. 
+     */
+    public void setMapLocale(String mapLocale) {
+        this.mapLocale = mapLocale;
+    }    
     
     /**
      * Enable the home button
@@ -215,8 +223,13 @@ public class PageTag extends SimpleTagSupport {
             }
             
             if (usesGoogleMaps) {
-            	out.println("<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>");
+            	if(mapLocale != null){
+               		out.println("<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true&language=" + mapLocale + "\"></script>");            		
+            	}else{
+            		out.println("<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>");
+            	}
             }
+
             if (jsFilename != null && !jsFilename.trim().equals("")) {
                 out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/" + jsFilename + ".js\"></script>");
             }

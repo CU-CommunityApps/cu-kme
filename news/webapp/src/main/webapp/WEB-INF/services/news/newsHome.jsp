@@ -8,12 +8,17 @@
   express or implied. See the License for the specific language governing
   permissions and limitations under the License.
 --%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<kme:page title="News" id="news" homeButton="true" backButton="true" backButtonURL="${pageContext.request.contextPath}/home" cssFilename="news" jsFilename="news">
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:message code="news.title" var="title"/>
+<spring:message code="news.expand" var="expand"/>
+<spring:message code="news.collapse" var="collapse"/>
+
+<kme:page title="${title}" id="news" homeButton="true" backButton="true" backButtonURL="${pageContext.request.contextPath}/home" cssFilename="news" jsFilename="news">
     <kme:content>
 		<!-- <ul data-role="listview" data-theme="c" class="news-index"> -->
 		<kme:listView dataTheme="c" cssClass="news-index">
@@ -47,8 +52,9 @@
 				</c:forEach>
 				<c:if test="${fn:length(feed.articles) > sampleSize}">
 					<kme:listItem cssClass="expander feed${feed.sourceId} collapsed" dataIcon="arrow-d">
-						<a onclick="javascript:toggleVisibility('feed${feed.sourceId}')">
-			        		<p><strong>Expand</strong></p>
+																			<!-- These added to support passing of i18n words -->
+						<a onclick="javascript:toggleVisibility('feed${feed.sourceId}', '${expand}', '${collapse}')">
+			        		<p><strong>${expand}</strong></p>
 			        	</a>
 					</kme:listItem>
 				</c:if>

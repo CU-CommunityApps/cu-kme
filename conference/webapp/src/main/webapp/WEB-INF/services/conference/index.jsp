@@ -9,52 +9,54 @@
   permissions and limitations under the License.
 --%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<kme:page title="Statewide IT 2011" id="conference" backButton="true" homeButton="true">
+<spring:message code="conference.title" var="title"/>
+<kme:page title="${title}" id="conference" backButton="true" homeButton="true">
 	<kme:content>
 		<kme:listView>
 			<kme:listItem>
 	    		<a href="conference/welcome">
 	    			<h3 class="wrap">
-	    				Welcome
+	    				<spring:message code="conference.welcome"/>
 	    			</h3>
-	    			<p class="wrap">A message from Brad Wheeler</p>
+	    			<p class="wrap"><spring:message code="conference.welcome.sub"/></p>
 	    		</a>
 	    	</kme:listItem>
 			<kme:listItem>
 	    		<a href="conference/sessions?date=${today}">
 	    			<h3 class="wrap">
-	    				Schedule
+	    				<spring:message code="conference.schedule"/>
 	    			</h3>
-	    			<p class="wrap">Keynotes, breakout sessions and events</p>
+	    			<p class="wrap"><spring:message code="conference.schedule.sub"/></p>
 	    		</a>
 	    	</kme:listItem>
 	    	<kme:listItem>
 	    		<a href="conference/featuredSpeakers">
 	    			<h3 class="wrap">
-	    				Featured Speakers
+	    				<spring:message code="conference.featuredspeakers"/>
 	    			</h3>
-	    			<p class="wrap">Profiles of keynote speakers and panelists</p>
+	    			<p class="wrap"><spring:message code="conference.featuredspeakers.sub"/></p>
 	    		</a>
 	    	</kme:listItem>
 	    	<kme:listItem>
 	    		<a href="conference/attendeeGroups">
 	    			<h3 class="wrap">
-	    				Attendee List
+	    				<spring:message code="conference.attendeelist"/>
 	    			</h3>
-	    			<p class="wrap">See who is attending Statewide IT</p>
+	    			<p class="wrap"><spring:message code="conference.attendeelist.sub"/></p>
 	    		</a>
 	    	</kme:listItem>
 	    	<kme:listItem>
 	    		<a href="http://localhost:9999/mdot/testdata/imumap10.jpg">
 	    			<h3 class="wrap">
-	    				Indiana Memorial Union Map
+	    				<spring:message code="conference.IMUmap"/>
 	    			</h3>
-	    			<p class="wrap">Find the location of the different sessions taking place in the Union</p>
+	    			<p class="wrap"><spring:message code="conference.IMUmap.sub"/></p>
 	    		</a>
 	    	</kme:listItem>
 		</kme:listView>

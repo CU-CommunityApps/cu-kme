@@ -170,9 +170,16 @@ public class ConferenceServiceImpl implements ConferenceService {
 						String str_startDate = sessionObject.getString("startTime");
 						String str_endDate = sessionObject.getString("endTime");
 						DateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 						Date startDate = (Date)parser.parse(str_startDate);
 						Date endDate = (Date)parser.parse(str_endDate);
-						DateFormat formatter = new SimpleDateFormat("E hh:mm a");
+
+						session.setdStartTime(startDate);
+						session.setdEndTime(endDate);
+						
+						//DateFormat formatter = new SimpleDateFormat("E hh:mm a");
+						DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 						String formattedStartDate, formattedEndDate;
 						formattedStartDate = formatter.format(startDate);
 						formattedEndDate = formatter.format(endDate);
