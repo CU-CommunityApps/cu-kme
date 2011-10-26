@@ -38,5 +38,15 @@
       "campus":"IU Bloomington",
       "status":"Staff",
       "email":"jtwalker@indiana.edu"
+   },
+      {
+      "id":"666",
+      "firstName":"Mitchell",
+      "lastName":"Wagner",
+      "title":"Systems Analyst Programmer, IU Mobile",
+      "institution":"Indiana University",
+      "campus":"IU Bloomington",
+      "status":"Staff",
+      "email":"mtwagner@indiana.edu"
    }
 ]

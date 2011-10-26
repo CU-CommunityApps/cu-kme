@@ -9,19 +9,25 @@
   permissions and limitations under the License.
 --%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c"    uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme"  uri="http://kuali.org/mobility" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<kme:page title="Logout" id="logout" backButton="true" homeButton="true" backButtonURL="home">
+<spring:message code="logout.title" var="title"/>
+<spring:message code="logout.areyousure" var="areyousure"/>
+<spring:message code="logout.cancel" var="cancel"/>
+<spring:message code="logout.yes" var="yes"/>
+
+<kme:page title="${logout}" id="logout" backButton="true" homeButton="true" backButtonURL="home">
 	<kme:content>
-		<p>Are you sure you want to log out?</p>
+		<p>${areyousure}</p>
         <div data-inline="true">
 	        <div class="ui-grid-a">
-	          <div class="ui-block-a"><a href="${pageContext.request.contextPath}/home" data-theme="c" data-role="button">Cancel</a></div>
-	          <div class="ui-block-b"><a href="${pageContext.request.contextPath}/yesLogout" data-theme="a"  data-role="button">Yes</a></div>
+	          <div class="ui-block-a"><a href="${pageContext.request.contextPath}/home" data-theme="c" data-role="button">${cancel}</a></div>
+	          <div class="ui-block-b"><a href="${pageContext.request.contextPath}/yesLogout" data-theme="a"  data-role="button">${yes}</a></div>
 	        </div>
         </div>
 	</kme:content>

@@ -62,14 +62,6 @@
 				</a>
 			</kme:listItem>
 			<kme:listItem >
-				<a href="?lang=de">
-					Deutsch - stub
-					<c:if test="${localeCode == 'de'}">
-						 <span class="ui-check-char">✓	</span>
-					</c:if>
-				</a>
-			</kme:listItem>
-			<kme:listItem >
 				<a href="?lang=zh_CN">
 					中文（简体）
 					<c:if test="${localeCode == 'zh_CN'}">
@@ -79,7 +71,7 @@
 			</kme:listItem>
 			<kme:listItem >
 				<a href="?lang=zh_TW">
-					中文（繁體）- stub
+					中文（繁體）
 					<c:if test="${localeCode == 'zh_TW'}">
 						 <span class="ui-check-char">✓	</span>
 					</c:if>

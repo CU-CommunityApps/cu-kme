@@ -9,12 +9,16 @@
   permissions and limitations under the License.
 --%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<kme:page title="Computer Labs" id="computerlabs" homeButton="true"
+
+<spring:message code="computerlabs.title" var="title"/>
+<spring:message code="computerlabs.seats" var="seats"/>
+
+<kme:page title="${title}" id="computerlabs" homeButton="true"
 	backButton="true" cssFilename="computerlabs">
 	<kme:content>
 		<kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b"
@@ -38,7 +42,7 @@
     			{{each labs}}
     				<li>
 						<a href="${pageContext.request.contextPath}/maps?id=\${buildingCode}">
-		    	   			<h3>\${lab}</h3><p>\${availability} seats available</p>
+		    	   			<h3>\${lab}</h3><p>\${availability} ${seats}</p>
   						</a>
 					</li>
 				{{/each}}

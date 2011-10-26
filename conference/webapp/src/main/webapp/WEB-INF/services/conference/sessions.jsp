@@ -58,11 +58,11 @@
 			    				<c:otherwise>
 			    					<c:choose>
 					    				<c:when test="${not empty session.endTime && session.endTime != 'null'}">
-					    					 Ends:  <fmt:parseDate value="${session.endTime}" pattern="yyyy-MM-dd HH:mm:ss" var="edate"/>
+					    					 ${ends}:  <fmt:parseDate value="${session.endTime}" pattern="yyyy-MM-dd HH:mm:ss" var="edate"/>
 													<fmt:formatDate value="${edate}" pattern="E hh:mm a"/>
 					    				</c:when>
 					    				<c:otherwise>
-					    					TDB
+					    					${tbd}
 					    				</c:otherwise>
 				    				</c:choose>
 			    				</c:otherwise>
@@ -74,7 +74,7 @@
 			    					${session.location}
 			    				</c:when>
 			    				<c:otherwise>
-			    					TDB
+			    					${tbd}
 			    				</c:otherwise>
 			    			</c:choose>
 		    			</p>
