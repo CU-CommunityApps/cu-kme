@@ -15,16 +15,14 @@
 
 package org.kuali.mobility.admin.service;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 import org.kuali.mobility.admin.dao.AdminDao;
 import org.kuali.mobility.admin.entity.HomeScreen;
 import org.kuali.mobility.admin.entity.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,44 +35,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(AdminServiceImpl.class);
 
-	private static final int HOMESCREEN_UPDATE_INTERVAL = 5; //5 min
-	
-	private static ConcurrentMap<String, HomeScreen> homeScreens;
-	
-	private static Thread homeScreenReloaderThread = null;
-
-	static {
-		homeScreens = new ConcurrentHashMap<String, HomeScreen>();
-	} 
-	
 	@Autowired
     private AdminDao adminDao;
-	
-	@Override
-	public void startCache() {
-		homeScreenReloaderThread = new Thread(new HomeScreenReloader());
-		homeScreenReloaderThread.setDaemon(true);
-		homeScreenReloaderThread.start();
-    }
-    
-	@Override
-    public void stopCache() {
-    	homeScreenReloaderThread.interrupt();
-    	homeScreenReloaderThread = null;
-    }
-	
-	@Transactional(readOnly = true)
-	public HomeScreen getCachedHomeScreenByAlias(String alias) {
-		return getHomeScreenByAlias(alias);
-		/* TODO: Add caching back in when publishing works properly
-		HomeScreen homeScreen = homeScreens.get(alias);
-		if (homeScreen == null) {
-			LOG.warn("Cannot find homeScreen with alias: " + alias + " in the cache. Fetching from database");
-			return getHomeScreenByAlias(alias);
-		}
-		return homeScreen;
-		*/
- 	}
 
 	@Transactional
 	@Override
@@ -84,24 +46,28 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Transactional
 	@Override
+	@Cacheable(value="homeScreens", key="#homeScreenId")
 	public HomeScreen getHomeScreenById(long homeScreenId) {
 		return adminDao.getHomeScreenById(homeScreenId);
 	}
 	
 	@Transactional
 	@Override
+	@Cacheable(value="homeScreens", key="#alias")
 	public HomeScreen getHomeScreenByAlias(String alias) {
 		return adminDao.getHomeScreenByAlias(alias);
 	}
 	
 	@Transactional
 	@Override
+	@CacheEvict(value = "homeScreens", key="#homeScreen.homeScreenId", allEntries=false)
 	public Long saveHomeScreen(HomeScreen homeScreen) {
 		return adminDao.saveHomeScreen(homeScreen);
 	}
 
 	@Transactional
 	@Override
+	@CacheEvict(value = "homeScreens", key="#homeScreenId", allEntries=false)
 	public void deleteHomeScreenById(long homeScreenId) {
 		adminDao.deleteHomeScreenById(homeScreenId);
 	}
@@ -120,60 +86,16 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Transactional
 	@Override
+	@CacheEvict(value = "homeScreens", allEntries=true)
 	public Long saveTool(Tool tool) {
 		return adminDao.saveTool(tool);
 	}
 
 	@Transactional
 	@Override
+	@CacheEvict(value = "homeScreens", allEntries=true)
 	public void deleteToolById(long toolId) {
 		adminDao.deleteToolById(toolId);
-	}
-	
-	/**
-	 * Class to be used as the cache reloader background thread.
-	 * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
-	 *
-	 */
-	private class HomeScreenReloader implements Runnable {
-        
-		/**
-		 * Main entry point for the cache reloader
-		 */
-        public void run() {    
-            Calendar updateCalendar = Calendar.getInstance();
-            Date nextCacheUpdate = new Date();
-                     
-            // Cache loop
-            while (true) {
-                Date now = new Date();
-                if (now.after(nextCacheUpdate)) {
-                    try {
-                    	reloadHomeScreens();	
-                    } catch (Exception e) {
-                    	LOG.error("Error reloading home screen cache.", e);
-                    }
-                    updateCalendar.add(Calendar.MINUTE, HOMESCREEN_UPDATE_INTERVAL);
-                    nextCacheUpdate = new Date(updateCalendar.getTimeInMillis());
-                }
-                try {
-                    Thread.sleep(1000 * 60);
-                } catch (InterruptedException e) {
-                    LOG.error("Error:", e);
-                }
-            }
-        }
-
-        /**
-         * Does the actual work of updating the home screens
-         */
-		private void reloadHomeScreens() {
-			List<HomeScreen> names = adminDao.getAllHomeScreens();
-			for (HomeScreen homeScreen : names) {
-				homeScreens.put(homeScreen.getAlias(), adminDao.getHomeScreenByAlias(homeScreen.getAlias()));
-			}			
-		}
-        
 	}
 	
 }

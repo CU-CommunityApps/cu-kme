@@ -16,16 +16,14 @@
 package org.kuali.mobility.configparams.service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 import org.kuali.mobility.configparams.dao.ConfigParamDao;
 import org.kuali.mobility.configparams.entity.ConfigParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,33 +39,11 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ConfigParamServiceImpl.class);
 
-	private static final int CONFIG_PARAM_UPDATE_INTERVAL = 5; // 5 min
-
-	private static ConcurrentMap<String, ConfigParam> configParams;
-
-	private static Thread configParamReloaderThread = null;
-
-	static {
-		configParams = new ConcurrentHashMap<String, ConfigParam>();
-	}
-
-	@Override
-	public void startCache() {
-		configParamReloaderThread = new Thread(new ConfigParamReloader());
-		configParamReloaderThread.setDaemon(true);
-		configParamReloaderThread.start();
-	}
-
-	@Override
-	public void stopCache() {
-		configParamReloaderThread.interrupt();
-		configParamReloaderThread = null;
-	}
-
 	@Autowired
 	private ConfigParamDao configParamDao;
 
 	@Transactional
+	@CacheEvict(value = "configParams", key="#id", allEntries=false)
 	public void deleteConfigParamById(Long id) {
 		configParamDao.deleteConfigParamById(id);
 	}
@@ -78,32 +54,27 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 	}
 
 	@Transactional
+	@Cacheable(value="configParams", key="#id")
 	public ConfigParam findConfigParamById(Long id) {
 		return configParamDao.findConfigParamById(id);
 	}
 
 	@Transactional
+	@Cacheable(value="configParams", key="#name")
 	public ConfigParam findConfigParamByName(String name) {
 		return configParamDao.findConfigParamByName(name);
 	}
 
 	@Transactional(readOnly = true)
+	@Cacheable(value="configParams", key="#name")
 	public String findValueByName(String name) {
-		ConfigParam configParam = configParams.get(name);
-		if (configParam == null) {
-			LOG.warn("Cannot find config param with name: " + name + " in the cache. Fetching from database");
-			ConfigParam configParam2 = findConfigParamByName(name);
-			if (configParam2 != null) {
-				return configParam2.getValue();
-			} else {
-				return "";
-			}
-		}
-		String value = configParam.getValue();
+		ConfigParam configParam = findConfigParamByName(name);
+		String value = configParam != null ? configParam.getValue() : null;
 		return value != null ? value.trim() : "";
 	}
 
 	@Transactional
+	@CacheEvict(value = "configParams", key="#configParam.configParamId", allEntries=false)
 	public Long saveConfigParam(ConfigParam configParam) {
 		return configParamDao.saveConfigParam(configParam);
 	}
@@ -118,51 +89,6 @@ public class ConfigParamServiceImpl implements ConfigParamService {
 
 	public Collection<ConfigParam> fromJsonToCollection(String json) {
 		return new JSONDeserializer<List<ConfigParam>>().use(null, ArrayList.class).use("values", ConfigParam.class).deserialize(json);
-	}
-
-	/**
-	 * Class to be used for the cache background thread
-	 * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
-	 *
-	 */
-	private class ConfigParamReloader implements Runnable {
-
-		/**
-		 * The main entry point for the cache reloader. Loops infinitely until shut down.
-		 */
-		public void run() {
-			Calendar updateCalendar = Calendar.getInstance();
-			Date nextCacheUpdate = new Date();
-
-			while (true) {
-				Date now = new Date();
-				if (now.after(nextCacheUpdate)) {
-					try {
-						reloadConfigParams();
-					} catch (Exception e) {
-						LOG.error("Error reloading config param cache.", e);
-					}
-					updateCalendar.add(Calendar.MINUTE, CONFIG_PARAM_UPDATE_INTERVAL);
-					nextCacheUpdate = new Date(updateCalendar.getTimeInMillis());
-				}
-				try {
-					Thread.sleep(1000 * 60);
-				} catch (InterruptedException e) {
-					LOG.error("Error:", e);
-				}
-			}
-		}
-
-		/**
-		 * Does the real work of updating the cache
-		 */
-		private void reloadConfigParams() {
-			List<ConfigParam> params = configParamDao.findAllConfigParam();
-			for (ConfigParam configParam : params) {
-				configParams.put(configParam.getName(), configParam);
-			}
-		}
-
 	}
 
 }

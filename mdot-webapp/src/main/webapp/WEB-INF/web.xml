@@ -33,15 +33,6 @@
 	<listener>
 		<listener-class>org.kuali.mobility.mdot.listeners.KMEBootstrapListener</listener-class>
 	</listener>
-	<listener>
-		<listener-class>org.kuali.mobility.configparams.listeners.ConfigParamListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>org.kuali.mobility.admin.listeners.AdminListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>org.kuali.mobility.news.listeners.NewsListener</listener-class>
-	</listener>
 	 
     <servlet>
         <servlet-name>rest</servlet-name>

@@ -80,15 +80,5 @@ public interface ConfigParamService {
      * @return the parsed ConfigParam collection
      */
     public Collection<ConfigParam> fromJsonToCollection(String json);
- 
-    /**
-     * Stop the ConfigPAram cache
-     */
-	public void stopCache();
-	
-	/**
-     * Start the ConfigPAram cache
-     */
-	public void startCache();
 
 }

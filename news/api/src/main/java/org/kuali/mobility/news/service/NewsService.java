@@ -98,13 +98,4 @@ public interface NewsService {
 	 */
 	public NewsArticle getNewsArticle(String articleId, long sourceId);
 	
-	/**
-	 * Starts a background thread to keep the cache up-to-date.
-	 */
-	public void startCache();
-	
-	/**
-	 * Stops the background cache thread.
-	 */
-	public void stopCache();
 }

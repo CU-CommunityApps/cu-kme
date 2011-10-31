@@ -27,12 +27,6 @@ import org.kuali.mobility.admin.entity.Tool;
 public interface AdminService {
 	
 	/**
-	 * @param alias
-	 * @return the home screen matching the alias from cache
-	 */
-	public HomeScreen getCachedHomeScreenByAlias(String alias);
-
-	/**
 	 * @return all defined home screens
 	 */
 	public List<HomeScreen> getAllHomeScreens();
@@ -74,13 +68,5 @@ public interface AdminService {
 	 * @param toolId the id of the Tool to delete
 	 */
 	public void deleteToolById(long toolId);
-	
-	/**
-	 * Start the cache for HomeScreen and Tool objects
-	 */
-	public void stopCache();
-	/**
-	 * Stop the cache for HomeScreen and Tool objects
-	 */
-	public void startCache();
+
 }

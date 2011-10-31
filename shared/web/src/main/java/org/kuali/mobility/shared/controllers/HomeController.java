@@ -116,14 +116,6 @@ public class HomeController {
 		}
     }
 
-    /*
-    @RequestMapping(value = "home.json", method = RequestMethod.GET, headers = "Accept=application/json")
-    @ResponseBody
-    public String getHomeScreenJson() {
-    	return new JSONSerializer().exclude("*.class").include("tools").serialize(buildHomeScreen());
-    }
-    */
-
     private void buildHomeScreen(HttpServletRequest request, Model uiModel) {
     	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
     	Backdoor backdoor = (Backdoor) request.getSession().getAttribute(Constants.KME_BACKDOOR_USER_KEY);
@@ -134,9 +126,9 @@ public class HomeController {
     		alias = user.getViewCampus();
     	} 
     	
-    	home = adminService.getCachedHomeScreenByAlias(alias);
+    	home = adminService.getHomeScreenByAlias(alias);
     	if (home == null) {
-    		home = adminService.getCachedHomeScreenByAlias("PUBLIC");
+    		home = adminService.getHomeScreenByAlias("PUBLIC");
     	}
     	
     	List<HomeTool> copy = new ArrayList<HomeTool>(home.getHomeTools());
