@@ -100,3 +100,62 @@ div.ratingStar {
 div.starOn {
 	background-position: 0 -50px;
 }
+
+/* Tracks styling */
+
+li.track-OtherTopics span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ccccff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ccccff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ccccff')";
+}
+
+li.track-KualiRice span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ffccff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ffccff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ffccff')";
+}
+
+li.track-KualiStudentKS span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ccffff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ccffff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ccffff')";
+}
+
+li.track-KualiFinancialSystemsKFS span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ffcccc);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ffcccc));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ffcccc')";
+}
+
+li.track-KualiCoeusKC span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ccffcc);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ccffcc));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ccffcc')";
+}
+
+li.track-KualiOLE span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #99ccff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #99ccff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#99ccff')";
+}
+
+span.sessionDetailsTab {
+	width: 23%;
+	font-size: 11px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	padding: 4px 10px 5px 10px;
+	margin: 0 -1px 10px 0;
+	border: 1px solid #888;
+	border-width: 1px 1px 1px 0px;
+	display: inline-block;
+	/*border-radius: 0 10px 10px 0;*/
+	-moz-border-radius: 10px 10px 0 0;
+}

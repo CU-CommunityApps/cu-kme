@@ -49,7 +49,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tool.setAlias("conference");
 		tool.setTitle("Conference");
 		tool.setUrl("conference");
-		tool.setDescription("2011 Conterence: \"My digital like @ IU\"");
+		tool.setDescription("2011 Conference: \"My digital life @ IU\"");
 		tool.setIconUrl("images/service-icons/srvc-itstatewide.png");
 		adminService.saveTool(tool);
 		ht = new HomeTool(home, tool, 1);

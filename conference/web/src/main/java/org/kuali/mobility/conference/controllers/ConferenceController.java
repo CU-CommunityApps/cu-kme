@@ -15,6 +15,7 @@
 
 package org.kuali.mobility.conference.controllers;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -105,7 +106,7 @@ public class ConferenceController {
 	}
 
 	@RequestMapping(value = "/sessionDetails/{id}", method = RequestMethod.GET)
-	public String sessionDetails(@PathVariable("id") String id, Model uiModel) {
+	public String sessionDetails(@PathVariable("id") String id, Model uiModel) throws UnsupportedEncodingException {
 		Session session = conferenceService.findSessionById(id);
 		uiModel.addAttribute("session", session);
 		uiModel.addAttribute("sessionFeedback", new SessionFeedback());

@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -158,7 +159,10 @@ public class ConferenceServiceImpl implements ConferenceService {
 					JSONObject sessionObject = iter.next();
 					
 					Session session = new Session();
-					session.setId(sessionObject.getString("id"));
+					/*
+					 * IU SWITC fields
+					 * 
+					 session.setId(sessionObject.getString("id"));
 					session.setTitle(sessionObject.getString("title"));
 					session.setDescription(sessionObject.getString("description"));
 					session.setLocation(sessionObject.getString("location"));
@@ -207,7 +211,95 @@ public class ConferenceServiceImpl implements ConferenceService {
 		            }
 					
 					session.setSpeakers(speakers);
-			
+			*/
+					// take out non alpha-numberic chars to get a tidy new id for linking
+					session.setId(URLEncoder.encode(sessionObject.getString("title").replaceAll("[^A-Za-z0-9 ]", ""), "UTF-8"));
+					session.setTitle(sessionObject.getString("title").replace("\\",""));
+					session.setDescription(sessionObject.getString("details"));
+					session.setLocation(sessionObject.getString("room"));
+					session.setTrack(sessionObject.getString("track"));
+					// take out non alpha-numeric chars and spaces to make a simple css class name, prepend 'track-'
+					session.setTrackCSSClass("track-" + sessionObject.getString("track").replaceAll("[^A-Za-z0-9]", ""));
+					session.setLevel(sessionObject.getString("level"));
+					session.setType(sessionObject.getString("type"));
+					
+					/*
+					session.setLatitude(sessionObject.getString("latitude"));
+					session.setLongitude(sessionObject.getString("longitude"));
+					session.setLink(sessionObject.getString("link"));
+					*/
+					
+					try {
+						String str_startDate = sessionObject.getString("date") + " " + sessionObject.getString("time");
+						String str_endDate = sessionObject.getString("date") + " " + sessionObject.getString("time");
+						
+						DateFormat parser = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");
+						//DateFormat parser = new SimpleDateFormat("HH:mm a");
+
+						Date startDate = (Date)parser.parse(str_startDate);
+						Date endDate = (Date)parser.parse(str_endDate);
+
+						session.setdStartTime(startDate);
+						session.setdEndTime(endDate);
+						
+						//DateFormat formatter = new SimpleDateFormat("E hh:mm a");
+						DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						//DateFormat formatter = new SimpleDateFormat("HH:mm");
+
+						String formattedStartDate, formattedEndDate;
+						formattedStartDate = formatter.format(startDate);
+						formattedEndDate = formatter.format(endDate);
+						
+						//System.out.println("startdate:" + formattedStartDate);
+						//System.out.println("enddate:" + formattedEndDate);
+						session.setStartTime(formattedStartDate);
+						session.setEndTime(formattedEndDate);
+						
+						//session.setStartTime("TEST");
+						//session.setEndTime("TEST");
+						//session.setStartTime(str_startDate);
+						//session.setEndTime(str_endDate);
+					} catch (ParseException e) {
+						//System.out.println("Error:" + e);
+					}
+
+					JSONArray tempSpeakers = sessionObject.getJSONArray("presenters");
+					
+					List<Attendee> speakers = new ArrayList<Attendee>();
+					
+					//JSONArray sessionArray = (JSONArray) JSONSerializer.toJSON(json);
+					//for (Iterator<JSONObject> iter2 = tempSpeakers.iterator(); iter2.hasNext();) {
+					
+					//JSONObject speakersObject = iter2.next();
+				
+					for (int i = 0; i < tempSpeakers.size(); i++) {
+		            	//JSONObject speakersObject = tempSpeakers.getJSONObject(i);
+
+						//System.out.println("tempSpeakers:" + tempSpeakers.getString(i));
+						
+		            	Attendee speaker = new Attendee();
+		            	//speaker.setFirstName(speakersObject);
+		            	
+		            	// flip the order of the person's name and skip the comma
+		            	String speakerName = tempSpeakers.getString(i);
+		            	int commaBetweenFirstAndLastName = speakerName.indexOf(",");
+		            	String lastName = speakerName.substring(0, commaBetweenFirstAndLastName);
+		            	String firstName = speakerName.substring(commaBetweenFirstAndLastName+1);
+		            	speaker.setFirstName(firstName + " " + lastName);
+		            	
+		            	
+		            	
+		            	//speaker.setFirstName(tempSpeakers.getString(i));
+		            	//System.out.println("Object:" + speakersObject);
+		            	/*speaker.setLastName(speakersObject.getString("lastName"));
+		            	speaker.setEmail(speakersObject.getString("email"));
+		            	speaker.setTitle(speakersObject.getString("title"));
+		            	speaker.setInstitution(speakersObject.getString("organization"));*/
+		            	speakers.add(speaker);
+		            }
+					
+					session.setSpeakers(speakers);
+		
 				sessions.add(session);
 				} catch (Exception e) {
 					LOG.error(e.getMessage(), e);
@@ -250,7 +342,7 @@ public class ConferenceServiceImpl implements ConferenceService {
     public Session findSessionById(String id) {
 		List<Session> sessions = findAllSessions("");
 	    for (Session session : sessions) {
-	    	if (session.getId() != null && session.getId().equals(id)) {
+	     	if (session.getId() != null && session.getId().equals(id)) {
 	    		return session;
 	    	}
         }

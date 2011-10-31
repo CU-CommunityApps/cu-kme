@@ -29,8 +29,6 @@
 <spring:message code="label.ends" var="ends"/>
 <spring:message code="time.tbd" var="tbd"/>
 
-
-
 <kme:page title="${title}" id="conference" backButton="true" backButtonURL="${pageContext.request.contextPath}/conference" homeButton="true" cssFilename="conference">
 	<kme:content>
 	
@@ -40,7 +38,7 @@
 		<kme:listView>
 			
 			<c:forEach items="${sessions}" var="session" varStatus="status">
-		    	<kme:listItem>
+		    	<kme:listItem cssClass="${session.trackCSSClass}">
 		    		<a href="sessionDetails/${session.id}">
 		    			<h3 class="wrap">
 		    				${session.title}
@@ -78,7 +76,71 @@
 			    				</c:otherwise>
 			    			</c:choose>
 		    			</p>
+		    			<%-- <p class="wrap">Track: 
+		    				<c:choose>
+			    				<c:when test="${not empty session.track && session.track != 'null'}">
+			    					${session.track}
+			    				</c:when>
+			    				<c:otherwise>
+			    					${tbd}
+			    				</c:otherwise>
+			    			</c:choose>
+		    			</p>
+		    			<p class="wrap">Level: 
+		    				<c:choose>
+			    				<c:when test="${not empty session.level && session.level != 'null'}">
+			    					${session.level}
+			    				</c:when>
+			    				<c:otherwise>
+			    					${tbd}
+			    				</c:otherwise>
+			    			</c:choose>
+		    			</p>
+		    			<p class="wrap">Type: 
+		    				<c:choose>
+			    				<c:when test="${not empty session.type && session.type != 'null'}">
+			    					${session.type}
+			    				</c:when>
+			    				<c:otherwise>
+			    					${tbd}
+			    				</c:otherwise>
+			    			</c:choose>
+		    			</p>
+		    			--%>
 		    			
+		    			<p style="padding:0; display:block; margin:15px -50px -15px -15px;" class="wrap"> 
+		    				<span class="sessionDetailsTab">
+		    				<%-- Track: --%>
+		    				<c:choose>
+			    				<c:when test="${not empty session.track && session.track != 'null'}">
+			    					${session.track}
+			    				</c:when>
+			    				<c:otherwise>
+			    					${tbd}
+			    				</c:otherwise>
+			    			</c:choose>
+			    			</span><span class="sessionDetailsTab">
+		    				<%-- Level: --%>
+		    				<c:choose>
+			    				<c:when test="${not empty session.level && session.level != 'null'}">
+			    					${session.level}
+			    				</c:when>
+			    				<c:otherwise>
+			    					${tbd}
+			    				</c:otherwise>
+			    			</c:choose>
+			    			</span><span class="sessionDetailsTab">
+		    				<%-- Type: --%>
+		    				<c:choose>
+			    				<c:when test="${not empty session.type && session.type != 'null'}">
+			    					${session.type}
+			    				</c:when>
+			    				<c:otherwise>
+			    					${tbd}
+			    				</c:otherwise>
+			    			</c:choose>
+			    			</span>
+		    			</p>
 		    			<%-- <p class="wrap">${description}: ${session.description}</p> --%>
 		    		</a>
 		    	</kme:listItem>            
