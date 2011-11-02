@@ -22,6 +22,10 @@
         <version>1.0.0-M2-RELEASE</version>
     </parent>
     <dependencies>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>security.authentication</artifactId>
+		</dependency>
 		<!-- Persistence dependencies -->
 		<dependency>
 			<groupId>javax.persistence</groupId>

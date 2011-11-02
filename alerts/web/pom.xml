@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>user-api</artifactId>
+			<artifactId>security.authentication</artifactId>
 		</dependency>
         <!-- Spring dependencies -->
         <dependency>

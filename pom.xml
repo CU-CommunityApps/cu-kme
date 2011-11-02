@@ -40,7 +40,6 @@
 		<net.sf.ehcache.version>1.6.2</net.sf.ehcache.version> <!-- 2.4.6 is most recent but seems not to be in mvn repo -->
 		
 		<tool.shared.version>1.0.0-M2-RELEASE</tool.shared.version>
-		<tool.user.version>1.0.0-M2-RELEASE</tool.user.version>
 		<tool.admin.version>1.0.0-M2-RELEASE</tool.admin.version>
 		<tool.alerts.version>1.0.0-M2-RELEASE</tool.alerts.version>
 		<tool.computerlabs.version>1.0.0-M2-RELEASE</tool.computerlabs.version>
@@ -51,6 +50,8 @@
 		<tool.feedback.version>1.0.0-M2-RELEASE</tool.feedback.version>
 		<tool.maps.version>1.0.0-M2-RELEASE</tool.maps.version>
 		<tool.news.version>1.0.0-M2-RELEASE</tool.news.version>
+		
+		<security.authentication>1.0.0-M2-RELEASE</security.authentication>
 
         <util.testing>1.0.0-M2-RELEASE</util.testing>
         <util.webservice.adapter>1.0.0-M2-RELEASE</util.webservice.adapter>
@@ -63,9 +64,9 @@
 			</activation>
 			<modules>
                 <!-- <module>util.testing</module> -->
+                <module>security.authentication</module>
                 <module>util.webservice.adapter</module>
 				<module>shared</module>
-				<module>user</module>
                 <module>admin</module>
 				<module>alerts</module>
 				<module>computerlabs</module>
@@ -117,6 +118,11 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
+                <artifactId>security.authentication</artifactId>
+                <version>${security.authentication}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
                 <artifactId>util.webservice.adapter</artifactId>
                 <version>${util.webservice.adapter}</version>
             </dependency>
@@ -151,16 +157,6 @@
 				<groupId>org.kuali.mobility</groupId>
 				<artifactId>shared-webapp</artifactId>
 				<version>${tool.shared.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>user-api</artifactId>
-				<version>${tool.user.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.kuali.mobility</groupId>
-				<artifactId>user-impl</artifactId>
-				<version>${tool.user.version}</version>
 			</dependency>
             <!-- Admin Service -->
             <dependency>

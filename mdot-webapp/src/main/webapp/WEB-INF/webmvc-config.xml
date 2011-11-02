@@ -33,7 +33,13 @@
 
     <mvc:annotation-driven />
     <mvc:interceptors>
+	    <bean id="remoteUserInterceptor" class="org.kuali.mobility.security.authn.interceptors.RemoteUserInterceptor"/>
+	    <bean id="authenticationInterceptor" class="org.kuali.mobility.security.authn.interceptors.AuthenticationInterceptor">
+	    	<property name="authenticationMapper" ref="authenticationMapper"/>
+	    </bean>
+	    <!-- 
     	<bean class="org.kuali.mobility.shared.interceptors.LoginInterceptor" />
+    	 -->
 		<bean id="localeChangeInterceptor"
 		    class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		    <property name="paramName" value="lang" />
@@ -52,6 +58,10 @@
         <property name="order">
             <value>1</value>
         </property>
+    </bean>
+    
+    <bean id="authenticationMapper" class="org.kuali.mobility.security.authn.util.AuthenticationMapper">
+    	<constructor-arg type="java.lang.String"><value>/authentication.xml</value></constructor-arg>
     </bean>
     
 </beans>

@@ -20,9 +20,10 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import org.kuali.mobility.shared.Constants;
+import org.kuali.mobility.security.authn.entity.User;
+import org.kuali.mobility.security.authn.util.AuthenticationConstants;
+import org.kuali.mobility.security.authn.util.AuthenticationMapper;
 import org.kuali.mobility.shared.CoreService;
-import org.kuali.mobility.user.entity.User;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -36,6 +37,8 @@ public class PageTag extends SimpleTagSupport {
 
     private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(PageTag.class);
 
+    private AuthenticationMapper authMapper;
+    
     private String id;
     private String title;
     private boolean homeButton;
@@ -174,8 +177,9 @@ public class PageTag extends SimpleTagSupport {
         PageContext pageContext = (PageContext) getJspContext();
         ServletContext servletContext = pageContext.getServletContext();
 		WebApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		setAuthMapper( (AuthenticationMapper)ac.getBean("authenticationMapper") );
 		CoreService coreService = (CoreService) ac.getBean("coreService");
-        User user = (User) pageContext.getSession().getAttribute(Constants.KME_USER_KEY);
+        User user = (User) pageContext.getSession().getAttribute(AuthenticationConstants.KME_USER_KEY);
         String contextPath = servletContext.getContextPath();
         JspWriter out = pageContext.getOut();
         try {
@@ -238,11 +242,11 @@ public class PageTag extends SimpleTagSupport {
             out.println("<body>");
             out.println("<div data-role=\"page\" id=\"" + id + "\">");
             out.println("<div data-role=\"header\">");
-            if (loginButton) {
+            if (loginButton || getAuthMapper().getLoginURL() != null) {
             	if (user == null || user.isPublicUser()) {
-                    out.println("<a href=\"" + (loginButtonURL != null ? loginButtonURL : contextPath + "/login") + "\" data-role=\"button\" data-icon=\"lock\">Login</a>");
+                    out.println("<a href=\"" + (loginButtonURL != null ? loginButtonURL : ( getAuthMapper().getLoginURL() != null ? getAuthMapper().getLoginURL() : contextPath + "/login") ) + "\" data-role=\"button\" data-icon=\"lock\">Login</a>");
             	} else {
-                    out.println("<a href=\"" + (logoutButtonURL != null ? logoutButtonURL : contextPath + "/logout") + "\" data-role=\"button\" data-icon=\"unlock\">Logout</a>");
+                    out.println("<a href=\"" + (logoutButtonURL != null ? logoutButtonURL : ( getAuthMapper().getLogoutURL() != null ? getAuthMapper().getLogoutURL() : contextPath + "/logout") ) + "\" data-role=\"button\" data-icon=\"unlock\">Logout</a>");
             	}
             }
             if (backButton) {
@@ -277,5 +281,13 @@ public class PageTag extends SimpleTagSupport {
 	 */
 	public void setDisableGoogleAnalytics(boolean disableGoogleAnalytics) {
 		this.disableGoogleAnalytics = disableGoogleAnalytics;
+	}
+
+	public AuthenticationMapper getAuthMapper() {
+		return authMapper;
+	}
+
+	public void setAuthMapper(AuthenticationMapper authMapper) {
+		this.authMapper = authMapper;
 	}
 }

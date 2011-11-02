@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kuali.mobility.emergencyinfo.entity.EmergencyInfo;
 import org.kuali.mobility.emergencyinfo.service.EmergencyInfoService;
+import org.kuali.mobility.security.authn.entity.User;
 import org.kuali.mobility.shared.Constants;
-import org.kuali.mobility.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller 
 @RequestMapping("/emergencycontacts")

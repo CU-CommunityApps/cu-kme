@@ -23,6 +23,12 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>shared-api</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.kuali.mobility</groupId>
+            <artifactId>security.authentication</artifactId>
+        </dependency>
+		
+<!-- 
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-api</artifactId>
@@ -31,6 +37,7 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-impl</artifactId>
 		</dependency>
+ -->
 		<!-- UIS Utilities dependencies -->
 		<!-- 
 		<dependency>

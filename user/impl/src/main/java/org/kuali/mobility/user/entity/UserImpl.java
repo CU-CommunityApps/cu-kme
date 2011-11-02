@@ -281,5 +281,19 @@ public class UserImpl implements User, Serializable {
 	public void removeFromCache(String key) {
 		cache.remove(key);
 	}
-	
+
+	@Override
+	public void invalidateUser() {
+		// TODO: Implement this method to invalidate the active user object in the session, purging all data.
+	}
+
+	@Override
+	public void setRequestURL(String url) {
+		this.setUserAttribute( "service", url );
+	}
+
+	@Override
+	public String getRequestURL() {
+		return this.getUserAttribute( "service" );
+	}
 }

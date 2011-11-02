@@ -113,6 +113,10 @@
         <!-- Service dependencies -->
         <dependency>
             <groupId>org.kuali.mobility</groupId>
+            <artifactId>security.authentication</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kuali.mobility</groupId>
             <artifactId>admin-api</artifactId>
         </dependency>
         <dependency>
@@ -151,6 +155,7 @@
             <groupId>org.kuali.mobility</groupId>
             <artifactId>emergencyinfo-impl</artifactId>
         </dependency>
+<!-- 
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-api</artifactId>
@@ -158,7 +163,8 @@
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-impl</artifactId>
-		</dependency>        
+		</dependency>
+ -->
 		<!-- Internal dependencies -->
         <dependency>
             <groupId>org.kuali.mobility</groupId>

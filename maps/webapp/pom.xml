@@ -115,7 +115,8 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>shared-config</artifactId>
 		</dependency>
-  		<dependency>
+<!--
+   		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-api</artifactId>
 		</dependency>
@@ -123,7 +124,8 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>user-impl</artifactId>
 		</dependency>
-		<dependency>
+ -->
+ 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>maps-api</artifactId>
 		</dependency>

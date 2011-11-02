@@ -17,7 +17,7 @@ package org.kuali.mobility.shared.entity;
 
 import java.io.Serializable;
 
-import org.kuali.mobility.user.entity.User;
+import org.kuali.mobility.security.authn.entity.User;
 
 public class Backdoor implements Serializable {
 

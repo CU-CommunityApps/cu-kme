@@ -21,10 +21,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.kuali.mobility.security.authn.entity.User;
+import org.kuali.mobility.security.authn.entity.UserImpl;
 import org.kuali.mobility.shared.Constants;
 import org.kuali.mobility.shared.entity.Backdoor;
-import org.kuali.mobility.user.entity.User;
-import org.kuali.mobility.user.entity.UserImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

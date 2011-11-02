@@ -25,9 +25,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.kuali.mobility.notification.entity.Notification;
 import org.kuali.mobility.notification.entity.UserNotification;
 import org.kuali.mobility.notification.service.NotificationService;
+import org.kuali.mobility.security.authn.entity.User;
+import org.kuali.mobility.security.authn.util.AuthenticationConstants;
 import org.kuali.mobility.shared.Constants;
-import org.kuali.mobility.user.entity.User;
-import org.kuali.mobility.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,8 +47,8 @@ public class NotificationController {
 	@Autowired
 	private NotificationService notificationService;
 
-    @Autowired 
-    private UserService userService;
+//    @Autowired 
+//    private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -62,18 +62,18 @@ public class NotificationController {
     	for (Notification notification : notifications) {
 			UserNotification un = notificationService.findUserNotificationByNotificationId(notification.getNotificationId());
 			if (un == null) {
-				User user = userService.findUserByDeviceId(deviceId);
-				if (user != null) {
-					if (notification.getPrimaryCampus() == null || notification.getPrimaryCampus().equals(user.getPrimaryCampus())) {
+//				User user = userService.findUserByDeviceId(deviceId);
+//				if (user != null) {
+//					if (notification.getPrimaryCampus() == null || notification.getPrimaryCampus().equals(user.getPrimaryCampus())) {
 						newNotifications.add(notification);
 						UserNotification userNotification = new UserNotification();
 						userNotification.setDeviceId(deviceId);
 						userNotification.setNotifyDate(new Timestamp(new Date().getTime()));
-						userNotification.setPersonId(user.getPrincipalId());
+//						userNotification.setPersonId(user.getPrincipalId());
 						userNotification.setNotificationId(notification.getNotificationId());
 						//notificationService.saveUserNotification(userNotification);
-					}
-				}
+//					}
+//				}
 			}
 		}
     	
@@ -82,10 +82,10 @@ public class NotificationController {
 	
     @RequestMapping(method = RequestMethod.POST)
     public String submit(HttpServletRequest request, Model uiModel, @ModelAttribute("command") Object command, BindingResult result) {
-    	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-    	String service = user.getUserAttribute("service");
-    	user.removeUserAttribute("service");
-    	user.setUserAttribute("acked", "true");
+    	User user = (User) request.getSession().getAttribute(AuthenticationConstants.KME_USER_KEY);
+    	String service = user.getRequestURL();
+    	user.setRequestURL(null);
+//    	user.setUserAttribute("acked", "true");
     	return "redirect:" + service; 
     }
 

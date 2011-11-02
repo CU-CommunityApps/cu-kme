@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kuali.mobility.feedback.entity.Feedback;
 import org.kuali.mobility.feedback.service.FeedbackService;
+import org.kuali.mobility.security.authn.entity.User;
 import org.kuali.mobility.shared.Constants;
-import org.kuali.mobility.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
