@@ -41,7 +41,7 @@
 			</fieldset>
 			<fieldset>
             <label for="searchText" style="position:absolute; left:-9999px;">Search:</label>
-            <form:input path="searchText" cssClass="text ui-widget-content ui-corner-all" />
+            <form:input path="searchText" cssClass="text ui-widget-content ui-corner-all" placeholder="Search" />
 			<!-- <input id="searchText" name="searchText" class="text ui-widget-content ui-corner-all" type="search" /> -->
 			<form:errors path="searchText" />
 			</fieldset>
@@ -49,7 +49,7 @@
 		<div id="searchresults" class="overlay">
 		<jsp:include page="search.jsp" />
 		</div>
-		<div id="map_canvas" style="height:300px;" class="map"></div>
+		<div id="map_canvas" class="map"></div>
 
 	    
 <script type="text/javascript">
@@ -145,28 +145,6 @@ function mapSearchPostProcess() {
     });
 }
 
-/* display "Search" in search field until focus */
-$(window).load(function () {
-	$('#searchText').val('Search');
-});
-
-$('#searchText').focus(function() {
-	$('input#searchText').val('');
-});
-
-
-/* resize map to full height after page load */
-$(window).load(function () {
-	var newHeight = 500;
-	if ($('div#maps').height() > 1000) {
-		newHeight = $('div#maps').height()/2;
-		newHeight = newHeight - 140;
-	} else {
-		newHeight = $('div#maps').height();
-		newHeight = newHeight - 70;
-	}
-	$('div#map_canvas').height(newHeight);
-});
 </script>
 
 	</kme:content>

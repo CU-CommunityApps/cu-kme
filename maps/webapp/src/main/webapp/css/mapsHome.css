@@ -8,8 +8,13 @@
   express or implied. See the License for the specific language governing
   permissions and limitations under the License.
 */
+div#maps input#searchText{
+	width: 95%;
+}
+div#maps, div#map_canvas {height: 100%; padding: 0;}
 
 div.ui-content {
+	height: 100%;
 	padding:0;
 }
 form#mapsearchform {

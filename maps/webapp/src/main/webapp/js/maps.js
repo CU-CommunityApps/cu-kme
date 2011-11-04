@@ -499,8 +499,20 @@ function buildAddress(place, long){
 	return message;
 }
 
+$(window).resize(function(){resizeMap();});
+$(window).load(function(){resizeMap();});
 
-/* resize map to full height after page load */
+function resizeMap () {
+	
+	window.scrollTo(0, 1);
+	var aboveMap = $('div#map_canvas').offset().top;
+	var aboveSearch = $('.ui-content').offset().top;
+	var totalHeight = window.innerHeight ? window.innerHeight : $(window).height();
+    $('.ui-content').height(totalHeight - aboveSearch);
+    $('div#map_canvas').height(totalHeight - aboveMap);
+}
+
+/* resize map to full height after page load
 $(window).load(function () {
 	$('div#map_canvas').height($('div#mapslocation').height()-77);
-});
+});*/

@@ -25,7 +25,7 @@
 <kme:page title="${title}" id="mapslocation" backButton="true" homeButton="true" cssFilename="location" jsFilename="maps" usesGoogleMaps="true" mapLocale="${localeCode}">
 	<kme:content>
 	
-<div id="map_canvas" style="height:300px;"></div>
+<div id="map_canvas"></div>
 	
 <script type="text/javascript">
 /* Maps */
@@ -36,11 +36,12 @@ var userMarkersArray = [];
 $('#mapslocation').live("pageshow", function() {
 	setContextPath("${pageContext.request.contextPath}");
 /* 	$('#map_canvas').gmap({'center': getLatLng(), 'callback': function() {
-		
+	
 	}); */
 	//var buildingCode = $('#map_canvas').jqmData('code');
 	var map = initialize("map_canvas", 39.17, -86.5);
 	deleteOverlays(markersArray);
+	resizeMap();
 	var buildingCode = getParameterByName("id");
 	if (buildingCode) {
 		showBuildingByCode(map, buildingCode);	

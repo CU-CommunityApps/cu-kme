@@ -24,7 +24,7 @@
 <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>
 	<kme:content>
 	
-<div id="map_canvas" style="height:300px;"></div>
+<div id="map_canvas"></div>
 
 	<h3>${location.name}</h3>
 	<p class="locationDetails">
@@ -44,6 +44,7 @@ $('#mapsbuilding').live("pageshow", function() {
 	setContextPath("${pageContext.request.contextPath}");
 	var map = initialize("map_canvas", 39.17, -86.5);
 	deleteOverlays(markersArray);
+	resizeMap();
 	if (buildingCode) {
 		showBuildingByCode(map, buildingCode);	
 	} else {
