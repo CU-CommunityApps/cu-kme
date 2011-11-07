@@ -108,39 +108,7 @@
 		    			</p>
 		    			--%>
 		    			
-		    			<p style="padding:0; display:block; margin:15px -50px -15px -15px;" class="wrap"> 
-		    				<span class="sessionDetailsTab">
-		    				<%-- Track: --%>
-		    				<c:choose>
-			    				<c:when test="${not empty session.track && session.track != 'null'}">
-			    					${session.track}
-			    				</c:when>
-			    				<c:otherwise>
-			    					${tbd}
-			    				</c:otherwise>
-			    			</c:choose>
-			    			</span><span class="sessionDetailsTab">
-		    				<%-- Level: --%>
-		    				<c:choose>
-			    				<c:when test="${not empty session.level && session.level != 'null'}">
-			    					${session.level}
-			    				</c:when>
-			    				<c:otherwise>
-			    					${tbd}
-			    				</c:otherwise>
-			    			</c:choose>
-			    			</span><span class="sessionDetailsTab">
-		    				<%-- Type: --%>
-		    				<c:choose>
-			    				<c:when test="${not empty session.type && session.type != 'null'}">
-			    					${session.type}
-			    				</c:when>
-			    				<c:otherwise>
-			    					${tbd}
-			    				</c:otherwise>
-			    			</c:choose>
-			    			</span>
-		    			</p>
+		    			
 		    			<%-- <p class="wrap">${description}: ${session.description}</p> --%>
 		    		</a>
 		    	</kme:listItem>            
