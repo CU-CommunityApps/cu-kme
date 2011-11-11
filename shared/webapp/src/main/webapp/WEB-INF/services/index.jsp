@@ -16,7 +16,18 @@
 
 <kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences">
 	<kme:content>
-	
+
+		<c:if test="${param.native == 'yes'}">
+			<script type="text/javascript">
+				$.cookie('native', 'yes', {expires: 365, path: '/'});
+			</script>
+		</c:if>			
+		<c:if test="${param.native == 'no'}">
+			<script type="text/javascript">
+				$.cookie('native', 'no', {expires: 365, path: '/'});
+			</script>
+		</c:if>	
+
 	<%-- 
 		<!-- <p><a id="manualUpdate" href="#">Check for an updated Cache</a></p> -->
 	
@@ -44,7 +55,7 @@
 			      		</c:if>
 			      	</a>
 	            </kme:listItem>
-			</c:forEach>
+			</c:forEach>	
 	    </kme:listView>
 	    <c:if test="${not empty ipAddress}">${ipAddress}</c:if>
 	</kme:content>

@@ -17,11 +17,16 @@
 
 <c:set var="localeCode" value="${pageContext.response.locale}" />
 <c:set var="myCampusCode" value="${cookie.campusSelection.value}" />
+<c:set var="isNative" value="${cookie.native.value}" />
 
 <spring:message code="preferences.title" var="title"/>
 <spring:message code="preferences.selectcampus" var="selectcampus"/>
 <spring:message code="preferences.demotools" var="demotools"/>
 <spring:message code="preferences.languages" var="languages"/>
+<spring:message code="preferences.nativeapp" var="nativeapp"/>
+<spring:message code="preferences.installnativeapp" var="installnative"/>
+<spring:message code="stylize.title" var="stylize"/>
+
 
 <kme:page title="${title}" id="preferences" backButton="true" homeButton="true">
 	<kme:content>
@@ -47,9 +52,10 @@
 			</kme:listItem>
 			<kme:listItem >
 				<a href="${pageContext.request.contextPath}/stylize">
-					Personalize KME Styles
+					${stylize}
 				</a>
 			</kme:listItem>
+
 			<kme:listItem dataRole="list-divider" dataTheme="b">
 				${languages}
 			</kme:listItem>
@@ -78,6 +84,34 @@
 				</a>
 			</kme:listItem>
 
+
+			<c:if test="${cookie.native.value != 'yes'}">
+				<kme:listItem dataRole="list-divider" dataTheme="b" cssClass="installLink">
+					${nativeapp}
+				</kme:listItem>
+				<kme:listItem cssClass="installLink">
+					<a id="install" href="#">${installnative}</a> 
+					<div class="result"></div>
+					<div class="log"></div>
+				</kme:listItem>
+			<script type="text/javascript">			
+					$('#install').click(function(){
+						var apps = "";
+						$.get("${pageContext.request.contextPath}/testdata/nativeMobileAppURL.json", function(jdata) {	
+							apps = jQuery.parseJSON(jdata);
+							if (/iPhone|iPad|iPod|Apple/i.test(navigator.userAgent)){
+    							window.location = apps.iPhoneURL;
+    						}else if (/Blackberry|RIM\sTablet/i.test(navigator.userAgent)){		
+    							window.location = apps.BlackberryURL;
+    						}else if (/Android/i.test(navigator.userAgent)){
+    							window.location = apps.AndroidURL;
+	   						}
+						});
+					});	
+			</script>
+			</c:if>
+
+			
 		</kme:listView>
 	</kme:content>
 </kme:page>
