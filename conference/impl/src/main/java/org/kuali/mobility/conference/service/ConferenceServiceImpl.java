@@ -17,11 +17,13 @@ package org.kuali.mobility.conference.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,9 +35,9 @@ import java.util.List;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
-
 import org.kuali.mobility.conference.entity.Attendee;
 import org.kuali.mobility.conference.entity.ContentBlock;
+import org.kuali.mobility.conference.entity.MenuItem;
 import org.kuali.mobility.conference.entity.Session;
 
 public class ConferenceServiceImpl implements ConferenceService {
@@ -103,6 +105,61 @@ public class ConferenceServiceImpl implements ConferenceService {
 		}
 
 		return contentBlocks;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuItem> findAllMenuItems(String lang) {
+		List<MenuItem> menuItems = new ArrayList<MenuItem>();
+		try {
+			String json = null;
+			if (lang.equals("zh_CN")){
+				json = retrieveJSON("http://www.indiana.edu/~iumobile/SWITC-2011/home_zh_cn.json");
+				System.out.println(json);
+			} else {
+				json = retrieveJSON("http://www.indiana.edu/~iumobile/SWITC-2011/home_en.json");
+			}
+			
+			// test
+			String test1 = "[{\"title\":\"欢迎\"}]";
+			System.out.println(test1);
+			/*
+			JSONArray menuItemArray1 = (JSONArray) JSONSerializer.toJSON(test1);
+			System.out.println(menuItemArray1);
+			for (Iterator<JSONObject> iter = menuItemArray1.iterator(); iter.hasNext();) {
+				try {
+					JSONObject menuItemObject = iter.next();
+					MenuItem menuItem2 = new MenuItem();
+					menuItem2.setTitle(menuItemObject.getString("title"));
+					menuItems.add(menuItem2);
+				} catch (Exception e) {
+					LOG.error(e.getMessage(), e);
+				}
+			}*/
+			//JSONArray menuItemArray2 = (JSONArray) JSONSerializer.toJSON(test2);
+			
+			// end of test
+			
+			JSONArray menuItemArray = (JSONArray) JSONSerializer.toJSON(json);
+			for (Iterator<JSONObject> iter = menuItemArray.iterator(); iter.hasNext();) {
+				try {
+					JSONObject menuItemObject = iter.next();
+					
+					MenuItem menuItem = new MenuItem();
+					menuItem.setTitle(menuItemObject.getString("title"));
+					menuItem.setDescription(menuItemObject.getString("description"));
+					menuItem.setLinkURL(menuItemObject.getString("linkURL"));
+					menuItem.setIconURL(menuItemObject.getString("iconURL"));
+					menuItems.add(menuItem);
+				} catch (Exception e) {
+					LOG.error(e.getMessage(), e);
+				}
+				
+			}
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+		}
+		return menuItems;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -315,8 +372,12 @@ public class ConferenceServiceImpl implements ConferenceService {
 	private String retrieveJSON(String feedUrl) throws MalformedURLException, IOException {
 	    URL url = new URL(feedUrl);
 	    URLConnection conn = url.openConnection();
+	    String encoding = conn.getContentEncoding();
+	    if (encoding == null) {
+	    	encoding = "UTF-8";
+	    }
 
-	    BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	    BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), encoding));
 	    StringBuffer sb = new StringBuffer();
 	    String line;
 	    while ((line = rd.readLine()) != null) {

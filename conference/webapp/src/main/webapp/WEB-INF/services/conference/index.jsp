@@ -15,9 +15,42 @@
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<c:set var="localeCode" value="${pageContext.response.locale}" />
+
 <spring:message code="conference.title" var="title"/>
 <kme:page title="${title}" id="conference" backButton="true" homeButton="true">
 	<kme:content>
+		<kme:listView id="menulist" dataTheme="c" dataDividerTheme="b" filter="false">
+			<script type="text/javascript">
+				$('[data-role=page][id=conference]').live('pagebeforeshow', function(event, ui) {
+					$('#menuListTemplate').template('menuListTemplate');
+					refreshTemplate('${pageContext.request.contextPath}/conference?lang=${localeCode}', '#menulist', 'menuListTemplate', '<li>No Menus</li>', function() {$('#menulist').listview('refresh');});
+				});
+			</script>
+			<script id="menuListTemplate" type="text/x-jquery-tmpl">
+      			<li>
+					<a href="${pageContext.request.contextPath}/\${linkURL}">
+        				<h3 class="wrap">\${title}</h3>
+						<p class="wrap">\${description}</p>
+					</a>
+      			</li>
+			</script>	
+		</kme:listView>
+	<%-- accesses a json file for the menu items
+		<kme:listView>
+			<c:forEach items="${menuItems}" var="menuItem" varStatus="status">
+				<kme:listItem>
+					<a href="${menuItem.linkURL}">
+						<h3 class="wrap">
+							${menuItem.title}
+						</h3>
+						<p>${menuItem.description}</p>
+					</a>
+				</kme:listItem>
+			</c:forEach>
+		</kme:listView>
+	--%>
+	<%--  hard coded
 		<kme:listView>
 			<kme:listItem>
 	    		<a href="conference/welcome">
@@ -60,5 +93,6 @@
 	    		</a>
 	    	</kme:listItem>
 		</kme:listView>
+		--%>
 	</kme:content>
 </kme:page>

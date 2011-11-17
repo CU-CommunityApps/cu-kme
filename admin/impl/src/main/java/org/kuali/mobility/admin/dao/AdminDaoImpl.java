@@ -155,6 +155,18 @@ public class AdminDaoImpl implements AdminDao {
         if (tool.getDescription() != null) {
         	tool.setDescription(tool.getDescription().trim());
         }
+        if (tool.getContacts() != null) {
+        	tool.setContacts(tool.getContacts().trim());
+        }
+        if (tool.getProgrammingLanguage() != null) {
+        	tool.setProgrammingLanguage(tool.getProgrammingLanguage().trim());
+        }
+        if (tool.getKeywords() != null) {
+        	tool.setKeywords(tool.getKeywords().trim());
+        }
+        if (tool.getLicence() != null) {
+        	tool.setLicence(tool.getLicence().trim());
+        }
         try {
 	        if (tool.getToolId() == null) {
 	            entityManager.persist(tool);

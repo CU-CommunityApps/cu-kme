@@ -57,6 +57,18 @@ public class Tool implements Serializable, Comparable<Tool> {
 	@Column(name="ICN_URL")
 	private String iconUrl;
 	
+	@Column(name="CONTACTS")
+	private String contacts;
+	
+	@Column(name="PROG_LANG")
+	private String programmingLanguage;
+	
+	@Column(name="KEYWORDS")
+	private String keywords;
+	
+	@Column(name="LICENCE")
+	private String licence;
+	
 	@Version
     @Column(name="VER_NBR")
     private Long versionNumber;	
@@ -152,6 +164,38 @@ public class Tool implements Serializable, Comparable<Tool> {
 			return this.toolId.equals(((Tool)that).toolId);
 		}
 		return false;
+	}
+
+	public String getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(String contacts) {
+		this.contacts = contacts;
+	}
+
+	public String getProgrammingLanguage() {
+		return programmingLanguage;
+	}
+
+	public void setProgrammingLanguage(String programmingLanguage) {
+		this.programmingLanguage = programmingLanguage;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
+	public String getLicence() {
+		return licence;
+	}
+
+	public void setLicence(String licence) {
+		this.licence = licence;
 	}
 
 }

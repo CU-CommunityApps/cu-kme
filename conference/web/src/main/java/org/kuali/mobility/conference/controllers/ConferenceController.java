@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.kuali.mobility.conference.entity.Attendee;
 import org.kuali.mobility.conference.entity.ContentBlock;
+import org.kuali.mobility.conference.entity.MenuItem;
 import org.kuali.mobility.conference.entity.Session;
 import org.kuali.mobility.conference.entity.SessionFeedback;
 import org.kuali.mobility.conference.service.ConferenceService;
@@ -36,6 +37,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import flexjson.JSONSerializer;
 
 @Controller
 @RequestMapping("/conference")
@@ -60,9 +64,18 @@ public class ConferenceController {
 		} else { 
 			today = "";
 		}
-		uiModel.addAttribute("today", today);
+		//List<MenuItem> menuItems = conferenceService.findAllMenuItems();
+		//uiModel.addAttribute("menuItems", menuItems);
+		//uiModel.addAttribute("today", today);
 		return "conference/index";
 	}
+	
+    @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
+    @ResponseBody
+    public String getMenuJson(@RequestParam(value="lang", required = false) String lang) {
+    	List<MenuItem> menuItems = conferenceService.findAllMenuItems(lang);
+    	return new JSONSerializer().exclude("*.class").deepSerialize(menuItems);
+    }
 
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String welcome(Model uiModel) {
