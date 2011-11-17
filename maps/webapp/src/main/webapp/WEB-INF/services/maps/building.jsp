@@ -40,6 +40,9 @@ var markersArray = [];
 var userMarkersArray = [];
 var buildingCode = "${id}";
 
+$(window).resize(function(){resizeMap();});
+$(window).load(function(){resizeMap();});
+
 $('#mapsbuilding').live("pageshow", function() {
 	setContextPath("${pageContext.request.contextPath}");
 	var map = initialize("map_canvas", 39.17, -86.5);

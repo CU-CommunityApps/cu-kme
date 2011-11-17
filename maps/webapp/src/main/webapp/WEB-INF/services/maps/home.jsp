@@ -57,6 +57,9 @@ var map;
 var markersArray = [];
 var userMarkersArray = [];
 
+$(window).resize(function(){resizeMap();});
+$(window).load(function(){resizeMap();});
+
 $('#maps').live("pagebeforeshow", function() {
 	
 	setContextPath("${pageContext.request.contextPath}");
@@ -144,6 +147,7 @@ function mapSearchPostProcess() {
 		//alert("Test");
     });
 }
+
 
 </script>
 

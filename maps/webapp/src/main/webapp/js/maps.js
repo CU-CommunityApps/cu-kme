@@ -499,9 +499,6 @@ function buildAddress(place, long){
 	return message;
 }
 
-$(window).resize(function(){resizeMap();});
-$(window).load(function(){resizeMap();});
-
 function resizeMap () {
 	
 	window.scrollTo(0, 1);

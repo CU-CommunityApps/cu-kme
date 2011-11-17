@@ -33,6 +33,9 @@
 var markersArray = [];
 var userMarkersArray = [];
 
+$(window).resize(function(){resizeMap();});
+$(window).load(function(){resizeMap();});
+
 $('#mapslocation').live("pageshow", function() {
 	setContextPath("${pageContext.request.contextPath}");
 /* 	$('#map_canvas').gmap({'center': getLatLng(), 'callback': function() {
