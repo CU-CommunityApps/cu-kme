@@ -22,6 +22,7 @@ import org.kuali.mobility.file.entity.File;
 
 public interface FileService {
 
+	boolean removeFile(File file);
 	Long saveFile(File file);
 	File findFileById(Long Id);
 	List<File> findFilesByName(String name);

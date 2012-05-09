@@ -39,11 +39,9 @@ public class FileDaoImpl implements FileDao {
     
     
 	public Long saveFile(File file){
-
 		if(file == null){
     		return null;
     	}
-		
     	try {
 			if(file.getId() == null){
 				entityManager.persist(file);
@@ -54,6 +52,23 @@ public class FileDaoImpl implements FileDao {
 			return null;
 		}
     	return file.getId();
+	}
+	
+	public boolean removeFile(File file){
+		boolean result = true;
+		if(file == null){
+			return false;
+		}
+		if(file.getId() != null){
+			try{
+				File f = entityManager.find(File.class, file.getId());
+				entityManager.remove(f);
+			}catch(Exception e){
+    			LOG.info("Exception Caught: " + e.getMessage());
+				result = false;
+			}
+		}
+		return result;
 	}
 	
     @SuppressWarnings("unchecked")
@@ -70,7 +85,8 @@ public class FileDaoImpl implements FileDao {
 
     @SuppressWarnings("unchecked")
 	public List<File> findAllFiles(){
-        Query query = entityManager.createQuery("select f from File f");
+    	
+    	Query query = entityManager.createQuery("select f from File f order by f.postedTimestamp desc");
         return query.getResultList();
 	}
     

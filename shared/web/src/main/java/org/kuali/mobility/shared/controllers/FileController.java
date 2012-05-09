@@ -17,6 +17,8 @@ package org.kuali.mobility.shared.controllers;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
+import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +27,7 @@ import org.kuali.mobility.file.entity.File;
 import org.kuali.mobility.file.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,6 +62,29 @@ public class FileController {
     	
     	
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(HttpServletRequest request, Model uiModel) {
+    	List<File> files = fileService.findAllFiles();
+    	uiModel.addAttribute("files", files);
+    	uiModel.addAttribute("fileCount", files.size());
+
+    	return "files";
+    }
+    
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/remove/{fileHash}", method = RequestMethod.GET)
+	public String removeFile(Model uiModel, HttpServletRequest request, @PathVariable("fileHash") Long fileHash) {
+		File fileToDelete = fileService.findFileById(fileHash);
+		if(fileToDelete != null){
+			LOG.info("Will delete file with Id: " + fileToDelete.getId());
+			if(fileService.removeFile(fileToDelete)){
+				LOG.info("Did delete file.");
+			}
+		}
+		
+    	return "files";		
+	}	    
     
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -67,6 +93,7 @@ public class FileController {
     	MultipartFile mfile = request.getFile("file");
     	// This constructor populates the fields in the File object. 
     	File file = new File(mfile);
+		file.setPostedTimestamp(new Timestamp(System.currentTimeMillis()));
     	Long fileId = fileService.saveFile(file);
 
     	LOG.info("--- Saving File ---");

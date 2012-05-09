@@ -37,6 +37,11 @@ public class FileServiceImpl implements FileService {
 	public Long saveFile(File file){
 		return fileDao.saveFile(file);
 	}
+
+	@Transactional
+	public boolean removeFile(File file){
+		return fileDao.removeFile(file);
+	}	
 	
 	@Transactional
 	public File findFileById(Long Id){

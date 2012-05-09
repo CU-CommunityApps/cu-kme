@@ -1,7 +1,7 @@
 package org.kuali.mobility.file.entity;
 
 import java.io.IOException;
-
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +38,14 @@ public class File {
     
     @Column(name="FILE_NM")
     private String fileName;
+
+    @Column(name="FILE_SZ")
+    private int fileSize;
+        
+    @Column(name="PST_TS")
+    private Timestamp postedTimestamp;
+	
+    
     
     @Version
 	@Column(name = "VER_NBR")
@@ -53,6 +61,7 @@ public class File {
 		this.contentType = file.getContentType();
 		try{
 			this.bytes = file.getBytes();
+			this.fileSize = file.getBytes().length;
 		}catch(IOException e){
 			System.out.println("getBytes Error: " + e.getMessage());
 		}
@@ -110,6 +119,22 @@ public class File {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}	
+
+	public int getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
+	}
+	
+    public Timestamp getPostedTimestamp() {
+        return postedTimestamp;
+    }
+
+    public void setPostedTimestamp(Timestamp postedTimestamp) {
+        this.postedTimestamp = postedTimestamp;
+    }
 	
 	@Override
 	public String toString() {
@@ -117,7 +142,8 @@ public class File {
     	String str = newline +"File Id:     " + this.getId();
     	str = str + newline + "Filename:    " + this.getFileName();
     	str = str + newline + "ContentType: " + this.getContentType();    
-    	str = str + newline + "Size:        " + this.getBytes().length;    
+    	str = str + newline + "Size:        " + this.getFileSize();    
+    	str = str + newline + "Timestamp:   " + this.getPostedTimestamp(); 
     	return str;
     }
 	
