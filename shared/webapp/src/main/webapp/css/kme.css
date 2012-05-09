@@ -742,6 +742,9 @@ input[type="checkbox"] {
 	margin-left:10px;
 }
 
+.ui-checkbox-on .ui-icon, .ui-radio-on .ui-icon {
+background-color: #990000 !important;
+}
 
 /* Adjustments to accommodate 100% wide li for labeledRow formatting
 -----------------------------------------------------------------------------------------------------------*/
