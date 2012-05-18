@@ -1,5 +1,5 @@
 <%--
-  Copyright 2011 The Kuali Foundation Licensed under the Educational Community
+  Copyright 2011-2012 The Kuali Foundation Licensed under the Educational Community
   License, Version 2.0 (the "License"); you may not use this file except in
   compliance with the License. You may obtain a copy of the License at
   http://www.osedu.org/licenses/ECL-2.0 Unless required by applicable law or
@@ -16,28 +16,30 @@
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<kme:page title="Weather" id="weather" backButton="true" homeButton="true" cssFilename="weather">
+<spring:message code="weather.title" var="title"/>
+
+<kme:page title="${title}" id="weather" backButton="true" homeButton="true" cssFilename="weather">
 	<kme:content>
 		<kme:listView id="currentConditionsList" dataTheme="c" dataDividerTheme="b" filter="false">
-			<kme:listItem dataTheme="b" dataRole="list-divider">Current Conditions</kme:listItem>
+			<kme:listItem dataTheme="b" dataRole="list-divider"><spring:message code="weather.forecastPage.label.currentConditions" /></kme:listItem>
 			<kme:listItem>
 				<h3 class="wrap">${forecast.currentCondition}</h3>
 			</kme:listItem>
 			<kme:listItem>
 				<fmt:formatNumber var="celcius" value="${((forecast.temperature - 32) * 5 / 9)}" maxFractionDigits="0" />
-				<h3 class="wrap">Temperature: ${forecast.temperature}&deg;F / ${celcius}&deg;C</h3>
+				<h3 class="wrap"><spring:message code="weather.forecastPage.label.currentTemperature" />: ${forecast.temperature}&deg;F / ${celcius}&deg;C</h3>
 			</kme:listItem>
 			<kme:listItem>
-				<h3 class="wrap">Relative humidity: ${forecast.humidity}%</h3>
+				<h3 class="wrap"><spring:message code="weather.forecastPage.label.humidity" />: ${forecast.humidity}%</h3>
 			</kme:listItem>
 			<kme:listItem>
-				<h3 class="wrap">Wind: ${forecast.wind} </h3>
+				<h3 class="wrap"><spring:message code="weather.forecastPage.label.wind" />: ${forecast.wind} </h3>
 			</kme:listItem>
 			<kme:listItem>
-				<h3 class="wrap">Atmospheric pressure: ${forecast.pressure} in Hg</h3>
+				<h3 class="wrap"><spring:message code="weather.forecastPage.label.pressure" />: ${forecast.pressure} in. Hg</h3>
 			</kme:listItem>
 		
-			<kme:listItem dataTheme="b" dataRole="list-divider">Forecast</kme:listItem>
+			<kme:listItem dataTheme="b" dataRole="list-divider"><spring:message code="weather.forecastPage.label.forecast" /></kme:listItem>
 			<c:forEach items="${forecast.forecasts}" var="item" varStatus="status">
 				<kme:listItem>
 					<div class="forecastItem" style="background-image:url('${item.iconLink}')">
@@ -47,7 +49,7 @@
 				</kme:listItem>
 			</c:forEach>
 
-			<kme:listItem dataTheme="b" dataRole="list-divider">Notifications</kme:listItem>
+			<kme:listItem dataTheme="b" dataRole="list-divider"><spring:message code="weather.forecastPage.label.alerts" /></kme:listItem>
             <kme:listItem hideDataIcon="true">
             	<a href="${alertsTool.url}" style="background-image: url('${alertsTool.iconUrl}');">
 		      		<h3>${alertsTool.title}</h3>

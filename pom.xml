@@ -492,6 +492,11 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
+                <artifactId>weather-config</artifactId>
+                <version>${tool.weather.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
                 <artifactId>weather-impl</artifactId>
                 <version>${tool.weather.version}</version>
             </dependency>
@@ -502,7 +507,7 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>weather-webapp</artifactId>
+                <artifactId>weather-ui</artifactId>
                 <version>${tool.weather.version}</version>
             </dependency>
 			<!-- Database Information Service -->

@@ -1,3 +1,18 @@
+/**
+ * Copyright 2011-2012 The Kuali Foundation Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package org.kuali.mobility.weather.entity;
 
 import java.util.ArrayList;
@@ -111,13 +126,13 @@ public class Weather {
 				text = "West";
 			}
 			if (direction > 281.25 && direction <= 303.75) {
-				text = "North Northwest";
+				text = "West Northwest";
 			}
 			if (direction > 303.75 && direction <= 326.25) {
 				text = "Northwest";
 			}
 			if (direction > 326.25 && direction <= 348.75) {
-				text = "Northwest";
+				text = "North Northwest";
 			}			
 		} catch (Exception e) {
 		}

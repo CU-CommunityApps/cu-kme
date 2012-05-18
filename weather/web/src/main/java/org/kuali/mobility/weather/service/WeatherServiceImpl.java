@@ -1,5 +1,5 @@
 /**
- * Copyright 2011 The Kuali Foundation Licensed under the
+ * Copyright 2011-2012 The Kuali Foundation Licensed under the
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
@@ -17,6 +17,7 @@ package org.kuali.mobility.weather.service;
 
 import org.kuali.mobility.weather.dao.WeatherDao;
 import org.kuali.mobility.weather.entity.Weather;
+import org.kuali.mobility.weather.service.WeatherService;
 
 public class WeatherServiceImpl implements WeatherService {
 	
@@ -34,7 +35,7 @@ public class WeatherServiceImpl implements WeatherService {
 	}	
 	
 	public void refreshWeather() {
-		LOG.info("Refershing weather cache...");
+		LOG.info("Refreshing weather cache...");
 		Weather cache = weatherDao.parseWeather();
 		setWeatherData(cache);
 		LOG.info("Finished refreshing weather cache.");
