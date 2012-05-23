@@ -340,6 +340,11 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
+                <artifactId>dining-config</artifactId>
+                <version>${tool.dining.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
                 <artifactId>dining-impl</artifactId>
                 <version>${tool.dining.version}</version>
             </dependency>
@@ -350,7 +355,7 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>dining-webapp</artifactId>
+                <artifactId>dining-ui</artifactId>
                 <version>${tool.dining.version}</version>
             </dependency>
             <!-- Emergency Information Service -->

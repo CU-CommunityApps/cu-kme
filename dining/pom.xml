@@ -30,15 +30,22 @@
             </activation>
             <modules>
                 <module>api</module>
+                <module>config</module>
                 <module>impl</module>
                 <module>web</module>
-                <module>webapp</module>
+                <module>ui</module>
             </modules>
         </profile>
         <profile>
             <id>api</id>
             <modules>
                 <module>api</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>config</id>
+            <modules>
+                <module>config</module>
             </modules>
         </profile>
         <profile>
@@ -54,9 +61,9 @@
             </modules>
         </profile>
         <profile>
-            <id>webapp</id>
+            <id>ui</id>
             <modules>
-                <module>webapp</module>
+                <module>ui</module>
             </modules>
         </profile>
     </profiles>
