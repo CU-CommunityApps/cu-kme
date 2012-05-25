@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  Copyright 2011 The Kuali Foundation Licensed under the Educational Community
+  Copyright 2011-2012 The Kuali Foundation Licensed under the Educational Community
   License, Version 2.0 (the "License"); you may not use this file except in
   compliance with the License. You may obtain a copy of the License at
   http://www.osedu.org/licenses/ECL-2.0 Unless required by applicable law or
@@ -31,7 +31,8 @@
 				<module>api</module>
 				<module>impl</module>
 				<module>web</module>
-                <module>webapp</module>
+                <module>ui</module>
+                <module>config</module>
 			</modules>
 		</profile>
         <profile>
@@ -53,9 +54,15 @@
             </modules>
         </profile>
         <profile>
-            <id>webapp</id>
+            <id>ui</id>
             <modules>
-                <module>webapp</module>
+                <module>ui</module>
+            </modules>
+        </profile>
+                <profile>
+            <id>config</id>
+            <modules>
+                <module>config</module>
             </modules>
         </profile>
 	</profiles>	

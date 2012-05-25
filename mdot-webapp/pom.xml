@@ -363,7 +363,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>emergencyinfo-webapp</artifactId>
+			<artifactId>emergencyinfo-ui</artifactId>
 			<version>${tool.emergencyinfo.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
@@ -525,7 +525,7 @@
 						<scanTarget>../conference/api/target/classes;../conference/impl/target/classes;../conference/web/target/classes;../conference/webapp/target/classes</scanTarget>
 						<scanTarget>../configparams/api/target/classes;../configparams/impl/target/classes;../configparams/web/target/classes;../configparams/webapp/target/classes</scanTarget>
 						<scanTarget>../dining/api/target/classes;../dining/impl/target/classes;../dining/web/target/classes;../dining/webapp/target/classes</scanTarget>
-						<scanTarget>../emergencyinfo/api/target/classes;../emergencyinfo/impl/target/classes;../emergencyinfo/web/target/classes;../emergencyinfo/webapp/target/classes</scanTarget>
+						<scanTarget>../emergencyinfo/api/target/classes;../emergencyinfo/impl/target/classes;../emergencyinfo/web/target/classes;../emergencyinfo/ui/target/classes</scanTarget>
 						<scanTarget>../feedback/api/target/classes;../feedback/impl/target/classes;../feedback/web/target/classes;../feedback/webapp/target/classes</scanTarget>
 						<scanTarget>../maps/api/target/classes;../maps/impl/target/classes;../maps/web/target/classes;../maps/webapp/target/classes</scanTarget>
 						<scanTarget>../news/api/target/classes;../news/impl/target/classes;../news/web/target/classes;../news/ui/target/classes</scanTarget>

@@ -376,7 +376,12 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>emergencyinfo-webapp</artifactId>
+                <artifactId>emergencyinfo-ui</artifactId>
+                <version>${tool.emergencyinfo.version}</version>
+            </dependency>
+			<dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>emergencyinfo-config</artifactId>
                 <version>${tool.emergencyinfo.version}</version>
             </dependency>
             <!-- Events Service -->
