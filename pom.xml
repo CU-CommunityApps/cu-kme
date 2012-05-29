@@ -229,7 +229,12 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>alerts-webapp</artifactId>
+                <artifactId>alerts-ui</artifactId>
+                <version>${tool.alerts.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>alerts-config</artifactId>
                 <version>${tool.alerts.version}</version>
             </dependency>
 			<!-- Reporting Service -->

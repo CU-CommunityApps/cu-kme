@@ -377,7 +377,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>alerts-webapp</artifactId>
+			<artifactId>alerts-ui</artifactId>
 			<version>${tool.alerts.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
@@ -513,14 +513,14 @@
 				    <scanIntervalSeconds>5</scanIntervalSeconds>
 				    <webAppConfig>
 						<contextPath>/mdot</contextPath>
-		              	<extraClasspath>target/classes;../admin/webapp/target/classes;../alerts/webapp/target/classes;../computerlabs/webapp/target/classes;../conference/webapp/target/classes;../dining/webapp/target/classes;../emergencyinfo/webapp/target/classes;../feedback/webapp/target/classes;../maps/webapp/target/classes;../news/webapp/target/classes;../shared/webapp/target/classes;../weather/ui/target/classes</extraClasspath>
+		              	<extraClasspath>target/classes;../admin/webapp/target/classes;../alerts/ui/target/classes;../computerlabs/webapp/target/classes;../conference/webapp/target/classes;../dining/webapp/target/classes;../emergencyinfo/ui/target/classes;../feedback/webapp/target/classes;../maps/webapp/target/classes;../news/webapp/target/classes;../shared/webapp/target/classes;../weather/ui/target/classes</extraClasspath>
 						<!-- <baseResource implementation="org.mortbay.resource.ResourceCollection"> 
 							<resourcesAsCSV>src/main/webapp,../admin/webapp/src/main/webapp,../alerts/webapp/src/main/webapp,../computerlabs/webapp/src/main/webapp,../conference/webapp/src/main/webapp,../dining/webapp/src/main/webapp,../emergencyinfo/webapp/src/main/webapp,../feedback/webapp/src/main/webapp,../maps/webapp/src/main/webapp,../news/webapp/src/main/webapp,../shared/webapp/src/main/webapp</resourcesAsCSV> 
 							</baseResource> -->
 					</webAppConfig>
 					<scanTargets>
 						<scanTarget>../admin/api/target/classes;../admin/impl/target/classes;../admin/web/target/classes;../admin/webapp/target/classes</scanTarget>
-						<scanTarget>../alerts/api/target/classes;../alerts/impl/target/classes;../alerts/web/target/classes;../alerts/webapp/target/classes</scanTarget>
+						<scanTarget>../alerts/api/target/classes;../alerts/impl/target/classes;../alerts/web/target/classes;../alerts/ui/target/classes</scanTarget>
 						<scanTarget>../computerlabs/api/target/classes;../computerlabs/impl/target/classes;../computerlabs/web/target/classes;../computerlabs/webapp/target/classes</scanTarget>
 						<scanTarget>../conference/api/target/classes;../conference/impl/target/classes;../conference/web/target/classes;../conference/webapp/target/classes</scanTarget>
 						<scanTarget>../configparams/api/target/classes;../configparams/impl/target/classes;../configparams/web/target/classes;../configparams/webapp/target/classes</scanTarget>
