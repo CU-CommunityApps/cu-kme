@@ -207,18 +207,7 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>feedback-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>emergencyinfo-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>emergencyinfo-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>emergencyinfo-web</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>computerlabs-api</artifactId>
@@ -231,18 +220,7 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>computerlabs-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>alerts-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>alerts-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>alerts-web</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>configparams-api</artifactId>
