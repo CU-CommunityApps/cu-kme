@@ -9,8 +9,8 @@
   express or implied. See the License for the specific language governing
   permissions and limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>Computer Labs</name>
@@ -29,15 +29,22 @@
             </activation>
             <modules>
                 <module>api</module>
+                <module>config</module>
                 <module>impl</module>
                 <module>web</module>
-                <module>webapp</module>
+                <module>ui</module>
             </modules>
         </profile>
         <profile>
             <id>api</id>
             <modules>
                 <module>api</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>config</id>
+            <modules>
+                <module>config</module>
             </modules>
         </profile>
         <profile>
@@ -53,9 +60,9 @@
             </modules>
         </profile>
         <profile>
-            <id>webapp</id>
+            <id>ui</id>
             <modules>
-                <module>webapp</module>
+                <module>ui</module>
             </modules>
         </profile>
     </profiles>
@@ -73,10 +80,10 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                </plugin>                
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>                    
+                    <artifactId>maven-surefire-plugin</artifactId>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
