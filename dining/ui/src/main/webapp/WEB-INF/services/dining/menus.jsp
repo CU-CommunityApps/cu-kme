@@ -77,4 +77,17 @@
 		</kme:listView>
 		
 	</kme:content>
+	
+	<div id="legend">
+    	<span class="closeLegend">Close</span>
+    	<ul id="legendItems">
+    		<li><span class="nutrition-featured">Featured</span></li>
+			<li><span class="nutrition-glutenfree">Gluten-free</span></li>
+			<li><span class="nutrition-halal">Halal</span></li>
+			<li><span class="nutrition-mhealthy">MHealthy</span></li>	
+			<li><span class="nutrition-vegan">Vegan</span></li>
+			<li><span class="nutrition-vegetarian">Vegetarian</span></li>
+		</ul>
+	</div>
+	
 </kme:page>	

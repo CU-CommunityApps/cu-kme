@@ -1,5 +1,5 @@
 /*
-  Copyright 2011 The Kuali Foundation Licensed under the Educational Community
+  Copyright 2011-2012 The Kuali Foundation Licensed under the Educational Community
   License, Version 2.0 (the "License"); you may not use this file except in
   compliance with the License. You may obtain a copy of the License at
   http://www.osedu.org/licenses/ECL-2.0 Unless required by applicable law or
@@ -77,4 +77,72 @@ div.nutritionIcons {
     right: 10px;
     top: 10px;
     white-space: nowrap;
+}
+
+div#legend {
+    /* Hard-code size of popup legend
+    width:250px;
+    height:150px;*/
+    background-color:black;
+    background-color:rgba(0,0,0,0.75);
+    border:2px solid #666;
+    border-radius:20px 20px 20px 20px;
+    position:absolute;
+    left:50%;
+    margin-left:-80px;
+    top:-500px;
+    z-index:100;
+    padding:15px 25px 15px 15px;
+    color:white;
+    text-shadow:none;
+}
+
+div#legend span.legendIcon {
+    float:left;
+    clear:left;
+    margin-right:10px;
+}
+
+div#legend span.closeLegend {
+    background:url("images/icons-18-white.png") no-repeat scroll 0 0 #666666;
+    background-position:-72px 50%;
+    border:3px solid white;
+    border-radius:15px 15px 15px 15px;
+    display:block;
+    height:18px;
+    text-indent:-9999px;
+    width:18px;
+    position:absolute;
+    top:5px;
+    right:5px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+	
+	div#legend span.closeLegend {
+	    background-image:url("images/icons-36-white.png");
+	    background-size:776px 18px;
+	}
+}
+
+ul#legendItems {
+	padding:0;
+	margin:0;
+}
+
+ul#legendItems li {
+	list-style:none;
+	height:35px;
+}
+
+ul#legendItems li span {
+	background-repeat:no-repeat;
+	padding: 7px 5px 10px 35px;
+	display: block;
+	-moz-background-size: 30px 30px;
+	-o-background-size: 30px 30px;
+	-webkit-background-size: 30px 30px;
+	background-size: 30px 30px;
 }
