@@ -20,7 +20,8 @@ public class MapsFormSearchResult {
 	private String code;
 	private Double latitude;
 	private Double longitude;
-
+	private String info;
+	
 	public Double getLatitude() {
 		return latitude;
 	}
@@ -51,6 +52,14 @@ public class MapsFormSearchResult {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
 }

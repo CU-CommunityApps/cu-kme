@@ -142,9 +142,10 @@ function mapSearchPostProcess() {
 		var latitude = $(this).attr("kmelatitude");
 		var longitude = $(this).attr("kmelongitude");
 		var name = $(this).attr("kmename");
+		var info = $(this).attr("kmeinfo");
     	$('#searchText').val(name);
 		deleteOverlays(markersArray);
-		showLocationByCoordinates(map, markersArray, latitude, longitude);		
+		showLocationByCoordinates(map, markersArray, latitude, longitude, info);		
 		//alert("Test");
     });
 }

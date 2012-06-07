@@ -32,6 +32,8 @@ public class Location implements Serializable {
 	
 	private String description;
 	
+	private String streetNumber;
+	private String streetDirection;
 	private String street;
 	
 	private String city;
@@ -93,6 +95,22 @@ public class Location implements Serializable {
 
 	public void setStreet(String street) {
 		this.street = street;
+	}
+	
+	public String getStreetNumber() {
+		return streetNumber;
+	}
+
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+
+	public String getStreetDirection() {
+		return streetDirection;
+	}
+
+	public void setStreetDirection(String streetDirection) {
+		this.streetDirection = streetDirection;
 	}
 
 	public String getZip() {

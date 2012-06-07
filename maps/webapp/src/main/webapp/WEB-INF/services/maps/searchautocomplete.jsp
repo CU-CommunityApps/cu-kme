@@ -16,7 +16,7 @@
 <kme:listView id="mapsearchresults" dataTheme="c" dataInset="true" dataDividerTheme="b" filter="false">
 	<c:forEach items="${container.results}" var="item" varStatus="status">
 	<kme:listItem>
-	<a href="#" kmetype="quicksearch" kmecode="${item.code}" kmelatitude="${item.latitude}" kmelongitude="${item.longitude}" kmename="${item.name}"><p class="wrap">${item.name}</p></a>
+	<a href="#" kmetype="quicksearch" kmecode="${item.code}" kmelatitude="${item.latitude}" kmelongitude="${item.longitude}" kmename="${item.name}" kmeinfo="${item.info}"><p class="wrap">${item.name}</p></a>
 	</kme:listItem>
 	</c:forEach>
 </kme:listView>

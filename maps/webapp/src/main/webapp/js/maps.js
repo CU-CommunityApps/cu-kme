@@ -134,7 +134,7 @@ function TrackerControl(map, div) {
  * Marker handling
  */
 
-function addMarker(map, array, location, icon) {
+function addMarker(map, array, location, icon, info) {
 	if (icon) {
 		var myOptions = {
 			position: location,
@@ -149,6 +149,18 @@ function addMarker(map, array, location, icon) {
 		};
 	}
 	marker = new google.maps.Marker(myOptions);
+	
+	if (info) {
+		var cont = '<div class="iw">' + info + '</div>'
+		var infowindow = new google.maps.InfoWindow({
+			content: cont
+			});
+		
+		google.maps.event.addListener(marker, "click", function() {
+			infowindow.open(map,marker);
+		});
+	}
+	
 	array.push(marker);
 	return marker;
 }
@@ -181,13 +193,19 @@ function deleteOverlays(array) {
 	}
 }
 
-function showLocationByCoordinates(map, markersArray, latitude, longitude) {
+function showLocationByCoordinates(map, markersArray, latitude, longitude, info) {
 	if (map) {
 		google.maps.event.trigger(map, 'resize');
 		var location = new google.maps.LatLng(latitude, longitude);
 		map.setZoom(17);
 		map.setCenter(location);
-		addMarker(map, markersArray, location);
+		if (info) {
+			addMarker(map, markersArray, location, null,info);
+		}
+		else {
+			addMarker(map, markersArray, location);
+		}
+		
 		google.maps.event.trigger(map, 'resize');
 	}
 }

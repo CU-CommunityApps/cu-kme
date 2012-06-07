@@ -43,9 +43,6 @@ div.overlay {
 	top:80px;
 	z-index: 99;
 }
-div.map {
-
-}
 div.gpsIconOff, div.gpsIconOn {
 	margin:0;
 	padding:0;
@@ -58,7 +55,6 @@ div.gpsIconOff, div.gpsIconOn {
 	right:20px;
 	bottom:20px;
 }
-
 div.gpsIconOff {
 	background-image:url('images/button-compassOff-37.png');
 }
@@ -80,3 +76,7 @@ div.gpsIconOn {
                 -webkit-background-size: 37px 37px;
            }
         }
+        
+div#resultdata {
+	display:block;
+}
