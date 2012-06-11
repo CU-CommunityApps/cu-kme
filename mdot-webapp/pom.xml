@@ -26,17 +26,17 @@
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 		</dependency>
-<!-- Support for External Persisting Derby -->
+		<!-- Support for External Persisting Derby -->
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbyclient</artifactId>
 			<version>10.8.1.2</version>
 		</dependency>
-<dependency>
-	<groupId>com.h2database</groupId>
-	<artifactId>h2</artifactId>
-</dependency>
-<!-- Webapp dependencies -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<!-- Webapp dependencies -->
    		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -385,6 +385,13 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>weather-ui</artifactId>
 			<version>${tool.weather.version}</version>
+			<type>war</type>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>tours-ui</artifactId>
+			<version>${tool.tours.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>

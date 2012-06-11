@@ -34,6 +34,12 @@
     <class>org.kuali.mobility.reporting.entity.Submission</class>
     <class>org.kuali.mobility.reporting.entity.SubmissionAttribute</class>
     <class>org.kuali.mobility.file.entity.File</class>
+    <class>org.kuali.mobility.tours.entity.Tour</class> 
+    <class>org.kuali.mobility.tours.entity.POI</class> 
+    <class>org.kuali.mobility.tours.entity.TourPermission</class> 
+    <class>org.kuali.mobility.tours.entity.POIPermission</class>
+    <class>org.kuali.mobility.tours.entity.POIPhoneNumber</class>
+    <class>org.kuali.mobility.tours.entity.POIEmailAddress</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
   </persistence-unit>
 

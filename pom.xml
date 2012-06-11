@@ -58,6 +58,7 @@
         <tool.maps.version>2.0.0-SNAPSHOT</tool.maps.version>
         <tool.news.version>2.0.0-SNAPSHOT</tool.news.version>
         <tool.people.version>2.0.0-SNAPSHOT</tool.people.version>
+        <tool.tours.version>2.0.0-SNAPSHOT</tool.tours.version>
         <tool.weather.version>2.0.0-SNAPSHOT</tool.weather.version>
 		<tool.reporting.version>2.0.0-SNAPSHOT</tool.reporting.version>
 		<tool.database.version>2.0.0-SNAPSHOT</tool.database.version>
@@ -94,6 +95,7 @@
 				<!-- <module>push</module> -->
 				<module>reporting</module>
 				<module>database</module>
+				<module>tours</module>
                 <module>mdot-webapp</module>
             </modules>
         </profile>
@@ -257,6 +259,32 @@
 				<groupId>org.kuali.mobility</groupId>
 				<artifactId>reporting-webapp</artifactId>
 				<version>${tool.reporting.version}</version>
+			</dependency>
+			<!-- Tours Service -->
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>tours-api</artifactId>
+				<version>${tool.tours.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>tours-impl</artifactId>
+				<version>${tool.tours.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>tours-web</artifactId>
+				<version>${tool.tours.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>tours-ui</artifactId>
+				<version>${tool.tours.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>tours-config</artifactId>
+				<version>${tool.tours.version}</version>
 			</dependency>
             <!-- Bus Service -->
             <dependency>
