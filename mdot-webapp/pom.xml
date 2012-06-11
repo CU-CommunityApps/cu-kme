@@ -260,7 +260,7 @@
         </dependency>
         <dependency>
             <groupId>org.kuali.mobility</groupId>
-            <artifactId>reporting-webapp</artifactId>
+            <artifactId>reporting-ui</artifactId>
 			<version>${tool.reporting.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
