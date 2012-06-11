@@ -356,7 +356,12 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>conference-webapp</artifactId>
+                <artifactId>conference-ui</artifactId>
+                <version>${tool.conference.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>conference-config</artifactId>
                 <version>${tool.conference.version}</version>
             </dependency>
             <!-- Configuration Parameters Service -->
