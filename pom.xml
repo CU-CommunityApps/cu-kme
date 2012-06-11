@@ -294,6 +294,11 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
+                <artifactId>bus-config</artifactId>
+                <version>${tool.bus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
                 <artifactId>bus-impl</artifactId>
                 <version>${tool.bus.version}</version>
             </dependency>
@@ -304,7 +309,7 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>bus-webapp</artifactId>
+                <artifactId>bus-ui</artifactId>
                 <version>${tool.bus.version}</version>
             </dependency>
             <!-- Computer Labs Service -->
@@ -430,6 +435,11 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
+                <artifactId>events-config</artifactId>
+                <version>${tool.events.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
                 <artifactId>events-impl</artifactId>
                 <version>${tool.events.version}</version>
             </dependency>
@@ -440,7 +450,7 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>events-webapp</artifactId>
+                <artifactId>events-ui</artifactId>
                 <version>${tool.events.version}</version>
             </dependency>
             <!-- Feedback Service -->

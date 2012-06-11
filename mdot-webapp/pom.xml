@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
-<!-- 
-    Copyright 2011-2012 The Kuali Foundation Licensed under the Educational Community 
-	License, Version 2.0 (the "License"); you may not use this file except in 
-	compliance with the License. You may obtain a copy of the License at 
-    http://www.osedu.org/licenses/ECL-2.0 Unless required by applicable law or 
-    agreed to in writing, software distributed under the License is distributed 
-    on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
-    express or implied. See the License for the specific language governing 
-    permissions and limitations under the License. 
+<!--
+    Copyright 2011-2012 The Kuali Foundation Licensed under the Educational Community
+	License, Version 2.0 (the "License"); you may not use this file except in
+	compliance with the License. You may obtain a copy of the License at
+    http://www.osedu.org/licenses/ECL-2.0 Unless required by applicable law or
+    agreed to in writing, software distributed under the License is distributed
+    on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+    express or implied. See the License for the specific language governing
+    permissions and limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -159,18 +159,6 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>admin-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>bus-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>bus-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>bus-web</artifactId>
-        </dependency> 
         <dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>reporting-api</artifactId>
@@ -233,18 +221,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>events-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>events-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>events-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
 			<artifactId>people-api</artifactId>
 		</dependency>
 		<dependency>
@@ -299,7 +275,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>bus-webapp</artifactId>
+			<artifactId>bus-ui</artifactId>
 			<version>${tool.bus.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
@@ -362,12 +338,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>events-webapp</artifactId>
+			<artifactId>events-ui</artifactId>
 			<version>${tool.events.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
-        <dependency> 
+        <dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>reporting-webapp</artifactId>
 			<version>${tool.reporting.version}</version>
@@ -404,14 +380,14 @@
             <scope>runtime</scope>
         </dependency>
 -->
-		<dependency> 
+		<dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>database-webapp</artifactId>
 			<version>${tool.database.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
-		
+
 		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -486,8 +462,8 @@
 				    <webAppConfig>
 						<contextPath>/mdot</contextPath>
                         <extraClasspath>target/classes;../admin/webapp/target/classes;../alerts/ui/target/classes;../computerlabs/webapp/target/classes;../conference/webapp/target/classes;../dining/webapp/target/classes;../emergencyinfo/ui/target/classes;../feedback/webapp/target/classes;../maps/webapp/target/classes;../news/webapp/target/classes;../shared/webapp/target/classes;../weather/ui/target/classes</extraClasspath>
-						<!-- <baseResource implementation="org.mortbay.resource.ResourceCollection"> 
-							<resourcesAsCSV>src/main/webapp,../admin/webapp/src/main/webapp,../alerts/webapp/src/main/webapp,../computerlabs/webapp/src/main/webapp,../conference/webapp/src/main/webapp,../dining/webapp/src/main/webapp,../emergencyinfo/webapp/src/main/webapp,../feedback/webapp/src/main/webapp,../maps/webapp/src/main/webapp,../news/webapp/src/main/webapp,../shared/webapp/src/main/webapp</resourcesAsCSV> 
+						<!-- <baseResource implementation="org.mortbay.resource.ResourceCollection">
+							<resourcesAsCSV>src/main/webapp,../admin/webapp/src/main/webapp,../alerts/webapp/src/main/webapp,../computerlabs/webapp/src/main/webapp,../conference/webapp/src/main/webapp,../dining/webapp/src/main/webapp,../emergencyinfo/webapp/src/main/webapp,../feedback/webapp/src/main/webapp,../maps/webapp/src/main/webapp,../news/webapp/src/main/webapp,../shared/webapp/src/main/webapp</resourcesAsCSV>
 							</baseResource> -->
 					</webAppConfig>
 					<scanTargets>
