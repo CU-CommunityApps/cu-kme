@@ -471,7 +471,12 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>feedback-webapp</artifactId>
+                <artifactId>feedback-ui</artifactId>
+                <version>${tool.feedback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>feedback-config</artifactId>
                 <version>${tool.feedback.version}</version>
             </dependency>
             <!-- Maps Service -->

@@ -185,18 +185,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>feedback-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>feedback-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>feedback-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
 			<artifactId>configparams-api</artifactId>
 		</dependency>
 		<dependency>
@@ -296,7 +284,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>feedback-webapp</artifactId>
+			<artifactId>feedback-ui</artifactId>
 			<version>${tool.feedback.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
