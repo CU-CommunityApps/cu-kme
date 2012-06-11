@@ -197,18 +197,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>maps-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>maps-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>maps-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
 			<artifactId>people-api</artifactId>
 		</dependency>
 		<dependency>
@@ -319,7 +307,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>maps-webapp</artifactId>
+			<artifactId>maps-ui</artifactId>
 			<version>${tool.maps.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>

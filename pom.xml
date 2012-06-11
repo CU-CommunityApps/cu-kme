@@ -497,7 +497,12 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>maps-webapp</artifactId>
+                <artifactId>maps-ui</artifactId>
+                <version>${tool.maps.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
+                <artifactId>maps-config</artifactId>
                 <version>${tool.maps.version}</version>
             </dependency>
             <!-- News Service -->
