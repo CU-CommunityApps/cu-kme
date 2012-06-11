@@ -149,30 +149,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>admin-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>admin-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>admin-web</artifactId>
-		</dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>reporting-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>reporting-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>reporting-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
 			<artifactId>configparams-api</artifactId>
 		</dependency>
 		<dependency>
@@ -207,7 +183,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>admin-webapp</artifactId>
+			<artifactId>admin-ui</artifactId>
 			<version>${tool.admin.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>

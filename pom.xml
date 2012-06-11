@@ -200,6 +200,11 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
+                <artifactId>admin-config</artifactId>
+                <version>${tool.admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
                 <artifactId>admin-impl</artifactId>
                 <version>${tool.admin.version}</version>
             </dependency>
@@ -210,7 +215,7 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
-                <artifactId>admin-webapp</artifactId>
+                <artifactId>admin-ui</artifactId>
                 <version>${tool.admin.version}</version>
             </dependency>
             <!-- Alerts Service -->
