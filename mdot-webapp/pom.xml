@@ -195,18 +195,6 @@
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>configparams-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>people-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>people-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.mobility</groupId>
-			<artifactId>people-web</artifactId>
-		</dependency>
         <!-- Database Dependencies -->
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
@@ -328,7 +316,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
-			<artifactId>people-webapp</artifactId>
+			<artifactId>people-ui</artifactId>
 			<version>${tool.people.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>

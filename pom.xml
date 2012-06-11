@@ -539,6 +539,11 @@
             </dependency>
             <dependency>
                 <groupId>org.kuali.mobility</groupId>
+                <artifactId>people-config</artifactId>
+                <version>${tool.people.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kuali.mobility</groupId>
                 <artifactId>people-impl</artifactId>
                 <version>${tool.people.version}</version>
             </dependency>
