@@ -596,6 +596,11 @@
 			</dependency>
 			<dependency>
 				<groupId>org.kuali.mobility</groupId>
+				<artifactId>database-config</artifactId>
+				<version>${tool.database.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
 				<artifactId>database-impl</artifactId>
 				<version>${tool.database.version}</version>
 			</dependency>
@@ -606,7 +611,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.kuali.mobility</groupId>
-				<artifactId>database-webapp</artifactId>
+				<artifactId>database-ui</artifactId>
 				<version>${tool.database.version}</version>
 			</dependency>
             <!-- Spring dependencies -->

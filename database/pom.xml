@@ -8,9 +8,10 @@
   on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
   express or implied. See the License for the specific language governing
   permissions and limitations under the License.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>database Base</name>
+    <name>Database</name>
     <artifactId>database</artifactId>
     <groupId>org.kuali.mobility</groupId>
     <packaging>pom</packaging>
@@ -29,15 +30,22 @@
             </activation>
             <modules>
                 <module>api</module>
+                <module>config</module>
                 <module>impl</module>
                 <module>web</module>
-                <module>webapp</module>
+                <module>ui</module>
             </modules>
         </profile>
         <profile>
             <id>api</id>
             <modules>
                 <module>api</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>config</id>
+            <modules>
+                <module>config</module>
             </modules>
         </profile>
         <profile>
@@ -53,9 +61,9 @@
             </modules>
         </profile>
         <profile>
-            <id>webapp</id>
+            <id>ui</id>
             <modules>
-                <module>webapp</module>
+                <module>ui</module>
             </modules>
         </profile>
     </profiles>
@@ -90,10 +98,4 @@
             </plugins>
         </pluginManagement>
     </build>
-  <modules>
-    <module>api</module>
-    <module>impl</module>
-    <module>web</module>
-    <module>webapp</module>
-  </modules>
 </project>
