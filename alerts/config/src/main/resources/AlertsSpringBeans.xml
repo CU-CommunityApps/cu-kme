@@ -24,42 +24,42 @@
 			<map>
 				<entry key="BL">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 				<entry key="CO">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 				<entry key="KO">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 				<entry key="NW">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 				<entry key="SB">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 				<entry key="SE">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 				<entry key="IN">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 				<entry key="EA">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/alerts.xml</value>
+						<value>${alerts.url}</value>
 					</list>
 				</entry>
 			</map>

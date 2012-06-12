@@ -22,32 +22,32 @@
 			<map>
 				<entry key="BL">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
+						<value>${computerlabs.url}</value>
 					</list>
 				</entry>
 				<entry key="CO">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
+						<value>${computerlabs.url}</value>
 					</list>
 				</entry>
 				<entry key="SB">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
+						<value>${computerlabs.url}</value>
 					</list>
 				</entry>
 				<entry key="SE">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
+						<value>${computerlabs.url}</value>
 					</list>
 				</entry>
 				<entry key="IN">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
+						<value>${computerlabs.url}</value>
 					</list>
 				</entry>
 				<entry key="EA">
 					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
+						<value>${computerlabs.url}</value>
 					</list>
 				</entry>
 			</map>
