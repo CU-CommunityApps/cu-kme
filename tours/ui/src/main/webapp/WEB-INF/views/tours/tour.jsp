@@ -14,7 +14,7 @@
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<kme:page title="${tour.name}" id="tours" backButton="true" homeButton="true" cssFilename="tours" ogDescription="${tour.description}" ogUrl="${pageUrl}" fbAdmins="100002388485159">
+<kme:page title="${tour.name}" id="tours" backButton="true" homeButton="true" cssFilename="tours"> <%--ogDescription="${tour.description}" ogUrl="${pageUrl}" fbAdmins="100002388485159"--%>
     <kme:content>
     	<div id="fb-root"></div>
 		<script>(function(d, s, id) {
