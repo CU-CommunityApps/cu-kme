@@ -29,8 +29,8 @@
     
     <bean id="newsDao" class="org.kuali.mobility.news.dao.NewsDaoImpl">
         <property name="mapper" ref="mapper"/>
-        <property name="newsSourceFile" value="newsSources.xml"/>
-        <property name="newsMappingFile" value="newsSourcesMapping.xml"/>
+        <property name="newsSourceFile" value="${news.source.file}"/>
+        <property name="newsMappingFile" value="${news.mapping.file}"/>
         <property name="cache" ref="newsCache"/>
     </bean>
     

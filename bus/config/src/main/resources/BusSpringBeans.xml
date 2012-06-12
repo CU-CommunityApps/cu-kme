@@ -32,8 +32,8 @@ permissions and limitations under the License.
     <bean id="busStop" class="org.kuali.mobility.bus.entity.BusStopImpl" scope="prototype"/>
     
     <bean id="busDao" class="org.kuali.mobility.bus.dao.BusDaoUMImpl">
-        <property name="busRouteUrl" value="http://mbus.pts.umich.edu/shared/public_feed.xml"/>
-        <property name="busLocationUrl" value="http://mbus.pts.umich.edu/shared/location_feed.xml"/>
+        <property name="busRouteUrl" value="${bus.route.url}"/>
+        <property name="busLocationUrl" value="${bus.location.url}"/>
     </bean>
     
     <bean id="busService" class="org.kuali.mobility.bus.service.BusServiceImpl">

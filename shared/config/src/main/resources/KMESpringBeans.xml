@@ -21,41 +21,40 @@
 		<property name="locations">
 	    	<list>
 	        	<value>classpath:kme.config.properties</value>
-	        	<value>classpath:conference.properties</value>
 	        	<value>file:${user.home}/institutional.kme.config.properties</value>
 	    	</list>
 	    </property>
 	</bean>
 	
 	<bean id="useBootstrappingFlag" class="org.kuali.mobility.shared.Wrapper">
-		<property name="value" value="${core.use.bootstrapping}" />
+		<property name="value" value="${shared.core.use.bootstrapping}" />
 	</bean>
 		
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
-		<property name="driverClassName" value="${datasource.driver.name}" />
-		<property name="url" value="${datasource.url}" />
-		<property name="maxActive" value="${datasource.pool.maxActive}" />
-		<property name="minIdle" value="${datasource.pool.minIdle}" />
-		<property name="initialSize" value="${datasource.pool.initialSize}" />
-		<property name="validationQuery" value="${datasource.pool.validationQuery}" />
-		<property name="username" value="${datasource.username}" />
-		<property name="password" value="${datasource.password}" />
-		<property name="accessToUnderlyingConnectionAllowed" value="${datasource.accessToUnderlyingConnectionAllowed}" />
+		<property name="driverClassName" value="${shared.datasource.driver.name}" />
+		<property name="url" value="${shared.datasource.url}" />
+		<property name="maxActive" value="${shared.datasource.pool.maxActive}" />
+		<property name="minIdle" value="${shared.datasource.pool.minIdle}" />
+		<property name="initialSize" value="${shared.datasource.pool.initialSize}" />
+		<property name="validationQuery" value="${shared.datasource.pool.validationQuery}" />
+		<property name="username" value="${shared.datasource.username}" />
+		<property name="password" value="${shared.datasource.password}" />
+		<property name="accessToUnderlyingConnectionAllowed" value="${shared.datasource.accessToUnderlyingConnectionAllowed}" />
 	</bean>
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="${entitymanager.showSql}" />
-				<property name="generateDdl" value="${entitymanager.generateDdl}" />
-				<property name="database" value="${entitymanager.database}" />
-				<property name="databasePlatform" value="${entitymanager.databasePlatform}" />
+				<property name="showSql" value="${shared.entitymanager.showSql}" />
+				<property name="generateDdl" value="${shared.entitymanager.generateDdl}" />
+				<property name="database" value="${shared.entitymanager.database}" />
+				<property name="databasePlatform" value="${shared.entitymanager.databasePlatform}" />
 			</bean>
 		</property>
 		<property name="jpaPropertyMap">
 			<props>
-	            <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+	            <prop key="shared.hibernate.hbm2ddl.auto">${shared.hibernate.hbm2ddl.auto}</prop>
 	        </props>
 		</property>
 	</bean>
@@ -76,6 +75,6 @@
 	</bean>
 
 	<bean id="coreService" class="org.kuali.mobility.shared.CoreServiceImpl" >
-		<property name="googleAnalyticsProfileId" value="${google.analytics.profile.id}" />
+		<property name="googleAnalyticsProfileId" value="${shared.google.analytics.profile.id}" />
 	</bean>
 </beans>

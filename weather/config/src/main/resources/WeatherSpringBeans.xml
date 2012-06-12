@@ -18,8 +18,7 @@
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 	<bean id="weatherDao" class="org.kuali.mobility.weather.dao.WeatherDaoImpl">	
-<!-- 	    <property name="url" value="http://forecast.weather.gov/MapClick.php?lat=42.44220&amp;lon=-76.50020&amp;FcstType=dwml" />  -->
-	    <property name="url" value="http://localhost:9999/mdot/testdata/weather.xml" />
+	    <property name="url" value="${weather.url}" />
 	</bean>
 
   	<bean id="weatherService" class="org.kuali.mobility.weather.service.WeatherServiceImpl">
