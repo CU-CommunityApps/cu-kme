@@ -1,14 +1,145 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<menus>
-	<menu>
-	<date><![CDATA[01-21-2011]]></date>
-		<item>
-			<name><![CDATA[Chef's specials]]></name>
-			<price><![CDATA[1]]></price>
-		</item>
-		<item>
-			<name><![CDATA[Dollar day]]></name>
-			<price><![CDATA[1]]></price>
-		</item>
+
+<diningHalls>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=BARBOUR%20DINING%20HALL&amp;date=this_week
 		</menu>
-</menus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=BARBOUR%20DINING%20HALL&amp;date=next_week
+		</menu>
+		<name>Barbour Dining Hall</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<location>Michigan League</location>
+		<menu>http://uunions.umich.edu/beansters/league?xml=true</menu>
+		<name>Beanster's</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>North Campus</campus>
+		<location>Pierpont Commons</location>
+		<menu>http://uunions.umich.edu/beansters/pierpont?xml=true</menu>
+		<name>Beanster's</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<location>Shapiro Library</location>
+		<menu>http://uunions.umich.edu/berts/drinks?xml=true</menu>
+		<menu>http://uunions.umich.edu/berts/food?xml=true</menu>
+		<name>Bert's Cafe</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>North Campus</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=BURSLEY%20DINING%20HALL&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=BURSLEY%20DINING%20HALL&amp;date=next_week
+		</menu>
+		<name>Bursley Dining Hall</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>North Campus</campus>
+		<location>Pierpont Commons</location>
+		<menu>http://uunions.umich.edu/commonscafe/todaysmenu?xml=true</menu>
+		<menu>http://uunions.umich.edu/commonscafe/dailyspecials?xml=true
+		</menu>
+		<menu>http://uunions.umich.edu/commonscafe/grill?xml=true</menu>
+		<name>Commons Cafe</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=EAST%20QUAD%20DINING%20HALL&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=EAST%20QUAD%20DINING%20HALL&amp;date=next_week
+		</menu>
+		<name>East Quad Dining Hall</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>Hill Neighborhood</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=MARKETPLACE&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=MARKETPLACE&amp;date=next_week
+		</menu>
+		<name>Marketplace at HDC</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>Hill Neighborhood</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=MARKLEY%20DINING%20HALL&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=MARKLEY%20DINING%20HALL&amp;date=next_week
+		</menu>
+		<name>Mary Markley</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=North%20Quad%20Dining%20Hall&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=North%20Quad%20Dining%20Hall&amp;date=next_week
+		</menu>
+		<name>North Quad Dining Hall</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>Hill Neighborhood</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=Twigs%20at%20Oxford&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=Twigs%20at%20Oxford&amp;date=next_week
+		</menu>
+		<name>Twigs at Oxford</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=SOUTH%20QUAD%20DINING%20HALL&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=SOUTH%20QUAD%20DINING%20HALL&amp;date=next_week
+		</menu>
+		<name>South Quad Dining Hall</name>
+		<type>Dining Halls</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<location>Michigan Union</location>
+		<menu>http://uunions.umich.edu/uclub/lunch?xml=true</menu>
+		<menu>http://uunions.umich.edu/uclub/buffet?xml=true</menu>
+		<name>U Club</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<location>Michigan League</location>
+		<menu>http://uunions.umich.edu/ugos/league?xml=true</menu>
+		<name>U-go's</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<location>Michigan Union</location>
+		<menu>http://uunions.umich.edu/ugos/union?xml=true</menu>
+		<name>U-go's</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>North Campus</campus>
+		<location>Pierpont Commons</location>
+		<menu>http://uunions.umich.edu/ugos/pierpont?xml=true</menu>
+		<name>U-go's</name>
+		<type>University Unions Eateries</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=WEST%20QUAD%20DINING%20HALL&amp;date=this_week
+		</menu>
+		<menu>http://housing.umich.edu/files/helper_files/js/menu2xml.php?location=WEST%20QUAD%20DINING%20HALL&amp;date=next_week
+		</menu>
+		<name>West Quad Dining Hall</name>
+		<type>Dining Halls</type>
+	</diningHall>
+</diningHalls>
