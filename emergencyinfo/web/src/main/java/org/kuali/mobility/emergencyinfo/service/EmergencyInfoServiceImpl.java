@@ -15,6 +15,7 @@
 
 package org.kuali.mobility.emergencyinfo.service;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,12 +29,32 @@ import org.springframework.transaction.annotation.Transactional;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 
+import org.kuali.mobility.util.mapper.DataMapper;
+
 @Service(value="EmergencyInfoService")
 public class EmergencyInfoServiceImpl implements EmergencyInfoService {
+	
+	private String emergencyinfoSourceUrl;
+	
   
-    @Autowired
-    private EmergencyInfoDao emergencyInfoDao;
+    public String getEmergencyinfoSourceUrl() {
+		return emergencyinfoSourceUrl;
+	}
 
+	public void setEmergencyinfoSourceUrl(String emergencyinfoSourceUrl) {
+		this.emergencyinfoSourceUrl = emergencyinfoSourceUrl;
+	}
+
+	@Autowired
+    private EmergencyInfoDao emergencyInfoDao;
+    
+    
+
+	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(EmergencyInfoServiceImpl.class);
+
+    @Autowired
+	private DataMapper dataMapper;
+    
     @Transactional
     public void deleteEmergencyInfoById(Long id) {
         emergencyInfoDao.deleteEmergencyInfoById(id);
@@ -66,7 +87,31 @@ public class EmergencyInfoServiceImpl implements EmergencyInfoService {
 
     @Transactional
     public List<EmergencyInfo> findAllEmergencyInfoByCampus(String campus) {
-        return emergencyInfoDao.findAllEmergencyInfoByCampus(campus);
+        //return emergencyInfoDao.findAllEmergencyInfoByCampus(campus);
+    	
+    	List<EmergencyInfo> eis = new ArrayList<EmergencyInfo>();
+    	
+    	String dao = emergencyInfoDao.getClass().getName();
+    	
+    	if(dao.equals("org.kuali.mobility.emergencyinfo.dao.EmergencyInfoWSDaoImpl")) {
+    		
+    		try {
+				URL url = new URL(emergencyinfoSourceUrl);
+				
+				eis.addAll(dataMapper.mapData(eis,url,"emergencyinfoMapping.xml"));
+				System.out.println("cudebug size: " + eis.size());
+			} catch (Exception e) {
+				LOG.error("errors", e);
+			}
+    		
+    	} else {
+    		
+    		eis = emergencyInfoDao.findAllEmergencyInfoByCampus(campus);
+    		
+    	}
+    		
+    	return(eis);
+    	
     }
 
     public EmergencyInfo fromJsonToEntity(String json) {
@@ -79,6 +124,8 @@ public class EmergencyInfoServiceImpl implements EmergencyInfoService {
 
     public Collection<EmergencyInfo> fromJsonToCollection(String json) {
         return new JSONDeserializer<List<EmergencyInfo>>().use(null, ArrayList.class).use("values", EmergencyInfo.class).deserialize(json);
-    } 
+    }
+
+    
     
 }

@@ -58,6 +58,13 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
+			<artifactId>util.webservice.adapter</artifactId>
+		</dependency>
+		
+		
 	</dependencies>
 	<build>
 		<resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataMapping id="contact"
+	className="org.kuali.mobility.emergencyinfo.entity.EmergencyInfo" list="true"
+	rootElement="contacts">
+
+	<mapping mapTo="type" attribute="false" />
+	<mapping mapTo="title" attribute="false" />
+	<mapping mapTo="order" attribute="false" />
+	<mapping mapTo="versionnumber" attribute="false" />
+	<mapping mapTo="link" attribute="false" />
+	<mapping mapTo="campus" attribute="false" />
+</dataMapping>
+
+
