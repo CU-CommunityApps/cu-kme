@@ -265,8 +265,9 @@ public class PageTag extends SimpleTagSupport {
                 out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/childbrowser.js\"></script>");
                 out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/barcodescanner.js\"></script>");                        	
                 out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/statusbarnotification.js\"></script>"); 
-                //out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/C2DMPlugin.js\"></script>");
-                //out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/PG_C2DM_script.js\"></script>");
+                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/C2DMPlugin.js\"></script>");
+                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/PG_C2DM_script.js\"></script>");
+                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/PushHandler.js\"></script>");
             }
 
             String profileId = coreService.findGoogleAnalyticsProfileId().trim();

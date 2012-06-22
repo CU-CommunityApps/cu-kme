@@ -316,7 +316,8 @@ public class PushDaoImpl implements PushDao {
 			buf.append("&data.message").append("=").append((URLEncoder.encode(push.getMessage(), "UTF-8")));
 			buf.append("&data.title").append("=").append((URLEncoder.encode(push.getTitle(), "UTF-8")));
 			buf.append("&data.id").append("=").append((URLEncoder.encode(push.getPushId().toString(), "UTF-8")));
-
+			buf.append("&data.url").append("=").append((URLEncoder.encode(push.getUrl().toString(), "UTF-8")));
+			
 			String emer = (push.getEmergency()) ? "YES" : "NO";
 			buf.append("&data.emer").append("=").append((URLEncoder.encode(emer, "UTF-8")));
 			

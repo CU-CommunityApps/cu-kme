@@ -16,41 +16,36 @@
 package org.kuali.mobility.push.controllers;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.persistence.NoResultException;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
 
 import org.kuali.mobility.push.entity.Device;
 import org.kuali.mobility.push.entity.Push;
 import org.kuali.mobility.push.service.DeviceService;
 import org.kuali.mobility.push.service.PushService;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-//import net.sf.json.JSONArray;
-//import net.sf.json.JSONObject;
-//import net.sf.json.JSONSerializer;
-//import net.sf.json.JSONException;
-
-import flexjson.JSONSerializer;
 
 @Controller 
 @RequestMapping("/push")
@@ -114,7 +109,7 @@ public class PushController {
 	public String getUserDetails(Model uiModel, HttpServletRequest request, @PathVariable("pushId") Long pushId) {
     	Push push = new Push();
     	push = pushService.findPushById(pushId);
-    	return new JSONSerializer().serialize(push);
+    	return new JSONSerializer().toJSON(push).toString();
     }    
 
 	// Grab all Pushes and display them on a push history page. 
@@ -181,5 +176,64 @@ public class PushController {
     	
     	
     	return isValid;
+    }
+    
+    @RequestMapping(value = "/service", method = RequestMethod.GET)
+    public ResponseEntity<String> service(@RequestParam(value="data", required=true) String data) {
+       	LOG.info("Service JSON: " + data);
+    	JSONObject queryParams;
+    	List<Device> devices = new ArrayList<Device>();
+    	String title;
+    	String message;
+    	String url;
+    	String recipient;
+    	String sender;
+    	JSONArray recipients;
+    	
+    	try{
+       		queryParams = (JSONObject) JSONSerializer.toJSON(data);       		
+       		title = queryParams.getString("title");
+       		message = queryParams.getString("message");
+       		url = queryParams.getString("url");
+       		sender = queryParams.getString("sender");
+       		
+       		LOG.info(title);
+       		LOG.info(message);
+       		LOG.info(url);
+       		LOG.info(sender);
+       		
+       		if(queryParams.get("recipients").getClass().getName() == "net.sf.json.JSONArray"){
+       			recipients = queryParams.getJSONArray("recipients");
+           		LOG.info(recipients.toString());
+           		Iterator i = recipients.iterator();
+           		while(i.hasNext()){
+           			String username = i.next().toString();
+           			LOG.info(username);
+           			devices.addAll(deviceService.findDevicesByUsername(username));
+           		}       		     		
+       		}else{
+       			recipient = queryParams.getString("recipients");
+           		LOG.info(recipient);
+       		}
+    	}catch(JSONException je){
+    		LOG.error("JSONException in :" + data + " : " + je.getMessage());
+    		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+       	}    	
+
+    	Push push = new Push();
+    	push.setEmergency(false);
+    	push.setMessage(message);
+    	push.setTitle(title);
+    	push.setUrl(url);
+    	push.setSender(sender);
+    	push.setPostedTimestamp(new Timestamp(System.currentTimeMillis()));
+    	pushService.savePush(push);    	
+    	Long pushed = pushService.sendPush(push, devices);
+		push.setRecipients(pushed);
+		pushService.savePush(push);
+    	LOG.info(push.toString());
+    	
+    	
+   		return new ResponseEntity<String>(HttpStatus.OK);
     }
 }
