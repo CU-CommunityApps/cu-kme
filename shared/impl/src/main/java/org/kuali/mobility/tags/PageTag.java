@@ -56,6 +56,7 @@ public class PageTag extends SimpleTagSupport {
 	private String platform;
 	private String phonegap;
 	private String jsFilename;
+	private String jqmHeader;
 	private String mapLocale;
     private boolean loginButton;
     private String loginButtonURL;
@@ -70,6 +71,10 @@ public class PageTag extends SimpleTagSupport {
         this.id = id;
     }
 
+    public void setJqmHeader(String jqmHeader) {
+        this.jqmHeader = jqmHeader;
+    } 
+    
     public void setPlatform(String platform) {
         this.platform = platform;
     }    
@@ -198,18 +203,23 @@ public class PageTag extends SimpleTagSupport {
         // Get Cookies for Phonegapy stuff. 
         HttpServletRequest hsr = (HttpServletRequest) pageContext.getRequest();
         Cookie cks[] = hsr.getCookies();
-        for(Cookie c : cks){
-            //LOG.info("---Cookies: " + c.getName());        	
-            if(c.getName().equals("platform") && platform == null){
-            	platform = c.getValue();
-            	//LOG.info("---Platform: " + platform);
-            }
-            if(c.getName().equals("phonegap") && phonegap == null){
-            	phonegap = c.getValue();
-            	//LOG.info("---Phonegap: " + phonegap);
-            }
+        if(cks != null){
+	        for(Cookie c : cks){
+	            //LOG.info("---Cookies: " + c.getName());        	
+	            if(c.getName().equals("platform") && platform == null){
+	            	platform = c.getValue();
+	            	LOG.info("---Platform: " + platform);
+	            }
+	            if(c.getName().equals("phonegap") && phonegap == null){
+	            	phonegap = c.getValue();
+	            	LOG.info("---Phonegap: " + phonegap);
+	            }
+	            if(c.getName().equals("jqmHeader") && jqmHeader == null){
+	            	jqmHeader = c.getValue();
+	            	LOG.info("---jqmHeader: " + jqmHeader);
+	            }
+	        }
         }
-        
         
         
         ServletContext servletContext = pageContext.getServletContext();
@@ -305,7 +315,16 @@ public class PageTag extends SimpleTagSupport {
             }
             
             out.println("<div data-role=\"page\" id=\"" + id + "\">");
-            out.println("<div data-role=\"header\">");
+            
+        	LOG.info("----" + jqmHeader);
+            if(jqmHeader != null && jqmHeader.equals("hide")){
+            	LOG.info("---- Hide Header");
+            	out.println("<div data-role=\"header\" style=\"display:none\">");
+            }else{
+            	LOG.info("---- Show Header");
+            	out.println("<div data-role=\"header\">");            	
+            }
+            
             if (loginButton || getAuthMapper().getLoginURL() != null) {
             	if (user == null || user.isPublicUser()) {
                     out.println("<a href=\"" + (loginButtonURL != null ? loginButtonURL : ( getAuthMapper().getLoginURL() != null ? getAuthMapper().getLoginURL() : contextPath + "/login") ) + "\" data-role=\"button\" data-icon=\"lock\">Login</a>");

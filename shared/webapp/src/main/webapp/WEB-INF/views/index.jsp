@@ -22,10 +22,17 @@
 	<c:set var="platform" value="Android"/>
 </c:if>
 
+<c:set var="header" value="${param.header}"/>
 <c:set var="phonegap" value="${cookie.phonegap.value}"/>
 
-<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences" platform="${platform}" phonegap="${phonegap}" onBodyLoad="">
+<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences" platform="${platform}" phonegap="${phonegap}" onBodyLoad="" jqmHeader="${param.header}">
 	<kme:content>
+
+
+		<script type="text/javascript">
+			$.cookie('jqmHeader', '${param.header}', {expires: 365, path: '/'});
+			$.cookie('native', '${param.native}', {expires: 365, path: '/'});
+		</script>
 
 		<c:if test="${param.native == 'yes'}">
 			<script type="text/javascript">

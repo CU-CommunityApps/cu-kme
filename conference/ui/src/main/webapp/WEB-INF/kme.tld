@@ -24,6 +24,11 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
+            <name>mapLocale</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
             <name>homeButton</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -84,7 +89,27 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
+            <name>onBodyLoad</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>        
+        <attribute>
             <name>appcacheFilename</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>platform</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>phonegap</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>jqmHeader</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

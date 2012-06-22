@@ -84,6 +84,11 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
+            <name>jqmHeader</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
             <name>jsFilename</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
