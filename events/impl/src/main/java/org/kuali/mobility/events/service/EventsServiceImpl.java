@@ -28,6 +28,8 @@ import org.kuali.mobility.events.util.EventComparator;
 import org.kuali.mobility.events.util.EventPredicate;
 import org.springframework.stereotype.Service;
 
+import flexjson.JSONSerializer;
+
 
 @Service
 public class EventsServiceImpl implements EventsService {
@@ -65,7 +67,7 @@ public class EventsServiceImpl implements EventsService {
     @Override
     public List<Event> getAllEvents(String campus, String categoryId) {
         getDao().initData( campus, categoryId );
-        List<Event> events =  getDao().getEvents();
+        List<Event> events = (List<Event>)CollectionUtils.select( getDao().getEvents(), new EventPredicate( campus, categoryId, null ) );
         Collections.sort(events, new EventComparator());
         return events;
     }
@@ -110,13 +112,6 @@ public class EventsServiceImpl implements EventsService {
 
     
 	public String getEventJson(final String eventId) {
-		String jsonData = null;
-		if (dao instanceof EventsDaoUMImpl) {
-			jsonData = ((EventsDaoUMImpl) dao).getEventJson(eventId);
-		}
-		else {
-			LOG.error("getEventJson method is NOT supported in dao implementation");
-		}
-		return jsonData;
+		return new JSONSerializer().exclude("*.class").deepSerialize(this.getEvent(null, null, eventId));
 	}
 }

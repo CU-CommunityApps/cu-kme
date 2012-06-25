@@ -33,28 +33,12 @@ public class EventImpl implements Serializable, Event {
     private String location;
     private List<String> description;
     private String link;
-    private String contact;
+    private List<EventContact> contact;
     private String cost;
     private List<List<String>> otherInfo;
-    private String contactEmail;
     private Category category;
 
-    /* (non-Javadoc)
-	 * @see org.kuali.mobility.events.entity.Event#getContactEmail()
-	 */
-    @Override
-	public String getContactEmail() {
-        return contactEmail;
-    }
-
-    /* (non-Javadoc)
-	 * @see org.kuali.mobility.events.entity.Event#setContactEmail(java.lang.String)
-	 */
-    @Override
-	public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
-    }
-
+ 
     /* (non-Javadoc)
 	 * @see org.kuali.mobility.events.entity.Event#getOtherInfo()
 	 */
@@ -71,22 +55,7 @@ public class EventImpl implements Serializable, Event {
         this.otherInfo = otherInfo;
     }
 
-    /* (non-Javadoc)
-	 * @see org.kuali.mobility.events.entity.Event#getContact()
-	 */
-    @Override
-	public String getContact() {
-        return contact;
-    }
-
-    /* (non-Javadoc)
-	 * @see org.kuali.mobility.events.entity.Event#setContact(java.lang.String)
-	 */
-    @Override
-	public void setContact(String contact) {
-        this.contact = contact;
-    }
-
+ 
     /* (non-Javadoc)
 	 * @see org.kuali.mobility.events.entity.Event#getCost()
 	 */
@@ -338,4 +307,12 @@ public class EventImpl implements Serializable, Event {
     {
         return (41 + Integer.parseInt( getEventId().substring(5) ) );
     }
+
+	public List<EventContact> getContact() {
+		return contact;
+	}
+
+	public void setContact(List<EventContact> contact) {
+		this.contact = contact;
+	}
 }

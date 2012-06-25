@@ -22,6 +22,8 @@ import org.kuali.mobility.events.entity.Event;
 public interface EventsDao {
 	
     public List<Event> getEvents();
+    public void addEvents( List<Event> newEvents);
     public List<Category> getCategories();
+	public void initData(String campus, String category);
     
 }

@@ -1,5 +1,4 @@
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility"%>
@@ -23,21 +22,23 @@
 			});
 		</script>
 		<script id="detailTemplate" type="text/x-jquery-tmpl">
-			<li><h3 class="wrap">\${event.title}</h3>
-				<p class="wrap">\${event.dateBegin}<br />\${event.timeBegin} - \${event.timeEnd}</p></li>
+			<li><h3 class="wrap">\${title}</h3>
+				<p class="wrap">\${displayStartDate}<br />\${displayStartTime} - \${displayEndTime}</p></li>
 			<li><h3 class="wrap">Location</h3>
-				<p class="wrap">\${event.buildingName}<br />\${event.room}</p></li>
+				<p class="wrap">\${location}</p></li>
 			<li><h3 class="wrap">Description</h3>
-				<p class="wrap">\${event.description}</p></li>
+				{{each description}}
+					<p class="wrap">\${$value}</p>
+				{{/each}}</li>
 			<li><h3 class="wrap">Website</h3>
-				{{if event.url}}
-					<p class="wrap"><a href="\${event.url}">\${event.url}</a></p>
+				{{if link}}
+					<p class="wrap"><a href="\${link}">\${link}</a></p>
 				{{else}}
 					<p class="wrap">N/A</p>
 				{{/if}}</li>
 			<li><h3 class="wrap">Sponsor</h3>
-				{{each event.sponsors}}
-					<p class="wrap">\${groupName}</p>
+				{{each contact}}
+					<p class="wrap">\${$value.name}</p>
 				{{/each}}</li>
 		</script>
 	</kme:listView>

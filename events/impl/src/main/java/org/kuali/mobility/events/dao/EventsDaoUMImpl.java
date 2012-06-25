@@ -14,30 +14,37 @@
  */
 package org.kuali.mobility.events.dao;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.io.IOUtils;
 import org.kuali.mobility.events.entity.Category;
 import org.kuali.mobility.events.entity.Event;
+import org.kuali.mobility.events.entity.EventContact;
+import org.kuali.mobility.events.entity.UMEvent;
+import org.kuali.mobility.events.entity.UMEventReader;
+import org.kuali.mobility.events.entity.UMSponsor;
 import org.kuali.mobility.events.util.CategoryPredicate;
+
+import com.thoughtworks.xstream.XStream;
 
 public class EventsDaoUMImpl extends EventsDaoImpl {
 
     private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger( EventsDaoUMImpl.class );
-
-    private String eventSourceFile;
-    private String eventMappingFile;
-    private String eventJsonURL; 
+    
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
     
     @Override
-	public void initData( final String campus, final String categoryId ) {
+    public void initData( final String campus, final String categoryId ) {
+    	this.addEvents(loadEventsForCategory (campus, categoryId));
+    	
+    }
+    public List<Event> loadEventsForCategory( final String campus, final String categoryId ) {
+    	
     	LOG.debug( "Loading event feed for category "+categoryId );
         if( null == getEvents() || getEvents().isEmpty() )
         {
@@ -56,81 +63,64 @@ public class EventsDaoUMImpl extends EventsDaoImpl {
 		
 		if ( category != null ) {
 			LOG.debug( "Found category object for id "+categoryId );
-	        try {
-            	if( getEventSourceFile() != null ) {
-            		LOG.debug( "Mapping events from file: "+getEventSourceFile() );
-	            	newEvents = getMapper().mapData( newEvents, 
-	            			getEventSourceFile(), 
-	            			getEventMappingFile() );
-            	}
-	            else {
-		            URL url = new URL( category.getUrlString() );
-		            LOG.debug( "Mapping events from url: "+category.getUrlString() );
-		            if( url != null ) {
-		            	newEvents = getMapper().mapData( newEvents, url, getEventMappingFile() );
-		            }
-	            }
-	        }
-	        catch(MalformedURLException mue) {
+			XStream xstream = new XStream();
+			xstream.processAnnotations(UMEventReader.class);
+			xstream.processAnnotations(UMEvent.class);
+			xstream.processAnnotations(UMSponsor.class);
+			UMEventReader eventReader = null;
+			try {
+				URL url = new URL(category.getUrlString()+"&_type=xml");
+				LOG.debug("Mapping events from url: " + category.getUrlString());
+				
+				if (url != null) {
+					eventReader = (UMEventReader) xstream.fromXML(url);
+				}
+			} catch (MalformedURLException mue) {
 	        	LOG.error( mue.getLocalizedMessage() );
 	        }
-	        catch( IOException ioe ) {
-	        	LOG.error( ioe.getLocalizedMessage() );
-	        }
-	        catch( ClassNotFoundException cnfe ) {
-	        	LOG.error( cnfe.getLocalizedMessage() );
-	        }
+			LOG.debug("check eventReader " + (eventReader == null?"null":"mnot null"));
+			LOG.debug("check eventReader.getEvents " + (eventReader.getEvents() == null?"null":"mnot null"));
+
+			if ( eventReader != null && eventReader.getEvents() != null) {
+			for ( UMEvent e : eventReader.getEvents()){
+				LOG.debug("processing e " + e.getTitle());
+				Event newEvent = (Event) getApplicationContext().getBean("event");
+				newEvent.setEventId(e.getId());
+				newEvent.setCategory(category);
+				newEvent.setTitle(e.getTitle());
+				newEvent.setDisplayStartTime(e.getTimeBegin());
+			    newEvent.setDisplayStartDate(e.getDateBegin());
+			    newEvent.setLocation(e.getBuildingName());
+			    newEvent.setLink(e.getUrl());
+			    try {
+			    	if ( e.getTsBegin() != null && e.getTsBegin().isEmpty() == false) {
+					newEvent.setStartDate(sdf.parse(e.getTsBegin())); 
+					}
+			    	if ( e.getTsEnd() != null && e.getTsEnd().isEmpty() == false) {
+					newEvent.setEndDate(sdf.parse(e.getTsEnd()));
+			    	}
+				} catch (ParseException e1) {
+					LOG.error(e1.getLocalizedMessage());
+				}
+				newEvent.setDisplayEndTime(e.getTimeEnd());
+				newEvent.setDisplayEndDate(e.getDateEnd());
+				List<String> myDescription = new ArrayList<String>();
+				myDescription.add(e.getDescription());
+				newEvent.setDescription( myDescription );
+				List<EventContact> myContacts = new ArrayList<EventContact>();
+				for ( UMSponsor f : e.getSponsors()){
+					EventContact newContact = (EventContact) getApplicationContext().getBean("eventContact");
+					newContact.setName(f.getGroupName());
+					newContact.setUrl(f.getWebsite());
+					myContacts.add(newContact);	
+				}
+				newEvent.setContact(myContacts);
+				LOG.debug("CONTACT " + newEvent.getContact());
+				newEvents.add(newEvent);
+			}
+			}
 		}
-		
-		for( Event e : newEvents )
-		{
-			e.setCategory(category);
-		}
-		
-		setEvents( newEvents );
+		return( newEvents );
 	}
 
-	public String getEventSourceFile() {
-		return eventSourceFile;
-	}
-
-	public void setEventSourceFile(String eventSourceFile) {
-		this.eventSourceFile = eventSourceFile;
-	}
-
-	public String getEventMappingFile() {
-		return eventMappingFile;
-	}
-
-	public void setEventMappingFile(String eventMappingFile) {
-		this.eventMappingFile = eventMappingFile;
-	}
-
-	
-	public String getEventJsonURL() {
-		return eventJsonURL;
-	}
-
-	public void setEventJsonURL(String eventJsonURL) {
-		this.eventJsonURL = eventJsonURL;
-	}
-
-	public String getEventJson(final String eventId) {
-		//String BASEURL = "http://webservicesdev.dsc.umich.edu/events/getEvents/id/"; //7494-1135874
-		String jsonData = null;
-		try {
-			
-			URLConnection connection = new URL(getEventJsonURL() + eventId + "?_type=json").openConnection();
-			jsonData = IOUtils.toString( connection.getInputStream(), "UTF-8" );
-			
-		} catch (MalformedURLException e) {
-			LOG.error(e.getMessage());
-			//e.printStackTrace();
-		} catch (IOException e) {
-			LOG.error(e.getMessage());
-			//e.printStackTrace();
-		}
-
-		return jsonData;
-	}
 }

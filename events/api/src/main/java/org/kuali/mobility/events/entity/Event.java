@@ -19,17 +19,13 @@ import java.util.List;
 
 public interface Event {
 
-	public abstract String getContactEmail();
-
-	public abstract void setContactEmail(String contactEmail);
-
 	public abstract List<List<String>> getOtherInfo();
 
 	public abstract void setOtherInfo(List<List<String>> otherInfo);
 
-	public abstract String getContact();
+	public abstract List<EventContact> getContact();
 
-	public abstract void setContact(String contact);
+	public abstract void setContact(List<EventContact> contact);
 
 	public abstract String getCost();
 

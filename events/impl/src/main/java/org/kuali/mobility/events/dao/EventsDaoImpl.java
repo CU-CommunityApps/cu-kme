@@ -73,6 +73,11 @@ public class EventsDaoImpl implements EventsDao, ApplicationContextAware {
         {
             setEvents( new ArrayList<Event>() );
         }
+        
+        if( null == getCategories() || getCategories().isEmpty() )
+        {
+            initData(campus);
+        }
 
         List<Event> newEvents = new ArrayList<Event>();
 
@@ -144,16 +149,7 @@ public class EventsDaoImpl implements EventsDao, ApplicationContextAware {
 	        }
 		}
 		
-        // TODO: Fix this.  It works but doing it preemptively is better.
-        List<Event> oldEvents = getEvents();
-        oldEvents.addAll( newEvents );
-        
-        HashSet tempSet = new HashSet();
-        tempSet.addAll( oldEvents );
-        oldEvents.clear();
-        oldEvents.addAll( tempSet );
-
-        setEvents( oldEvents );
+		this.addEvents(newEvents);
     }
     
     public void initData( final String campus )
@@ -298,6 +294,30 @@ public class EventsDaoImpl implements EventsDao, ApplicationContextAware {
 
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
+	}
+
+
+	@Override
+	public void addEvents(List<Event> newEvents) {
+		if (null == newEvents ) {
+			return;
+		}
+				
+        List<Event> oldEvents = getEvents();
+        
+        if (null == oldEvents) {
+        	setEvents( newEvents );	        	
+        } else {
+    		HashSet tempSet = new HashSet();
+    		tempSet.addAll (newEvents);
+    		
+        	tempSet.addAll( oldEvents );
+        
+        	oldEvents.clear();
+        	oldEvents.addAll( tempSet );
+
+        	setEvents( oldEvents );	
+        }
 	}
 
 }
