@@ -15,14 +15,19 @@
 
     <bean id="mapper" class="org.kuali.mobility.util.mapper.DataMapperImpl"/>
     
-	<bean id="event" class="org.kuali.mobility.events.entity.EventUMImpl" scope="prototype"/>
-  
+	<bean id="event" class="org.kuali.mobility.events.entity.EventImpl" scope="prototype"/>
+
+	<bean id="eventContact" class="org.kuali.mobility.events.entity.EventContactImpl"
+	       		scope="prototype" />
+
     <bean id="eventDao" class="org.kuali.mobility.events.dao.EventsDaoUMImpl">
         <property name="mapper" ref="mapper"/>
         <property name="categorySourceUrl" value="${events.category.source.url}"/>
         <property name="categoryMappingFile" value="${events.category.mapping.file}"/>
+	<!--
         <property name="eventMappingFile" value="${events.event.mapping.file}"/>
         <property name="eventJsonURL" value="${events.event.json.url}" />
+	-->
     </bean>
 
     <bean id="eventService" class="org.kuali.mobility.events.service.EventsServiceImpl">
@@ -32,6 +37,10 @@
     <bean id="eventsController" class="org.kuali.mobility.events.controllers.EventsController">
     	<property name="eventsService" ref="eventService"/>
     </bean>
+
+        <bean id="eventsInitBean" class="org.kuali.mobility.events.dao.EventInitBean" init-method="init" destroy-method="cleanup" depends-on="eventDao">
+		<property name="dao"><ref local="eventDao"/></property>
+	</bean>
 
 </beans>
  
