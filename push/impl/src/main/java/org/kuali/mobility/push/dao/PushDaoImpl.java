@@ -188,6 +188,9 @@ public class PushDaoImpl implements PushDao {
 			LOG.info("----- Thread Starting -----");
 			this.completed = tSendPush(this.push, this.devices);
 			LOG.info("----- Thread Ending -----");
+			push.setRecipients(completed);
+			savePush(push);
+			
 /*
 			while(true){
 				try{
@@ -200,7 +203,6 @@ public class PushDaoImpl implements PushDao {
 			}
 */
 		}
-		
 	}
     
     
