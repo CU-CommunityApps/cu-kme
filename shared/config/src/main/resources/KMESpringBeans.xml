@@ -58,7 +58,7 @@
 		</property>
 		<property name="jpaPropertyMap">
 			<props>
-	            <prop key="shared.hibernate.hbm2ddl.auto">${shared.hibernate.hbm2ddl.auto}</prop>
+	            <prop key="hibernate.hbm2ddl.auto">${shared.hibernate.hbm2ddl.auto}</prop>
 	        </props>
 		</property>
 	</bean>
