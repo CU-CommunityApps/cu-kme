@@ -44,7 +44,7 @@
 				<form:input path="title" />
 				<form:errors path="title" />
 				
-				<div data-role="fieldcontain">
+				<div>
 					<label><spring:message code="editlayout.addtools"/></label><br/>
 					<select data-theme="c" id="toolToAdd" name="toolToAdd">
 					   	<c:forEach items="${availableTools}" var="tool" varStatus="status">
@@ -55,20 +55,23 @@
 				</div>
 				
 
-				<label><spring:message code="editlayout.selectedtools"/></label>
-				<ul data-role='listview'>
+				<kme:listView id="orderingList" dataTheme="c" dataDividerTheme="b" filter="false">
+					<kme:listItem dataRole="list-divider">
+						<spring:message code="editlayout.selectedtools"/>
+					</kme:listItem>
+					
 					<input type="hidden" id="removeId" name="removeId" value="${homeTool.toolId}" />
 					<c:forEach items="${layout.homeTools}" var="homeTool" varStatus="status">
-						<li>
-							<h3 style="display:inline-block;" class="wrap"><c:out value="${homeTool.tool.title}"/></h3>
-							<div data-role="controlgroup" data-type="horizontal">
-								<input name="up" type="submit" data-icon="arrow-u" data-role="button" onclick="javascript:document.forms['fm'].elements['removeId'].value = '${homeTool.toolId}';" />
-								<input name="down" type="submit" data-icon="arrow-d" data-role="button" onclick="javascript:document.forms['fm'].elements['removeId'].value = '${homeTool.toolId}';" />
-								<input name="remove" type="submit" data-icon="delete" data-role="button" onclick="javascript:document.forms['fm'].elements['removeId'].value = '${homeTool.toolId}';" />
+						<kme:listItem>
+							<div class="orderingButtons" data-role="controlgroup" data-type="horizontal">
+								<input name="up" type="submit" data-icon="arrow-u" data-theme="c" data-mini="true" data-iconpos="notext" data-role="button" onclick="javascript:document.forms['fm'].elements['removeId'].value = '${homeTool.toolId}';" />
+								<input name="down" type="submit" data-icon="arrow-d" data-theme="c" data-mini="true" data-iconpos="notext" data-role="button" onclick="javascript:document.forms['fm'].elements['removeId'].value = '${homeTool.toolId}';" />
+								<input class="ui-corner-right" name="remove" type="submit" data-icon="delete" data-theme="c" data-mini="true" data-iconpos="notext" data-role="button" onclick="javascript:document.forms['fm'].elements['removeId'].value = '${homeTool.toolId}';" />
 							</div>
-						</li>
+							<h3 style="display:inline-block;" class="wrap orderingTitle"><c:out value="${homeTool.tool.title}"/></h3>
+						</kme:listItem>
 					</c:forEach>
-				</ul>
+				</kme:listView>
 
 				<br />
 				<div data-inline="true">

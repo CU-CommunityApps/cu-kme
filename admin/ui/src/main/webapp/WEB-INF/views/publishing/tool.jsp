@@ -19,22 +19,29 @@
 <kme:page title="${title}" id="layout" backButton="true" homeButton="true">
 	<kme:content>
 		<kme:listView id="layoutlist" dataTheme="c" dataDividerTheme="b" filter="false">
+			<kme:listItem dataRole="list-divider">
+				<spring:message code="tools.definition.creation"/>
+			</kme:listItem>
 			<kme:listItem>
-				<h3 class="wrap">
-					<spring:message code="tools.new.title"/>
-				</h3>
-				<p class="wrap">
-					<a href="${pageContext.request.contextPath}/publishing/tool/new"><spring:message code="common.new"/></a>
-				</p>
+				<a href="${pageContext.request.contextPath}/publishing/tool/new">
+					<h3 class="wrap">
+						<spring:message code="tools.new.title"/>
+					</h3>
+					<p class="wrap">
+						<spring:message code="tools.new.instructions"/>
+					</p>
+				</a>
+			</kme:listItem>
+			<kme:listItem dataRole="list-divider">
+				<spring:message code="tools.existing"/>
 			</kme:listItem>
 			<c:forEach items="${tools}" var="tool" varStatus="status">
 				<kme:listItem>
-					<h3 class="wrap">
-						${tool.title}
-					</h3>
-					<p class="wrap">
-						<a href="${pageContext.request.contextPath}/publishing/tool/edit/${tool.toolId}"><spring:message code="common.edit"/></a> <a href="${pageContext.request.contextPath}/publishing/tool/delete/${tool.toolId}"><spring:message code="common.delete"/></a>
-					</p>
+					<a href="${pageContext.request.contextPath}/publishing/tool/edit/${tool.toolId}">
+						<h3 class="wrap">
+							${tool.title}
+						</h3>
+					</a>	
 				</kme:listItem>
 			</c:forEach>
 		</kme:listView>

@@ -19,22 +19,29 @@
 <kme:page title="${title}" id="layout" backButton="true" homeButton="true">
 	<kme:content>
 		<kme:listView id="layoutlist" dataTheme="c" dataDividerTheme="b" filter="false">
+			<kme:listItem dataRole="list-divider">
+				<spring:message code="layout.definition.creation"/>
+			</kme:listItem>
 			<kme:listItem>
-				<h3 class="wrap">
-					<spring:message code="layout.new.title"/>
-				</h3>
-				<p class="wrap">
-					<a href="${pageContext.request.contextPath}/publishing/layout/new"><spring:message code="common.new"/></a>
-				</p>
+				<a href="${pageContext.request.contextPath}/publishing/layout/new">
+					<h3 class="wrap">
+						<spring:message code="layout.new.title"/>
+					</h3>
+					<p class="wrap">
+						<spring:message code="layout.new.instructions"/>
+					</p>
+				</a>					
+			</kme:listItem>
+			<kme:listItem dataRole="list-divider">
+				<spring:message code="layout.existing"/>
 			</kme:listItem>
 			<c:forEach items="${layouts}" var="layout" varStatus="status">
 				<kme:listItem>
-					<h3 class="wrap">
-						${layout.title}
-					</h3>
-					<p class="wrap">
-						<a href="${pageContext.request.contextPath}/publishing/layout/edit/${layout.homeScreenId}"><spring:message code="common.edit"/></a> <a href="${pageContext.request.contextPath}/publishing/layout/delete/${layout.homeScreenId}"><spring:message code="common.delete"/></a>
-					</p>
+					<a href="${pageContext.request.contextPath}/publishing/layout/edit/${layout.homeScreenId}">
+						<h3 class="wrap">
+							${layout.title}
+						</h3>
+					</a>						
 				</kme:listItem>
 			</c:forEach>
 		</kme:listView>

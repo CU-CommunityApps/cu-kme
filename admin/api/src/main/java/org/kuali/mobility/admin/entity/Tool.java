@@ -48,6 +48,9 @@ public class Tool implements Serializable, Comparable<Tool> {
 	@Column(name="TTL")
 	private String title;
 	
+	@Column(name="SB_TTL")
+	private String subtitle;
+	
 	@Column(name="URL")
 	private String url;
 	
@@ -60,14 +63,8 @@ public class Tool implements Serializable, Comparable<Tool> {
 	@Column(name="CONTACTS")
 	private String contacts;
 	
-	@Column(name="PROG_LANG")
-	private String programmingLanguage;
-	
 	@Column(name="KEYWORDS")
 	private String keywords;
-	
-	@Column(name="LICENCE")
-	private String licence;
 	
 	@Version
     @Column(name="VER_NBR")
@@ -174,14 +171,6 @@ public class Tool implements Serializable, Comparable<Tool> {
 		this.contacts = contacts;
 	}
 
-	public String getProgrammingLanguage() {
-		return programmingLanguage;
-	}
-
-	public void setProgrammingLanguage(String programmingLanguage) {
-		this.programmingLanguage = programmingLanguage;
-	}
-
 	public String getKeywords() {
 		return keywords;
 	}
@@ -190,12 +179,14 @@ public class Tool implements Serializable, Comparable<Tool> {
 		this.keywords = keywords;
 	}
 
-	public String getLicence() {
-		return licence;
+
+	public String getSubtitle() {
+		return subtitle;
 	}
 
-	public void setLicence(String licence) {
-		this.licence = licence;
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
 	}
+	
 
 }

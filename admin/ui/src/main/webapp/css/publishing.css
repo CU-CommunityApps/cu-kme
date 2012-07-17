@@ -37,5 +37,25 @@ div#toollist {
 }
 
 .ui-controlgroup-horizontal .ui-btn, .ui-controlgroup-horizontal .ui-checkbox, .ui-controlgroup-horizontal .ui-radio {
-    padding: 5px;
+    /*padding: 5px;*/
+}
+
+ul#layoutlist {
+	margin: -15px;	
+}
+
+ul#orderingList {
+	margin: 15px -15px -15px -15px;	
+}
+
+/*ul#orderingList li {
+	padding-right: 0;	
+}*/
+
+div.orderingButtons {
+	float:right;
+}
+
+h3.orderingTitle {
+	margin-right:100px;
 }

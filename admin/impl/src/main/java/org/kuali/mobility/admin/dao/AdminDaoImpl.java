@@ -146,6 +146,9 @@ public class AdminDaoImpl implements AdminDao {
         if (tool.getTitle() != null) {
         	tool.setTitle(tool.getTitle().trim());
         }
+        if (tool.getSubtitle() != null) {
+        	tool.setSubtitle(tool.getSubtitle().trim());
+        }
         if (tool.getUrl() != null) {
         	tool.setUrl(tool.getUrl().trim());
         }
@@ -158,14 +161,8 @@ public class AdminDaoImpl implements AdminDao {
         if (tool.getContacts() != null) {
         	tool.setContacts(tool.getContacts().trim());
         }
-        if (tool.getProgrammingLanguage() != null) {
-        	tool.setProgrammingLanguage(tool.getProgrammingLanguage().trim());
-        }
         if (tool.getKeywords() != null) {
         	tool.setKeywords(tool.getKeywords().trim());
-        }
-        if (tool.getLicence() != null) {
-        	tool.setLicence(tool.getLicence().trim());
         }
         try {
 	        if (tool.getToolId() == null) {
