@@ -43,7 +43,7 @@
 		<xstream.version>1.4.2</xstream.version>
 		<org.apache.cxf.version>2.4.1</org.apache.cxf.version>
 
-		<tool.push.version>1.0-SNAPSHOT</tool.push.version>
+		<tool.push.version>2.0.0-SNAPSHOT</tool.push.version>
 		<tool.shared.version>2.0.0-SNAPSHOT</tool.shared.version>
 		<tool.admin.version>2.0.0-SNAPSHOT</tool.admin.version>
 		<tool.alerts.version>2.0.0-SNAPSHOT</tool.alerts.version>
