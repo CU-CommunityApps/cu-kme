@@ -1,5 +1,7 @@
 package org.kuali.mobility.bus.service;
 
+import org.kuali.mobility.bus.dao.BusDao;
+
 
 /**
  * @author xinfeng
@@ -55,10 +57,8 @@ public class BusInitBean {
 	private class BackgroundThread1 implements Runnable {
     	
         public void run() {    
-        	//LOG.info("Initializing bus location data...");
         	busService.getDao().loadBusLocations();
-        	//busService.getDao().getBusRoutes();
-        	LOG.info("Finished initializing bus location data ..");
+        	LOG.info("Finished initializing bus locations data ..");
         	while (true) {
         		try {
         			LOG.info("Bus sleeping...");
@@ -83,18 +83,18 @@ public class BusInitBean {
 	private class BackgroundThread2 implements Runnable {
         public void run() {    
         	//LOG.info("Initializing bus routes data...");
-        	     busService.getDao().getBusRoutes();
-        	LOG.info("Finished initializing bus routes ..");
+        	     busService.getDao().loadRoutes();
+        	LOG.info("Finished initializing bus Routes data ..");
         	while (true) {
         		try {
         			LOG.info("Bus sleeping...");
         			try {
-						Thread.sleep(1000 * timePeriodInSec2);
+						Thread.sleep(1000 *  timePeriodInSec2);
         			} catch (InterruptedException e) {
         				LOG.error(e.getMessage(), e);
         			}
         			//LOG.info("Refreshing bus Routes data...");
-        			 busService.getDao().getBusRoutes();                	
+        			busService.getDao().loadRoutes();                	
         			LOG.info("Finished refreshing bus Routes data.");	
         		
         		} catch (Exception e) {

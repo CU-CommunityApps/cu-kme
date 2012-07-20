@@ -33,11 +33,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import flexjson.JSONSerializer;
 
-@Controller 
+@Controller
 @RequestMapping("/dining")
 public class DiningController {
     public static final Logger LOG= Logger.getLogger(DiningController.class);
-    
+
     @Autowired
     private DiningService diningService;
     public void setDiningService(DiningService diningService) {
@@ -45,20 +45,20 @@ public class DiningController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-    public String getPlaces(Model uiModel) { 
+    public String getPlaces(Model uiModel) {
     	List<PlaceByCampusByType> placeGroups = DiningUtil.convertPlaceListForUI(diningService.getPlaces());
     	uiModel.addAttribute("placeGroups", placeGroups);
     	return "dining/placesByCampus2";
     }
-    
+
     @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
-    public String getPlaceListJson() { // 
+    public String getPlaceListJson() { //
     	List<PlaceByCampusByType> placeGroups = DiningUtil.convertPlaceListForUI(diningService.getPlaces());
     	return new JSONSerializer().exclude("*.class").deepSerialize(placeGroups);
     }
-    
-    
+
+
     @RequestMapping(value="/{name}", method = RequestMethod.GET)
     public String getMenus(Model uiModel, @PathVariable("name") String name, @RequestParam(value = "location", required = false) String location){
     	LOG.debug( "getMenus() : name = "+name+" location = "+location );
@@ -68,16 +68,16 @@ public class DiningController {
     	uiModel.addAttribute("location", StringEscapeUtils.escapeJavaScript(location));
     	return "dining/menus";
     }
-    
+
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public String getMenusJson(@PathVariable("name") String name, @RequestParam(value = "location", required = false) String location) {
-    	String jsonData = diningService.getMenusJson(name, location);
-    	
+    	String jsonData = diningService.getMenusJson(name, (null==location || "".equalsIgnoreCase(location) ? null : location.trim()));
+
     	return jsonData;
     }
-    
- 
+
+
 /*
     @RequestMapping(method = RequestMethod.GET)
     public String getList(Model uiModel) {
@@ -85,7 +85,7 @@ public class DiningController {
     	uiModel.addAttribute("menus", menus);
     	return "dining/list";
     }
-    
+
     @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public String getListJson() {
@@ -93,5 +93,5 @@ public class DiningController {
     	return new JSONSerializer().exclude("*.class").deepSerialize(menus);
     }
 */
-    
+
 }

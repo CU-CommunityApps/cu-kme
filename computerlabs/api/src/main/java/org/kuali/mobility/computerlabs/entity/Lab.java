@@ -34,6 +34,7 @@ public class Lab implements Serializable, Comparable<Lab> {
 	private String availability;
 	private String windowsAvailability;
 	private String macAvailability;
+	private String linuxAvailability;
 	private String softwareAvailability;
 	private String floorplan;
 
@@ -129,6 +130,14 @@ public class Lab implements Serializable, Comparable<Lab> {
 
 	public void setMacAvailability(String macAvailability) {
 		this.macAvailability = macAvailability;
+	}
+	
+	public String getLinuxAvailability() {
+		return linuxAvailability;
+	}
+
+	public void setLinuxAvailability(String linuxAvailability) {
+		this.linuxAvailability = linuxAvailability;
 	}
 
 	public String getSoftwareAvailability() {

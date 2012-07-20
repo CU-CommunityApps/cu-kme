@@ -1,0 +1,520 @@
+<stopnames>
+<stopname>
+<name>Commuter Southbound</name>
+<name1>Bonisteel and Beal (Cooley) W</name1>
+<name2>Cooley Lab</name2>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Pierpont Commons</name2>
+<name1>Murfin and Bonisteel W</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Mitchell Field</name2>
+<name1>Mitchell Athletic Field W</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Cancer Center</name2>
+<name1>Cancer and Geriatrics Center E</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Taubman Center</name2>
+<name1>Taubman Center SE</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Mary Markley</name2>
+<name1>Mary Markley W</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Simpson Building</name2>
+<name1>Observatory and Ann N</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Biomedical Science Research</name2>
+<name1>Zina Pitcher Place (at BSR)</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Power Center</name2>
+<name1>Fletcher and Washington S</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Central Transit Center</name2>
+<name1>C.C. Little SE</name1> 
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>East Quad</name2>
+<name1>Willard and E. University W</name1> 
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Shapiro Library</name2>
+<name1>S. University and Tappan W</name1>
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Michigan Union/Museum of Art</name2>
+<name1>State and S. University W</name1> 
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>IM Building</name2>
+<name1>Intramural Building W</name1> 
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>ICLE</name2>
+<name1>Administrative Services Building S</name1> 
+</stopname>
+<stopname>
+<name>Commuter Southbound</name>
+<name2>Crisler Arena</name2>
+<name1>Crisler Arena S</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Transportation Gate</name2>
+<name1>Transportation</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Kipke at Greene</name2>
+<name1>Kipke and Greene N</name1>
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Admin Services Building</name2>
+<name1>Administrative Services Building N</name1>
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>IM Building</name2>
+<name1>Intramural Building E</name1>
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Michigan Union</name2>
+<name1>State and S. University N</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Hill Auditorium/Natural Sciences</name2>
+<name1>N. University and Fletcher E</name1>
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Central Transit Center</name2>
+<name1>C.C. Little SE</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Couzens Hall</name2>
+<name1>Ann and Zina Pitcher E</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Mary Markley</name2>
+<name1>Mary Markley E</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Taubman Center</name2>
+<name1>Taubman Center NW</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Cancer Center</name2>
+<name1>Cancer and Geriatrics Center W</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Mitchell Field</name2>
+<name1>Mitchell Athletic Field E</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Pierpont Commons</name2>
+<name1>Bonisteel Blvd (Art and Architecture Bldg) E</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Cooley Lab</name2>
+<name1>Bonisteel and Beal E</name1>
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Francois-Xavier Bangnoud (FXB)</name2>
+<name1>Beal and Hayward (FXB) N</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Hayward/Hubbard</name2>
+<name1>Hayward near Hubbard (at NC 53) E</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Huron/Hubbard</name2>
+<name1>Huron and Hubbard S</name1> 
+</stopname>
+<stopname>
+<name>Commuter Northbound</name>
+<name2>Glazier Way Lot NC-51</name2>
+<name1>Glazier Way West Shelter</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Central Transit Center</name2>
+<name1>C.C. Little NW</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Rackham</name2>
+<name1>Fletcher and Washington N</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Kresege Reasearch Building</name2>
+<name1>Zina Pitcher Pl. (Kresge Research Bldg) N</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Victor Vaughn Building</name2>
+<name1>Catherine and Glen (Victor Vaughn Bldg) W</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Mitchell Field</name2>
+<name1>Mitchell Athletic Field E</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Pierpont Commons</name2>
+<name1>Murfin and Bonisteel N</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Hubbard/ Northwood-3</name2>
+<name1>Hubbard and Murfin (NCRB) E</name1>
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Hubbard / Northwood-1</name2>
+<name1>Hubbard near Cram Circle E</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Cram Circle</name2>
+<name1>Cram Circle N</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Bishop / Northwood-2</name2>
+<name1>Bishop and Beal E</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Fire Station</name2>
+<name1>Beal and McIntyre (Fire Station) N</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Plymouth Rd Crosswalk</name2>
+<name1>McIntyre Dr. 1 SE</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>McIntyre / Northwood-4</name2>
+<name1>McIntyre Dr. 2 S</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Community Center</name2>
+<name1>McIntyre Dr. 3 S</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Hayward/Hubbard</name2>
+<name1>Hayward and Hubbard E</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>NCAC</name2>
+<name1>North Campus Administrative Complex E</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Northwood-5</name2>
+<name1>Northwood V 2 E</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>NCAC</name2>
+<name1>North Campus Administrative Complex W</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Hubbard/Huron</name2>
+<name1>Hubbard and Huron W</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Hayward/Hubbard</name2>
+<name1>Hayward and Hubbard W</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Francois-Xavier Bangnoud (FXB)</name2>
+<name1>Beal and Hayward (FXB) S</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Cooley Lab</name2>
+<name1>Bonisteel and Beal (Cooley) W</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Pierpont Commons</name2>
+<name1>Murfin and Bonisteel W</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Mitchell Field</name2>
+<name1>Mitchell Athletic Field W</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Couzens Hall</name2>
+<name1>Ann and Zina Pitcher E</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Lloyd/Observatory</name2>
+<name1>Observatory (Mosher-Jordan) S</name1> 
+</stopname>
+<stopname>
+<name>Northwood</name>
+<name2>Stockwell</name2>
+<name1>Observatory (Stockwell Hall) S</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Arbor Lakes</name2>
+<name1>Arbor Lakes</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Dominos Farms Lobby A</name2>
+<name1>Dominos Farms Lobby A</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Dominos Farms Lobby C</name2>
+<name1>Dominos Farms Lobby C</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Dominos Farms Lobby M</name2>
+<name1>Dominos Farms Lobby M</name1></stopname><stopname>
+<name>Intercampus to NIB</name>
+<name2>Dominos Farms Lobby H</name2>
+<name1>Dominos Farms Lobby H</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Green Rd Park &amp; Ride</name2>
+<name1>Green Rd. Park and Ride Lot</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>North Campus Facilities Services</name2>
+<name1>North Campus Plant Services Building W</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>NCAC</name2>
+<name1>North Campus Administrative Complex W (Baxter Rd.)</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>NCRC</name2>
+<name1>Huron Pkwy and Plymouth N</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Turner Senior Resource Center</name2>
+<name1>Turner Senior Ctr I</name1>
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Wall St/Lot M-50</name2>
+<name1>Wall St. (Lot M-50) SE</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Mitchell Field</name2>
+<name1>Mitchell Athletic Field W</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Pierpont Commons</name2>
+<name1>Murfin and Bonisteel S</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Kellogg Eye Center</name2>
+<name1>Kellogg Eye Center</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Maiden Lane</name2>
+<name1>Wall St. and Maiden Lane</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Cancer Center Driveway</name2>
+<name1>Cancer Center Driveway</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Taubman Center</name2>
+<name1>Taubman Center SE</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Mary Markley</name2>
+<name1>Mary Markley W</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Simpson Building</name2>
+<name1>Observatory and Ann N</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>Kresege Reasearch Building</name2>
+<name1>Zina Pitcher Pl. (Kresge Research Bldg) N</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to NIB</name>
+<name2>North Ingalls Building</name2>
+<name1>North Ingalls Building N</name1>
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Couzens Hall</name2>
+<name1>Ann and Zina Pitcher E</name1>
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Mary Markley</name2>
+<name1>Mary Markley E</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Taubman Center</name2>
+<name1>Taubman Center NW</name1>
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Cancer Center Driveway</name2>
+<name1>Cancer Center Driveway</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Maiden Lane</name2>
+<name1>Wall St. and Maiden Lane</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Kellogg Eye Center</name2>
+<name1>Kellogg Eye Center</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Wall St/Lot M-76</name2>
+<name1>Wall St. (Lot M-76) NW</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Mitchell Field</name2>
+<name1>Mitchell Athletic Field E</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Pierpont Commons</name2>
+<name1>Murfin and Bonisteel N</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Turner Senior Resource Center</name2>
+<name1>Turner Senior Ctr I</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>NCAC</name2>
+<name1>North Campus Administrative Complex E (Baxter Rd.)</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>North Campus Facilities Services</name2>
+<name1>North Campus Plant Services Building E</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Green Rd Park &amp; Ride</name2>
+<name1>Green Rd. Park and Ride Lot</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>East AA Health &amp; Geriatrics Center</name2>
+<name1>East Ann Arbor Health Center</name1> 
+</stopname>
+<stopname>
+<name>Intercampus to East Campus</name>
+<name2>Arbor Lakes</name2>
+<name1>Arbor Lakes</name1> 
+</stopname>
+<stopname>
+<name>MedExpress</name>
+<name2>Glazier Way Lot NC-51</name2>
+<name1>Glazier Way East Shelter</name1> 
+</stopname>
+<stopname>
+<name>MedExpress</name>
+<name2>Veterans Affairs Hospital</name2>
+<name1>Veterans Affairs Hospital</name1> 
+</stopname>
+<stopname>
+<name>MedExpress</name>
+<name2>Lot M-75</name2>
+<name1>Lot M-75</name1>
+</stopname>
+<stopname>
+<name>MedExpress</name>
+<name2>Cancer Center</name2>
+<name1>Cancer and Geriatrics Center E</name1>
+</stopname>
+<stopname>
+<name>MedExpress</name>
+<name2>Taubman Center</name2>
+<name1>Taubman Center SE</name1> 
+</stopname>
+<stopname>
+<name>MedExpress</name>
+<name2>Mary Markley</name2>
+<name1>Mary Markley W</name1> 
+</stopname>
+<stopname>
+<name>MedExpress</name>
+<name2>Simpson Building</name2>
+<name1>Observatory and Ann N</name1> 
+</stopname>
+</stopnames>

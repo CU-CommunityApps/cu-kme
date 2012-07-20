@@ -17,9 +17,12 @@
 <kme:page title="${route.name}" id="bus-webapp" backButton="true" homeButton="true" cssFilename="bus" jsFilename="bus">
 	<kme:content>
 		<kme:listView id="busRoute" dataTheme="c" dataDividerTheme="b" filter="false">
+		<c:choose>
+			<c:when test="${not empty route.stops}">
 			<c:forEach items="${route.stops}" var="stop">
 				<kme:listItem>
 					<c:url var="url" value="/bus/viewStop">
+                                                <c:param name="routeId" value="${route.id}"></c:param>
 						<c:param name="stopId" value="${stop.id}"></c:param>
 						<c:param name="campus" value="${campus}"></c:param>
 					</c:url>
@@ -29,6 +32,13 @@
 						</h3></a>
 				</kme:listItem>
 			</c:forEach>
+			</c:when>
+			<c:otherwise>
+    			<kme:listItem>
+			   No results found.
+			</kme:listItem>			
+			</c:otherwise>
+			</c:choose>
 		</kme:listView>
 
 	</kme:content>

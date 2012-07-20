@@ -13,23 +13,39 @@
 
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<kme:page title="Campus Buses" id="bus-webapp" backButton="true" homeButton="true" cssFilename="bus" jsFilename="bus">
+<kme:page title="Campus Buses" id="bus-webapp" backButton="true" homeButton="true" cssFilename="bus">
 	<kme:content>
-		<kme:listView id="busRouteList" dataTheme="c" dataDividerTheme="b" filter="false">
+	        <kme:listView id="busRouteList"  filter="false">
+	        <c:choose>
+			<c:when test="${not empty routes}">
 			<c:forEach items="${routes}" var="route">
 				<kme:listItem>
 					<c:url var="url" value="/bus/viewRoute">
 						<c:param name="routeId" value="${route.id}"></c:param>
 						<c:param name="campus" value="${campus}"></c:param>
 					</c:url>
-					<a href="${url}">
-						<h3>
-							<c:out value="${route.name}" />
-						</h3> </a>
+					<c:set var="color"><c:out value="${route.color}" /></c:set>
+					<c:set var="imageKey"><c:out value="images/bus-icons/bus-${fn:toUpperCase(route.color)}-36x36.png" /></c:set>
+					<a href="${url}"><img class="ui-li-icon" src="${imageKey}"/>
+					 <h3>
+					     <c:out value="${route.name}" />
+					 </h3>
+					</a>
 				</kme:listItem>
 			</c:forEach>
+			</c:when>
+			<c:otherwise>
+    		         <kme:listItem>
+				   No results found.
+			</kme:listItem>
+			</c:otherwise>
+			</c:choose>
 		</kme:listView>
-
 	</kme:content>
+    <kme:tabBar id="busTabs" showIcons="false" footer="true">
+        <kme:tabBarItem url="${pageContext.request.contextPath}/bus">Routes</kme:tabBarItem>
+        <kme:tabBarItem url="${pageContext.request.contextPath}/bus/viewNearByStops">Nearby Stops</kme:tabBarItem>
+    </kme:tabBar>
 </kme:page>

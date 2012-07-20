@@ -3,16 +3,16 @@
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
- * 
+ *
  * http://www.osedu.org/licenses/ECL-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an "AS IS"
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.kuali.mobility.bus.entity;
+package org.kuali.mobility.bus.entity.helper;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -22,34 +22,34 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("stop")
 public class UMBusStop {
-    
+
     @XStreamAlias("name")
     private String name;
     @XStreamAlias("name2")
     private String name2;
     @XStreamAlias("name3")
     private String name3;
-    
+
     @XStreamAlias("latitude")
     private String latitude;
     @XStreamAlias("longitude")
     private String longitude;
-    
+
     @XStreamAlias("toa1")
     private String toa1;
     @XStreamAlias("id1")
     private String id1;
-    
+
     @XStreamAlias("toa2")
     private String toa2;
     @XStreamAlias("id2")
     private String id2;
-    
+
     @XStreamAlias("toa3")
     private String toa3;
     @XStreamAlias("id3")
     private String id3;
-    
+
     @XStreamAlias("toa4")
     private String toa4;
     @XStreamAlias("id4")
@@ -78,7 +78,7 @@ public class UMBusStop {
     private String toa10;
     @XStreamAlias("id10")
     private String id10;
-    
+
     @XStreamAlias("toacount")
     private String toacount;
 
@@ -445,5 +445,5 @@ public class UMBusStop {
     public void setId10(String id10) {
         this.id10 = id10;
     }
-    
+
 }

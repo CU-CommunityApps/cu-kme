@@ -16,6 +16,7 @@ package org.kuali.mobility.bus.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -28,6 +29,9 @@ public class BusRouteImpl implements BusRoute {
     private String name;
     
     private List<BusStop> stops;
+    
+    private String color;
+
 
     /**
      * @return the id
@@ -78,4 +82,24 @@ public class BusRouteImpl implements BusRoute {
         }
         getStops().add(stop);
     }
+
+	
+
+    /**
+     * @return the color
+     */
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    @Override
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+	
 }

@@ -15,6 +15,18 @@
 
 package org.kuali.mobility.computerlabs.dao;
 
-public interface ComputerLabsDao {
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
+import org.kuali.mobility.computerlabs.entity.Lab;
+import org.kuali.mobility.computerlabs.entity.Location;
+
+public interface ComputerLabsDao{
+	public Collection<Location> findAllLabsByCampus(String campus);
+    public Map<String, List<String>> getLabUrls();
+	public void setLabUrls(Map<String, List<String>> labUrls);
+	public List<Lab> getLabs();
+	public void setLabs(List<Lab> labs);
 }
+

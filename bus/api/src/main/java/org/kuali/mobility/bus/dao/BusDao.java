@@ -31,4 +31,5 @@ public interface BusDao {
     public void loadBusLocations();
     
     public List<BusStop> findNearByStops(double lat1,double lon1, double radius);
+	
 }

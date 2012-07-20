@@ -30,20 +30,20 @@ import org.kuali.mobility.dining.entity.Place;
 import org.kuali.mobility.util.mapper.DataMapper;
 
 public class DiningDaoUMImpl implements DiningDao {
-	
+
 	private static final Logger LOG = Logger.getLogger( DiningDaoUMImpl.class );
 	private static final String DEFAULT_CHARACTER_SET = "UTF-8"; //ISO-8859-1
-	
+
 	private DataMapper mapper;
 	private List<Place> placeList;
-	
+
 	private String placeSourceFile;
 	private String placeSourceUrl;
 	private String placeMappingFile;
 	private String placeMappingUrl;
-	
-	private String menusJsonURI;  //"http://akekee.dsc.umich.edu:8180/dining/getMeals?_type=json"
-	
+
+	private String menusJsonURI;  //"http://webservices.dsc.umich.edu/dining/getMeals?_type=json"
+
 	public String getPlaceSourceFile() {
 		return placeSourceFile;
 	}
@@ -90,10 +90,10 @@ public class DiningDaoUMImpl implements DiningDao {
 	private void initData() {
 		if (placeList==null)
 			placeList = new ArrayList<Place>();
-		
+
 		boolean isPlaceSourceUrlAvailable = (getPlaceSourceUrl() != null ? true : false) ;
 		boolean isPlaceMappingUrlAvailable = (getPlaceMappingUrl() != null ? true : false) ;
-		
+
 		try {
 			if(isPlaceSourceUrlAvailable) {
 				if (isPlaceMappingUrlAvailable) {
@@ -110,9 +110,9 @@ public class DiningDaoUMImpl implements DiningDao {
 				}
 				else {
 					placeList = mapper.mapData(placeList, getPlaceSourceFile(), getPlaceMappingFile());
-				}	
+				}
 			}
-		
+
 		} catch (MalformedURLException e) {
 			LOG.error(e.getMessage());
 		} catch (ClassNotFoundException e) {
@@ -121,7 +121,7 @@ public class DiningDaoUMImpl implements DiningDao {
 			LOG.error(e.getMessage());
 		}
 	}
-	
+
 	public String getMenusJsonURI() {
 		return menusJsonURI;
 	}
@@ -134,33 +134,33 @@ public class DiningDaoUMImpl implements DiningDao {
 		String jsonData = null;
 		String queryString = null;
 		try {
-			queryString = "&name=".concat(location==null? URLEncoder.encode(name,"ISO-8859-1") : (URLEncoder.encode(name,"ISO-8859-1") + "&location=" + URLEncoder.encode(location,"ISO-8859-1")));
+			queryString = "&name=".concat(location==null || "".equalsIgnoreCase(location) ? URLEncoder.encode(name,"ISO-8859-1") : (URLEncoder.encode(name,"ISO-8859-1") + "&location=" + URLEncoder.encode(location,"ISO-8859-1")));
 		} catch (UnsupportedEncodingException e1) {
 			LOG.error(e1.getMessage());
 		}
 		LOG.debug("RUL = " + getMenusJsonURI() + queryString);
-		try {			
+		try {
 			URLConnection connection = new URL(getMenusJsonURI() + queryString).openConnection();
-			jsonData = IOUtils.toString( connection.getInputStream(), DEFAULT_CHARACTER_SET );			
+			jsonData = IOUtils.toString( connection.getInputStream(), DEFAULT_CHARACTER_SET );
 		} catch (MalformedURLException e) {
 			LOG.error(e.getMessage());
 		} catch (IOException e) {
 			LOG.error(e.getMessage());
 		}
 
-		return jsonData; 
+		return jsonData;
 	}
 
-	
+
 /*	public List<Menu> getMenus(final String name, final String location){
 		List<Menu> menuList = new ArrayList<Menu>();
 		String queryString = (location==null? name : (name + "&location=" + location));
-		
+
 		try {
 			URLConnection connection = new URL(BASEURL + queryString).openConnection();
-			
+
 			// TODO parse
-			
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -169,7 +169,7 @@ public class DiningDaoUMImpl implements DiningDao {
 			e.printStackTrace();
 		}
 
-		return menuList; 
+		return menuList;
 	}*/
-	
-} 
+
+}

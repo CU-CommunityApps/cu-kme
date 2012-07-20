@@ -17,6 +17,7 @@ package org.kuali.mobility.computerlabs.service;
 
 import java.util.Collection;
 
+import org.kuali.mobility.computerlabs.entity.Lab;
 import org.kuali.mobility.computerlabs.entity.Location;
 
 /**
@@ -33,5 +34,6 @@ public interface ComputerLabsService {
 	 * 			<code>Collection</code>. 
 	 */
 	public Collection<Location> findAllLabsByCampus(String campus);
-	
+	public Lab getLab(String campus, String buildingCode);
+	public String getViewSeatJson( String buildingCode,String campus);	
 }

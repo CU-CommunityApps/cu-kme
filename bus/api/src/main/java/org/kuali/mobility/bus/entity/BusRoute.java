@@ -15,6 +15,7 @@
 package org.kuali.mobility.bus.entity;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -54,4 +55,14 @@ public interface BusRoute {
      */
     void setStops(List<BusStop> stops);
     
+	 /**
+     * @return the color
+     */
+	String getColor();
+
+	/**
+     * @param color the color to set
+     */
+
+	void setColor(String color);
 }

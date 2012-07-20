@@ -3,9 +3,9 @@
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
- * 
+ *
  * http://www.osedu.org/licenses/ECL-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an "AS IS"
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
@@ -17,20 +17,19 @@ package org.kuali.mobility.bus.dao;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.kuali.mobility.bus.dao.helper.BusStopNameUtil;
 import org.kuali.mobility.bus.entity.Bus;
 import org.kuali.mobility.bus.entity.BusRoute;
 import org.kuali.mobility.bus.entity.BusStop;
-import org.kuali.mobility.bus.entity.UMBus;
-import org.kuali.mobility.bus.entity.UMBusReader;
-import org.kuali.mobility.bus.entity.UMBusRoute;
-import org.kuali.mobility.bus.entity.UMBusRouteReader;
-import org.kuali.mobility.bus.entity.UMBusStop;
+import org.kuali.mobility.bus.entity.helper.*;
+import org.kuali.mobility.bus.util.BusStopDistanceSort;
 import org.kuali.mobility.bus.util.BusStopsNearbyPredicate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -38,14 +37,12 @@ import org.springframework.context.ApplicationContextAware;
 import com.thoughtworks.xstream.XStream;
 
 /**
- * 
+ *
  * @author Joe Swanson <joseswan@umich.edu>
  */
 public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 
 	public static Logger LOG = Logger.getLogger(BusDaoUMImpl.class);
-
-	private static double earthRadius = 6371; // km
 
 	private ApplicationContext applicationContext;
 
@@ -56,6 +53,8 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 	private String busStopUrl;
 	private String busRouteUrl;
 	private String busLocationUrl;
+
+	private String busStopNamesMappingFile;
 
 	public void loadRoutes() {
 
@@ -75,6 +74,7 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 		}
 
 		List<BusRoute> routes = new ArrayList<BusRoute>();
+        List<BusStop>  stops  = new ArrayList<BusStop>();
 		if (routeReader != null) {
 			for (UMBusRoute r : routeReader.getRoutes()) {
 
@@ -82,7 +82,8 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 						"busRoute");
 				route.setId(Long.parseLong(r.getId()));
 				route.setName(r.getName());
-
+				route.setColor(r.getColor());
+				LOG.debug("route color:" + route.getColor());
 				if (null == getBusStops()) {
 					setBusStops(new ArrayList<BusStop>());
 				}
@@ -90,7 +91,10 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 				for (UMBusStop s : r.getStops()) {
 					BusStop stop = (BusStop) getApplicationContext().getBean(
 							"busStop");
-					stop.setName(s.getName());
+					//stop.setName(s.getName());
+					//LOG.debug("bus stop ROUTE name: " + r.getName() + ", stopname -" + s.getName() + ", stopname2 -" + s.getName2() + ", stopname3 - " + s.getName3());
+					//set busstopname loaded from xml
+					stop.setName(BusStopNameUtil.updateBusStopName(r.getName(), s.getName()));
 					stop.setId(s.getName().hashCode());
 					stop.setLatitude(s.getLatitude());
 					stop.setLongitude(s.getLongitude());
@@ -105,6 +109,7 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 						LOG.debug("Bus was " + (tBus == null ? "not " : "")
 								+ "found.");
 						schedule.put(new Double(s.getToa1()), tBus.getName());
+
 					}
 					if (s.getId2() != null) {
 						LOG.debug("Looking up bus " + s.getId2());
@@ -149,39 +154,57 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 						schedule.put(new Double(s.getToa7()), tBus.getName());
 					}
 					if (s.getId8() != null) {
-						LOG.debug("Looking up bus " + s.getId8());
+					    LOG.debug("Looking up bus " + s.getId8());
 						Bus tBus = getBus(Long.parseLong(s.getId8()));
 						LOG.debug("Bus was " + (tBus == null ? "not " : "")
 								+ "found.");
 						schedule.put(new Double(s.getToa8()), tBus.getName());
 					}
 					if (s.getId9() != null) {
-						LOG.debug("Looking up bus " + s.getId9());
+					    LOG.debug("Looking up bus " + s.getId9());
 						Bus tBus = getBus(Long.parseLong(s.getId9()));
-						LOG.debug("Bus was " + (tBus == null ? "not " : "")
+					    LOG.debug("Bus was " + (tBus == null ? "not " : "")
 								+ "found.");
 						schedule.put(new Double(s.getToa9()), tBus.getName());
 					}
 					if (s.getId10() != null) {
-						LOG.debug("Looking up bus " + s.getId10());
+					 	LOG.debug("Looking up bus " + s.getId10());
 						Bus tBus = getBus(Long.parseLong(s.getId10()));
-						LOG.debug("Bus was " + (tBus == null ? "not " : "")
+					    LOG.debug("Bus was " + (tBus == null ? "not " : "")
 								+ "found.");
 						schedule.put(new Double(s.getToa10()), tBus.getName());
 					}
 
 					stop.setSchedule(schedule);
-
 					route.addStop(stop);
 
-					if (!getBusStops().contains(stop)) {
-						getBusStops().add(stop);
-					}
-				}
+                    if( stops.contains(stop) ) {
+                        LOG.debug( "Bus stop already exists in the list for: "+stop.getName() );
+                        int i = stops.indexOf( stop );
+                        BusStop oldStop = stops.get( i );
 
+                        BusStop mergedStop = (BusStop) getApplicationContext().getBean(
+							"busStop");
+                        mergedStop.setId( oldStop.getId() );
+                        mergedStop.setLatitude( oldStop.getLatitude() );
+                        mergedStop.setLongitude( oldStop.getLongitude() );
+                        mergedStop.setName( oldStop.getName() );
+
+                        Map<Double, String> mergedSchedule = new TreeMap<Double, String>();
+                        mergedSchedule.putAll( oldStop.getSchedule() );
+                        mergedSchedule.putAll( stop.getSchedule() );
+
+                        mergedStop.setSchedule( mergedSchedule );
+                        stops.set(i, mergedStop);
+                    } else {
+                        LOG.debug( "Bus Stop is not found in master list for: "+stop.getName() );
+                        stops.add(stop);
+                    }
+				}
 				routes.add(route);
 			}
 			setBusRoutes(routes);
+            setBusStops( stops );
 		}
 
 		LOG.debug((null == getBusRoutes() ? "Failed to load" : "Loaded")
@@ -220,7 +243,6 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 				bus.setColor(b.getColor());
 				bus.setLatitude(b.getLatitude());
 				bus.setLongitude(b.getLongitude());
-
 				busData.add(bus);
 			}
 			this.setBuses(busData);
@@ -230,19 +252,53 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 	/**
 	 * @return the List<BusStop>
 	 */
+	@SuppressWarnings("unchecked")
 	public List<BusStop> findNearByStops(double lat1, double lon1, double radius) {
 
 		List<BusStop> stops = new ArrayList<BusStop>();
+		double dist = 0.0;
 
 		if (null == getBusStops()) {
 			loadRoutes();
 		}
 		stops = (List<BusStop>) CollectionUtils.select(getBusStops(),
 				new BusStopsNearbyPredicate(lat1, lon1, radius));
-
+		
+		//sorts km
+		 Collections.sort(stops, new BusStopDistanceSort());
+		 //conversion here to ft and miles
+		 for (BusStop s : stops )
+		 {
+			
+			 if (s.getDistance() <= 0.1524)
+				{
+					//convert to feet
+					//1km= 3.28 * 1000 ft
+					s.setDistance(roundToDecimals(s.getDistance() * 3.28 * 1000,2));
+					s.setUnit(" ft");
+					LOG.debug("distance in feet : " + s.getDistance());
+				}
+				else
+				{
+				   //convert to miles
+					//1 km = 0.621371192 mi
+				   s.setDistance(roundToDecimals(s.getDistance() * 0.621371192,2));
+				   s.setUnit(" mi");
+				   LOG.debug("distance in  miles:" + s.getDistance());
+				}
+			 
+			 //LOG.debug("findNearByStops***" + s.getName() + " ," + s.getDistance());
+			 
+		 }
 		return stops;
 
 	}
+	
+	/* roundToDecimals for formatting stop distance to 2 decimals */
+	private  double roundToDecimals(double d, int c) {
+		int temp=(int)((d*Math.pow(10,c)));
+		return (((double)temp)/Math.pow(10,c));
+		}
 
 	/**
 	 * @return the applicationContext
@@ -360,10 +416,25 @@ public class BusDaoUMImpl implements BusDao, ApplicationContextAware {
 
 	/**
 	 * @param busLocationUrl
-	 *            the busLocationUrl to set
+	 * the busLocationUrl to set
 	 */
 	public void setBusLocationUrl(String busLocationUrl) {
 		this.busLocationUrl = busLocationUrl;
 	}
+
+	/**
+	 * @return the busStopNamesMappingFile
+	 */
+	public String getStopNamesMappingFile() {
+		return busStopNamesMappingFile;
+	}
+
+	/**
+	 * @param busStopNamesMappingFile the stopNamesMappingFile to set
+	 */
+	public void setbusStopNamesMappingFile(String stopNamesMappingFile) {
+		this.busStopNamesMappingFile = stopNamesMappingFile;
+	}
+
 
 }

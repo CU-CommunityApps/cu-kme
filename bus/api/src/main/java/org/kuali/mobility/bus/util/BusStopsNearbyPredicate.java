@@ -1,15 +1,20 @@
 package org.kuali.mobility.bus.util;
 
 import org.apache.commons.collections.Predicate;
+//import org.apache.log4j.Logger;
 import org.kuali.mobility.bus.entity.BusStop;
 
-public class BusStopsNearbyPredicate implements Predicate {
+
+public class BusStopsNearbyPredicate implements Predicate{
 
 	private double latitude;
 	private double longitude;
 	private double radius;
 	private static double earthRadius = 6371; // km
+	
+	//private static Logger LOG = Logger.getLogger(BusStopsNearbyPredicate.class);
 
+	
 	public BusStopsNearbyPredicate(final double lat, final double lon,
 			final double rad) {
 		setLatitude(lat);
@@ -24,10 +29,10 @@ public class BusStopsNearbyPredicate implements Predicate {
 			return false;
 		}
 		if (object instanceof BusStop) {
-			BusStop bus = (BusStop) object;
+			BusStop busstop = (BusStop) object;
 
-			double lat2 = Double.parseDouble(bus.getLatitude());
-			double lon2 = Double.parseDouble(bus.getLongitude());
+			double lat2 = Double.parseDouble(busstop.getLatitude());
+			double lon2 = Double.parseDouble(busstop.getLongitude());
 
 			double dlon = Math.toRadians(lon2 - getLongitude());
 			double dlat = Math.toRadians(lat2 - getLatitude());
@@ -37,13 +42,14 @@ public class BusStopsNearbyPredicate implements Predicate {
 					* Math.cos(getLatitude()) * Math.cos(lat2);
 
 			double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
 			double dist = earthRadius * c;
+			
 
-			if (dist <= radius) {
-
-				return true;
-
+			if (dist <= radius) 
+			{
+				busstop.setDistance(dist);
+				busstop.setUnit(" km");
+				return true; 
 			}
 
 		}
@@ -73,5 +79,7 @@ public class BusStopsNearbyPredicate implements Predicate {
 	public void setRadius(double radius) {
 		this.radius = radius;
 	}
-
+	
+	
+	
 }

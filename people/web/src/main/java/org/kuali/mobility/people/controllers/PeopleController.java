@@ -69,10 +69,11 @@ public class PeopleController {
 	public String postSimpleSearch(Model uiModel, @ModelAttribute("search") SearchCriteria search, BindingResult result, HttpServletRequest request) {
 		if (validateSimpleSearch(search, result, request)) {
 			List<DirectoryEntry> people = peopleService.findEntries(search);
-			
+
 			//LOG.debug("people POST size: " + people.size());
 
 			Map<String, String> userNameHashes = new HashMap<String, String>();
+            removeFromCache(request.getSession(), "People.Search.UniqueResult" );
 			for (Iterator d = people.iterator(); d.hasNext();) {
 				Person p = (Person) d.next();
 				if (p.getUserName()!=null)
@@ -86,7 +87,7 @@ public class PeopleController {
 					d.remove();
 				}
 			}
-			
+
 			request.getSession().setAttribute("People.UserNames.Hashes", userNameHashes);
 			putInCache(request.getSession(), "People.Search.Results", people);
 			putInCache(request.getSession(), "People.Search.Criteria", search);
@@ -94,7 +95,7 @@ public class PeopleController {
 			List<Group> group = peopleService.findSimpleGroup(search.getSearchText().trim());
 			//
 			Map<String, String> groupDNHashes = new HashMap<String, String>();
-			for (Iterator d = group.iterator(); d.hasNext();) 
+			for (Iterator d = group.iterator(); d.hasNext();)
 			{
 				Group g = (Group) d.next();
 				if (g.getDisplayName()!=null)
@@ -121,9 +122,9 @@ public class PeopleController {
 		List<Person> people = (List<Person>) getFromCache(request.getSession(), "People.Search.Results");
 		List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
 		Person up = (Person) getFromCache(request.getSession(), "People.Search.UniqueResult");
-		
+
 		//
-		if (up != null) 
+		if (up != null)
 		{
 			// LOG.debug("up data..");
 			List<Person> u = new ArrayList<Person>();
@@ -132,10 +133,10 @@ public class PeopleController {
 			m.put("heading", "Exact network id match");
 			m.put("directoryEntries", u);
 			results.add(m);
-			
+
 		}
-	
-		if (people == null || people.size() == 0) 
+
+		if (people == null || people.size() == 0)
 		{
 			LOG.debug("No People Info");
 		}
@@ -144,7 +145,7 @@ public class PeopleController {
 			Map<String, Object> m = new HashMap<String, Object>();
 			m.put("heading", "People");
 			if (people.size()==1 && people.get(0) != null && people.get(0).getUserName()==null) {
-				//Too many people found. DirectoryDaoUMImpl creates an empty Person object in this case. 
+				//Too many people found. DirectoryDaoUMImpl creates an empty Person object in this case.
 				m.put("error", "Too many people found. Please be more specific.");
 			}
 			else {
@@ -153,7 +154,7 @@ public class PeopleController {
 			results.add(m);
 		}
 		List<Group> group = (List<Group>) getFromCache(request.getSession(), "Group.Search.Results");
-		if (group == null || group.size() == 0) 
+		if (group == null || group.size() == 0)
 		{
 			LOG.debug("No Group Info");
 		}
@@ -164,22 +165,22 @@ public class PeopleController {
 				//
 				if (group.size()==1 && group.get(0) != null && group.get(0).getDN().equalsIgnoreCase("error"))
 				{
-					//Too many people found. DirectoryDaoUMImpl creates an empty Person object in this case. 
+					//Too many people found. DirectoryDaoUMImpl creates an empty Person object in this case.
 					m.put("error", "Too many groups found. Please be more specific.");
 				}
-				else 
+				else
 				{
 					m.put("directoryEntriesgroup", group);
 					LOG.debug(" results map size " + m.size());
 				}
-			
+
 				results.add(m);
-			
+
 		}
 		return new JSONSerializer().exclude("*.class").deepSerialize(results);
     }
-	
-	
+
+
 	@RequestMapping(value = "/advanced", method = RequestMethod.GET)
 	public String viewSearchForm(Model uiModel) {
 		SearchCriteria s = new SearchCriteria();
@@ -204,7 +205,7 @@ public class PeopleController {
 				userNameHashes.put(p.getHashedUserName(), p.getUserName());
 			}
 			request.getSession().setAttribute("People.UserNames.Hashes", userNameHashes);
-			
+
 			putInCache(request.getSession(), "People.Search.Results", people);
 
 			return "people/list";
@@ -215,7 +216,7 @@ public class PeopleController {
 			return "people/form";
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/{userNameHash}", method = RequestMethod.GET)
 	public String getUserDetails(Model uiModel, HttpServletRequest request, @PathVariable("userNameHash") String userNameHash) {
@@ -228,16 +229,16 @@ public class PeopleController {
 			String userName = userNameHashes.get(userNameHash);
 			p = peopleService.lookupPerson(userName);
 		}
-		
+
 		details.put("person", p);
 		details.put("loggedIn", false);
 
 		putInCache(request.getSession(), "People.Search.Results.Person", details);
-		
+
 		return "people/details";
 	}
-	
-	
+
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/group/{hashedDN}", method = RequestMethod.GET)
 	public String getGroupDetails(Model uiModel, HttpServletRequest request, @PathVariable("hashedDN") String hashedDisplayName) {
@@ -257,16 +258,16 @@ public class PeopleController {
 		details.put("loggedIn", false);
 
 		putInCache(request.getSession(), "Group.Search.Results.Group", details);
-		
+
 		return "people/groupdetails";
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/groupdetails", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public String getGroupDetailsJson(HttpServletRequest request) {
 		Map<String, Object> details = (Map<String, Object>) getFromCache(request.getSession(), "Group.Search.Results.Group");
-		
+
 		return new JSONSerializer().exclude("*.class").deepSerialize(details);
     }
 
@@ -275,11 +276,11 @@ public class PeopleController {
     @ResponseBody
     public String getUserDetailsJson(HttpServletRequest request) {
 		Map<String, Object> details = (Map<String, Object>) getFromCache(request.getSession(), "People.Search.Results.Person");
-		
+
 		return new JSONSerializer().exclude("*.class").deepSerialize(details);
     }
 
-	
+
 	@RequestMapping(value = "/image/{hash}", method = RequestMethod.GET)
 	public void getImage(@PathVariable("hash") String imageKeyHash, Model uiModel, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		byte[] byteArray = (byte[]) request.getSession().getAttribute("People.Image.Email." + imageKeyHash);
@@ -344,7 +345,7 @@ public class PeopleController {
 	private void removeFromCache(HttpSession session, String key) {
 		session.removeAttribute(key);
 	}
-	
+
 	private Map<String, String> getStatusTypes() {
 		Map<String, String> statusTypes = new LinkedHashMap<String, String>();
 		statusTypes.put("Any", "Any Status");

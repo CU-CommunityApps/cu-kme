@@ -15,71 +15,67 @@
 
 package org.kuali.mobility.computerlabs.service;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import org.apache.log4j.Logger;
+import org.kuali.mobility.computerlabs.dao.ComputerLabsDao;
 import org.kuali.mobility.computerlabs.entity.Lab;
 import org.kuali.mobility.computerlabs.entity.Location;
-import org.kuali.mobility.util.mapper.DataMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import flexjson.JSONSerializer;
+
 
 public class ComputerLabsServiceImpl implements ComputerLabsService {
+	private static final Logger LOG = Logger.getLogger( ComputerLabsServiceImpl.class );
 
-	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ComputerLabsServiceImpl.class);
+	private ComputerLabsDao dao;
 
-	private Map<String, List<String>> labUrls;
+	/**
+	 * @return the dao
+	 */
+	public ComputerLabsDao getDao() {
+		return dao;
+	}
 
-	@Autowired
-	private DataMapper dataMapper;
-
-	private String dataMappingUrl;
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(ComputerLabsDao dao) {
+		this.dao = dao;
+	}
 
 	public Collection<Location> findAllLabsByCampus(String campus) {
-		Map<String, Location> locations = new HashMap<String, Location>();
-		for (String sourceUrl : labUrls.get(campus)) {
-			try {
-				URL url = new URL(sourceUrl);
-				List<Lab> labs = new ArrayList<Lab>();
-				if (dataMappingUrl != null && !"".equals(dataMappingUrl.trim())) {
-					labs = dataMapper.mapData(labs, url, new URL(dataMappingUrl));
-				} else {
-					labs = dataMapper.mapData(labs, url, "labMapping.xml");
+		return getDao().findAllLabsByCampus(campus);
+	}
+	
+	 @Override
+	public Lab getLab(String campus, String buildingCode) 
+	{
+		  Lab lab = null;
+		  getDao().findAllLabsByCampus(campus);
+		/* List<Lab> labs = new ArrayList<Lab>();
+		 LOG.debug("getlab:buildingCode " + buildingCode );
+		 getDao().findAllLabsByCampus(campus);
+		 labs =  getDao().getLabs();*/
+		 //LOG.debug(labs.size());
+		 for (Lab l : getDao().getLabs())
+			{
+				//LOG.debug("Lab name " + l.getLab() + " , bc:" + l.getBuildingCode() + ", seats available : " + l.getAvailability());
+				if (lab != null)
+					break;
+				if (l.getLab().equals(buildingCode)) 
+				{
+					lab = l;
 				}
-				for (Lab lab : labs) {
-					Location location = null;
-					if (locations.get(lab.getBuildingCode()) != null) {
-						location = locations.get(lab.getBuildingCode());
-					} else {
-						location = new Location(lab.getBuilding());
-						locations.put(lab.getBuildingCode(), location);
-					}
-					location.getLabs().add(lab);
-				}
-			} catch (Exception e) {
-				LOG.error("errors", e);
 			}
+        
+         return lab;
+	}
+
+	 
+	 public String getViewSeatJson(final String buildingCode,final String campus) {
+		 //LOG.debug("getviewSeatJson %%%%% " );
+			return new JSONSerializer().exclude("*.class").deepSerialize(this.getLab(campus,buildingCode ));
 		}
-		return locations.values();
-	}
-
-	public String getDataMappingUrl() {
-		return dataMappingUrl;
-	}
-
-	public void setDataMappingUrl(String dataMappingUrl) {
-		this.dataMappingUrl = dataMappingUrl;
-	}
-
-	public Map<String, List<String>> getLabUrls() {
-		return labUrls;
-	}
-
-	public void setLabUrls(Map<String, List<String>> labUrls) {
-		this.labUrls = labUrls;
-	}
 
 }

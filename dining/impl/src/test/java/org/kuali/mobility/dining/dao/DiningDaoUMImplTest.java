@@ -12,11 +12,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class DiningDaoUMImplTest {
-	
+
 private static final Logger LOG = Logger.getLogger( DiningDaoUMImplTest.class );
-	
+
 	private static ApplicationContext applicationContext;
-	
+
     @BeforeClass
     public static void createApplicationContext() {
     	DiningDaoUMImplTest.setApplicationContext(new FileSystemXmlApplicationContext(getConfigLocations()));
@@ -25,7 +25,7 @@ private static final Logger LOG = Logger.getLogger( DiningDaoUMImplTest.class );
     private static String[] getConfigLocations() {
         return new String[] { "classpath:/SpringBeans.xml" };
     }
-    
+
 	public static ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}
@@ -33,7 +33,7 @@ private static final Logger LOG = Logger.getLogger( DiningDaoUMImplTest.class );
 	public static void setApplicationContext(ApplicationContext applicationContext) {
 		DiningDaoUMImplTest.applicationContext = applicationContext;
 	}
-	
+
 	@Test
 	public void testGetPlaceList() {
 		DiningDaoUMImpl dao = (DiningDaoUMImpl) getApplicationContext().getBean("diningDao");
@@ -45,7 +45,7 @@ private static final Logger LOG = Logger.getLogger( DiningDaoUMImplTest.class );
 	@Test
 	public void testGetMenusJson() {
 		DiningDaoUMImpl dao = (DiningDaoUMImpl) getApplicationContext().getBean("diningDao");
-		String data = dao.getMenusJson("Barbour Dining Hall", null);
+		String data = dao.getMenusJson("Bursley Dining Hall", null);
 		LOG.info("Menu JSON data: " + data);
 		assertTrue("Failed to load menu JSON data ", data!=null && data.isEmpty()==false);
 	}

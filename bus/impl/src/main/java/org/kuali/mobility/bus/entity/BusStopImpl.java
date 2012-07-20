@@ -14,25 +14,26 @@
  */
 package org.kuali.mobility.bus.entity;
 
-import java.util.Comparator;
 import java.util.Map;
-
-import java.util.TreeMap;
 
 /**
  *
  * @author joseswan
  */
-public class BusStopImpl implements BusStop {
+public class BusStopImpl implements BusStop{
 
     private long id;
-    
+
     private String name;
-    
+
     private String latitude;
     private String longitude;
-    
-    private Map<Double, String> schedule;
+
+    private double distance;
+
+    private String unit;
+
+	private Map<Double, String> schedule;
 
     /**
      * @return the id
@@ -103,15 +104,15 @@ public class BusStopImpl implements BusStop {
     public void setSchedule(Map map) {
         this.schedule = map;
     }
-    
+
     public void addSchedule() {
-        
+
     }
-    
+
     public boolean equals( Object o )
     {
         boolean isEqual = false;
-        
+
         if( o != null && o instanceof BusStop )
         {
             if( getName() != null && getName().equalsIgnoreCase( ((BusStop)o).getName() ) )
@@ -119,12 +120,38 @@ public class BusStopImpl implements BusStop {
                 isEqual = true;
             }
         }
-        
+
         return isEqual;
     }
-    
+
     public int hashCode()
     {
         return 41 + ( getName() == null ? 0 : getName().hashCode() );
     }
+
+	/**
+	 * @return the distance
+	 */
+	public double getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	@Override
+	public String getUnit() {
+		return this.unit;
+	}
+
+	@Override
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+
 }

@@ -107,7 +107,7 @@
             <name>onBodyLoad</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-        </attribute>        
+        </attribute>
         <attribute>
             <name>appcacheFilename</name>
             <required>false</required>
@@ -188,35 +188,35 @@
             <type>boolean</type>
         </attribute>
     </tag>
-    
+
     <tag>
         <name>definitionListTerm</name>
         <tag-class>org.kuali.mobility.tags.DefinitionListTermTag</tag-class>
         <body-content>scriptless</body-content>
         <description>This tag is for definitionListTerm</description>
     </tag>
-    
+
     <tag>
         <name>definitionListDefinition</name>
         <tag-class>org.kuali.mobility.tags.DefinitionListDefinitionTag</tag-class>
         <body-content>scriptless</body-content>
         <description>This tag is for definitionListDefinition</description>
     </tag>
-    
+
     <tag>
         <name>unorderedList</name>
         <tag-class>org.kuali.mobility.tags.UnorderedListTag</tag-class>
         <body-content>scriptless</body-content>
         <description>This tag is for unorderedList</description>
     </tag>
-    
+
     <tag>
         <name>orderedList</name>
         <tag-class>org.kuali.mobility.tags.OrderedListTag</tag-class>
         <body-content>scriptless</body-content>
         <description>This tag is for orderedList</description>
     </tag>
-    
+
     <tag>
         <name>listItem</name>
         <tag-class>org.kuali.mobility.tags.ListItemTag</tag-class>
@@ -249,14 +249,14 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
-    
+
     <tag>
         <name>section</name>
         <tag-class>org.kuali.mobility.tags.SectionTag</tag-class>
         <body-content>scriptless</body-content>
         <description>This tag is for section</description>
     </tag>
-    
+
     <tag>
         <name>form</name>
         <tag-class>org.kuali.mobility.tags.FormTag</tag-class>
@@ -278,7 +278,7 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
-    
+
     <tag>
         <name>input</name>
         <tag-class>org.kuali.mobility.tags.FormInputTag</tag-class>
@@ -322,5 +322,54 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
-    
+
+    <tag>
+        <name>tabBar</name>
+        <tag-class>org.kuali.mobility.tags.TabBar</tag-class>
+        <body-content>scriptless</body-content>
+        <description>A tag to create a tab bar, either floating or as footer</description>
+        <attribute>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>showIcons</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>iconPosition</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>cssClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>footer</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>tabBarItem</name>
+        <tag-class>org.kuali.mobility.tags.TabBarItem</tag-class>
+        <body-content>scriptless</body-content>
+        <description>A tag to represent the tab bar items</description>
+        <attribute>
+            <name>url</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>label</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
 </taglib>

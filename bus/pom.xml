@@ -18,7 +18,7 @@
     <parent>
         <artifactId>mobility</artifactId>
         <groupId>org.kuali.mobility</groupId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>1.3.1-DEV</version>
     </parent>
     <profiles>
         <profile>
@@ -59,9 +59,9 @@
             </modules>
         </profile>
         <profile>
-            <id>ui</id>
+            <id>webapp</id>
             <modules>
-                <module>ui</module>
+                <module>webapp</module>
             </modules>
         </profile>
     </profiles>

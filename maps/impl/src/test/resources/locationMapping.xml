@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataMapping id="building" className="org.kuali.mobility.maps.entity.Location" list="true" rootElement="buildings">
+	<mapping mapTo="id" mapFrom="buildingId" attribute="true" />
+	<mapping mapTo="name"/>
+	<mapping mapTo="description" mapFrom="officialName" attribute="true" />
+	<mapping mapTo="street" mapFrom="streetName" attribute="true"/>
+ 	<mapping mapTo="city"  attribute="true"/>
+	<mapping mapTo="state" attribute="true"/>
+<!--<mapping mapTo="zip" attribute="true"/>-->
+ 	<mapping mapTo="latitude" mapFrom="centroidLatitude" attribute="true"/>
+	<mapping mapTo="longitude" mapFrom="centroidLongitude" attribute="true"/>
+ </dataMapping>
