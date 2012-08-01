@@ -87,12 +87,12 @@
 					<c:forEach var="otherInfo" items="${event.otherInfo}">
 						<c:if test="${not empty otherInfo}">
 							<c:forEach var="info" items="${otherInfo}">
-								<p class="wrap">
-									<c:out value="${info}" />
 								</p>
 							</c:forEach>
 							<br />
-						</c:if>
+									<p class="wrap">
+									<c:out value="${info}" />
+					</c:if>
 					</c:forEach>
 				</c:if>
 

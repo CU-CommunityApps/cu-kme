@@ -36,7 +36,8 @@ public class EventsDaoUMImpl extends EventsDaoImpl {
 
     private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger( EventsDaoUMImpl.class );
     
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+//    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
     @Override
     public void initData( final String campus, final String categoryId ) {
@@ -89,6 +90,8 @@ public class EventsDaoUMImpl extends EventsDaoImpl {
 				newEvent.setCategory(category);
 				newEvent.setTitle(e.getTitle());
 				newEvent.setDisplayStartTime(e.getTimeBegin());
+                                //Saket's Addition
+                                newEvent.setType(e.getType());                                
 			    newEvent.setDisplayStartDate(e.getDateBegin());
 			    newEvent.setLocation(e.getBuildingName());
 			    newEvent.setLink(e.getUrl());

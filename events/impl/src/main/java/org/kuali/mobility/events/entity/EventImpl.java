@@ -37,6 +37,7 @@ public class EventImpl implements Serializable, Event {
     private String cost;
     private List<List<String>> otherInfo;
     private Category category;
+    private String type;
 
  
     /* (non-Javadoc)
@@ -315,4 +316,14 @@ public class EventImpl implements Serializable, Event {
 	public void setContact(List<EventContact> contact) {
 		this.contact = contact;
 	}
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(String eType) {
+        this.type = eType;
+    }
 }

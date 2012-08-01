@@ -15,6 +15,7 @@
 
 package org.kuali.mobility.events.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.kuali.mobility.events.entity.Category;
@@ -30,5 +31,19 @@ public interface EventsService {
 	
 	public Category getCategory(String campus, String categoryId);
 
-	public String getEventJson(String eventId);	
+	public String getEventJson(String eventId);
+        
+        //Saket's contribution
+        //Not used currently. Reserved for future. Might have few bugs. 
+        
+        //Getting the list of all events taking place that date 
+        public List<Event> getAllEventsByDateCurrent(String campus, String categoryId, Date dateCurrent);
+        
+        //Getting the list of the events from one date to the other date
+        public List<Event> getAllEventsByDateFromTo(String campus, String categoryId, Date from, Date to);
+        
+        //Getting the list of all events on a particular date
+        public List<Event> getAllEventsByDateSpecific(String campus, String categoryId, String specific);
+        
+        
 }

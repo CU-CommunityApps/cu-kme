@@ -92,5 +92,9 @@ public interface Event {
 	public abstract boolean equals(Object o);
 
 	public abstract int hashCode();
+        
+        public abstract String getType();
+        
+        public abstract void setType(String eType);
 
 }

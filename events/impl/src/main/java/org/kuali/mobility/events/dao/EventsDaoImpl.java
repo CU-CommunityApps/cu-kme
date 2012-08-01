@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 
 import org.kuali.mobility.events.entity.Category;
 import org.kuali.mobility.events.entity.Event;
@@ -108,6 +107,7 @@ public class EventsDaoImpl implements EventsDao, ApplicationContextAware {
 	            		{
 	            			Event event = (Event)getApplicationContext().getBean("event");
 	            			event.setTitle( entry.getTitle() );
+                                        
 	            			if( entry.getDescription() != null ) {
 	            				List<String> d = new ArrayList<String>();
 	            				d.add( entry.getDescription().getValue() );
@@ -129,7 +129,7 @@ public class EventsDaoImpl implements EventsDao, ApplicationContextAware {
 	        				} catch (UnsupportedEncodingException e) {
 	        					event.setEventId(entry.getUri());
 	        				}
-	        				
+	        				//event.setType("Dummy Type");
 	        				newEvents.add( event );
 	            		}
 	            	}

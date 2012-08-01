@@ -213,3 +213,51 @@ div#allDayCheckboxSection span {
 .temp-checkbox-hack .ui-btn.ui-btn-icon-left.ui-corner-top.ui-corner-bottom.ui-controlgroup-last.ui-btn-hover-c .ui-btn-inner.ui-corner-top.ui-corner-bottom.ui-controlgroup-last .ui-btn-text {
 	padding-left:12px;
 }
+
+div#dateNavigation h3{
+    text-align: center;
+}
+
+div#categoryHeading{    
+    background-color: skyblue;  
+    color: white;
+}
+
+div#eventName h3{    
+    font-weight: bold;
+    margin: 0 10px;
+    
+}
+
+div#eventSchedule h3{    
+    font-size: 15px;
+    margin: 0 7px;
+    font-weight: lighter;
+}
+
+div#categoryHeading h3{
+    text-align: left;
+    margin: 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+      
+}
+
+a#leftArrow,a#rightArrow{
+    text-indent: -9999px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-repeat: no-repeat;
+    margin: 0 10px;
+}
+
+a#rightArrow{
+    background-image: url('../images/arrow-right.png');
+    float: right;
+}
+
+a#leftArrow{
+    background-image: url('../images/arrow-left.png');
+    float: left;
+}
