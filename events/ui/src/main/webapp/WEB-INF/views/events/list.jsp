@@ -64,8 +64,8 @@
                                                 <c:param name="eventId" value="${gbcV.eventId}"></c:param>
 					</c:url>
                                         <a href="${url}">
-                                            <h3><c:out value="${gbcV.title}" /></h3>
-                                            <p><c:out value="${gbcV.displayStartTime}" /> - <c:out value="${gbcV.displayEndTime}" /> | <c:out value="${gbcV.location}" /></p>   
+                                            <h3 class="wrap"><c:out value="${gbcV.title}" /></h3>
+                                            <p style="white-space:pre-wrap"><c:out value="${gbcV.displayStartTime}" /> - <c:out value="${gbcV.displayEndTime}" /> | <c:out value="${gbcV.location}" /></p>   
                                         </a>                                        
                                     </kme:listItem>
                                     
