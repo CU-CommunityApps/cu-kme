@@ -13,9 +13,8 @@
  */
 package org.kuali.mobility.events.controllers;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,14 +61,19 @@ public class EventsFilterController {
 
         //code for making the new home page of events
         HashMap<Category, List<Event>> mObj = new HashMap<Category, List<Event>>();
-        uiModel.addAttribute("todayDate", "Tuesday Jul 31, 2012");
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = new Date();
+        String todayDate = sdf.format(new Date());
+        
+        uiModel.addAttribute("todayDate", todayDate);
         List<Event> eventList = new ArrayList<Event>();
         List<Event> eventListR = new ArrayList<Event>();
 
         Iterator itc = categories.iterator();
         while (itc.hasNext()) {
             Category obj = (Category) itc.next();
-            eventList = eventsService.getAllEventsByDateSpecific(campus, obj.getCategoryId(), "2012-07-31");
+            eventList = eventsService.getAllEventsByDateSpecific(campus, obj.getCategoryId(), todayDate);
             eventListR.addAll(eventList);
         }
 
@@ -179,28 +183,80 @@ public class EventsFilterController {
         return "events/eventsList";
     }
 
-    //Not used currently. Reserved for future. Might have few bugs.  
+      
     @RequestMapping(value = "/viewEventsDateSpecific", method = RequestMethod.GET)
-    public String viewEventsDateSpecific(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String categoryId, @RequestParam(required = false) String campus, @RequestParam(required = true) String dateSpecific) throws Exception {
-        List<Event> eventList = eventsService.getAllEventsByDateSpecific(campus, categoryId, dateSpecific);
-        uiModel.addAttribute("events", eventList);
-        Category category;
-        if (eventList != null && eventList.size() > 0) {
-            category = eventList.get(0).getCategory();
+    public String viewEventsDateSpecific(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String dateSpecific) throws Exception {
+        User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
+        String campus = null;
+        if (user.getViewCampus() == null) {
+            return "redirect:/campus?toolName=events";
         } else {
-            category = eventsService.getCategory(campus, categoryId);
+            campus = user.getViewCampus();
         }
-        if (category == null) {
-            LOG.error("Couldn't find category for categoryId - " + categoryId);
-            category = new CategoryImpl();
-            category.setCategoryId(categoryId);
-            category.setTitle(categoryId);
-        }
-        uiModel.addAttribute("category", category);
+
+        List<Category> categories = eventsService.getCategoriesByCampus(campus);
+        LOG.debug("Found " + categories.size() + " categories via local service for campus " + campus);
+        uiModel.addAttribute("categories", categories);
         uiModel.addAttribute("campus", campus);
 
-        return "events/eventsList";
+        //code for making the new home page of events
+        HashMap<Category, List<Event>> mObj = new HashMap<Category, List<Event>>();
+        uiModel.addAttribute("todayDate", dateSpecific);
+        List<Event> eventList = new ArrayList<Event>();
+        List<Event> eventListR = new ArrayList<Event>();
+
+        Iterator itc = categories.iterator();
+        while (itc.hasNext()) {
+            Category obj = (Category) itc.next();
+            eventList = eventsService.getAllEventsByDateSpecific(campus, obj.getCategoryId(), dateSpecific);
+            eventListR.addAll(eventList);
+        }
+
+        //Grouping of events by category after getting the list of all the matched events
+        List<Event> eventListByCat = new ArrayList<Event>();
+        Iterator ite = eventListR.iterator();
+        while (ite.hasNext()) {
+            Event eObj = (Event) ite.next();
+            //taking the current list of events from the map
+            eventListByCat = (ArrayList<Event>) mObj.get(eObj.getCategory());
+            //adding the current event to the above list
+            if (eventListByCat == null) {
+                eventListByCat = new ArrayList<Event>();
+            }
+            eventListByCat.add(eObj);
+            //saving back to the map with the updated list
+            mObj.put(eObj.getCategory(), eventListByCat);
+        }
+        uiModel.addAttribute("groupByCat", mObj);
+        
+        return "events/list";
     }
+    
+    
+    @RequestMapping(value = "/nextDate", method = RequestMethod.GET)
+    public String getNextDate(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String currentDate) throws Exception
+    {
+        int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(currentDate);
+        String nextDate = sdf.format(date.getTime() + MILLIS_IN_DAY);
+
+        return "redirect:/campus?toolName=events/viewEventsDateSpecific?dateSpecific="+nextDate;
+    }
+    
+    @RequestMapping(value = "/previousDate", method = RequestMethod.GET)
+    public String previousDate(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String currentDate) throws Exception
+    {
+        int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(currentDate);
+        String previousDate = sdf.format(date.getTime() - MILLIS_IN_DAY);
+
+        return "redirect:/campus?toolName=events/viewEventsDateSpecific?dateSpecific="+previousDate;
+    }
+    
+    
+    
 }
 
 //

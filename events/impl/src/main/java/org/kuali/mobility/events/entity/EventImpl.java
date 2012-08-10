@@ -305,9 +305,9 @@ public class EventImpl implements Serializable, Event {
 	 */
     @Override
 	public int hashCode()
-    {
-        return (41 + Integer.parseInt( getEventId().substring(5) ) );
-    }
+        {
+            return (41 + Integer.parseInt( getEventId().substring(5) ) );
+        }
 
 	public List<EventContact> getContact() {
 		return contact;

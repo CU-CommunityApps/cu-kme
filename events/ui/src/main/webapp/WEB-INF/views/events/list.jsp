@@ -15,6 +15,84 @@
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility"%>
 
 <kme:page title="Events By Day" id="events" appcacheFilename="kme.appcache" backButton="true" homeButton="true" cssFilename="events" backButtonURL="${pageContext.request.contextPath}/home">
+    <head>
+
+        <link type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" rel="stylesheet" /> 
+        <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+        <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+        <script type="text/javascript" src="http://dev.jtsage.com/gpretty/prettify.js"></script>
+
+        <script type="text/javascript">
+            function updateList()
+            {                               
+                document.location.href = 'http://192.168.4.101:9999/mdot/events/viewEventsDateSpecific?dateSpecific='+$('input#mode1').val();               
+            }
+            
+            function previousDate()
+            {
+                document.location.href = 'http://192.168.4.101:9999/mdot/events/previousDate?currentDate='+$('input#mode1').val(); 
+            }
+            function nextDate()
+            {
+                document.location.href = 'http://192.168.4.101:9999/mdot/events/nextDate?currentDate='+$('input#mode1').val(); 
+            }
+        </script>
+    </head>
+
+    <kme:content>
+        <kme:listView id="eventslist" dataTheme="c" dataDividerTheme="b" filter="false">
+
+            <div id="dateNavigation">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <a href="" onclick="previousDate()" id="leftArrow">
+                                Previous Day
+                            </a>                            
+                        </td>
+                        <td>                            
+                            <h3><input name="mode1" id="mode1"  value="${todayDate}" type="text" data-role="datebox" data-options='{"mode":"calbox", "useNewStyle":true}' onchange="updateList()" /></h3>
+                        </td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                        <td>
+                            <a href="" onclick="nextDate()" id="rightArrow">
+                                Next Day
+                            </a>
+                        </td>
+
+                    </tr>
+                </table>  
+            </div>
+
+            <c:forEach items="${groupByCat}" var ="gbc" varStatus="status">
+                <!--                             Category Header                               -->
+                <kme:listItem dataRole="list-divider">
+                    <c:out value="${gbc.key.title}" />
+                </kme:listItem>                         
+
+                <c:forEach items="${gbc.value}" var ="gbcV" varStatus="status">
+                    <!--                                     Event Information                              -->
+                    <kme:listItem>
+                        <c:url var="url" value="/events/viewEvent">
+                            <c:param name="categoryId" value="${gbc.key.categoryId}"></c:param>
+                            <c:param name="campus" value="${campus}"></c:param>
+                            <c:param name="eventId" value="${gbcV.eventId}"></c:param>
+                        </c:url>
+                        <a href="${url}">
+                            <h3 class="wrap"><c:out value="${gbcV.title}" /></h3>
+                            <p style="white-space:pre-wrap"><c:out value="${gbcV.displayStartTime}" /> - <c:out value="${gbcV.displayEndTime}" /> | <c:out value="${gbcV.location}" /></p>   
+                        </a>                                        
+                    </kme:listItem>
+                </c:forEach>
+            </c:forEach>
+                        
+        </kme:listView>
+    </kme:content>    
+</kme:page>
+
+                        
+
+<!--Below is the code for viewing the events by category -->
+<!--<kme:page title="Events By Day" id="events" appcacheFilename="kme.appcache" backButton="true" homeButton="true" cssFilename="events" backButtonURL="${pageContext.request.contextPath}/home">
 	<kme:content>
 		<kme:listView id="eventslist" dataTheme="c" dataDividerTheme="b" filter="false">
 <%-- 			<kme:listItem>
@@ -31,52 +109,13 @@
      <a href="index.html" id="leftArrow">Previous Day</a>
      <a href="index.html" id="rightArrow">Next Day</a>
      <h3>${todayDate}</h3>
-<!--     <div>
+     <div>
          <input type="date" name="date" />
-     </div>-->
+     </div>
  </div>
-
-<!--                        <c:forEach items="${eventListController}" var="elc" varStatus="status">  
-                            <div id="categoryHeading">
-                                <h3><c:out value="${elc.type}" /></h3> 
-                            </div>
-                            <div id="eventName">
-                                <h3><c:out value="${elc.title}" /></h3>
-                            </div>
-                            <div id ="eventSchedule">
-                                <h3><c:out value="${elc.displayStartTime}" /> - <c:out value="${elc.displayEndTime}" /> | <c:out value="${elc.location}" /> </h3>
-                            </div>
-                                                              
-                        </c:forEach>-->
-
-                        <c:forEach items="${groupByCat}" var ="gbc" varStatus="status">
-<!--                             Category Header                               -->
-                              <kme:listItem dataRole="list-divider">
-                                    <c:out value="${gbc.key.title}" />
-                              </kme:listItem>                         
-                            
-                              <c:forEach items="${gbc.value}" var ="gbcV" varStatus="status">
-<!--                                     Event Information                              -->
-                                    <kme:listItem>
-                                        <c:url var="url" value="/events/viewEvent">
-						<c:param name="categoryId" value="${gbc.key.categoryId}"></c:param>
-						<c:param name="campus" value="${campus}"></c:param>
-                                                <c:param name="eventId" value="${gbcV.eventId}"></c:param>
-					</c:url>
-                                        <a href="${url}">
-                                            <h3 class="wrap"><c:out value="${gbcV.title}" /></h3>
-                                            <p style="white-space:pre-wrap"><c:out value="${gbcV.displayStartTime}" /> - <c:out value="${gbcV.displayEndTime}" /> | <c:out value="${gbcV.location}" /></p>   
-                                        </a>                                        
-                                    </kme:listItem>
-                                    
-                               </c:forEach>
-                            
-                        </c:forEach>
-                        
-                            
-<!--			<c:forEach items="${categories}" var="category" varStatus="status">
+			<c:forEach items="${categories}" var="category" varStatus="status">
 				<kme:listItem>
-					<c:url var="url" value="/events/viewEvents">
+					<c:url var="url" value="/events/viewEventsDateSpecific">
 						<c:param name="categoryId" value="${category.categoryId}"></c:param>
 						<c:param name="campus" value="${campus}"></c:param>
                                                 <c:param name="dateSpecific" value="${todayDate}"></c:param>
@@ -86,7 +125,7 @@
 							<c:out value="${category.title}" />
 						</h3> </a>
 				</kme:listItem>
-			</c:forEach>-->
+			</c:forEach>
 		</kme:listView>
 	</kme:content>
-</kme:page>
+</kme:page>-->
