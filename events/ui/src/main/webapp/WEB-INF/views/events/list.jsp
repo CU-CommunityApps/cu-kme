@@ -10,13 +10,13 @@
 --%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="kme" uri="http://kuali.org/mobility"%>
 
 <kme:page title="Events By Day" id="events" appcacheFilename="kme.appcache" backButton="true" homeButton="true" cssFilename="events" backButtonURL="${pageContext.request.contextPath}/home">
     <head>
-
+        <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width"> 
+        
         <link type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" rel="stylesheet" /> 
         <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
         <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
@@ -25,18 +25,18 @@
         <script type="text/javascript">
             function updateList()
             {                               
-                document.location.href = 'http://192.168.4.101:9999/mdot/events/viewEventsDateSpecific?dateSpecific='+$('input#mode1').val();               
+                document.location.href = '${pageContext.request.contextPath}/events/viewEventsDateSpecific?dateSpecific='+$('input#mode1').val();               
             }
             
             function previousDate()
             {
-                document.location.href = 'http://192.168.4.101:9999/mdot/events/previousDate?currentDate='+$('input#mode1').val(); 
+                document.location.href = '${pageContext.request.contextPath}/events/previousDate?currentDate='+$('input#mode1').val(); 
             }
             function nextDate()
             {
-                document.location.href = 'http://192.168.4.101:9999/mdot/events/nextDate?currentDate='+$('input#mode1').val(); 
+                document.location.href = '${pageContext.request.contextPath}/events/nextDate?currentDate='+$('input#mode1').val(); 
             }
-        </script>
+       </script>
     </head>
 
     <kme:content>
@@ -62,7 +62,7 @@
                     </tr>
                 </table>  
             </div>
-
+                       
             <c:forEach items="${groupByCat}" var ="gbc" varStatus="status">
                 <!--                             Category Header                               -->
                 <kme:listItem dataRole="list-divider">
@@ -86,6 +86,14 @@
             </c:forEach>
                         
         </kme:listView>
+                        
+        <div data-role="navbar" data-position="fixed">
+            <ul>
+                     <li><a href="${pageContext.request.contextPath}/events/byCategory">By Category</a></li>
+                     <li><a href="${pageContext.request.contextPath}/events">By Date</a></li>
+                    <li><a href="${pageContext.request.contextPath}/events/byDateRange">By Range</a></li>
+            </ul>
+       </div><!-- /navbar -->
     </kme:content>    
 </kme:page>
 

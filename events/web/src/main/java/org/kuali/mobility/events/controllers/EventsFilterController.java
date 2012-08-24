@@ -39,6 +39,8 @@ public class EventsFilterController {
     private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(EventsFilterController.class);
     private EventsService eventsService;
     private EventsDaoUMImpl eventsUMService = new EventsDaoUMImpl();
+    private List<Category> categories = new ArrayList<Category>();
+    private String campus = null;
 
     public void setEventsService(EventsService eventsService) {
         this.eventsService = eventsService;
@@ -47,25 +49,26 @@ public class EventsFilterController {
     @RequestMapping(method = RequestMethod.GET)
     public String homePage(HttpServletRequest request, Model uiModel) throws ParseException {
         User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-        String campus = null;
+
         if (user.getViewCampus() == null) {
             return "redirect:/campus?toolName=events";
         } else {
             campus = user.getViewCampus();
         }
 
-        List<Category> categories = eventsService.getCategoriesByCampus(campus);
+        categories = eventsService.getCategoriesByCampus(campus);
         LOG.debug("Found " + categories.size() + " categories via local service for campus " + campus);
         uiModel.addAttribute("categories", categories);
         uiModel.addAttribute("campus", campus);
 
         //code for making the new home page of events
         HashMap<Category, List<Event>> mObj = new HashMap<Category, List<Event>>();
-        
+
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date d = new Date();
         String todayDate = sdf.format(new Date());
-        
+
         uiModel.addAttribute("todayDate", todayDate);
         List<Event> eventList = new ArrayList<Event>();
         List<Event> eventListR = new ArrayList<Event>();
@@ -97,6 +100,21 @@ public class EventsFilterController {
 //                uiModel.addAttribute("eventListController", eventListR);
 
         return "events/list";
+    }
+    
+    @RequestMapping(value = "/byCategory", method = RequestMethod.GET)
+    public String homeByCategory(HttpServletRequest request, Model uiModel) throws ParseException {
+        LOG.debug("Found " + categories.size() + " categories via local service for campus " + campus);
+        uiModel.addAttribute("categories", categories);
+        uiModel.addAttribute("campus", campus);
+
+        return "events/category";
+    }
+    
+    @RequestMapping(value = "/byDateRange", method = RequestMethod.GET)
+    public String homeByDateRange(HttpServletRequest request, Model uiModel) throws ParseException {
+        
+        return "events/dateRange";
     }
 
     @RequestMapping(value = "/viewEvents", method = RequestMethod.GET)
@@ -136,82 +154,78 @@ public class EventsFilterController {
         return eventsService.getEventJson(eventId);
     }
 
-    //Saket's addition
-    //Not used currently. Reserved for future. Might have few bugs. 
-    @RequestMapping(value = "/viewEventsCurrentDate", method = RequestMethod.GET)
-    public String viewEventsCurrentDate(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String categoryId, @RequestParam(required = false) String campus, @RequestParam(required = true) Date dateCurrent) throws Exception {
-        List<Event> eventList = eventsService.getAllEventsByDateCurrent(campus, categoryId, dateCurrent);
-
-        uiModel.addAttribute("events", eventList);
-
-        Category category;
-        if (eventList != null && eventList.size() > 0) {
-            category = eventList.get(0).getCategory();
-        } else {
-            category = eventsService.getCategory(campus, categoryId);
-        }
-        if (category == null) {
-            LOG.error("Couldn't find category for categoryId - " + categoryId);
-            category = new CategoryImpl();
-            category.setCategoryId(categoryId);
-            category.setTitle(categoryId);
-        }
-        uiModel.addAttribute("category", category);
-        uiModel.addAttribute("campus", campus);
-        return "events/eventsList";
-    }
-
-    //Not used currently. Reserved for future. Might have few bugs. 
+    
     @RequestMapping(value = "/viewEventsByDateFromTo", method = RequestMethod.GET)
-    public String viewEventsByDateFromTo(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String categoryId, @RequestParam(required = false) String campus, @RequestParam(required = true) Date from, @RequestParam(required = true) Date to) throws Exception {
-        List<Event> eventList = eventsService.getAllEventsByDateFromTo(campus, categoryId, from, to);
-        uiModel.addAttribute("events", eventList);
-        Category category;
-        if (eventList != null && eventList.size() > 0) {
-            category = eventList.get(0).getCategory();
-        } else {
-            category = eventsService.getCategory(campus, categoryId);
+    public String viewEventsByDateFromTo(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String dateFrom, @RequestParam(required = true) String dateTo) throws Exception {
+
+        SortedMap<String, HashMap<Category, List<Event>>> mObjFT = new TreeMap<String, HashMap<Category, List<Event>>>();
+        List<String> listOfDates = new ArrayList<String>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateF = sdf.parse(dateFrom);
+        Date dateT = sdf.parse(dateTo);
+        //checking if the start date is smaller than the end date
+        if (dateF.before(dateT)) {
+            //getting the array list of dates from the range
+            listOfDates = listOfDates(dateFrom, dateTo);
+            Iterator ite = listOfDates.iterator();
+            while (ite.hasNext()) {
+                String fetchedDate = (String) ite.next();
+                System.out.println(fetchedDate);
+                //storing into map, each date as key and "list of events grouped by category" as value pair
+                mObjFT.put(fetchedDate, supportViewEventsDateSpecific(fetchedDate, categories));
+            }
+            uiModel.addAttribute("eventDateFromTo", mObjFT);
         }
-        if (category == null) {
-            LOG.error("Couldn't find category for categoryId - " + categoryId);
-            category = new CategoryImpl();
-            category.setCategoryId(categoryId);
-            category.setTitle(categoryId);
-        }
-        uiModel.addAttribute("category", category);
-        uiModel.addAttribute("campus", campus);
-        return "events/eventsList";
+              
+        return "events/eventsListDateRange";
     }
 
-      
     @RequestMapping(value = "/viewEventsDateSpecific", method = RequestMethod.GET)
     public String viewEventsDateSpecific(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String dateSpecific) throws Exception {
-        User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-        String campus = null;
-        if (user.getViewCampus() == null) {
-            return "redirect:/campus?toolName=events";
-        } else {
-            campus = user.getViewCampus();
-        }
-
-        List<Category> categories = eventsService.getCategoriesByCampus(campus);
-        LOG.debug("Found " + categories.size() + " categories via local service for campus " + campus);
-        uiModel.addAttribute("categories", categories);
-        uiModel.addAttribute("campus", campus);
 
         //code for making the new home page of events
         HashMap<Category, List<Event>> mObj = new HashMap<Category, List<Event>>();
         uiModel.addAttribute("todayDate", dateSpecific);
+        uiModel.addAttribute("groupByCat", supportViewEventsDateSpecific(dateSpecific, categories));
+
+        return "events/list";
+    }
+
+    @RequestMapping(value = "/nextDate", method = RequestMethod.GET)
+    public String getNextDate(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String currentDate) throws Exception {
+        int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(currentDate);
+
+        String nextDate = sdf.format(date.getTime() + MILLIS_IN_DAY);
+
+        return "redirect:/campus?toolName=events/viewEventsDateSpecific?dateSpecific=" + nextDate;
+    }
+
+    @RequestMapping(value = "/previousDate", method = RequestMethod.GET)
+    public String previousDate(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String currentDate) throws Exception {
+        int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(currentDate);
+        String previousDate = sdf.format(date.getTime() - MILLIS_IN_DAY);
+
+        return "redirect:/campus?toolName=events/viewEventsDateSpecific?dateSpecific=" + previousDate;
+    }
+
+    //support for getting the list of all events grouped by Category
+    public HashMap<Category, List<Event>> supportViewEventsDateSpecific(String dte, List<Category> categories) {
+        HashMap<Category, List<Event>> mObj = new HashMap<Category, List<Event>>();
+
         List<Event> eventList = new ArrayList<Event>();
         List<Event> eventListR = new ArrayList<Event>();
 
         Iterator itc = categories.iterator();
         while (itc.hasNext()) {
             Category obj = (Category) itc.next();
-            eventList = eventsService.getAllEventsByDateSpecific(campus, obj.getCategoryId(), dateSpecific);
+            eventList = eventsService.getAllEventsByDateSpecific(campus, obj.getCategoryId(), dte);
             eventListR.addAll(eventList);
-        }
 
+        }
         //Grouping of events by category after getting the list of all the matched events
         List<Event> eventListByCat = new ArrayList<Event>();
         Iterator ite = eventListR.iterator();
@@ -227,36 +241,26 @@ public class EventsFilterController {
             //saving back to the map with the updated list
             mObj.put(eObj.getCategory(), eventListByCat);
         }
-        uiModel.addAttribute("groupByCat", mObj);
         
-        return "events/list";
+        return mObj;
     }
-    
-    
-    @RequestMapping(value = "/nextDate", method = RequestMethod.GET)
-    public String getNextDate(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String currentDate) throws Exception
-    {
+
+    public List<String> listOfDates(String from, String to) throws Exception {
+        List<String> lst = new ArrayList<String>();
         int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = sdf.parse(currentDate);
-        String nextDate = sdf.format(date.getTime() + MILLIS_IN_DAY);
 
-        return "redirect:/campus?toolName=events/viewEventsDateSpecific?dateSpecific="+nextDate;
-    }
-    
-    @RequestMapping(value = "/previousDate", method = RequestMethod.GET)
-    public String previousDate(HttpServletRequest request, Model uiModel, @RequestParam(required = true) String currentDate) throws Exception
-    {
-        int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = sdf.parse(currentDate);
-        String previousDate = sdf.format(date.getTime() - MILLIS_IN_DAY);
+        Date dateF = sdf.parse(from);
+        Date dateT = sdf.parse(to);
+        
+        while (dateF.equals(dateT) || dateF.before(dateT)) {
+            lst.add(from);
+            from = sdf.format(dateF.getTime() + MILLIS_IN_DAY);
+            dateF = sdf.parse(from);
+        }
 
-        return "redirect:/campus?toolName=events/viewEventsDateSpecific?dateSpecific="+previousDate;
+        return lst;
     }
-    
-    
-    
 }
 
 //

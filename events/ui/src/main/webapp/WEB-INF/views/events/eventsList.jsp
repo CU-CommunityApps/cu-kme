@@ -62,5 +62,12 @@
 				</c:otherwise>
 			</c:choose>
 		</kme:listView>
+                <div data-role="navbar" data-position="fixed">
+            <ul>
+                     <li><a href="${pageContext.request.contextPath}/events/byCategory">By Category</a></li>
+                     <li><a href="${pageContext.request.contextPath}/events">By Date</a></li>
+                     <li><a href="${pageContext.request.contextPath}/events/byDateRange">By Range</a></li>
+            </ul>
+       </div><!-- /navbar -->                                                                
 	</kme:content>
 </kme:page>
