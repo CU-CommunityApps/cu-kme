@@ -19,7 +19,7 @@
 
 
 <spring:message code="editlayout.title" var="title"/>
-<kme:page title="${title}" id="editlayout" backButton="true" homeButton="true" cssFilename="publishing">
+<kme:page title="${title}" id="editlayout" backButton="true" homeButton="true" cssFilename="publishing" backButtonURL="${pageContext.request.contextPath}/publishing/layout">
 	<kme:content>
 		<fieldset>
 			<form:form action="${pageContext.request.contextPath}/publishing/layout/edit" commandName="layout" data-ajax="false" method="post" id="fm" name="fm">

@@ -174,7 +174,7 @@ public class KMEBootstrapListener extends BootstrapListener {
     	tool.setDescription("Live bus tracking.");
     	tool.setIconUrl("images/service-icons/srvc-bus.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 10);
+		ht = new HomeTool(home, tool, 11);
 		tools.add(ht);		
 
 		tool = new Tool();
@@ -184,7 +184,17 @@ public class KMEBootstrapListener extends BootstrapListener {
     	tool.setDescription("Administrative publishing tools.");
     	tool.setIconUrl("images/service-icons/srvc-publishing.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 10);
+		ht = new HomeTool(home, tool, 12);
+		tools.add(ht);		
+
+		tool = new Tool();
+		tool.setAlias("push");
+    	tool.setTitle("Push");
+    	tool.setUrl("push");
+    	tool.setDescription("Administrative push notifications tool.");
+    	tool.setIconUrl("images/service-icons/srvc-push.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 13);
 		tools.add(ht);		
 
 		tool = new Tool();
@@ -194,7 +204,7 @@ public class KMEBootstrapListener extends BootstrapListener {
     	tool.setDescription("Impersonate a user.");
     	tool.setIconUrl("images/service-icons/srvc-backdoor.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 10);
+		ht = new HomeTool(home, tool, 14);
 		tools.add(ht);		
 
 		home.setHomeTools(tools);

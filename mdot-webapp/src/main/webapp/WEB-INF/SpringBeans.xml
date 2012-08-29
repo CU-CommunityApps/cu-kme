@@ -43,9 +43,6 @@
 		</cxf:features>
 	</cxf:bus>
 
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" p:cache-manager-ref="ehcache"/>
-	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:config-location="classpath:ehcache.xml"/>
-
 	<import resource="classpath:KMESpringBeans.xml" />
 	<import resource="classpath:CampusSpringBeans.xml" />
 	<import resource="classpath:AlertsSpringBeans.xml" />

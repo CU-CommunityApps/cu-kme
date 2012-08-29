@@ -17,7 +17,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <spring:message code="edittool.title" var="title"/>
-<kme:page title="${title}" id="edittool" backButton="true" homeButton="true" cssFilename="publishing">
+<kme:page title="${title}" id="edittool" backButton="true" homeButton="true" cssFilename="publishing" backButtonURL="${pageContext.request.contextPath}/publishing/tool">
 	<kme:content>
 		<script type="text/javascript">
 			$(function(){

@@ -16,7 +16,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <spring:message code="tools.title" var="title"/>
-<kme:page title="${title}" id="layout" backButton="true" homeButton="true">
+<kme:page title="${title}" id="layout" backButton="true" homeButton="true" backButtonURL="${pageContext.request.contextPath}/publishing/index">
 	<kme:content>
 		<kme:listView id="layoutlist" dataTheme="c" dataDividerTheme="b" filter="false">
 			<kme:listItem dataRole="list-divider">

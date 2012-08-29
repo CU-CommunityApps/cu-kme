@@ -29,8 +29,6 @@
 
     <context:component-scan base-package="org.kuali.mobility" />
 
-	<cache:annotation-driven />
-
     <mvc:annotation-driven />
     <mvc:interceptors>
 	    <bean id="remoteUserInterceptor" class="org.kuali.mobility.security.authn.interceptors.RemoteUserInterceptor"/>
