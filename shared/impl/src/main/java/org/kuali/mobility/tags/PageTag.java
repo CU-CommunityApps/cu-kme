@@ -208,15 +208,15 @@ public class PageTag extends SimpleTagSupport {
 	            //LOG.info("---Cookies: " + c.getName());        	
 	            if(c.getName().equals("platform") && platform == null){
 	            	platform = c.getValue();
-	            	LOG.info("---Platform: " + platform);
+	            	//LOG.info("---Platform: " + platform);
 	            }
 	            if(c.getName().equals("phonegap") && phonegap == null){
 	            	phonegap = c.getValue();
-	            	LOG.info("---Phonegap: " + phonegap);
+	            	//LOG.info("---Phonegap: " + phonegap);
 	            }
 	            if(c.getName().equals("jqmHeader") && jqmHeader == null){
 	            	jqmHeader = c.getValue();
-	            	LOG.info("---jqmHeader: " + jqmHeader);
+	            	//LOG.info("---jqmHeader: " + jqmHeader);
 	            }
 	        }
         }
@@ -318,10 +318,10 @@ public class PageTag extends SimpleTagSupport {
             
         	LOG.info("----" + jqmHeader);
             if(jqmHeader != null && jqmHeader.equals("hide")){
-            	LOG.info("---- Hide Header");
+            	//LOG.info("---- Hide Header");
             	out.println("<div data-role=\"header\" style=\"display:none\">");
             }else{
-            	LOG.info("---- Show Header");
+            	//LOG.info("---- Show Header");
             	out.println("<div data-role=\"header\">");            	
             }
             

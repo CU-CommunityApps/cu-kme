@@ -34,7 +34,7 @@
 					<c:choose>
 						<c:when test="${status.index < sampleSize}">
 							<kme:listItem cssClass="sample">
-								<a href="${pageContext.request.contextPath}/news/${source.sourceId}?articleId=${article.articleId}&referrer=home">
+								<a href="${pageContext.request.contextPath}/news/${article.sourceId}?articleId=${article.articleId}&referrer=home">
 					        		<!-- <p class="news-title">${article.title}</p>-->
 					        		<p class="wrap">${article.title}</p>
 					        	</a>

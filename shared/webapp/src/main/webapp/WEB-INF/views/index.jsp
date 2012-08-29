@@ -22,24 +22,24 @@
 	<c:set var="platform" value="Android"/>
 </c:if>
 
-<c:set var="header" value="${param.header}"/>
-<c:set var="phonegap" value="${cookie.phonegap.value}"/>
+<c:set var="header" value="${param['header']}"/>
+<c:set var="phonegap" value="${cookie['phonegap'].value}"/>
 
-<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences" platform="${platform}" phonegap="${phonegap}" onBodyLoad="" jqmHeader="${param.header}">
+<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences" platform="${platform}" phonegap="${phonegap}" onBodyLoad="" jqmHeader="${param['header']}">
 	<kme:content>
 
 
 		<script type="text/javascript">
-			$.cookie('jqmHeader', '${param.header}', {expires: 365, path: '/'});
-			$.cookie('native', '${param.native}', {expires: 365, path: '/'});
+			$.cookie('jqmHeader', '${param["header"]}', {expires: 365, path: '/'});
+			$.cookie('native', '${param["native"]}', {expires: 365, path: '/'});
 		</script>
 
-		<c:if test="${param.native == 'yes'}">
+		<c:if test="${param['native'] == 'yes'}">
 			<script type="text/javascript">
 				$.cookie('native', 'yes', {expires: 365, path: '/'});
 			</script>
 		</c:if>			
-		<c:if test="${param.native == 'no'}">
+		<c:if test="${param['native'] == 'no'}">
 			<script type="text/javascript">
 				$.cookie('native', 'no', {expires: 365, path: '/'});
 			</script>
@@ -51,11 +51,11 @@
 				$.cookie('platform', '${platform}', {expires: 365, path: '/'})
 			}		
 		
-			/*  ${cookie.phonegap.value} */
+			/*  ${cookie['phonegap'].value} */
 			var pgCookie = $.cookie('phonegap');
-			var pgParam = '${param.phonegap}';
+			var pgParam = "${param['phonegap']}";
 			if(pgCookie == null || pgParam != ''){
-				$.cookie('phonegap', '${param.phonegap}', {expires: 365, path: '/'});
+				$.cookie('phonegap', '${param["phonegap"]}', {expires: 365, path: '/'});
 			}		
 
 			// Must call after DOM is ready. 
@@ -104,9 +104,9 @@
 	            
 	            <!-- Sum the badge counts. -->
 				<c:set var="bCount" value="${bCount + homeTool.tool.badgeCount}"/>
-
 			</c:forEach>	
-			<c:if test="${cookie.native.value == 'yes' || param.native == 'yes'}">
+	        <%-- 
+			<c:if test="${cookie['native'].value == 'yes' || param['native'] == 'yes'}">
 	            <kme:listItem hideDataIcon="true">
 	            	<a href="qrcode" style="background-image: url('${pageContext.request.contextPath}/images/service-icons/srvc-qrcode.png');">
 			      		<h3>QR Code Reader</h3>
@@ -126,6 +126,7 @@
 			      		</c:if>
 			      	</a>
 	            </kme:listItem>
+            --%>
 	    </kme:listView>	    
 	    <c:if test="${not empty ipAddress}">${ipAddress}</c:if>
 	</kme:content>

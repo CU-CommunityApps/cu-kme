@@ -113,18 +113,6 @@ public class HomeController {
     	return "qrcode";
     }    
     
-    @RequestMapping(value = "yesLogout", method = RequestMethod.GET)
-    public void fullLogout(HttpServletRequest request, HttpServletResponse response, Model uiModel) {      
-    	request.getSession().setAttribute(Constants.KME_USER_KEY, null);
-    	request.getSession().setAttribute(Constants.KME_BACKDOOR_USER_KEY, null);
-    	request.getSession().removeAttribute("edu.iu.uis.cas.filter.CASAuthenticationMap");
-    	try {
-			response.sendRedirect("https://cas.iu.edu/cas/logout");
-		} catch (IOException e) {
-			LOG.error(e.getMessage(), e);
-		}
-    }
-
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "ddl", method = RequestMethod.GET)
     public void exportDatabaseSchema(HttpServletRequest request, HttpServletResponse response, Model uiModel) {      
@@ -145,6 +133,7 @@ public class HomeController {
     	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
     	Backdoor backdoor = (Backdoor) request.getSession().getAttribute(Constants.KME_BACKDOOR_USER_KEY);
     	 
+    	// TODO: Add check for a different homescreen (multi-tenancy)
     	String alias = "PUBLIC";
     	HomeScreen home = new HomeScreen();
     	if (user != null && user.getViewCampus() != null) {
@@ -155,46 +144,12 @@ public class HomeController {
     	if (home == null) {
     		home = adminService.getHomeScreenByAlias("PUBLIC");
     	}
-    	
-    	List<HomeTool> copy = new ArrayList<HomeTool>(home.getHomeTools());
-    	
-    	Tool tool = new Tool();
-
-    	if (user.isMember(configParamService.findValueByName("Backdoor.Group.Name"))) {
-	    	if (backdoor != null) {
-	    		tool.setBadgeCount(backdoor.getUserId());
-	    	} else {
-	    		tool.setBadgeCount("");
-	    	}
-	    	tool.setDescription("Impersonate a user.");
-	    	tool.setIconUrl("images/service-icons/srvc-backdoor.png");
-	    	tool.setTitle("Backdoor");
-	    	tool.setUrl("backdoor");
-	    	copy.add(new HomeTool(home, tool, home.getHomeTools().size() + 1000));
-    	}
-
-		tool = new Tool();
-		tool.setAlias("incident");
-		tool.setTitle("Incident Reporting");
-		tool.setUrl("reporting/incidentForm");
-		tool.setDescription("Submit campus incidents.");
-		tool.setIconUrl("images/service-icons/srvc-incident-green.png");
-		adminService.saveTool(tool);
-    	copy.add(new HomeTool(home, tool, home.getHomeTools().size() + 1000));
-
-		tool = new Tool();
-		tool.setAlias("reportingadmin");
-		tool.setTitle("Reporting Admin");
-		tool.setUrl("reporting/admin/index");
-		tool.setDescription("Reporting administration.");
-		tool.setIconUrl("images/service-icons/srvc-incident-admin.png");
-		adminService.saveTool(tool);
-    	copy.add(new HomeTool(home, tool, home.getHomeTools().size() + 1000));
     	    	
+    	List<HomeTool> copy = new ArrayList<HomeTool>(home.getHomeTools());
     	Collections.sort(copy);
-    	
+    	    	
     	for (HomeTool homeTool : copy) {
-    		tool = homeTool.getTool();
+    		Tool tool = homeTool.getTool();
     		if ("alerts".equals(tool.getAlias())) {
     			int count = alertsService.findAlertCountByCampus(user.getViewCampus());
     			if (count > 0) {
@@ -205,6 +160,13 @@ public class HomeController {
     				tool.setIconUrl("images/service-icons/srvc-alerts-green.png");
     			}
     			break;
+    		}
+    		if ("backdoor".equals(tool.getAlias())) {
+		    	if (backdoor != null) {
+		    		tool.setBadgeCount(backdoor.getUserId());
+		    	} else {
+		    		tool.setBadgeCount("");
+		    	}
     		}
     	}
     	

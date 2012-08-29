@@ -47,7 +47,7 @@
 	<c:set var="platform" value="Android"/>
 </c:if>
 
-<c:set var="phonegap" value="${cookie.phonegap.value}"/>
+<c:set var="phonegap" value="${cookie['phonegap'].value}"/>
 
 <kme:page title="${title}" id="feedback_page" backButton="true" homeButton="true" cssFilename="feedback" appcacheFilename="iumobile.appcache" platform="${platform}" phonegap="${phonegap}" onBodyLoad="onBodyLoad()">
 

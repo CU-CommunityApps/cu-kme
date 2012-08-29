@@ -17,7 +17,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="native" value="${cookie.native.value}"/>
+<c:set var="native" value="${cookie['native'].value}"/>
 
 <kme:page title="Incident" id="incident" backButton="true" homeButton="true" cssFilename="incident">
 
@@ -120,7 +120,7 @@
 		                <form:errors path="summary" />
 
 
-						<c:if test="${cookie.native.value == 'yes'}">
+						<c:if test="${cookie['native'].value == 'yes'}">
 							<fieldset class="ui-grid-a">
 								<legend>Photo</legend>
 									<div class="ui-block-a"><button onclick="getPhoto(pictureSource.CAMERA);return false;">Camera</button></div>

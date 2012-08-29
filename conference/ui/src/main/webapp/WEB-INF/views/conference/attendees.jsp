@@ -17,7 +17,7 @@
 
 <spring:message code="attendees.title" var="title"/>
 
-<kme:page title="${title} ${param.start}-${param.end}" id="conference" backButton="true" homeButton="true">
+<kme:page title="${title} ${param['start']}-${param['end']}" id="conference" backButton="true" homeButton="true">
 	<kme:content>
 		<kme:listView>
 			<!--<kme:listItem dataTheme="b" dataRole="list-divider">Conference Attendees</kme:listItem>-->

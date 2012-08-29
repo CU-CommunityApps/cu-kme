@@ -35,7 +35,7 @@
 	<c:set var="platform" value="Android"/>
 </c:if>
 
-<c:set var="phonegap" value="${cookie.phonegap.value}"/>
+<c:set var="phonegap" value="${cookie['phonegap'].value}"/>
 
 
 

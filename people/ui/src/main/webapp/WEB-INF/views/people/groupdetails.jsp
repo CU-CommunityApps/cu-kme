@@ -22,7 +22,7 @@
 <c:if test="${fn:contains(header['User-Agent'],'Android')}">
 	<c:set var="platform" value="Android"/>
 </c:if>
-<c:set var="phonegap" value="${cookie.phonegap.value}"/>
+<c:set var="phonegap" value="${cookie['phonegap'].value}"/>
 
 <kme:page title="Search Results" id="people" backButton="true" homeButton="true" cssFilename="people" appcacheFilename="iumobile.appcache" onBodyLoad="init()" platform="${platform}" phonegap="${phonegap}">
 <script type="text/javascript" charset="utf-8">

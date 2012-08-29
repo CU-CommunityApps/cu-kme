@@ -33,7 +33,7 @@
 	<kme:content>
 	
 		<div id="daySelectTabs">
-			<a class="${param.date eq '092811' ? 'selected' : ''}" href="?date=092811">${wed}</a><a class="${param.date eq '092911' ? 'selected' : ''}" href="?date=092911">${thu}</a><a class="${param.date eq '093011' ? 'selected' : ''}" href="?date=093011">${fri}</a><a class="${param.date eq '100111' ? 'selected' : ''}" href="?date=100111">${sat}</a><a class="${empty param.date ? 'selected' : ''}" href="?date=">${all}</a>
+			<a class="${param['date'] eq '092811' ? 'selected' : ''}" href="?date=092811">${wed}</a><a class="${param['date'] eq '092911' ? 'selected' : ''}" href="?date=092911">${thu}</a><a class="${param['date'] eq '093011' ? 'selected' : ''}" href="?date=093011">${fri}</a><a class="${param['date'] eq '100111' ? 'selected' : ''}" href="?date=100111">${sat}</a><a class="${empty param['date'] ? 'selected' : ''}" href="?date=">${all}</a>
 		</div>
 		<kme:listView>
 			

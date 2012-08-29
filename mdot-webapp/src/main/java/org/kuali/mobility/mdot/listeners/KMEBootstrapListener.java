@@ -135,7 +135,67 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tool.setIconUrl("images/service-icons/srvc-feedback.png");
 		adminService.saveTool(tool);
 		ht = new HomeTool(home, tool, 7);
-		tools.add(ht);
+		tools.add(ht);		
+		
+		tool = new Tool();
+		tool.setAlias("incident");
+		tool.setTitle("Incident Reporting");
+		tool.setUrl("reporting/incidentForm");
+		tool.setDescription("Submit campus incidents.");
+		tool.setIconUrl("images/service-icons/srvc-incident-green.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 8);
+		tools.add(ht);		
+
+		tool = new Tool();
+		tool.setAlias("reportingadmin");
+		tool.setTitle("Reporting Admin");
+		tool.setUrl("reporting/admin/index");
+		tool.setDescription("Reporting administration.");
+		tool.setIconUrl("images/service-icons/srvc-incident-admin.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 9);
+		tools.add(ht);		
+
+		tool = new Tool();
+		tool.setAlias("events");
+    	tool.setTitle("Events");
+    	tool.setUrl("events");
+    	tool.setDescription("Campus events and calendars.");
+    	tool.setIconUrl("images/service-icons/srvc-events.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 10);
+		tools.add(ht);		
+
+		tool = new Tool();
+		tool.setAlias("bus");
+    	tool.setTitle("Bus");
+    	tool.setUrl("bus");
+    	tool.setDescription("Live bus tracking.");
+    	tool.setIconUrl("images/service-icons/srvc-bus.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 10);
+		tools.add(ht);		
+
+		tool = new Tool();
+		tool.setAlias("publishing");
+    	tool.setTitle("Publishing");
+    	tool.setUrl("publishing/index");
+    	tool.setDescription("Administrative publishing tools.");
+    	tool.setIconUrl("images/service-icons/srvc-publishing.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 10);
+		tools.add(ht);		
+
+		tool = new Tool();
+		tool.setAlias("backdoor");
+    	tool.setTitle("Backdoor");
+    	tool.setUrl("backdoor");
+    	tool.setDescription("Impersonate a user.");
+    	tool.setIconUrl("images/service-icons/srvc-backdoor.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, 10);
+		tools.add(ht);		
 
 		home.setHomeTools(tools);
 		return home;

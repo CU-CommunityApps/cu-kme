@@ -16,8 +16,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="REFRESH" content="0;url=home?native=${param.native}&phonegap=${param.phonegap}&header=${param.header}">
-<title></title>
+<meta http-equiv="REFRESH" content="0;url=home?native=${param['native']}&phonegap=${param['phonegap']}">
+<title>KME Mobile</title>
 </head>
 <body>
 </body>

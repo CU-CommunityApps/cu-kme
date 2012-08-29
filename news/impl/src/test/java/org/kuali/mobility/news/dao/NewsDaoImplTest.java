@@ -63,7 +63,7 @@ public class NewsDaoImplTest {
 		NewsSource source = dao.lookup( new Long( 2 ) );
 		assertTrue( "Failed to find news source.", source != null && "BBC - News".equalsIgnoreCase( source.getName() ) );
 	}
-
+	
 	public static ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}

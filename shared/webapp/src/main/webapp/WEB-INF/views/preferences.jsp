@@ -16,8 +16,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <c:set var="localeCode" value="${pageContext.response.locale}" />
-<c:set var="myCampusCode" value="${cookie.campusSelection.value}" />
-<c:set var="isNative" value="${cookie.native.value}" />
+<c:set var="myCampusCode" value="${cookie['campusSelection'].value}" />
+<c:set var="isNative" value="${cookie['native'].value}" />
 
 <spring:message code="preferences.title" var="title"/>
 <spring:message code="preferences.selectcampus" var="selectcampus"/>
@@ -71,7 +71,7 @@
 					</c:if>
 				</a>
 			</kme:listItem>
-			<c:if test="${cookie.native.value != 'yes'}">
+			<c:if test="${cookie['native'].value != 'yes'}">
 				<kme:listItem dataRole="list-divider" dataTheme="b" cssClass="installLink">
 					${nativeapp}
 				</kme:listItem>
