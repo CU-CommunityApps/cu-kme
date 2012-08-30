@@ -36,7 +36,7 @@
 				});
 			</script>
 			<script id="emergencyListTemplate" type="text/x-jquery-tmpl">
-				<li class="link-phone">
+				<li class="link-phone" data-theme="c">
 					<a href="tel:\${link}">
                 		<h3>\${title}</h3>
                     	<p>\${link}</p>

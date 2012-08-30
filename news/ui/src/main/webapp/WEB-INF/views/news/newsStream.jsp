@@ -17,7 +17,7 @@
 
 <kme:page title="${feed.title}" id="news" homeButton="true" backButton="true" cssFilename="news">
     <kme:content>
-		<ul data-role="listview" data-theme="c" class="news-index">
+		<ul data-role="listview" id="samplesList" data-theme="c" class="news-index">
 			<c:choose>
 				<c:when test="${not empty feed.articles}">
 					<c:forEach items="${feed.articles}" var="article" varStatus="status">

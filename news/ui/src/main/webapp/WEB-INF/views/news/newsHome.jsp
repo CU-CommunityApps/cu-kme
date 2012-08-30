@@ -20,15 +20,12 @@
 
 <kme:page title="${title}" id="news" homeButton="true" backButton="true" backButtonURL="${pageContext.request.contextPath}/home" cssFilename="news" jsFilename="news">
     <kme:content>
-		<!-- <ul data-role="listview" data-theme="c" class="news-index"> -->
 		<kme:listView dataTheme="c" cssClass="news-index">
 			<c:forEach items="${newsSources}" var="source" varStatus="status">
-			
-				<!-- <li data-role="" class="" data-theme="b" data-icon="listview" > -->
-				<kme:listItem dataRole="list-divider" dataTheme="b" dataIcon="listview" cssClass="streamTitle">
+		
+				<kme:listItem dataIcon="listview" cssClass="streamTitle linkedHeaderRow">
 					<a href="${pageContext.request.contextPath}/news/${source.id}">${source.title}</a>
-				</kme:listItem>
-				<!-- </li> --> 
+				</kme:listItem> 
 				
 				<c:forEach items="${source.articles}" var="article" varStatus="status">
 					<c:choose>
