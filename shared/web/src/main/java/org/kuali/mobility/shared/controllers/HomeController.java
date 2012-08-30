@@ -91,9 +91,11 @@ public class HomeController {
     @RequestMapping(value = "preferences", method = RequestMethod.GET)
     public String preferences(HttpServletRequest request, Model uiModel) {   
     	String homeToolName = "home";
-    	List<Campus> campuses = campusService.findCampusesByTool(homeToolName);
-		uiModel.addAttribute("campuses", campuses);
 		uiModel.addAttribute("toolName", homeToolName);
+    	List<Campus> campuses = campusService.findCampusesByTool(homeToolName);
+		uiModel.addAttribute("campuses", campuses);		
+		List<HomeScreen> homeScreens = adminService.getAllHomeScreens();
+		uiModel.addAttribute("homeScreens", homeScreens);
     	return "preferences";
     }
     

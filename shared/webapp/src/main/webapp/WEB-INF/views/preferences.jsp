@@ -29,6 +29,23 @@
 	<kme:content>
 		<kme:listView id="campuslist" dataTheme="c" dataDividerTheme="b">
 			<kme:listItem dataRole="list-divider" dataTheme="b">
+				Select Your Home Screen
+			</kme:listItem>
+			<c:forEach items="${homeScreens}" var="homeScreen" varStatus="status">
+				<kme:listItem>
+					<c:url var="campusUrl" value="/campus/select">
+						<c:param name="toolName" value="${toolName}" />
+						<c:param name="campus" value="${homeScreen.alias}" />
+					</c:url>
+					<a href="${campusUrl}"> <c:out value="${homeScreen.title}" />
+					<c:if test="${homeScreen.alias == myCampusCode }">
+						 <span class="ui-check-char">✓</span>
+					</c:if>					
+					</a>
+				</kme:listItem>
+			</c:forEach>
+			<%-- 
+			<kme:listItem dataRole="list-divider" dataTheme="b">
 				${selectcampus}
 			</kme:listItem>
 			<c:forEach items="${campuses}" var="campus" varStatus="status">
@@ -71,6 +88,7 @@
 					</c:if>
 				</a>
 			</kme:listItem>
+			--%>
 			<c:if test="${cookie['native'].value != 'yes'}">
 				<kme:listItem dataRole="list-divider" dataTheme="b" cssClass="installLink">
 					${nativeapp}
