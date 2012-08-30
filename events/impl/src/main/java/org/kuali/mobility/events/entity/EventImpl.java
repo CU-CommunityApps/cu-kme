@@ -61,7 +61,7 @@ public class EventImpl implements Serializable, Event {
 	 * @see org.kuali.mobility.events.entity.Event#getCost()
 	 */
     @Override
-	public String getCost() {
+	public String getCost() { 
         return cost;
     }
 

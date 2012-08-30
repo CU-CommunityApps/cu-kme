@@ -25,7 +25,6 @@
 		<dependency>
 			<groupId>hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.4.0.GA</version>
 		</dependency>
         <!-- Persistence dependencies -->
         <dependency>

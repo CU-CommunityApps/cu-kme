@@ -36,7 +36,7 @@ public class EventInitBean {
     	
         public void run() {    
 			LOG.info("Initializing events...");
-			getDao().initData(null);
+			getDao().initData(null); 
 			LOG.info("Finished initializing events.");
         	while (true) {
         		try {

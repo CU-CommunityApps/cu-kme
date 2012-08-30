@@ -16,96 +16,74 @@
 	<name>mDot Webapp</name>
 	<artifactId>mdot-webapp</artifactId>
 	<packaging>war</packaging>
-	<parent>
+	<parent> 
 		<artifactId>mobility</artifactId>
 		<groupId>org.kuali.mobility</groupId>
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 	<dependencies>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-		</dependency>
 		<!-- Support for External Persisting Derby -->
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
-			<version>10.8.1.2</version>
-		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
 		<!-- Webapp dependencies -->
-   		<dependency>
+   		<dependency>  
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
-			<version>1.1.1</version>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>taglibs</groupId>
 			<artifactId>c</artifactId>
-			<version>1.1.1</version>
 			<type>tld</type>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>taglibs</groupId>
 			<artifactId>fmt</artifactId>
-			<version>1.1.1</version>
 			<type>tld</type>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
 			<scope>provided</scope>
 			<type>jar</type>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
+			<groupId>org.apache.cxf</groupId> 
 			<artifactId>cxf-bundle</artifactId>
-			<version>2.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.4.0.GA</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.18</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
-			<version>10.8.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			<version>2.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
 		</dependency>
 		<!-- Logging dependencies -->
 		<dependency>
@@ -171,95 +149,82 @@
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 		</dependency>
 
-
+  
 		<dependency>
-			<groupId>org.kuali.mobility</groupId>
+			<groupId>org.kuali.mobility</groupId> 
 			<artifactId>shared-webapp</artifactId>
-			<version>${tool.shared.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>admin-ui</artifactId>
-			<version>${tool.admin.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>bus-ui</artifactId>
-			<version>${tool.bus.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>conference-ui</artifactId>
-			<version>${tool.conference.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>dining-ui</artifactId>
-			<version>${tool.dining.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>feedback-ui</artifactId>
-			<version>${tool.feedback.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
             <artifactId>emergencyinfo-ui</artifactId>
-			<version>${tool.emergencyinfo.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
             <artifactId>computerlabs-ui</artifactId>
-			<version>${tool.computerlabs.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
             <artifactId>alerts-ui</artifactId>
-			<version>${tool.alerts.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>news-ui</artifactId>
-			<version>${tool.news.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>maps-ui</artifactId>
-			<version>${tool.maps.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>events-ui</artifactId>
-			<version>${tool.events.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>reporting-ui</artifactId>
-			<version>${tool.reporting.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
@@ -273,28 +238,24 @@
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>weather-ui</artifactId>
-			<version>${tool.weather.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>tours-ui</artifactId>
-			<version>${tool.tours.version}</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
         <dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>push-webapp</artifactId>
-			<version>${tool.push.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
 		<dependency>
             <groupId>org.kuali.mobility</groupId>
             <artifactId>database-ui</artifactId>
-			<version>${tool.database.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -303,7 +264,6 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>3.0.5.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

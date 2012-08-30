@@ -57,7 +57,7 @@ public class CategoryImpl implements Serializable, Category {
 
     /* (non-Javadoc)
 	 * @see org.kuali.mobility.events.entity.Category#setDays(java.util.List)
-	 */
+	 */ 
 	@Override
 	public void setDays(List<Day> days) {
         this.days = days;

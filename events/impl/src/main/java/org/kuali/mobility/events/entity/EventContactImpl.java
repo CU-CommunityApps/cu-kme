@@ -44,7 +44,7 @@ public class EventContactImpl implements EventContact {
 	 */
 	@Override
 	public String getUrl() {
-		return url;
+		return url; 
 	}
 
 	/* (non-Javadoc)

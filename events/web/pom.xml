@@ -46,40 +46,17 @@
             <groupId>org.kuali.mobility</groupId>
             <artifactId>security.authentication</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>user-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>news-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>news-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.kuali.mobility</groupId>
-            <artifactId>news-web</artifactId>
-        </dependency>-->
 		<!-- Other Stuff -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.0</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
         </dependency>
-<!--        <dependency>
-            <groupId>edu.iu.es.esi</groupId>
-            <artifactId>casfilter</artifactId>
-            <version>1.11</version>
-        </dependency>-->
 		<!-- Testing dependencies -->
-        <dependency>
+        <dependency> 
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jetty</artifactId>
             <scope>test</scope>

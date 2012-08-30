@@ -13,7 +13,6 @@
     <modelVersion>4.0.0</modelVersion>
     <name>Database</name>
     <artifactId>database</artifactId>
-    <groupId>org.kuali.mobility</groupId>
     <packaging>pom</packaging>
     <description>A description of your tool.</description>
     <parent>
@@ -21,7 +20,6 @@
         <groupId>org.kuali.mobility</groupId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
-    <version>2.0.0-SNAPSHOT</version>
     <profiles>
         <profile>
             <id>full</id>

@@ -58,7 +58,7 @@ public class DayImpl implements Serializable, Comparable<Day>, Day {
 	 */
 	@Override
 	public void setDate(Date date) {
-		this.date = date;
+		this.date = date; 
 	}
 
 	@Override

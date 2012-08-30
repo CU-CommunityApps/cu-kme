@@ -74,7 +74,7 @@ public class EventsDaoImpl implements EventsDao, ApplicationContextAware {
         }
         
         if( null == getCategories() || getCategories().isEmpty() )
-        {
+        { 
             initData(campus);
         }
 

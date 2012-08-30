@@ -48,13 +48,12 @@
 			<artifactId>util.webservice.adapter</artifactId>
 		</dependency>
         <dependency> 
-            <groupId>org.kuali.mobility</groupId>
+            <groupId>org.kuali.mobility</groupId> 
             <artifactId>dining-api</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
         </dependency>	
         <!-- Persistence dependencies -->
         <dependency>

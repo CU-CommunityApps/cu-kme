@@ -25,9 +25,7 @@
        	<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.6</version>
-		</dependency>
-        
+		</dependency>        
         <!-- Internal dependencies -->
         <dependency>
             <groupId>org.kuali.mobility</groupId>
@@ -54,24 +52,20 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-        </dependency>
+        </dependency> 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
         <!-- JSON dependencies -->
- 
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
-            <version>2.3</version>
         </dependency>
-
         <dependency>
             <groupId>net.sf.flexjson</groupId>
             <artifactId>flexjson</artifactId>
         </dependency>
-
         <!-- Testing dependencies -->
         <dependency>
             <groupId>org.mortbay.jetty</groupId>

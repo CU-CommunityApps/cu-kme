@@ -43,9 +43,8 @@
         </dependency>
         <!-- RSS Dependencies -->
         <dependency>
-		    <groupId>rome</groupId>
-		    <artifactId>rome</artifactId>
-		    <version>1.0</version>
+			<groupId>net.java.dev.rome</groupId>
+			<artifactId>rome</artifactId>
 		</dependency>
 		<!-- List manipulation support -->
 		<dependency>
