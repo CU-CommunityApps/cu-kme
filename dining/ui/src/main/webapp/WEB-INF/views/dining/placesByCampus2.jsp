@@ -9,7 +9,9 @@
 <kme:page title="${title}" id="diningPlaces" backButton="true" homeButton="true" cssFilename="dining" jsFilename="dining">
 	<kme:content>
 	<ul data-role="listview" id="dropdownHeader" data-theme="c" data-inset="false" data-filter="false" data-dividertheme="b">
-            <li data-role="list-divider" data-theme="b" data-icon="arrow-d" class="dropdownHeader"><a id="toggleDropdown" href="#">Select Campus</a></li>
+            <li data-icon="arrow-d" class="dropdownHeader linkedHeaderRow">
+            <a id="toggleDropdown" href="#">Select Campus</a>
+            </li>
         </ul>
         <ul data-role="listview" id="dropdownMenu" data-theme="c" data-inset="false" data-filter="false" data-dividertheme="b">
         	<c:forEach items="${placeGroups}" var="placeGroup" varStatus="index">
