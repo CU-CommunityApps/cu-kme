@@ -310,6 +310,12 @@ public class PushDaoImpl implements PushDao {
 			HttpsURLConnection.setDefaultHostnameVerifier(new CustomizedHostnameVerifier()); 
 			URL url = new URL("https://android.apis.google.com/c2dm/send");
 			HttpsURLConnection request = (HttpsURLConnection) url.openConnection();
+			
+			LOG.info("---- Version: " + url.getClass().getPackage().getSpecificationVersion());
+			LOG.info("---- Impl:    " + url.getClass().getPackage().getImplementationVersion());
+			String handlers = System.getProperty("java.protocol.handler.pkgs");
+			
+			LOG.info(handlers);
 			request.setDoOutput(true);
 			request.setDoInput(true);
 

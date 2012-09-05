@@ -64,6 +64,13 @@ public class PageTag extends SimpleTagSupport {
 	private boolean disableGoogleAnalytics;
 	private String institutionCss;
 
+	private static String appcacheEnabled;
+	
+	public void setAppcacheEnabled(String ap){
+		appcacheEnabled = ap;
+	}
+	
+	
 	/**
 	 * @param id the id of the div containing the page content
 	 */
@@ -232,11 +239,15 @@ public class PageTag extends SimpleTagSupport {
         try {
             out.println("<!DOCTYPE html>");
 
-//            if (appcacheFilename != null && !appcacheFilename.trim().equals("")) {
-//            	out.println("<html manifest=\"" + contextPath + "/" + appcacheFilename + "\">");
-//            } else {
+            LOG.info("param.appcacheEnabled: " + appcacheEnabled);
+            
+            if (appcacheFilename != null && !appcacheFilename.trim().equals("") && !appcacheEnabled.equals("false")) {
+            	LOG.info("Appcache Enabled");
+            	out.println("<html manifest=\"" + contextPath + "/" + appcacheFilename + "\">");
+            } else {
+            	LOG.info("Appcache Disabled");
             	out.println("<html>");
-//            }
+            }
             
             out.println("<head>");
             out.println("<title>" + title + "</title>");
@@ -262,14 +273,25 @@ public class PageTag extends SimpleTagSupport {
             out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/jquery.transit.min.js\"></script>");
                       
             if(platform != null && platform.equals("iOS")){
-
-            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/phonegap-" + phonegap + ".js\"></script>");
-                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/ChildBrowser.js\"></script>");
-                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/barcodescanner.js\"></script>");
-//                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/Connection.js\"></script>");
-                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/PushHandler.js\"></script>");
-                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/Badge.js\"></script>");
-                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/applicationPreferences.js\"></script>");
+            	if(phonegap.equals("1.4.1")){
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/phonegap-1.4.1.js\"></script>");
+	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/ChildBrowser.js\"></script>");
+	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/barcodescanner.js\"></script>");
+	//                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/Connection.js\"></script>");
+	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/PushHandler.js\"></script>");
+	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/Badge.js\"></script>");
+	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/applicationPreferences.js\"></script>");
+            	}else if(phonegap.equals("1.7.0")){
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/cordova-1.7.0.js\"></script>");
+	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/ChildBrowser.js\"></script>");
+	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/barcodescanner.js\"></script>");            		
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/ActionSheet.js\"></script>");
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/Badge.js\"></script>");
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/LocalNotifications.js\"></script>");
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/Notifications.js\"></script>");
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/PrintPlugin.js\"></script>");
+	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/1.7.0/applicationPreferences.js\"></script>");
+            	}
             }else if(platform != null && platform.equals("Android")){
                 out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/phonegap-" + phonegap + ".js\"></script>");
                 out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/android/childbrowser.js\"></script>");

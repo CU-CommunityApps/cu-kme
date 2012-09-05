@@ -24,6 +24,7 @@
 					<h3 class="wrap">
 						<spring:message code="tools.title"/>
 					</h3>
+					<p><spring:message code="tools.subtitle"/></p>
 				</a>
 			</kme:listItem>
 			<kme:listItem>
@@ -31,6 +32,7 @@
 					<h3 class="wrap">
 						<spring:message code="layout.title"/>
 					</h3>
+					<p><spring:message code="layout.subtitle"/></p>
 				</a>
 			</kme:listItem>
 		</kme:listView>
