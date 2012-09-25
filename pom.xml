@@ -15,7 +15,7 @@
 	<packaging>pom</packaging>
 	<url>http://kuali.org/mobility</url>
 	<inceptionYear>2011</inceptionYear>
-	<version>2.0.0-SNAPSHOT</version>
+	<version>2.0.0</version>
 	<scm>
 		<connection>scm:svn:https://svn.kuali.org/repos/mobility/trunk</connection>
 		<developerConnection>scm:svn:https://svn.kuali.org/repos/mobility/trunk</developerConnection>
@@ -69,28 +69,28 @@
 		<xercesImpl.version>2.9.1</xercesImpl.version>		
 		<xstream.version>1.4.2</xstream.version>
 		<!-- KME Tool Versions -->
-		<tool.admin.version>2.0.0-SNAPSHOT</tool.admin.version>
-		<tool.alerts.version>2.0.0-SNAPSHOT</tool.alerts.version>
-		<tool.bus.version>2.0.0-SNAPSHOT</tool.bus.version>
-		<tool.computerlabs.version>2.0.0-SNAPSHOT</tool.computerlabs.version>
-		<tool.conference.version>2.0.0-SNAPSHOT</tool.conference.version>
-		<tool.configparams.version>2.0.0-SNAPSHOT</tool.configparams.version>
-		<tool.database.version>2.0.0-SNAPSHOT</tool.database.version>
-		<tool.dining.version>2.0.0-SNAPSHOT</tool.dining.version>
-		<tool.emergencyinfo.version>2.0.0-SNAPSHOT</tool.emergencyinfo.version>
-		<tool.events.version>2.0.0-SNAPSHOT</tool.events.version>
-		<tool.feedback.version>2.0.0-SNAPSHOT</tool.feedback.version>
-		<tool.maps.version>2.0.0-SNAPSHOT</tool.maps.version>
-		<tool.news.version>2.0.0-SNAPSHOT</tool.news.version>
-		<tool.people.version>2.0.0-SNAPSHOT</tool.people.version>
-		<tool.push.version>2.0.0-SNAPSHOT</tool.push.version>
-		<tool.reporting.version>2.0.0-SNAPSHOT</tool.reporting.version>
-		<tool.shared.version>2.0.0-SNAPSHOT</tool.shared.version>
-		<tool.tours.version>2.0.0-SNAPSHOT</tool.tours.version>
-		<tool.weather.version>2.0.0-SNAPSHOT</tool.weather.version>
-		<security.authentication>2.0.0-SNAPSHOT</security.authentication>		
-		<util.testing>2.0.0-SNAPSHOT</util.testing>
-		<util.webservice.adapter>2.0.0-SNAPSHOT</util.webservice.adapter>
+		<tool.admin.version>2.0.0</tool.admin.version>
+		<tool.alerts.version>2.0.0</tool.alerts.version>
+		<tool.bus.version>2.0.0</tool.bus.version>
+		<tool.computerlabs.version>2.0.0</tool.computerlabs.version>
+		<tool.conference.version>2.0.0</tool.conference.version>
+		<tool.configparams.version>2.0.0</tool.configparams.version>
+		<tool.database.version>2.0.0</tool.database.version>
+		<tool.dining.version>2.0.0</tool.dining.version>
+		<tool.emergencyinfo.version>2.0.0</tool.emergencyinfo.version>
+		<tool.events.version>2.0.0</tool.events.version>
+		<tool.feedback.version>2.0.0</tool.feedback.version>
+		<tool.maps.version>2.0.0</tool.maps.version>
+		<tool.news.version>2.0.0</tool.news.version>
+		<tool.people.version>2.0.0</tool.people.version>
+		<tool.push.version>2.0.0</tool.push.version>
+		<tool.reporting.version>2.0.0</tool.reporting.version>
+		<tool.shared.version>2.0.0</tool.shared.version>
+		<tool.tours.version>2.0.0</tool.tours.version>
+		<tool.weather.version>2.0.0</tool.weather.version>
+		<security.authentication>2.0.0</security.authentication>		
+		<util.testing>2.0.0</util.testing>
+		<util.webservice.adapter>2.0.0</util.webservice.adapter>
 	</properties>
 	<profiles>
 		<profile>
