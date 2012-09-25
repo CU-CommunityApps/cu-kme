@@ -99,6 +99,9 @@
 			      		<c:if test="${not empty homeTool.tool.badgeCount}"> 
 			      			<span class="countBadge ui-btn-up-c ui-btn-corner-all">${homeTool.tool.badgeCount}</span>
 			      		</c:if>
+                        <c:if test="${not empty homeTool.tool.badgeText}"> 
+                            <span class="countBadge ui-btn-up-c ui-btn-corner-all">${homeTool.tool.badgeText}</span>
+                        </c:if>
 			      	</a>
 	            </kme:listItem>
 	            

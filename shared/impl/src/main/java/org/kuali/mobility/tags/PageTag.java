@@ -338,7 +338,7 @@ public class PageTag extends SimpleTagSupport {
             
             out.println("<div data-role=\"page\" id=\"" + id + "\">");
             
-        	LOG.info("----" + jqmHeader);
+        	//LOG.info("----" + jqmHeader);
             if(jqmHeader != null && jqmHeader.equals("hide")){
             	//LOG.info("---- Hide Header");
             	out.println("<div data-role=\"header\" style=\"display:none\">");

@@ -73,6 +73,9 @@ public class Tool implements Serializable, Comparable<Tool> {
 	@Transient
 	private String badgeCount;
 
+	@Transient
+    private String badgeText;
+
 	public Long getToolId() {
 		return toolId;
 	}
@@ -187,6 +190,13 @@ public class Tool implements Serializable, Comparable<Tool> {
 	public void setSubtitle(String subtitle) {
 		this.subtitle = subtitle;
 	}
-	
+
+    public String getBadgeText() {
+        return badgeText;
+    }
+
+    public void setBadgeText(String badgeText) {
+        this.badgeText = badgeText;
+    }	
 
 }

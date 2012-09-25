@@ -131,7 +131,7 @@ public class ReportingController {
     	return "reporting/admin/incident/revisions";
     }
     
-    @RequestMapping(value = "/admin/incident/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/incident/savefile", method = RequestMethod.POST)
     public String addFile(HttpServletRequest request, ModelMap model, @ModelAttribute("file") Incident incident, BindingResult result, SessionStatus status) {
     	
     	Submission oldSubmission = reportingService.findSubmissionById(incident.getId());

@@ -147,10 +147,9 @@
 						</fieldset>
 						
 						<label style="margin-top:10px; font-weight:normal; font-size:14px;" for="contactMe">Contact Me:</label>
-			            <fieldset data-role="controlgroup" data-theme="c">
-			    	    					
-			                <form:radiobutton data-theme="c" path="contactMe" value="YES" label="Yes, please follow up with me. I would like to receive support from the Teams or provide more information as needed" />
-			                <form:radiobutton data-theme="c" path="contactMe" value="NO"  label="No" />
+			            <fieldset data-role="controlgroup" data-theme="c">			    	    					
+			                <form:radiobutton data-theme="c" path="contactMe" value="true" label="Yes, please follow up with me. I would like to receive support from the Teams or provide more information as needed" />
+			                <form:radiobutton data-theme="c" path="contactMe" value="false"  label="No" />
 						</fieldset>
 		            </fieldset>
 		            

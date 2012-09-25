@@ -82,23 +82,26 @@ public class ComputerLabsDaoUMImpl implements ComputerLabsDao
 			}
 		}
         locations = new LinkedHashMap<String,Location>();
-		for (Lab lab : getLabs())
-		{
-			Location location = null;
-			if (locations.get(lab.getBuildingCode()) != null) {
-				location = locations.get(lab.getBuildingCode());
-			} else {
-				location = new Location(lab.getBuilding());
-				locations.put(lab.getBuildingCode(), location);
-			}
-		/*	LOG.debug("location: " + location.getName() );
-			LOG.debug("lab: " + lab.getAvailability() );*/
-			location.getLabs().add(lab);
-		}
-	/*	for (Location curl : locations.values())
-		{
-			LOG.debug("Building " + curl.getName());
-		}*/
+        List<Lab> l = getLabs();
+        if (l != null) {
+            for (Lab lab : l)
+    		{
+    			Location location = null;
+    			if (locations.get(lab.getBuildingCode()) != null) {
+    				location = locations.get(lab.getBuildingCode());
+    			} else {
+    				location = new Location(lab.getBuilding());
+    				locations.put(lab.getBuildingCode(), location);
+    			}
+    		/*	LOG.debug("location: " + location.getName() );
+    			LOG.debug("lab: " + lab.getAvailability() );*/
+    			location.getLabs().add(lab);
+    		}
+    	/*	for (Location curl : locations.values())
+    		{
+    			LOG.debug("Building " + curl.getName());
+    		}*/
+        }
 		return locations.values();
 	}
 	

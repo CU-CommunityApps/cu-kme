@@ -24,58 +24,57 @@ import org.kuali.mobility.computerlabs.entity.Location;
 
 import flexjson.JSONSerializer;
 
-
 public class ComputerLabsServiceImpl implements ComputerLabsService {
-	private static final Logger LOG = Logger.getLogger( ComputerLabsServiceImpl.class );
+    private static final Logger LOG = Logger.getLogger(ComputerLabsServiceImpl.class);
 
-	private ComputerLabsDao dao;
+    private ComputerLabsDao dao;
 
-	/**
-	 * @return the dao
-	 */
-	public ComputerLabsDao getDao() {
-		return dao;
-	}
+    /**
+     * @return the dao
+     */
+    public ComputerLabsDao getDao() {
+        return dao;
+    }
 
-	/**
-	 * @param dao the dao to set
-	 */
-	public void setDao(ComputerLabsDao dao) {
-		this.dao = dao;
-	}
+    /**
+     * @param dao
+     *            the dao to set
+     */
+    public void setDao(ComputerLabsDao dao) {
+        this.dao = dao;
+    }
 
-	public Collection<Location> findAllLabsByCampus(String campus) {
-		return getDao().findAllLabsByCampus(campus);
-	}
-	
-	 @Override
-	public Lab getLab(String campus, String buildingCode) 
-	{
-		  Lab lab = null;
-		  getDao().findAllLabsByCampus(campus);
-		/* List<Lab> labs = new ArrayList<Lab>();
-		 LOG.debug("getlab:buildingCode " + buildingCode );
-		 getDao().findAllLabsByCampus(campus);
-		 labs =  getDao().getLabs();*/
-		 //LOG.debug(labs.size());
-		 for (Lab l : getDao().getLabs())
-			{
-				//LOG.debug("Lab name " + l.getLab() + " , bc:" + l.getBuildingCode() + ", seats available : " + l.getAvailability());
-				if (lab != null)
-					break;
-				if (l.getLab().equals(buildingCode)) 
-				{
-					lab = l;
-				}
-			}
-        
-         return lab;
-	}
+    public Collection<Location> findAllLabsByCampus(String campus) {
+        return getDao().findAllLabsByCampus(campus);
+    }
 
-	 
-	 public String getViewSeatJson(final String buildingCode,final String campus) {
-		 //LOG.debug("getviewSeatJson %%%%% " );
-			return new JSONSerializer().exclude("*.class").deepSerialize(this.getLab(campus,buildingCode ));
-		}
+    @Override
+    public Lab getLab(String campus, String buildingCode) {
+        Lab lab = null;
+        getDao().findAllLabsByCampus(campus);
+        /*
+         * List<Lab> labs = new ArrayList<Lab>();
+         * LOG.debug("getlab:buildingCode " + buildingCode );
+         * getDao().findAllLabsByCampus(campus); labs = getDao().getLabs();
+         */
+        // LOG.debug(labs.size());
+        for (Lab l : getDao().getLabs()) {
+            // LOG.debug("Lab name " + l.getLab() + " , bc:" +
+            // l.getBuildingCode() + ", seats available : " +
+            // l.getAvailability());
+            if (lab != null)
+                break;
+            if (l.getLab().equals(buildingCode)) {
+                lab = l;
+            }
+        }
+
+        return lab;
+    }
+
+    public String getViewSeatJson(final String buildingCode, final String campus) {
+        // LOG.debug("getviewSeatJson %%%%% " );
+        return new JSONSerializer().exclude("*.class").deepSerialize(this.getLab(campus, buildingCode));
+    }
 
 }

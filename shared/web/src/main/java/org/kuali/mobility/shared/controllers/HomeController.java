@@ -161,8 +161,10 @@ public class HomeController {
     				tool.setBadgeCount(null);
     				tool.setIconUrl("images/service-icons/srvc-alerts-green.png");
     			}
-    			break;
     		}
+            if ("incident".equals(tool.getAlias()) || "reportingadmin".equals(tool.getAlias())) {
+                tool.setBadgeText("beta");
+            }
     		if ("backdoor".equals(tool.getAlias())) {
 		    	if (backdoor != null) {
 		    		tool.setBadgeCount(backdoor.getUserId());
