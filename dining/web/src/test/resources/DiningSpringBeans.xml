@@ -21,9 +21,9 @@
 
     <bean id="diningDao" class="org.kuali.mobility.dining.dao.DiningDaoUMImpl">
     	<property name="mapper" ref="mapper"/>
-    	<property name="placeSourceUrl" value="http://webservicesdev.dsc.umich.edu/dining/getDiningHalls/"/>
+    	<property name="placeSourceUrl" value="http://webservices.dsc.umich.edu/dining/getDiningHalls/"/>
         <property name="placeMappingFile" value="diningPlaceMapping.xml"/>
-        <property name="menusJsonURI" value="http://webservicesdev.dsc.umich.edu/dining/getMeals?_type=json" />
+        <property name="menusJsonURI" value="http://webservices.dsc.umich.edu/dining/getMeals?_type=json" />
     </bean>
 
     <bean id="diningService" class="org.kuali.mobility.dining.service.DiningServiceUMImpl">

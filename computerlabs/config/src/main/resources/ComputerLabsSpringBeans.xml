@@ -52,7 +52,7 @@
 				</entry>
 			</map>
 		</property>
-		<property name="buildingsSourceURL" value="http://webservicesdev.dsc.umich.edu/computerlabs/getBuildings?_type=xml"></property>
+		<property name="buildingsSourceURL" value="http://webservices.dsc.umich.edu/computerlabs/getBuildings?_type=xml"></property>
 		
 	</bean>
 	
