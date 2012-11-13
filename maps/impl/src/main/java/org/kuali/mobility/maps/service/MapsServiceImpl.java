@@ -86,7 +86,9 @@ public class MapsServiceImpl implements MapsService {
 	}
 	
 	private Location parseLocation(Placemark placemark) {
-		if (placemark.getId() != null) {
+		
+//		if (placemark.getId() != null) {
+		if (placemark.getName() != null) {
 			Location location = new Location();
 			location.setActive(true);
 			location.setId(placemark.getId());

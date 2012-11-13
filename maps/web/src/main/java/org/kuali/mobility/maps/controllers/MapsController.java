@@ -75,11 +75,11 @@ public class MapsController {
     public String getHome(Model uiModel, HttpServletRequest request) {
     	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
     	String selectedCampus = "UA";
-    	if (user.getViewCampus() == null) {
-    		return "redirect:/campus?toolName=maps";
-    	} else {
-    		selectedCampus = user.getViewCampus();
-    	}
+//    	if (user.getViewCampus() == null) {
+//    		return "redirect:/campus?toolName=maps";
+//    	} else {
+//    		selectedCampus = user.getViewCampus();
+//    	}
     	MapsFormSearch mapsFormSearch = new MapsFormSearch();
     	mapsFormSearch.setSearchCampus(selectedCampus);
     	uiModel.addAttribute("mapsearchform", mapsFormSearch);
@@ -89,7 +89,7 @@ public class MapsController {
 
     @RequestMapping(value = "/location", method = RequestMethod.GET)
     public Object get(Model uiModel, @RequestParam(required = false) String latitude, @RequestParam(required = false) String longitude) {
-        return "maps/location";
+    	return "maps/location";
     }
     
     @RequestMapping(value = "/form", method = RequestMethod.GET)
@@ -250,27 +250,28 @@ public class MapsController {
     	MapsFormSearchResultContainer container = new MapsFormSearchResultContainer();
     	try {
     		List<MapsFormSearchResult> results = new ArrayList<MapsFormSearchResult>();
-    		//MapsGroup group = mapsService.getMapsGroupById(searchGroupId);
+    		MapsGroup group = mapsService.getMapsGroupById(searchGroupId);
     		//Umich impl
-    		MapsGroup group = mapsService.getMapsGroupById(searchString);
+    		//MapsGroup group = mapsService.getMapsGroupById(searchString);
     		if (group != null) {
 	    		Set<Location> locationSet = group.getMapsLocations();
 	    		List<Location> locations = new ArrayList<Location>();
 	    		locations.addAll(locationSet);
-	    		Collections.sort(locations, new LocationSort());
+	    		//Collections.sort(locations, new LocationSort());
 	    		for (Location location : locations) {
-/*	    			boolean addLocation = false;
-	    			if (location.getName() != null && location.getName().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
+	    			boolean addLocation = false;
+
+	    			if (location != null && location.getName() != null && location.getName().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
 	    				addLocation = true;
-	    			} else if (location.getDescription() != null && location.getDescription().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
+	    			} else if (location != null && location.getDescription() != null && location.getDescription().toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
 	    				addLocation = true;
-	    			} else if (location.getId() != null && location.getId().toLowerCase().trim().equals(searchString.toLowerCase().trim())) {
+	    			} else if (location != null && location.getId() != null && location.getId().toLowerCase().trim().equals(searchString.toLowerCase().trim())) {
 	    				addLocation = true;
-	    			} */
-	    			boolean addLocation = true;
-	    			if (location.getLatitude().doubleValue()== 0.0 && location.getLongitude().doubleValue() == 0.0){
-	    				addLocation = false;
 	    			}
+//	    			boolean addLocation = true;
+//	    			if (location.getLatitude().doubleValue()== 0.0 && location.getLongitude().doubleValue() == 0.0){
+//	    				addLocation = false;
+//	    			}
 	    			
 	    			if (addLocation) {
 	        			MapsFormSearchResult result = new MapsFormSearchResult();
@@ -278,20 +279,20 @@ public class MapsController {
 	        			result.setCode(location.getId());
 	        			result.setLatitude(location.getLatitude());
 	        			result.setLongitude(location.getLongitude());
-	        			StringBuffer sb = new StringBuffer();
-	        				        			
-	        			sb.append("<p class='title'>");
-	        			sb.append(location.getName());
-	        			sb.append("</p><span class='basicinfo'>");
-	        			sb.append(location.getStreetNumber());
-	        			if (location.getStreetDirection()!=null & location.getStreetDirection().length()>0)
-	        				sb.append(" " + location.getStreetDirection());
-	        			sb.append(" " + location.getStreet() + ", ");
-	        			sb.append("</br>" + location.getCity());
-	        			sb.append(", " + location.getState());
-	        			sb.append(" " + location.getZip());
-	        			sb.append("</span>");
-	        			result.setInfo(sb.toString());
+//	        			StringBuffer sb = new StringBuffer();
+//	        				        			
+//	        			sb.append("<p class='title'>");
+//	        			sb.append(location.getName());
+//	        			sb.append("</p><span class='basicinfo'>");
+//	        			sb.append(location.getStreetNumber());
+//	        			if (location.getStreetDirection()!=null & location.getStreetDirection().length()>0)
+//	        				sb.append(" " + location.getStreetDirection());
+//	        			sb.append(" " + location.getStreet() + ", ");
+//	        			sb.append("</br>" + location.getCity());
+//	        			sb.append(", " + location.getState());
+//	        			sb.append(" " + location.getZip());
+//	        			sb.append("</span>");
+//	        			result.setInfo(sb.toString());
 	    				results.add(result);
 	    			}
 	    		}

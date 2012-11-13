@@ -20,7 +20,7 @@ function setContextPath(path) {
 function initialize(id, lat, lng, arcGisServerUrl) {
 	var latlng = new google.maps.LatLng(lat, lng);
 	var myOptions = {
-		zoom: 13,
+		zoom: 17,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -373,10 +373,12 @@ function getCampusBounds(campusCode) {
 		latse = 41.65893400481601;
 		lngse = -86.21585369110107;
 	} else if ("UA" == campusCode) {
-		latnw = 41.74069404739962;
-		lngnw = -87.58524999999997;
-		latse = 38.15762916783622;
-		lngse = -84.69953642272947;
+		// ithaca, ny cornell central campus
+		// use google maps, console maps.getBounds();
+		latnw = 42.44491283925931;
+		lngnw = -76.48814992931364;
+		latse = 42.44782626170381;
+		lngse = -76.4784188750076;
 	} else {
 		latnw = 41.74069404739962;
 		lngnw = -87.58524999999997;

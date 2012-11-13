@@ -14,7 +14,25 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<c:choose>
+	<c:when test="${empty param.lat}">
+		<c:set var="page_lat" value="42.44720510" />
+		<c:set var="drop_point" value="false"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="page_lat" value="${param.lat}" />
+		<c:set var="drop_point" value="true"/>
+	</c:otherwise>
+</c:choose>
 
+<c:choose>
+	<c:when test="${empty param.lng}">
+		<c:set var="page_lng" value="-76.48297680" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="page_lng" value="${param.lng}" />
+	</c:otherwise>
+</c:choose>
 
 <spring:message code="maps.title" var="title"/>
 <c:set var="localeCode" value="${pageContext.response.locale}" />
@@ -64,11 +82,27 @@ $('#maps').live("pagebeforeshow", function() {
 	
 	setContextPath("${pageContext.request.contextPath}");
 	deleteOverlays(markersArray);
-	map = initialize("map_canvas", 39.788, -86.165, "${arcGisUrl}");
+//	map = initialize("map_canvas", 39.788, -86.165, "${arcGisUrl}");
+	//map = initialize("map_canvas", 42.746632, -75.770041, "${arcGisUrl}");
+	
+	map = initialize("map_canvas", "${page_lat}", "${page_lng}", "${arcGisUrl}");
+	//var markersArray = [];
+	markersArray = [];
+	
+	
+	<c:choose>
+	<c:when test="${drop_point == 'true'}">	
+	showLocationByCoordinates(map, markersArray, "${page_lat}", "${page_lng}");	
+	</c:when>
+	</c:choose>
+	
 	var campus = $("#searchCampus").val();
 	// Bounds will be for the state of Indiana for anything other than the valid values.
-	var bounds = getCampusBounds(campus);
-	map.fitBounds(bounds);
+	
+	//var bounds = getCampusBounds(campus);
+	//map.fitBounds(bounds);
+	
+	
 	
 	$('#searchText').keypress(function (event) {
 		$('#searchresults').show();
@@ -96,8 +130,11 @@ $('#maps').live("pageshow", function() {
 	// If the browser keeps the search parameters, search on page load
 	var searchText = $("#searchText").val();
 	var groupCode = $("#searchCampus").val();
-	console.log(searchText + " " + groupCode);
-	mapSearch(searchText, groupCode);	
+	// bugfix, when no searchText, default search results in 'Nothing' displayed
+	if (searchText.length > 0) {
+		console.log(searchText + " " + groupCode);
+		mapSearch(searchText, groupCode);	
+	}
 });
 
 var timeout;
@@ -116,7 +153,7 @@ function mapSearch() {
 		//if (inputString.length < 2 || groupCode == "UA") {
 		if (inputString.length < 2) {
 			// Remove previous results
-			$('#searchresults').html('&nbsp;');
+			$('#searchresults').html('Nothing!');
 		} else {
 			var requestUrlString = '${pageContext.request.contextPath}/maps/building/searchassist?criteria=' + encodeURI(inputString) + '&groupCode=' + encodeURI(groupCode);
 			$.get(requestUrlString, function(data) {
@@ -124,7 +161,7 @@ function mapSearch() {
 				if (mapsRemoteCallCountAtStartOfRequest >= mapsCurrentDisplayNumber) {
 					mapsCurrentDisplayNumber = mapsRemoteCallCount;
 					// Show results
-					var pagehtml = '<div id="resultdata"></div>'
+					var pagehtml = '<div id="resultdata"></div>';
 					$('#searchresults').html(pagehtml);
 					$("#resultdata").html(data).page();
 					mapSearchPostProcess();
@@ -144,6 +181,7 @@ function mapSearchPostProcess() {
 		var name = $(this).attr("kmename");
 		var info = $(this).attr("kmeinfo");
     	$('#searchText').val(name);
+		console.log(markersArray);
 		deleteOverlays(markersArray);
 		showLocationByCoordinates(map, markersArray, latitude, longitude, info);		
 		//alert("Test");

@@ -45,7 +45,8 @@ $(window).load(function(){resizeMap();});
 
 $('#mapsbuilding').live("pageshow", function() {
 	setContextPath("${pageContext.request.contextPath}");
-	var map = initialize("map_canvas", 39.17, -86.5);
+	//var map = initialize("map_canvas", 39.17, -86.5);
+	var map = initialize("map_canvas",42.44720510, -76.48297680);
 	deleteOverlays(markersArray);
 	resizeMap();
 	if (buildingCode) {
