@@ -61,7 +61,7 @@ ${pageContext.request.contextPath}/css/jquery.mobile.css
 # ${pageContext.request.contextPath}/images/service-icons/srvc-twitter.png
 # ${pageContext.request.contextPath}/images/service-icons/srvc-email.png
 # ${pageContext.request.contextPath}/offline.html
-# http://maps.google.com/maps/api/js?sensor=true
+# https://maps.googleapis.com/maps/api/js?sensor=true
 
 FALLBACK:
 # / ${pageContext.request.contextPath}/offline.html

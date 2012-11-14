@@ -318,9 +318,9 @@ public class PageTag extends SimpleTagSupport {
             
             if (usesGoogleMaps) {
             	if(mapLocale != null){
-               		out.println("<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true&language=" + mapLocale + "\"></script>");            		
+               		out.println("<script type=\"text/javascript\" src=\"https://maps.googleapis.com/maps/api/js?sensor=true&language=" + mapLocale + "\"></script>");            		
             	}else{
-            		out.println("<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>");
+            		out.println("<script type=\"text/javascript\" src=\"https://maps.googleapis.com/maps/api/js?sensor=true\"></script>");
             	}
             }
 
