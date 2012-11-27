@@ -24,7 +24,7 @@ import org.kuali.mobility.configparams.entity.ConfigParam;
 import org.kuali.mobility.configparams.service.ConfigParamService;
 import org.kuali.mobility.emergencyinfo.entity.EmergencyInfo;
 import org.kuali.mobility.emergencyinfo.service.EmergencyInfoService;
-import org.kuali.mobility.news.service.NewsService;
+// import org.kuali.mobility.news.service.NewsService;
 import org.kuali.mobility.shared.Wrapper;
 import org.springframework.context.ApplicationContext;
 
@@ -50,10 +50,12 @@ public abstract class BootstrapListener implements ServletContextListener {
 			adminService.saveHomeScreen(home);
 			
 			ConfigParamService configParamService = (ConfigParamService) ctx.getBean("ConfigParamService");
-			NewsService newsService = (NewsService) ctx.getBean("newsService");
+			// NewsService newsService = (NewsService) ctx.getBean("newsService");
 			EmergencyInfoService emergencyInfoService = (EmergencyInfoService) ctx.getBean("EmergencyInfoService");
 			
 			EmergencyInfo ei = new EmergencyInfo();
+
+/*			
 			ei.setCampus("UA");
 			ei.setLink("1-812-555-1234");
 			ei.setTitle("Police");
@@ -122,17 +124,25 @@ public abstract class BootstrapListener implements ServletContextListener {
 			ei.setTitle("Police");
 			ei.setType("PHONE");
 			emergencyInfoService.saveEmergencyInfo(ei);
+*/	
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-1111");
+			ei.setTitle("Cornell Police");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
 	
 			ConfigParam param = new ConfigParam();
 			param.setName("Admin.Group.Name");
 			param.setValue("KME-ADMINISTRATORS");
 			configParamService.saveConfigParam(param);
 	
+			/*					
 			param = new ConfigParam();
 			param.setName("Backdoor.Group.Name");
 			param.setValue("KME-BACKDOOR");
 			configParamService.saveConfigParam(param);
-	
+
 			param = new ConfigParam();
 			param.setName("Sakai.Url.Base");
 			param.setValue("https://regression.oncourse.iu.edu/oauthdirect/");
@@ -152,16 +162,17 @@ public abstract class BootstrapListener implements ServletContextListener {
 			param.setName("News.Sample.Size");
 			param.setValue("3");
 			configParamService.saveConfigParam(param);
-	
+			
 			param = new ConfigParam();
 			param.setName("CAMPUS_STATUS_XML_URL");
 			param.setValue("https://test.uisapp2.iu.edu/my2-unt/DataExport.do?__p_dispatch__=campusStatus&campus=");
 			configParamService.saveConfigParam(param);
-					
+
 			param = new ConfigParam();
 			param.setName("Food.Url.SE");
 			param.setValue("http://gus.ius.edu/dining-services/feed/?format=xml");
 			configParamService.saveConfigParam(param);
+			*/
 			
 	//		NewsSource newsSource = new NewsSourceDBImpl();
 	//		newsSource.setId( Long.valueOf( (long)4 ) );

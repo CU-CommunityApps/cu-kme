@@ -25,7 +25,7 @@
 	    	<list>
 	        	<value>classpath:kme.config.properties</value>
 	        	<value>file:${user.home}/institutional.kme.config.properties</value>
-	        	<value>${external.kme.config.properties}</value>	    		
+	        	<value>file:${external.kme.config.properties}</value>	    		
 	    	</list>
 	    </property>
 	</bean>
