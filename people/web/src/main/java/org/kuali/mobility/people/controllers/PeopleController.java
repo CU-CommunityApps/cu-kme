@@ -61,7 +61,7 @@ public class PeopleController {
 		SearchCriteria s = new SearchCriteria();
 		uiModel.addAttribute("search", s);
 		//removeFromCache(request.getSession(), "People.Search.Results");
-		request.setAttribute("watermark", "[Keyword] or [Last, First] or [First Last]");
+		request.setAttribute("watermark", "Enter a name, NetID, or email address");
 		return "people/index";
 	}
 
@@ -107,7 +107,7 @@ public class PeopleController {
 			request.getSession().setAttribute("Group.distinguishedName.Hashes", groupDNHashes);
 			//LOG.debug("group POST size: " + group.size());
 			putInCache(request.getSession(), "Group.Search.Results", group);
-			request.setAttribute("watermark", "[Keyword] or [Last, First] or [First Last]");
+			request.setAttribute("watermark", "Enter a name, NetID, or email address");
 
 			return "people/index";
 		} else {
@@ -130,7 +130,7 @@ public class PeopleController {
 			List<Person> u = new ArrayList<Person>();
 			u.add(up);
 			Map<String, Object> m = new HashMap<String, Object>();
-			m.put("heading", "Exact network id match");
+			m.put("heading", "Exact NetID Match");
 			m.put("directoryEntries", u);
 			results.add(m);
 

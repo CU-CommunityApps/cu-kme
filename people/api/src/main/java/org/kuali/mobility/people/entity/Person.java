@@ -24,6 +24,10 @@ public interface Person extends DirectoryEntry {
 
 	public void setFirstName(String firstName);
 
+	public String getMiddleName();
+
+	public void setMiddleName(String firstName);
+
 	public String getLastName();
 
 	public void setLastName(String lastName);

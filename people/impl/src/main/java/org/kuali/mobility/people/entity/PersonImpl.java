@@ -24,7 +24,9 @@ public class PersonImpl implements Serializable, Person {
 	private static final long serialVersionUID = -2125754188712894101L;
 	
 	private String firstName;
-	private String lastName;
+	private String middleName;
+	
+		private String lastName;
 	private String displayName;
 	private String userName;
 	
@@ -63,6 +65,17 @@ public class PersonImpl implements Serializable, Person {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
+	@Override
+	public String getMiddleName() {
+		return middleName;
+	}
+	
+	@Override
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.kuali.mobility.people.entity.People#getLastName()
 	 */

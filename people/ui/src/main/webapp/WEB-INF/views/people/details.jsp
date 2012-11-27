@@ -150,94 +150,86 @@ function onSaveError(contactError) {
 
 
 </script>
-	<kme:content>
-		<kme:listView id="detailsList" filter="false" dataTheme="c" dataInset="false">
-			<script type="text/javascript">		
-				var nativeCookie 	= $.cookie('native');
-				var pgCookie 		= $.cookie('phonegap')
-				var canSaveContact = 0;
-				if(nativeCookie == "yes" && pgCookie != ''){
-					canSaveContact = 1;
-				}
+  <kme:content>
+    <kme:listView id="detailsList" filter="false" dataTheme="c" dataInset="false">
+      <script type="text/javascript">		
+        var nativeCookie 	= $.cookie('native');
+        var pgCookie 		= $.cookie('phonegap')
+        var canSaveContact = 0;
+        if (nativeCookie == "yes" && pgCookie != '') 
+          {
+          canSaveContact = 1;
+          }
 				
-				$('[data-role=page][id=people]').live('pagebeforeshow', function(event, ui) {
-					$('#detailsTemplate').template('detailsTemplate');
-					refreshTemplate('${pageContext.request.contextPath}/people/details', '#detailsList', 'detailsTemplate', '<li>The person was not found.</li>', function() {$('#detailsList').listview('refresh');});				
-				});
-			</script>
-			<script id="detailsTemplate" type="text/x-jquery-tmpl">			
-				{{if person}}
-					{{if person.lastName}}
-					<li data-role="list-divider">\${person.lastName}, \${person.firstName}</li>
-					{{else}}
-					<li data-role="list-divider">\${person.displayName}</li>
-					{{/if}}
+        $('[data-role=page][id=people]').live('pagebeforeshow', function(event, ui) {
+          $('#detailsTemplate').template('detailsTemplate');
+          refreshTemplate('${pageContext.request.contextPath}/people/details', '#detailsList', 'detailsTemplate', '<li>The person was not found.</li>', function() {$('#detailsList').listview('refresh');});}
+          );
+      </script>
+      <script id="detailsTemplate" type="text/x-jquery-tmpl">			
+        {{if person}}
+          {{if person.lastName}}
+            <li data-role="list-divider">\${person.firstName} \${person.middleName} \${person.lastName}</li>
+          {{else}}
+            <li data-role="list-divider">\${person.displayName}</li>
+          {{/if}}
 
-					{{if (person.locations && person.locations.length > 0) || (person.affiliations && person.affiliations.length > 0)
-						|| (person.departments && person.departments.length > 0) || person.address }}
-      				<li>
-						{{if person.locations && person.locations.length > 0}}
-							<h3 class="wrap">Campus:
-						      	<span style="font-weight:normal;">
-									{{each(i,location) person.locations}}
-										\${location}{{if i+1 < person.locations.length}}, {{/if}}
-									{{/each}}
-								</span>
-							</h3>
-						{{/if}}
-						{{if person.departments && person.departments.length > 0}}
-							<h3 class="wrap">Department:
-						      	<span style="font-weight:normal;">
-									{{each(i,department) person.departments}}
-										\${department}{{if i+1 < person.departments.length}}, {{/if}}
-									{{/each}}
-								</span>
-							</h3>
-						{{/if}}
-						{{if person.affiliations && person.affiliations.length > 0}}
-							<h3 class="wrap">Affiliation:
-						      	<span style="font-weight:normal;">
-									{{each(i,affiliation) person.affiliations}}
-										\${affiliation}{{if i+1 < person.affiliations.length}}, {{/if}}
-									{{/each}}									
-								</span>
-							</h3>
-						{{/if}}
-						{{if person.address}}
-							<h3 class="wrap">Address: <span style="font-weight:normal;">\${person.address}</span></h3>
-						{{/if}}
-					</li>
-					{{/if}}
-
-					{{if person.email}}
-						<li class="link-email">
-							<a href="mailto:\${person.email}" >\${person.email}</a>
-						</li>
-					{{/if}}
-					
-					{{if person.phone}}
-						<li class="link-phone"><a href="tel:\${person.phone}">\${person.phone}</a></li>
-					{{/if}}				
-					
-					{{if canSaveContact}}
-					<li>
-						<a id="savecontact" data-icon="plus" href="#" data-role="button" onclick="saveContact('\${person.firstName}', '\${person.lastName}', '\${person.departments}', '\${person.email}', '\${person.phone}')" data-theme="c">
-							Save Contact
-						</a>
-					</li>
-					{{/if}}
-
-				{{else}}
-					<li>The person was not found.</li>
-				{{/if}}
-
-			</script>
-		</kme:listView>
-
-
-
-
-
+        {{if (person.locations && person.locations.length > 0) || (person.affiliations && person.affiliations.length > 0)
+          || (person.departments && person.departments.length > 0) || person.address }}
+        <li>
+          {{if person.locations && person.locations.length > 0}}
+            <h3 class="wrap">Campus:
+              <span style="font-weight:normal;">
+                {{each(i,location) person.locations}}
+                  \${location}{{if i+1 < person.locations.length}}, {{/if}}
+                {{/each}}
+              </span>
+            </h3>
+          {{/if}}
+          {{if person.departments && person.departments.length > 0}}
+            <h3 class="wrap">Department:
+              <span style="font-weight:normal;">
+                {{each(i,department) person.departments}}
+                  \${department}
+                  {{if i+1 < person.departments.length}},xxxx{{/if}}
+                {{/each}}
+              </span>
+            </h3>
+          {{/if}}
+          {{if person.affiliations && person.affiliations.length > 0}}
+            <h3 class="wrap">Affiliation:
+              <span style="font-weight:normal;">
+                {{each(i,affiliation) person.affiliations}}
+                  \${affiliation}{{if i+1 < person.affiliations.length}}, {{/if}}
+                {{/each}}									
+              </span>
+            </h3>
+          {{/if}}
+          {{if person.address}}
+            <h3 class="wrap">Address: <span style="font-weight:normal;">\${person.address}</span></h3>
+          {{/if}}
+        </li>
+      {{/if}}
+      {{if person.email}}
+        <li class="link-email">
+          <a href="mailto:\${person.email}" >\${person.email}</a>
+        </li>
+      {{/if}}				
+      {{if person.phone}}
+        <li class="link-phone"><a href="tel:\${person.phone}">\${person.phone}</a></li>
+      {{/if}}				
+      {{if canSaveContact}}
+        <li>
+          <a id="savecontact" data-icon="plus" href="#" data-role="button" onclick="saveContact('\${person.firstName}', '\${person.lastName}', '\${person.departments}', '\${person.email}', '\${person.phone}')" data-theme="c">
+            Save Contact
+          </a>
+        </li>
+      {{/if}}
+    {{else}}
+      <li>The person was not found.</li>
+    {{/if}}
+  </script>
+</kme:listView>
 
 		<%-- 
 			{{if person.email}}
