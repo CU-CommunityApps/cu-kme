@@ -1,4 +1,5 @@
 /**
+
  * Copyright 2011 The Kuali Foundation Licensed under the
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
@@ -42,32 +43,53 @@ public class KMEBootstrapListener extends BootstrapListener {
 		
 		HomeScreen home = new HomeScreen();
 		home.setAlias("PUBLIC");
-		home.setTitle("Kuali Mobile");
+		home.setTitle("Kuali Mobile - Test Version - (Not a real service. :)");
 		adminService.saveHomeScreen(home);
 
 		List<HomeTool> tools = new ArrayList<HomeTool>();
-		
         Tool tool = new Tool();
-
         tool = new Tool();
+        HomeTool ht = null ;
+        int iIndex = -1 ;
+
         tool.setAlias("bus");
-        tool.setTitle("Bus");
+        tool.setTitle("Bus - Hard coded test data.");
         tool.setUrl("bus");
-        tool.setDescription("Live bus tracking.");
+        tool.setDescription("Uses KME provided hard coded data, but can peruse features.");
         tool.setIconUrl("images/service-icons/srvc-bus.png");
         adminService.saveTool(tool);
-        HomeTool ht = new HomeTool(home, tool, 0);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
-
+ 
+		tool = new Tool();
+		tool.setAlias("labs");
+		tool.setTitle("Computer Labs");
+		tool.setUrl("computerlabs");
+		tool.setDescription("Now uses live CIT stats.");
+		tool.setIconUrl("images/service-icons/srvc-stc.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+		
         tool = new Tool();
         tool.setAlias("dining");
         tool.setTitle("Dining");
         tool.setUrl("dining");
-        tool.setDescription("Find out what's cooking at your dining hall!");
+        tool.setDescription("Pulls live data from CU Dining, but needs some improvements.");
         tool.setIconUrl("images/service-icons/srvc-dining.png");
         adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 1);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
+  
+        tool = new Tool();
+        tool.setAlias("people");
+        tool.setTitle("People");
+        tool.setUrl("people");
+        tool.setDescription("Search the Cornell Directory for People.");
+        tool.setIconUrl("images/service-icons/srvc-people.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);      
 
         tool = new Tool();
 		tool.setAlias("maps");
@@ -76,7 +98,49 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tool.setDescription("Get from here to there. Search for buildings by name.");
 		tool.setIconUrl("images/service-icons/srvc-maps.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 2);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+
+        tool = new Tool();
+        tool.setAlias("weather");
+        tool.setTitle("Weather");
+        // tool.setUrl("weather");
+        tool.setUrl("http://mobile.weather.gov/index.php?lat=42.435511&lon=-76.52570070000002");
+        tool.setDescription("Weather in the Ithaca area.");
+        tool.setIconUrl("images/service-icons/srvc-weather.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);
+
+        tool = new Tool();
+        tool.setAlias("Athletics");
+        tool.setTitle("Athletics");
+        tool.setUrl("http://www.cornellbigred.com/mobile");
+        tool.setDescription("Cornell University Athletics");
+        tool.setIconUrl("images/service-icons/srvc-cuathletics.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);
+
+        tool = new Tool();
+		tool.setAlias("emergencycontacts");
+		tool.setTitle("Emergency Contacts");
+		tool.setUrl("emergencycontacts");
+		tool.setDescription("Emergency and Police phone numbers.");
+		tool.setIconUrl("images/service-icons/srvc-emergency.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+
+         /*
+        tool = new Tool();
+		tool.setAlias("news");
+		tool.setTitle("News");
+		tool.setUrl("news");
+		tool.setDescription("The latest buzz on IU's exciting events and achievements.");
+		tool.setIconUrl("images/service-icons/srvc-news.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
 		tools.add(ht);
 
 		tool = new Tool();
@@ -86,7 +150,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tool.setDescription("2011 Conference: \"My digital life @ IU\"");
 		tool.setIconUrl("images/service-icons/srvc-itstatewide.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 3);
+		ht = new HomeTool(home, tool, iIndex++);
 		tools.add(ht);
 
         tool = new Tool();
@@ -96,18 +160,8 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setDescription("Campus events and calendars.");
         tool.setIconUrl("images/service-icons/srvc-events.png");
         adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 4);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
-
-        tool = new Tool();
-		tool.setAlias("news");
-		tool.setTitle("News");
-		tool.setUrl("news");
-		tool.setDescription("The latest buzz on IU's exciting events and achievements.");
-		tool.setIconUrl("images/service-icons/srvc-news.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 5);
-		tools.add(ht);
 
         tool = new Tool();
         tool.setAlias("alerts");
@@ -116,37 +170,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setDescription("See a list of active campus alert messages.");
         tool.setIconUrl("images/service-icons/srvc-alerts-green.png");
         adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 6);
-        tools.add(ht);
-
-        tool = new Tool();
-		tool.setAlias("emergencycontacts");
-		tool.setTitle("Emergency Contacts");
-		tool.setUrl("emergencycontacts");
-		tool.setDescription("Police and medical phone numbers.");
-		tool.setIconUrl("images/service-icons/srvc-emergency.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 7);
-		tools.add(ht);
-
-		tool = new Tool();
-		tool.setAlias("labs");
-		tool.setTitle("Computer Labs");
-		tool.setUrl("computerlabs");
-		tool.setDescription("See which campus computers labs have an open seat.");
-		tool.setIconUrl("images/service-icons/srvc-stc.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 8);
-		tools.add(ht);
-		
-        tool = new Tool();
-        tool.setAlias("weather");
-        tool.setTitle("Weather");
-        tool.setUrl("weather");
-        tool.setDescription("Check your local weather!");
-        tool.setIconUrl("images/service-icons/srvc-weather.png");
-        adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 9);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
         tool = new Tool();
@@ -156,7 +180,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setDescription("Submit campus incidents.");
         tool.setIconUrl("images/service-icons/srvc-incident-green.png");
         adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 10);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
 
         tool = new Tool();
@@ -166,7 +190,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setDescription("Reporting administration.");
         tool.setIconUrl("images/service-icons/srvc-incident-admin.png");
         adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 11);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      		
 		
 		tool = new Tool();
@@ -176,7 +200,7 @@ public class KMEBootstrapListener extends BootstrapListener {
     	tool.setDescription("Administrative push notifications tool.");
     	tool.setIconUrl("images/service-icons/srvc-push.png");
 		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, 12);
+		ht = new HomeTool(home, tool, iIndex++);
 		tools.add(ht);		
 
         tool = new Tool();
@@ -186,7 +210,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setDescription("Administrative publishing tools.");
         tool.setIconUrl("images/service-icons/srvc-publishing.png");
         adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 13);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
 
         tool = new Tool();
@@ -196,10 +220,9 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setDescription("Submit questions and comments about Kuali Mobile.");
         tool.setIconUrl("images/service-icons/srvc-feedback.png");
         adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, 14);
+        ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
 
-		/*
 		tool = new Tool();
 		tool.setAlias("backdoor");
     	tool.setTitle("Backdoor");

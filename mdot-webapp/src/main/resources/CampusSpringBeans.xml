@@ -20,121 +20,18 @@
 	<bean id="campusService" class="org.kuali.mobility.campus.service.CampusServiceImpl">
 		<property name="campuses">
 			<list>
-				<ref bean="campusUA" />
-				<ref bean="campusBL" />
-				<ref bean="campusIN" />
-				<ref bean="campusCO" />
-				<ref bean="campusEA" />
-				<ref bean="campusKO" />
-				<ref bean="campusNW" />
-				<ref bean="campusSB" />
-				<ref bean="campusSE" />
+				<ref bean="campusCU" />
 			</list>
 		</property>
 	</bean>
 
-	<bean id="campusUA" class="org.kuali.mobility.campus.entity.Campus">
+	<bean id="campusCU" class="org.kuali.mobility.campus.entity.Campus">
 		<property name="code" value="UA" />
 		<property name="name" value="IU All" />
 		<property name="tools">
 			<list>
 				<value>home</value>
 				<value>news</value>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="campusBL" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="BL" />
-		<property name="name" value="IU Bloomington" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-				<value>computerlabs</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="campusIN" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="IN" />
-		<property name="name" value="IUPUI" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-				<value>computerlabs</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="campusCO" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="CO" />
-		<property name="name" value="IUPUC" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-				<value>computerlabs</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="campusEA" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="EA" />
-		<property name="name" value="IU East" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-				<value>computerlabs</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="campusKO" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="KO" />
-		<property name="name" value="IU Kokomo" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="campusNW" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="NW" />
-		<property name="name" value="IU Northwest" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="campusSB" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="SB" />
-		<property name="name" value="IU South Bend" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-				<value>computerlabs</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="campusSE" class="org.kuali.mobility.campus.entity.Campus">
-		<property name="code" value="SE" />
-		<property name="name" value="IU Southeast" />
-		<property name="tools">
-			<list>
-				<value>home</value>
-				<value>alerts</value>
-				<value>news</value>
-				<value>computerlabs</value>
 			</list>
 		</property>
 	</bean>
