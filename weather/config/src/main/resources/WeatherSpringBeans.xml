@@ -25,9 +25,10 @@
     	<property name="weatherDao" ref="weatherDao"/>
   	</bean>
 
+<!--
     <bean id="weatherInitBean" class="org.kuali.mobility.weather.dao.WeatherInitBean" init-method="init" destroy-method="cleanup" depends-on="weatherDao">
 		<property name="minutesToRefresh" value="60" />
 		<property name="weatherService"><ref local="weatherService"/></property>    
     </bean>    
-
+-->
 </beans>
