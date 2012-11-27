@@ -26,7 +26,6 @@ import org.kuali.mobility.shared.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,28 +41,28 @@ public class ComputerLabsController {
 
 	@Autowired
 	private ComputerLabsService computerLabService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String getList(Model uiModel, HttpServletRequest request) 
 	{
 		User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
-		//LOG.debug("uimodel user:"  + user);
+		LOG.debug("uimodel user:"  + user);
 		String campus = null;
 		if (user.getViewCampus() == null) {
 			//LOG.debug("campus null");
 			return "redirect:/campus?toolName=computerlabs";
 		} else {
 			campus = user.getViewCampus();
-			LOG.debug("Computerlabs campus different " + user.getViewCampus());
+			// LOG.debug("Computerlabs campus different " + user.getViewCampus());
 		}
 		uiModel.addAttribute("campus", campus);
 		return "computerlabs/list";
 	
 	}
 	
-	
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
 	public String getViewSeatDetails(Model uiModel, HttpServletRequest request, @RequestParam(value = "buildingCode",required = true) String buildingCode,@RequestParam(required = false) String campus) {
+		
 		uiModel.addAttribute("buildingCode", buildingCode);
 		uiModel.addAttribute("campus", campus);
 		return "computerlabs/details";
@@ -72,20 +71,20 @@ public class ComputerLabsController {
 	@RequestMapping(value = "/details", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public String getViewSeatJson(@RequestParam(value = "buildingCode",required = true) String buildingCode,@RequestParam(value = "campus",required = false) String campus) {
-		//LOG.debug("get view seat json" + campus + ", " + buildingCode );
+    
+		// LOG.debug("get view seat json" + campus + ", " + buildingCode );
 		return  computerLabService.getViewSeatJson(buildingCode,campus);
 	}
 	
-
 	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
 	@ResponseBody
 	public String findAllComputerLabsByCampus(@RequestParam(value = "campus", required = true) String campus, HttpServletRequest request) {
+	
 		User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
 		//LOG.debug( "for campus "+campus );
 		Collection<Location> labs = computerLabService.findAllLabsByCampus(user.getViewCampus());
 		//LOG.debug( "Found JSON labs size "+labs.size());
+
 		return new JSONSerializer().exclude("*.class").deepSerialize(labs);
 	}
-	
-
 }

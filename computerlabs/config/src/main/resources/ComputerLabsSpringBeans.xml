@@ -17,47 +17,14 @@
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<bean id="ComputerLabDao" class="org.kuali.mobility.computerlabs.dao.ComputerLabsDaoUMImpl">
-		<property name="labUrls">
-			<map>
-				<entry key="BL">
-					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
-					</list>
-				</entry>
-				<entry key="CO">
-					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
-					</list>
-				</entry>
-				<entry key="SB">
-					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
-					</list>
-				</entry>
-				<entry key="SE">
-					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
-					</list>
-				</entry>
-				<entry key="IN">
-					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
-					</list>
-				</entry>
-				<entry key="EA">
-					<list>
-						<value>http://localhost:9999/mdot/testdata/computerlabs.xml</value>
-					</list>
-				</entry>
-			</map>
-		</property>
-		<property name="buildingsSourceURL" value="http://webservices.dsc.umich.edu/computerlabs/getBuildings?_type=xml"></property>
-		
+	<bean id="dataMapper" class="org.kuali.mobility.util.mapper.DataMapperImpl"/>    
+
+	<bean id="ComputerLabDao" class="org.kuali.mobility.computerlabs.dao.ComputerLabsDaoCUImpl">
+		<property name="labStatsURL" value="${computerlabs.labstats.url}"></property>
 	</bean>
 	
     <bean id="computerlabService" class="org.kuali.mobility.computerlabs.service.ComputerLabsServiceImpl">
 		<property name="dao" ref="ComputerLabDao"/>
 	</bean>
-    
+
 </beans>

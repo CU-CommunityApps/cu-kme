@@ -73,8 +73,8 @@ public class ComputerLabsServiceImpl implements ComputerLabsService {
     }
 
     public String getViewSeatJson(final String buildingCode, final String campus) {
-        // LOG.debug("getviewSeatJson %%%%% " );
+    
+        LOG.debug("*** buildingCode: " + buildingCode + ", campus: " + campus );
         return new JSONSerializer().exclude("*.class").deepSerialize(this.getLab(campus, buildingCode));
-    }
-
+    }    
 }

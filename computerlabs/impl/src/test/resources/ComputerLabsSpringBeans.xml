@@ -17,7 +17,7 @@
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<bean id="ComputerLabDao" class="org.kuali.mobility.computerlabs.dao.ComputerLabsDaoUMImpl">
+	<bean id="ComputerLabDao" class="org.kuali.mobility.computerlabs.dao.ComputerLabsDaoCUImpl">
 		<property name="labUrls">
 			<map>
 				<entry key="BL">
@@ -53,8 +53,11 @@
 			</map>
 		</property>
 		<property name="buildingsSourceURL" value="http://webservices.dsc.umich.edu/computerlabs/getBuildings?_type=xml"></property>
+		<property name="labStatsURL" value="http://labstats.citlabs.cornell.edu/LabStats/WebServices/Statistics.asmx/GetGroupedCurrentStats"></property>
 		
 	</bean>
+
+
 	
     <bean id="computerlabService" class="org.kuali.mobility.computerlabs.service.ComputerLabsServiceImpl">
 		<property name="dao" ref="ComputerLabDao"/>

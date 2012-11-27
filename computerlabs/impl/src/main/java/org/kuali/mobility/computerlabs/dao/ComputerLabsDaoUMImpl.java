@@ -42,7 +42,7 @@ public class ComputerLabsDaoUMImpl implements ComputerLabsDao
 		this.labs = labs;
 	}
 
-	//@Autowired
+	// @Autowired
 	private DataMapper dataMapper;
 	private String dataMappingUrl;
 	
@@ -67,11 +67,18 @@ public class ComputerLabsDaoUMImpl implements ComputerLabsDao
 					LOG.debug("SourceUrl: " + sourceUrl );
 					if (dataMappingUrl != null && !"".equals(dataMappingUrl.trim()))
 					{
+						LOG.info("***** data mapping URL ****") ;
 						setLabs(dataMapper.mapData(getLabs(), url, new URL(dataMappingUrl)));
 					} 
 					else
 					{
-						setLabs(dataMapper.mapData(getLabs(), url, "labMapping.xml"));
+						LOG.info("---------------- labMapping.xml");
+						LOG.info("URL: " + url.toString()) ;
+						LOG.info("dataMapper: " + dataMapper) ;
+						List<Lab> labs = dataMapper.mapData(getLabs(), url, "labMapping.xml") ;
+						LOG.info("back from dataMapper") ;
+						setLabs(labs) ;
+						// setLabs(dataMapper.mapData(getLabs(), url, "labMapping.xml"));
 					}
 				
 				} 
@@ -188,6 +195,16 @@ public class ComputerLabsDaoUMImpl implements ComputerLabsDao
 	 */
 	public void setBuildingsSourceURL(String buildingsSourceURL) {
 		this.buildingsSourceURL = buildingsSourceURL;
+	}
+
+	public DataMapper getDataMapper() {
+	
+	return dataMapper;
+	}
+
+	public void setDataMapper(DataMapper dataMapper) {
+	
+	this.dataMapper = dataMapper;
 	}
 
 	

@@ -19,34 +19,29 @@
 <spring:message code="computerlabs.seats" var="seats"/>
 
 <kme:page title="${title}" id="computerlabs" homeButton="true" backButton="true" cssFilename="computerlabs">
-	<kme:content>
-		<kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b"
-			filter="false">
+  <kme:content>
+    <kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b" filter="false">
+    <script type="text/javascript">
+      $('[data-role=page][id=computerlabs]').live('pagebeforeshow',
+        function(event, ui) 
+          {
+          $('#clListTemplate').template('clListTemplate');
+          refreshTemplate('computerlabs?campus=${campus}', '#computerlablist', 'clListTemplate', '<li>No labs were found</li>', 
+                        function() {
+                                   $('#computerlablist').listview('refresh');
+                                   });
+          });
+    </script>
+    <script id="clListTemplate" type="text/x-jquery-tmpl">
+    <li data-role="list-divider" data-theme="b" data-icon="listview" >\${name}</li>
+    {{each labs}}
+    <li>
+      <h3>\${lab}</h3>
+      <p>\${availability} ${seats}</p>
+      </li>
+	{{/each}}
+    </script>
 
-			<script type="text/javascript">
-				$('[data-role=page][id=computerlabs]').live(
-						'pagebeforeshow',
-						function(event, ui) {
-							$('#clListTemplate').template('clListTemplate');
-							refreshTemplate('computerlabs?campus=${campus}',
-									'#computerlablist', 'clListTemplate',
-									'<li>No labs were found</li>', function() {
-										$('#computerlablist').listview(
-												'refresh');
-									});
-						});
-			</script>
-			<script id="clListTemplate" type="text/x-jquery-tmpl">
-				<li data-role="list-divider" data-theme="b" data-icon="listview" >\${name}</li>
-    			{{each labs}}
-    				<li>
-						<a href="${pageContext.request.contextPath}/maps?id=\${buildingCode}">
-		    	   			<h3>\${lab}</h3><p>\${availability} ${seats}</p>
-  						</a>
-					</li>
-				{{/each}}
-		</script>
-
-		</kme:listView>
-	</kme:content>
+    </kme:listView>
+  </kme:content>
 </kme:page>

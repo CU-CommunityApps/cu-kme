@@ -19,38 +19,33 @@
 <spring:message code="computerlabs.seats" var="seats"/>
 
 <kme:page title="${title}" id="computerlabs" homeButton="true" backButton="true" cssFilename="computerlabs">
-	<kme:content>
-		<kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b"
-			filter="false">
+  <kme:content>
+    <kme:listView id="computerlablist" dataTheme="c" dataDividerTheme="b" filter="false">
 
-			<script type="text/javascript">
-				$('[data-role=page][id=computerlabs]').live(
-						'pagebeforeshow',
-						function(event, ui) {
-							$('#clListTemplate').template('clListTemplate');
-							refreshTemplate('${pageContext.request.contextPath}/computerlabs/details?buildingCode=${buildingCode}&campus=${campus}',
-									'#computerlablist', 'clListTemplate',
-									'<li>No seats are  found</li>', function() {
-										$('#computerlablist').listview(
-												'refresh');
-									});
-						});
-			</script>
-			<script id="clListTemplate" type="text/x-jquery-tmpl">
-				<li data-role="list-divider" data-theme="b" data-icon="listview" >\${name}</li>
-    			
-    					<li>
-					
-		    	   			<h3>\${lab}</h3>
-                                                <p>\${availability} - All ${seats}</p>
-						<p>\${windowsAvailability} - windows  ${seats}</p>
-                                                <p>\${linuxAvailability} - linux ${seats}</p>
-                                                <p>\${macAvailability} - macintosh ${seats}</p>
-  					
-					</li>
-				
-		</script>
+	<script type="text/javascript">
+	  $('[data-role=page][id=computerlabs]').live('pagebeforeshow',
+		function(event, ui) 
+		  {
+          $('#clListTemplate').template('clListTemplate');
+          refreshTemplate('${pageContext.request.contextPath}/computerlabs/details?buildingCode=${buildingCode}&campus=${campus}',
+                         '#computerlablist', 'clListTemplate', '<li>No seats are  found</li>', 
+                         function() {
+                                    $('#computerlablist').listview('refresh');
+                                    }
+                         );
+          });
+    </script>
+    <script id="clListTemplate" type="text/x-jquery-tmpl">
+      <li data-role="list-divider" data-theme="b" data-icon="listview" >\${name}</li>
+      <li>
+      <h3>\${lab}</h3>
+      <p>\${availability} - All ${seats}</p>
+      <p>\${windowsAvailability} - windows  ${seats}</p>
+      <p>\${linuxAvailability} - linux ${seats}</p>
+      <p>\${macAvailability} - macintosh ${seats}</p>
+      </li>			
+    </script>
 
-		</kme:listView>
-	</kme:content>
+    </kme:listView>
+  </kme:content>
 </kme:page>
