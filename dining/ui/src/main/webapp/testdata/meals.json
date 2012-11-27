@@ -1,1 +1,89 @@
-{"meal":[]}
+{
+"meal":
+	[
+		{
+	    "categories":
+			[
+        		{
+				"items":
+					[
+						{"attributes":["vegan","mhealthy"],"title":"Oatmeal"},
+						{"attributes":["vegetarian"],"title":"Blueberry Oatmeal"},
+						{"attributes":["vegetarian"],"title":"Belgian Waffles"},
+						{"attributes":["vegetarian"],"title":"Egg & Cheese Croissant"}
+					],
+				"title":"&nbsp;"
+				},
+				{
+				"items":
+					[
+						{"attributes":["vegetarian"],"title":"Blueberry Muffins"},
+						{"attributes":["vegetarian"],"title":"Chocolate Chocolate Chip Muffins"},
+						{"attributes":["vegetarian","mhealthy"],"title":"Low Fat Blueberry  Muffins"}
+					],	
+				"title":"Dessert"
+				}
+			],
+		"date":"Wednesday, November 14",
+		"eater":"South Quad Dining Hall",
+		"name":"BREAKFAST"
+		},
+		{
+		"categories":
+			[
+				{
+				"items":
+					[
+						{"attributes":["vegetarian"],"title":"Cream of Broccoli Soup"},
+						{"title":"Beef Vegetable Soup"}
+					],
+				"title":"Madison Ave Deli"
+				},
+				{
+				"items":
+					[
+						{"attributes":["vegetarian"],"title":"Chocolate Chip Cookies"},
+						{"attributes":["vegetarian"],"title":"Sugar Cookies"},
+						{"title":"Turtle Cookies"}
+					],
+				"title":"Dessert"
+				}
+			],
+		"date":"Wednesday, November 14",
+		"eater":"South Quad Dining Hall",
+		"name":"LUNCH"
+		},
+		{
+		"categories":
+			[
+				{
+				"items":
+					[
+						{"attributes":["glutenfree"],"title":"Roasted Turkey Breast"},
+						{"attributes":["mhealthy"],"title":"Catch of the Day"},
+						{"attributes":["vegetarian"],"title":"Macaroni & Cheese"},
+						{"attributes":["glutenfree"],"title":"Roast Pork"},
+						{"attributes":["vegetarian","glutenfree"],"title":"Glazed Sweet Potatoes"},
+						{"attributes":["vegetarian"],"title":"Bread Dressing"},
+						{"attributes":["vegetarian","mhealthy","glutenfree"],"title":"Smashed Potatoes"},
+						{"attributes":["vegan","mhealthy","glutenfree"],"title":"Whole Kernel Corn"},
+						{"attributes":["vegetarian"],"title":"Green Bean Casserole"}
+					],
+				"title":"The Main Event"
+				},
+				{
+				"items":
+					[
+						{"attributes":["vegan"],"title":"Dutch Apple Pie"},
+						{"attributes":["vegetarian","mhealthy"],"title":"Pumpkin Pie"},
+						{"attributes":["vegan","glutenfree"],"title":"Whipped Topping"},
+						{"attributes":["vegan","mhealthy"],"title":"Vegan Pumpkin Pie"}
+					],
+				"title":"Dessert"
+				}
+			],
+		"date":"Wednesday, November 14",
+		"eater":"South Quad Dining Hall","name":"DINNER"
+		}
+	]
+}

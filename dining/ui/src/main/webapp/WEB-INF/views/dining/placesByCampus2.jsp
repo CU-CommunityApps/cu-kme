@@ -10,7 +10,7 @@
 	<kme:content>
 	<ul data-role="listview" id="dropdownHeader" data-theme="c" data-inset="false" data-filter="false" data-dividertheme="b">
             <li data-icon="arrow-d" class="dropdownHeader linkedHeaderRow">
-            <a id="toggleDropdown" href="#">Select Campus</a>
+            <a id="toggleDropdown" href="#">Select Location</a>
             </li>
         </ul>
         <ul data-role="listview" id="dropdownMenu" data-theme="c" data-inset="false" data-filter="false" data-dividertheme="b">

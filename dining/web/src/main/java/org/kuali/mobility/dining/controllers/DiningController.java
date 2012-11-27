@@ -46,6 +46,7 @@ public class DiningController {
 
 	@RequestMapping(method = RequestMethod.GET)
     public String getPlaces(Model uiModel) {
+    	
     	List<PlaceByCampusByType> placeGroups = DiningUtil.convertPlaceListForUI(diningService.getPlaces());
     	uiModel.addAttribute("placeGroups", placeGroups);
     	return "dining/placesByCampus2";
@@ -53,14 +54,16 @@ public class DiningController {
 
     @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
-    public String getPlaceListJson() { //
-    	List<PlaceByCampusByType> placeGroups = DiningUtil.convertPlaceListForUI(diningService.getPlaces());
+    public String getPlaceListJson() {
+    
+       	List<PlaceByCampusByType> placeGroups = DiningUtil.convertPlaceListForUI(diningService.getPlaces());
     	return new JSONSerializer().exclude("*.class").deepSerialize(placeGroups);
     }
 
 
     @RequestMapping(value="/{name}", method = RequestMethod.GET)
     public String getMenus(Model uiModel, @PathVariable("name") String name, @RequestParam(value = "location", required = false) String location){
+    
     	LOG.debug( "getMenus() : name = "+name+" location = "+location );
     	String place = ( (location==null || location.trim().isEmpty()) ? name : (name + " at " + location) );
     	uiModel.addAttribute("place", place);
@@ -72,6 +75,8 @@ public class DiningController {
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public String getMenusJson(@PathVariable("name") String name, @RequestParam(value = "location", required = false) String location) {
+    
+		LOG.info("getMenusJson() : name= " + name + " location=" + location) ;
     	String jsonData = diningService.getMenusJson(name, (null==location || "".equalsIgnoreCase(location) ? null : location.trim()));
 
     	return jsonData;

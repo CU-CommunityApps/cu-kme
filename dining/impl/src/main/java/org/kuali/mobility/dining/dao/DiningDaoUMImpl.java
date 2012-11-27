@@ -101,6 +101,12 @@ public class DiningDaoUMImpl implements DiningDao {
 				}
 				else {
 					placeList = mapper.mapData(placeList, new URL(getPlaceSourceUrl()), getPlaceMappingFile());
+					for (Place pl : placeList)
+						{
+						LOG.info("-----------------") ;
+						LOG.info("campus: " + pl.getCampus()) ;
+						LOG.info("name: " + pl.getName()) ;
+						}
 				}
 			}
 			else {

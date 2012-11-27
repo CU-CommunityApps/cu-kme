@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diningHalls>
+	<diningHall>
+		<campus>North Campus</campus>
+		<name>North Star</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>North Campus</campus>
+		<name>Robert Purcell Marketplace Eatery</name>
+		<type>Marketplace Eatery</type>
+	</diningHall>
+	<diningHall>
+		<campus>North Campus</campus>
+		<name>Risley Dining</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>West Campus</campus>
+		<name>Cook House Dining Room</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>West Campus</campus>
+		<name>Keeton House Dining Room</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>West Campus</campus>
+		<name>Rose House Dining Room</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>West Campus</campus>
+		<name>Hans Bethe House - Jansen's Dining Room</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>West Campus</campus>
+		<name>Becker House Dining Room</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>Central Campus</campus>
+		<location>Willard Straight Hall</location>
+		<name>Okenshields</name>
+		<type>Dining Room</type>
+	</diningHall>
+	<diningHall>
+		<campus>West Campus</campus>
+		<name>104 West!</name>
+		<type>Dining Room</type>
+	</diningHall>
+</diningHalls>

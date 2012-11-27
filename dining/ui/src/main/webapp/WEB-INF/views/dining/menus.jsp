@@ -34,7 +34,7 @@
 		</kme:listView>
 			
 		<kme:listView id="results" filter="false" dataTheme="c" dataInset="false" dataDividerTheme="b">
-			
+		
 			<script id="menuListTemplate" type="text/x-jquery-tmpl">
 				{{each(i,m) meal}}
 					{{if categories}}
