@@ -81,12 +81,10 @@
 	<div id="legend">
     	<span class="closeLegend">Close</span>
     	<ul id="legendItems">
-    		<li><span class="nutrition-featured">Featured</span></li>
-			<li><span class="nutrition-glutenfree">Gluten-free</span></li>
-			<li><span class="nutrition-halal">Halal</span></li>
-			<li><span class="nutrition-mhealthy">MHealthy</span></li>	
-			<li><span class="nutrition-vegan">Vegan</span></li>
-			<li><span class="nutrition-vegetarian">Vegetarian</span></li>
+			<li><span class="nutrition-featured">100% trans fat free</span></li>
+			<li><span class="nutrition-featured">Lower in fat</span></li>
+			<li><span class="nutrition-featured">Lower in sugar and salt</span></li>
+			<li><span class="nutrition-featured">Unprocessed ingredients</span></li>
 		</ul>
 	</div>
 	

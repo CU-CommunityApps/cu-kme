@@ -13,6 +13,8 @@ public void appendMeal (DiningResult dr) {
 String sMeal = dr.getMeal() ;
 String sStation = dr.getStation() ;
 String sEntree = dr.getEntree() ;
+String sEatingWell = dr.getEatingWellFlag() ;
+
 
 if (meal == null)
 	meal = new ArrayList<Meal>() ;
@@ -23,7 +25,7 @@ for (Meal ml : meal)
 	String sName = ml.getName() ;
 	if (sName.equalsIgnoreCase(sMeal))
 		{
-		ml.appendStationEntreeCombo(sStation, sEntree) ;
+		ml.appendStationEntreeCombo(sStation, sEntree, sEatingWell) ;
 		bFound = true ;
 		}
 	
@@ -33,7 +35,7 @@ if (!bFound)
 	{
 	Meal mlNew = new Meal() ;
 	mlNew.setName(sMeal) ;
-	mlNew.appendStationEntreeCombo(sStation, sEntree) ;
+	mlNew.appendStationEntreeCombo(sStation, sEntree, sEatingWell) ;
 	meal.add(mlNew) ;
 	}
 }

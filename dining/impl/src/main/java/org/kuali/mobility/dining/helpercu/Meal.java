@@ -33,13 +33,16 @@ this.name = name;
 }
 
 /* ------------------------------------------------------------------------- */
-public void appendStationEntreeCombo (String sStation, String sEntree) {
+public void appendStationEntreeCombo (String sStation, String sEntree, 
+		String sEatingWellFlag) {
 
 if (categories == null)
 	categories = new ArrayList<Station>() ;
 
 Entree yummyFood = new Entree() ;
 yummyFood.setTitle(sEntree) ;
+if (sEatingWellFlag.length() > 0)
+	yummyFood.designateHealthyEating() ;
 
 boolean bFound = false ;
 	for (Station st : categories)
