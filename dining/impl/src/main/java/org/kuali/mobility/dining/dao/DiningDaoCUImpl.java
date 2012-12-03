@@ -19,6 +19,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.apache.log4j.Logger ;
 import org.kuali.mobility.dining.entity.Place ;
@@ -40,138 +52,178 @@ import flexjson.JSONSerializer ;
 /* --------------------------------------------------------------------- */
 public class DiningDaoCUImpl implements DiningDao {
 
-private static final Logger LOG = Logger.getLogger( DiningDaoCUImpl.class );
+	private static final Logger LOG = Logger.getLogger( DiningDaoCUImpl.class );
 
-private DataMapper mapper;
-private List<Place> placeList;
+	private DataMapper mapper;
+	private List<Place> placeList;
 
-private String placeSourceUrl;
-private String placeMappingFile;
+	private String placeSourceUrl;
+	private String placeMappingFile;
+	private DataSource diningDataSource;
 
-private String datasourceUrl ;
-private String datasourceUsername ;
-private String datasourcePassword ; 
+	//private String datasourceUrl ;
+	//private String datasourceUsername ;
+	//private String datasourcePassword ; 
 
-/* --------------------------------------------------------------------- */
-public String getMenusJson (final String name, final String location) {
+	//@PersistenceContext(unitName = "dining-unit")
+	//private EntityManager entityManager;
+
+	/* --------------------------------------------------------------------- */
+	public String getMenusJson (final String name, String location) {
+
+		String sSql = "select meal, course, formal_name, eating_well_flag from dining.menudetailweb where service_unit = ? and eventdate = ?" ;
+
+		Date dt = new Date() ;
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String sDate = df.format(dt) ;
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Meals mls = new Meals() ;
+
+		try {
+			System.out.println("Creating connection.");
+			conn = diningDataSource.getConnection();
+			System.out.println("Creating statement.");
+			stmt = conn.prepareStatement(sSql);
+
+			stmt.setString(1, location) ;
+			stmt.setString(2, sDate) ;
+			System.out.println("Executing statement.");
+			rs = stmt.executeQuery();
+		
+
+			DiningResult dr;
+
+			while(rs.next()) {
+			//for (Object[] rs : rset) {
+				dr = new DiningResult() ;
+				dr.setMeal(rs.getString(1)) ;
+				dr.setStation(rs.getString(2)) ;
+				dr.setEntree(rs.getString(3)) ;
+				dr.setEatingWellFlag(rs.getString(4)); 
+				mls.appendMeal(dr) ;
+			}
+			//	}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try { rs.close(); } catch(Exception e) { }
+			try { stmt.close(); } catch(Exception e) { }
+			try { conn.close(); } catch(Exception e) { }
+		}
+
 	
-Meals mls = new Meals() ;
 
-/*
- * The DiningDb data access class is just to get us going.  This will be replaced with
- * a JPA query.
- */
+		String sFlexJson = new JSONSerializer().exclude("*.class").deepSerialize(mls) ;
+		return (sFlexJson) ;
+	}
 
-DiningDb dDb = new DiningDb() ;
-dDb.setUrl(datasourceUrl) ;
-dDb.setAdminId(datasourceUsername) ;
-dDb.setAdminPwd(datasourcePassword) ;
-try {
-	ArrayList<DiningResult> alDr = dDb.lookupMealsForToday(name) ; 
-	Collections.sort(alDr) ;
-	for (DiningResult dr : alDr)
+	/* --------------------------------------------------------------------- */
+	private void initPlaceList () {
+
+		if (placeList==null)
+			placeList = new ArrayList<Place>();
+
+		try {
+			placeList = mapper.mapData(placeList, new URL(getPlaceSourceUrl()), getPlaceMappingFile());
+		}
+		catch (Exception e)
 		{
-		mls.appendMeal(dr) ;
+			LOG.error(e.getMessage()) ;
 		}
 	}
-catch (Exception e)
-	{
-	LOG.info(e.getMessage()) ;
+
+	/* ------------------------------------------------------------------------- */
+	//public String getDatasourceUrl() {
+	//
+	//return datasourceUrl;
+	//}
+	//
+	///* ------------------------------------------------------------------------- */
+	//public void setDatasourceUrl(String datasourceUrl) {
+	//
+	//this.datasourceUrl = datasourceUrl;
+	//}
+	//
+	///* ------------------------------------------------------------------------- */
+	//public String getDatasourceUsername() {
+	//
+	//return datasourceUsername;
+	//}
+	//
+	///* ------------------------------------------------------------------------- */
+	//public void setDatasourceUsername(String datasourceUsername) {
+	//
+	//this.datasourceUsername = datasourceUsername;
+	//}
+	//
+	///* ------------------------------------------------------------------------- */
+	//public String getDatasourcePassword() {
+	//
+	//return datasourcePassword;
+	//}
+	//
+	///* ------------------------------------------------------------------------- */
+	//public void setDatasourcePassword(String datasourcePassword) {
+	//
+	//this.datasourcePassword = datasourcePassword;
+	//}
+
+	/* ------------------------------------------------------------------------- */
+
+	public String getPlaceSourceUrl() {
+
+		return placeSourceUrl;
 	}
-	
-String sFlexJson = new JSONSerializer().exclude("*.class").deepSerialize(mls) ;
-return (sFlexJson) ;
-}
 
-/* --------------------------------------------------------------------- */
-private void initPlaceList () {
+	/* ------------------------------------------------------------------------- */
+	public void setPlaceSourceUrl(String placeSourceUrl) {
 
-if (placeList==null)
-	placeList = new ArrayList<Place>();
-
-try {
-	placeList = mapper.mapData(placeList, new URL(getPlaceSourceUrl()), getPlaceMappingFile());
+		this.placeSourceUrl = placeSourceUrl;
 	}
-catch (Exception e)
-	{
-	LOG.error(e.getMessage()) ;
+
+	/* ------------------------------------------------------------------------- */
+	public String getPlaceMappingFile() {
+
+		return placeMappingFile;
 	}
-}
-	
-/* ------------------------------------------------------------------------- */
-public String getDatasourceUrl() {
 
-return datasourceUrl;
-}
+	/* ------------------------------------------------------------------------- */
+	public void setPlaceMappingFile(String placeMappingFile) {
 
-/* ------------------------------------------------------------------------- */
-public void setDatasourceUrl(String datasourceUrl) {
+		this.placeMappingFile = placeMappingFile;
+	}
 
-this.datasourceUrl = datasourceUrl;
-}
+	/* ------------------------------------------------------------------------- */
+	public List<Place> getPlaceList() {
 
-/* ------------------------------------------------------------------------- */
-public String getDatasourceUsername() {
+		if (placeList==null || placeList.isEmpty()) 
+			initPlaceList();
 
-return datasourceUsername;
-}
+		return placeList;
+	}
 
-/* ------------------------------------------------------------------------- */
-public void setDatasourceUsername(String datasourceUsername) {
+	/* ------------------------------------------------------------------------- */
+	public void setMapper(DataMapper mapper) {
 
-this.datasourceUsername = datasourceUsername;
-}
+		this.mapper = mapper;
+	}
 
-/* ------------------------------------------------------------------------- */
-public String getDatasourcePassword() {
+	public DataSource getDiningDataSource() {
+		return this.diningDataSource;
+	}
 
-return datasourcePassword;
-}
+	public void setDiningDataSource(DataSource diningDataSource) {
+		this.diningDataSource = diningDataSource;
+	}
 
-/* ------------------------------------------------------------------------- */
-public void setDatasourcePassword(String datasourcePassword) {
-
-this.datasourcePassword = datasourcePassword;
-}
-
-/* ------------------------------------------------------------------------- */
-
-public String getPlaceSourceUrl() {
-
-return placeSourceUrl;
-}
-
-/* ------------------------------------------------------------------------- */
-public void setPlaceSourceUrl(String placeSourceUrl) {
-
-this.placeSourceUrl = placeSourceUrl;
-}
-
-/* ------------------------------------------------------------------------- */
-public String getPlaceMappingFile() {
-
-return placeMappingFile;
-}
-
-/* ------------------------------------------------------------------------- */
-public void setPlaceMappingFile(String placeMappingFile) {
-
-this.placeMappingFile = placeMappingFile;
-}
-
-/* ------------------------------------------------------------------------- */
-public List<Place> getPlaceList() {
-
-if (placeList==null || placeList.isEmpty()) 
-	initPlaceList();
-
-return placeList;
-}
-
-/* ------------------------------------------------------------------------- */
-public void setMapper(DataMapper mapper) {
-
-this.mapper = mapper;
-}
-
+	//public EntityManager getEntityManager() {
+	//    return this.entityManager;
+	//}
+	//
+	//public void setEntityManager(EntityManager entityManager) {
+	//    this.entityManager = entityManager;
+	//}
 }

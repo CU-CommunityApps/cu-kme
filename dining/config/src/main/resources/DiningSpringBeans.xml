@@ -27,9 +27,23 @@
     	<property name="mapper" ref="mapper"/>
     	<property name="placeSourceUrl" value="${dining.place.source.url}"/>
         <property name="placeMappingFile" value="${dining.place.mapping.file}"/>
-		<property name="datasourceUrl" value="${dining.datasource.url}"></property>
+        <property name="diningDataSource" ref="diningDataSource"/>
+		<!-- <property name="datasourceUrl" value="${dining.datasource.url}"></property>
 		<property name="datasourceUsername" value="${dining.datasource.username}"></property>
-		<property name="datasourcePassword" value="${dining.datasource.password}"></property>
+		<property name="datasourcePassword" value="${dining.datasource.password}"></property> -->
     </bean>
+    
+    <bean id="diningDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+		<property name="driverClassName" value="${dining.datasource.driver.name}" />
+		<property name="url" value="${dining.datasource.url}" />
+		<property name="maxActive" value="${shared.datasource.pool.maxActive}" />
+		<property name="minIdle" value="${shared.datasource.pool.minIdle}" />
+		<property name="initialSize" value="${shared.datasource.pool.initialSize}" />
+		<property name="validationQuery" value="${shared.datasource.pool.validationQuery}" />
+		<property name="username" value="${dining.datasource.username}" />
+		<property name="password" value="${dining.datasource.password}" />
+		<property name="accessToUnderlyingConnectionAllowed" value="${shared.datasource.accessToUnderlyingConnectionAllowed}" />
+	</bean>
+    
     
 </beans>

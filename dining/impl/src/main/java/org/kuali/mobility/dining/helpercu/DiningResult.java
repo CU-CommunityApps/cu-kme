@@ -1,117 +1,161 @@
 package org.kuali.mobility.dining.helpercu ;
 
+import javax.persistence.NamedQuery;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import java.util.Date;
+
 /**
  * Holds the elements we need from result set, from the query 
  * to the Cornell Dining database.
  */
 /* ------------------------------------------------------------------------- */
+@Entity
+@Table(name = "menudetailweb", catalog = "dining")
+@NamedQuery(name="lookupMealsForToday", query="Select meal, course, formal_name, eating_well_flag from DiningResult where service_unit = :service_unit and eventdate = :eventdate")
 public class DiningResult implements Comparable <DiningResult> {
 
-private String meal = "" ;
-private String station = "" ;
-private String entree = "" ;
-private String eatingWellFlag = "" ;
+	//String sSql = "select meal, course, formal_name, eating_well_flag from dining.menudetailweb where service_unit = ? and eventdate = ?" ;
 
-private String mealRanking[] = {"breakfast", "brunch", "lunch", "dinner" } ;
 
-/**
- * So we can sort the "meals" according to the mealRanking String 
- * array above.
- */
-public int compareTo (DiningResult dr) {
+	@Column(name = "meal")
+	private String meal = "" ;
+	
+	@Column(name = "course")
+	private String station = "" ;
+	
+	@Column(name = "formal_name")
+	private String entree = "" ;
+	
+	@Column(name = "eating_well_flag")
+	private String eatingWellFlag = "" ;
+	
+	@Column(name= "service_unit")
+	private String serviceUnit = "";
+	
+	
+	private Date eventdate;
 
-int iReturn = 1 ;
-int iRankLocal = getMealRanking(meal) ;
-int iRankCompare = getMealRanking(dr.getMeal()) ;
-if (iRankLocal == iRankCompare)
-	iReturn = 0 ;
-else if (iRankLocal < iRankCompare)
-	iReturn = -1 ;
+	private String mealRanking[] = {"breakfast", "brunch", "lunch", "dinner" } ;
+	
+	/**
+	 * So we can sort the "meals" according to the mealRanking String 
+	 * array above.
+	 */
+	public int compareTo (DiningResult dr) {
 
-return (iReturn) ;
-}
+		int iReturn = 1 ;
+		int iRankLocal = getMealRanking(meal) ;
+		int iRankCompare = getMealRanking(dr.getMeal()) ;
+		if (iRankLocal == iRankCompare)
+			iReturn = 0 ;
+		else if (iRankLocal < iRankCompare)
+			iReturn = -1 ;
 
-/* ------------------------------------------------------------------------- */
-private int getMealRanking (String sMeal) {
-
-int iMealRankSize = mealRanking.length ;
-
-int iRank = iMealRankSize + 1 ;
-
-sMeal = sMeal.toLowerCase() ;
-for (int i=0; i<mealRanking.length; i++)
-	{
-	if (sMeal.contains(mealRanking[i]))
-		{
-		iRank = i ;
-		break ;
-		}
+		return (iReturn) ;
 	}
 
-return (iRank) ;
-}
+	/* ------------------------------------------------------------------------- */
+	private int getMealRanking (String sMeal) {
 
-/* ------------------------------------------------------------------------- */
-public String getMeal() {
+		int iMealRankSize = mealRanking.length ;
 
-return meal;
-}
+		int iRank = iMealRankSize + 1 ;
 
-/* ------------------------------------------------------------------------- */
-public void setMeal(String meal) {
+		sMeal = sMeal.toLowerCase() ;
+		for (int i=0; i<mealRanking.length; i++)
+		{
+			if (sMeal.contains(mealRanking[i]))
+			{
+				iRank = i ;
+				break ;
+			}
+		}
 
-this.meal = noNullAndTrimAndUgh(meal);
-}
+		return (iRank) ;
+	}
 
-/* ------------------------------------------------------------------------- */
-public String getStation() {
+	/* ------------------------------------------------------------------------- */
+	public String getMeal() {
 
-return station;
-}
+		return meal;
+	}
 
-/* ------------------------------------------------------------------------- */
-public void setStation(String station) {
+	/* ------------------------------------------------------------------------- */
+	public void setMeal(String meal) {
 
-this.station = noNullAndTrimAndUgh(station);
-}
+		this.meal = noNullAndTrimAndUgh(meal);
+	}
 
-/* ------------------------------------------------------------------------- */
-public String getEntree() {
+	/* ------------------------------------------------------------------------- */
+	public String getStation() {
 
-return entree;
-}
+		return station;
+	}
 
-/* ------------------------------------------------------------------------- */
-public void setEntree(String entree) {
+	/* ------------------------------------------------------------------------- */
+	public void setStation(String station) {
 
-this.entree = noNullAndTrimAndUgh(entree);
-}
+		this.station = noNullAndTrimAndUgh(station);
+	}
 
-/* ------------------------------------------------------------------------- */
-public String getEatingWellFlag() {
+	/* ------------------------------------------------------------------------- */
+	public String getEntree() {
 
-return eatingWellFlag;
-}
+		return entree;
+	}
 
-/* ------------------------------------------------------------------------- */
-public void setEatingWellFlag(String eatingWellFlag) {
+	/* ------------------------------------------------------------------------- */
+	public void setEntree(String entree) {
 
-this.eatingWellFlag = noNullAndTrimAndUgh(eatingWellFlag);
-}
+		this.entree = noNullAndTrimAndUgh(entree);
+	}
 
-/* ------------------------------------------------------------------------- */
-private String noNullAndTrimAndUgh (String sValue) {
+	/* ------------------------------------------------------------------------- */
+	public String getEatingWellFlag() {
 
-if (sValue == null)
-	sValue = "" ;
+		return eatingWellFlag;
+	}
 
-if (sValue.length() > 0)
-	sValue = sValue.trim();
+	/* ------------------------------------------------------------------------- */
+	public void setEatingWellFlag(String eatingWellFlag) {
 
-if (sValue.contains("&nbsp;"))
-	sValue = sValue.replace("&nbsp;", "") ;
+		this.eatingWellFlag = noNullAndTrimAndUgh(eatingWellFlag);
+	}
+	
+	public String getServiceUnit() {
+		return serviceUnit;
+	}
+	
+	public void setServiceUnit(String serviceUnit) {
+		this.serviceUnit = serviceUnit;
+	}
+	
+	public Date getEventdate() {
+		return eventdate;
+	}
+	
+	public void setEventdate(Date eventdate) {
+		this.eventdate = eventdate;
+	}
 
-return (sValue) ;
-}
+	/* ------------------------------------------------------------------------- */
+	private String noNullAndTrimAndUgh (String sValue) {
+
+		if (sValue == null)
+			sValue = "" ;
+
+		if (sValue.length() > 0)
+			sValue = sValue.trim();
+
+		if (sValue.contains("&nbsp;"))
+			sValue = sValue.replace("&nbsp;", "") ;
+
+		return (sValue) ;
+	}
+	
+	
 
 }
