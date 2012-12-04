@@ -61,8 +61,9 @@ public class HomeController {
 	  
 	@Autowired
     private AdminService adminService;
-	
-	@Autowired
+
+//  sedgar: commenting out the autowire, as we are not using Alerts right no in the CU implmentation.
+//	@Autowired
     private AlertsService alertsService;
 
 	@Autowired
