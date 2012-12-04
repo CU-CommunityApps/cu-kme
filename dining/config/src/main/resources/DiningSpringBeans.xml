@@ -39,11 +39,10 @@
 		<property name="maxActive" value="${shared.datasource.pool.maxActive}" />
 		<property name="minIdle" value="${shared.datasource.pool.minIdle}" />
 		<property name="initialSize" value="${shared.datasource.pool.initialSize}" />
-		<property name="validationQuery" value="${shared.datasource.pool.validationQuery}" />
+		<property name="validationQuery" value="${dining.datasource.pool.validationQuery}" />
 		<property name="username" value="${dining.datasource.username}" />
 		<property name="password" value="${dining.datasource.password}" />
 		<property name="accessToUnderlyingConnectionAllowed" value="${shared.datasource.accessToUnderlyingConnectionAllowed}" />
 	</bean>
-    
-    
+
 </beans>
