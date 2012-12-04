@@ -52,6 +52,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         HomeTool ht = null ;
         int iIndex = -1 ;
 
+        /*
         tool.setAlias("bus");
         tool.setTitle("Bus - Hard coded test data.");
         tool.setUrl("bus");
@@ -59,13 +60,14 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setIconUrl("images/service-icons/srvc-bus.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
-        tools.add(ht);      
+        tools.add(ht);
+        */      
  
 		tool = new Tool();
 		tool.setAlias("labs");
 		tool.setTitle("Computer Labs");
 		tool.setUrl("computerlabs");
-		tool.setDescription("Now uses live CIT stats.");
+		tool.setDescription("See which computer labs have an available computer.");
 		tool.setIconUrl("images/service-icons/srvc-stc.png");
 		adminService.saveTool(tool);
 		ht = new HomeTool(home, tool, iIndex++);
@@ -75,7 +77,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setAlias("dining");
         tool.setTitle("Dining");
         tool.setUrl("dining");
-        tool.setDescription("Pulls live data from CU Dining, but needs some improvements.");
+        tool.setDescription("Menus for \"All You Care to Eat\" facilities.");
         tool.setIconUrl("images/service-icons/srvc-dining.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
@@ -107,6 +109,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         // tool.setUrl("weather");
         tool.setUrl("http://mobile.weather.gov/index.php?lat=42.435511&lon=-76.52570070000002");
         tool.setDescription("Weather in the Ithaca area.");
+//        tool.setIconUrl("images/service-icons/srvc-weather.png");
         tool.setIconUrl("images/service-icons/srvc-weather.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);

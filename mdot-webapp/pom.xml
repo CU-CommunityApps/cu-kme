@@ -162,30 +162,37 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>bus-ui</artifactId>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		-->
+		<!--
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>conference-ui</artifactId>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		-->
+		
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>dining-ui</artifactId>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>feedback-ui</artifactId>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
             <artifactId>emergencyinfo-ui</artifactId>
@@ -198,12 +205,14 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
             <artifactId>alerts-ui</artifactId>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		-->
 		<dependency> 
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>news-ui</artifactId>
@@ -235,12 +244,16 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!--
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>weather-ui</artifactId>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		-->
+		
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>tours-ui</artifactId>
