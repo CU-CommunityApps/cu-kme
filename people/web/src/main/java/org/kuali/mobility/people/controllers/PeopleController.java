@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -74,7 +75,7 @@ public class PeopleController {
 
 			Map<String, String> userNameHashes = new HashMap<String, String>();
             removeFromCache(request.getSession(), "People.Search.UniqueResult" );
-			for (Iterator d = people.iterator(); d.hasNext();) {
+			for (Iterator<DirectoryEntry> d = people.iterator(); d.hasNext();) {
 				Person p = (Person) d.next();
 				if (p.getUserName()!=null)
 				{
@@ -91,11 +92,18 @@ public class PeopleController {
 			request.getSession().setAttribute("People.UserNames.Hashes", userNameHashes);
 			putInCache(request.getSession(), "People.Search.Results", people);
 			putInCache(request.getSession(), "People.Search.Criteria", search);
+			
+			// A cheap way to show a "no results found" message, without substantially changing the way 
+			// this web app works. Stash the "Date" of the last search. We'll use this in getListJson()
+			// below.
+			Date dt = new Date() ;
+			putInCache(request.getSession(), "People.Search.Date", dt);
+			
 			//group info
 			List<Group> group = peopleService.findSimpleGroup(search.getSearchText().trim());
 			//
 			Map<String, String> groupDNHashes = new HashMap<String, String>();
-			for (Iterator d = group.iterator(); d.hasNext();)
+			for (Iterator<Group> d = group.iterator(); d.hasNext();)
 			{
 				Group g = (Group) d.next();
 				if (g.getDisplayName()!=null)
@@ -119,10 +127,10 @@ public class PeopleController {
 	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public String getListJson(HttpServletRequest request) {
-		List<Person> people = (List<Person>) getFromCache(request.getSession(), "People.Search.Results");
+ 		List<Person> people = (List<Person>) getFromCache(request.getSession(), "People.Search.Results");
 		List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
 		Person up = (Person) getFromCache(request.getSession(), "People.Search.UniqueResult");
-
+		
 		//
 		if (up != null)
 		{
@@ -136,9 +144,33 @@ public class PeopleController {
 
 		}
 
+		/*  The second part of the "a cheap way to show a no results found message without substantially changing the way 
+			this web app works". Get the "Date" of the last search from the cache.  If it is less than 10 seconds ago,
+			and there were no results, show the "No results found message".
+
+			If it were me, I would not use the cache at all, as I think that feature is confusing to the user.  I'd 
+			just do a search, and display the resusts, and if you exit the app and come back, you start "clean".  But 
+			since we have a very tight deployment schedule, I'll go with this hack for now.
+		 */
+		if ((people == null || people.size() == 0) && (up == null))
+			{
+			Date previousSearchDt = (Date)getFromCache(request.getSession(), "People.Search.Date");
+			if (previousSearchDt != null)
+				{
+				Date currentSearchDt = new Date() ;
+				long lSecs = (currentSearchDt.getTime() - previousSearchDt.getTime()) / 1000 % 60; 
+				if (lSecs < 10)
+					{
+					Map<String, Object> m = new HashMap<String, Object>();
+					m.put("error", "Your search returned no results.");
+					results.add(m);
+					}
+				}
+			}
+		
 		if (people == null || people.size() == 0)
 		{
-			LOG.debug("No People Info");
+		LOG.debug("No People Info");
 		}
 		else
 		{

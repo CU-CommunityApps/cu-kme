@@ -14,7 +14,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<kme:page title="Directory" id="directory" backButton="true" homeButton="true" cssFilename="directory">
+<kme:page title="People" id="directory" backButton="true" homeButton="true" cssFilename="directory">
   <kme:content>
     <form:form action="${pageContext.request.contextPath}/people" method="post" commandName="search" data-ajax="false">
       <fieldset>

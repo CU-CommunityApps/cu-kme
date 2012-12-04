@@ -149,7 +149,6 @@ if (sSearch.isEmpty() == false)
 			sFirst = alTokens.get(0) ;
 			sMiddle = alTokens.get(1) ;
 			sLast = alTokens.get(2) ;
-			// sFilter = "(&(sn=" + sLast + "*)(givenName=" + sFirst + "*))" ;
 			sFilter = "(&(sn=" + sLast + "*)(givenName=" + sFirst + "*)(cornelledumiddlename=" + sMiddle + "*))" ;
 			}
 		}
