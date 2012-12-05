@@ -1,0 +1,520 @@
+/*
+  Copyright 2011 The Kuali Foundation Licensed under the Educational Community
+  License, Version 2.0 (the "License"); you may not use this file except in
+  compliance with the License. You may obtain a copy of the License at
+  http://www.osedu.org/licenses/ECL-2.0 Unless required by applicable law or
+  agreed to in writing, software distributed under the License is distributed
+  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+  express or implied. See the License for the specific language governing
+  permissions and limitations under the License.
+*/
+
+li p.ui-li-desc {
+	margin: 5px 0 5px 0;
+	padding: 0;
+	font-size: 14px;
+	white-space: normal;
+}
+
+a.ui-link-inherit {
+	padding-right:35px !important;
+}
+
+p.tightPadding {
+	padding-right: 0 !important;
+}
+
+ul.orientationHome li a {
+	padding: 7px 15px 7px 75px !important;
+	background-repeat: no-repeat;
+	background-position: 8px 13px;
+}
+
+/* Retina display high resolution icons for home screen */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+       
+	ul.orientationHome li a {
+    	background-position: 12px -35px;
+    	-webkit-background-size: 50px 100px;
+	}
+}
+
+ul.statewideIT li {
+	padding: 15px !important;
+}
+
+ul.sessionDetails li {
+	padding-right: 15px !important;
+}
+
+ul.sessionDetails li.sessionDetailsTitle {
+	padding-right: 70px !important;
+}
+
+ul li.invisible, ul li.invisibleDate {
+	display: none;
+}
+
+ul li.currentActiveSession {
+	border:10px solid green;
+}
+
+span.sessionInProgress {
+	color:green;
+}
+
+span.sessionNextSession {
+	color:orange;
+}
+
+ul.attendeeDetails li {
+	padding-right: 15px !important;
+}
+
+ul.statewideIT .ui-li-thumb {
+	position: static;
+	float: none;
+	margin: 0;
+}
+
+.ui-li-thumb {
+	max-height: none;
+	max-width: none;
+}
+
+p.ui-li-desc img {
+	max-width: none;
+	max-height: none;
+	padding: 0 0 15px 15px;
+}
+
+div#trackSelectTabs {
+	/*margin: -15px 0 0 0;*/
+	margin: -15px -15px 0 -15px;
+	padding: 0;
+	text-align: center;
+	background:#f0eee4;
+}
+
+div#trackSelectTabs a {
+	padding:4px 5px 4px 5px;
+	margin:0 0 0 -1px;
+	color:#000;
+	border:0;
+	text-decoration:none;
+	display:inline-block;
+	font-variant:small-caps;
+	white-space:nowrap;
+	font-weight:normal;
+}
+
+div#daySelectTabs {
+	margin-left: -15px;
+	margin-right:-30px;
+	padding: 0px 0 15px 0;
+	text-align: center;
+	background-color:#f0eee4;
+	border-top:1px dashed #333;
+	background-color: #333;
+}
+
+div#daySelectTabs a {
+	display:inline-block;
+	padding:5px 3px 5px 0px;
+	background-color: #333;
+	color:#fff;
+	font-weight: normal;
+	font-size: 16px;
+	text-decoration:none;
+	text-align:center;
+}
+
+/* extra padding for dayGroup1 */
+div#daySelectTabs #dayGroup1 a {
+	padding:5px 5px 5px 5px;	
+}
+
+div#daySelectTabs a.selected {
+	color:#fff;
+	border-width:0px;
+	border-bottom-width:1px;
+	border:1px solid #555;
+	border-style:solid;
+	background:#b31b1b;
+	background-image:
+	-moz-linear-gradient(74% -5% -90deg,
+					rgb(179,27,27) 0%,
+					rgb(148,23,23) 99%);
+	background-image:
+	-webkit-gradient(linear,
+	74% -5%,
+	74% 98%,
+	color-stop(0, rgb(179,27,27)),
+	color-stop(0.99, rgb(148,23,23)));
+	background-image:
+	-webkit-linear-gradient(-90deg,
+					rgb(179,27,27) 0%,
+					rgb(148,23,23) 99%);
+	background-image:
+	-o-linear-gradient(-90deg,
+					rgb(179,27,27) 0%,
+					rgb(148,23,23) 99%);
+	background-image:
+	linear-gradient(-90deg,
+					rgb(179,27,27) 0%,
+					rgb(148,23,23) 99%);
+	
+	-moz-text-shadow:0px -1px 1px rgb(37,79,122);
+	-webkit-text-shadow:0px -1px 1px rgb(37,79,122);
+	text-shadow:0px -1px 1px rgb(37,79,122);
+	font-weight:bold;
+	font-style:italic;
+	padding-right:5px;
+	padding-left:5px;
+}
+
+
+div#trackSelectTabs a.selected {
+	font-weight:bold;
+	font-style:italic;
+	border:0;
+}
+
+div#trackSelectTabs a#favoritesSelector {
+	text-indent: -9999px;
+	background: transparent url('../images/favoriteStar-25.png') top left no-repeat;
+	width: 25px;
+	height: 25px;
+	padding-left: 0;
+	padding-right: 0;
+	border-left: none;
+}
+
+div#trackSelectTabs a.starOn {
+	background-position: 0 -25px !important;
+}
+
+/* Retina display high resolution icons */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+       
+	div#trackSelectTabs a#favoritesSelector {
+		background-image: url('../images/favoriteStar-50.png');
+    	-webkit-background-size: 25px 50px;
+	}
+}
+
+div.ratingStar {
+	float:left;
+	width: 50px;
+	height: 50px;
+	display: block;
+	padding: 0;
+	margin: 0 7px 0 0;
+	background: transparent url('../images/starRating.png') top left no-repeat;
+	text-indent: -9999px;
+}
+
+div.favoriteStar {
+	float:left;
+	width: 50px;
+	height: 50px;
+	display: block;
+	padding: 0;
+	margin: 0 7px 0 0;
+	background: transparent url('../images/favoriteStar-50.png') top left no-repeat;
+	text-indent: -9999px;
+	position: absolute;
+	top: -30px;
+	right: 15px;
+}
+
+div.starOn {
+	background-position: 0 -50px;
+}
+
+/* Retina display high resolution icons */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+       
+	div.favoriteStar {
+		background-image: url('../images/favoriteStar-100.png');
+    	-webkit-background-size: 50px 100px;
+	}
+}
+
+li.sessionItem div.favorite {
+	text-indent: -9999px;
+	display: block;
+	width: 25px;
+	height: 25px;
+	display: block;
+	padding: 0;
+	margin: 7px 10px 0 0;
+	background: transparent url('../images/favoriteStar-25.png') top left no-repeat;
+	float: left;
+}
+
+li.sessionItem div.starOn {
+	background-position: 0 -25px;
+}
+
+/* Retina display high resolution icons */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+       
+	li.sessionItem div.favorite {
+		background-image: url('../images/favoriteStar-50.png');
+    	-webkit-background-size: 25px 50px;
+	}
+}
+
+span.sessionDetailsTab {
+	padding: 4px 10px 5px 15px;
+	margin: 0 -1px 10px 0;
+	display: inline-block;
+}
+
+/* appcache modal styling */
+div#cacheProgressModal {
+	background-color:rgba(0,0,0,0.5);
+	z-index:10;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	display:none;
+}
+
+div#cacheProgressMessage {
+	background-color:#eee;
+	border:1px solid #000;
+	border-radius:20px;
+	position:relative;
+	padding:10px;
+	left:5%;
+	width:85%;
+	top:30%;
+}
+
+div#cacheProgressMessage h3 {
+	padding:0;
+	margin:3px 0 10px 0;
+	text-align:center;
+}
+
+div#cacheProgressMessage #reloadButton {
+	/*display:none;*/
+}
+
+div#appcacheProgressBar {
+	border:1px solid #000;
+	background-color:#ccc;
+	position:relative;
+	display:block;
+}
+div#appcacheProgressAmount {
+	background-color:#900;
+	display:block;
+	color:#eee;
+	text-shadow:none;
+	padding:0;
+	margin:0;
+}
+
+/* badges */
+
+span.countBadge {
+	font-size: 14px;
+	padding: 2px 8px 3px 8px;
+	position: absolute;
+	left: 42px;
+	top: 3px;
+	background-color: #7d110c;
+	background: -moz-linear-gradient(center top, #FF8888, #992222) repeat scroll 0 0 #992222;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF8888), color-stop(1, #992222));
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#FF8888', EndColorStr='#992222')";
+	border: 3px solid #FFFFFF;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-shadow: 0 1px 1px #333333;
+	-moz-box-shadow: 1px 1px 3px #666666;
+	-webkit-box-shadow: 1px 1px 3px #666666;
+	box-shadow: 1px 1px 3px #666666;
+}
+
+/* Twitter */
+
+li.tweetRow {
+	border-bottom:1px solid #ccc; 
+	padding:5px 15px 5px 80px;
+	background-color: #fdfdfd;
+	background-image: -moz-linear-gradient(top, #fdfdfd , #eee);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #eee));
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#eee')";
+	background-position: 15px 23px;
+	background-repeat: no-repeat;
+	min-height: 90px;
+}
+
+.twitStream{
+	font-size: 14px;
+}
+.twitStream a{
+	font-size: 14px;
+}
+.tweet{
+	display: block;
+	padding: .4em;
+	margin: .4em 0;
+}
+.tweet-left{
+	float: left;
+	margin-right: 1em;
+}
+.tweet-left img{
+	border: 2px solid #000000;
+}
+.tweet p.text{
+	margin: 0;
+	padding: 0;
+}
+
+
+
+/* Tracks styling 
+
+li.track-OtherTopics span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ccccff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ccccff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ccccff')";
+}
+
+li.track-KualiRice span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ffccff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ffccff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ffccff')";
+}
+
+li.track-KualiStudentKS span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ccffff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ccffff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ccffff')";
+}
+
+li.track-KualiFinancialSystemsKFS span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ffcccc);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ffcccc));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ffcccc')";
+}
+
+li.track-KualiCoeusKC span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #ccffcc);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #ccffcc));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#ccffcc')";
+}
+
+li.track-KualiOLE span.sessionDetailsTab {
+ 	background: #ccccff;
+    background-image: -moz-linear-gradient(top, #fdfdfd , #99ccff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd ), color-stop(1, #99ccff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd ', EndColorStr='#99ccff')";
+}
+
+*/
+
+/* session icons */
+
+div.sessionIcons {
+	float:left;
+	padding: 0 !important;
+	margin:0 4px 0 0;
+}
+
+p.sessionIcons {margin:0 !important;}
+.sessionIcon {margin-bottom:4px;padding:0 !important;}
+div.sessionIconREQ {
+	background-image: url('../images/cu-orientation-icons.png');
+	background-position: 0 0;
+	width:22px;
+	height:22px;
+}
+
+div.sessionIconOSC {
+	background-image: url('../images/cu-orientation-icons.png');
+	background-position: 0 -22px;
+	width:22px;
+	height:22px;
+}
+
+div.sessionIconTRA {
+	background-image: url('../images/cu-orientation-icons.png');
+	background-position: 0 -44px;
+	width:22px;
+	height:22px;
+}
+
+div.sessionIconEXP {
+	background-image: url('../images/cu-orientation-icons.png');
+	background-position: 0 -66px;
+	width:22px;
+	height:22px;
+}
+
+/* Retina display high resolution icons */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+       
+	div.sessionIconREQ {
+		background-image: url('../images/cu-orientation-icons2x.png');
+		-moz-background-size: 22px;
+		-o-background-size: 22px;
+		-webkit-background-size: 22px;
+		background-size: 22px;
+		background-position: 0 0;
+	}
+
+	div.sessionIconOSC {
+		background-image: url('../images/cu-orientation-icons2x.png');
+		-moz-background-size: 22px;
+		-o-background-size: 22px;
+		-webkit-background-size: 22px;
+		background-size: 22px;
+		background-position: 0 -22px;
+	}
+
+	div.sessionIconTRA {
+		background-image: url('../images/cu-orientation-icons2x.png');
+		-moz-background-size: 22px;
+		-o-background-size: 22px;
+		-webkit-background-size: 22px;
+		background-size: 22px;
+		background-position: 0 -44px;
+	}
+
+	div.sessionIconEXP {
+		background-image: url('../images/cu-orientation-icons2x.png');
+		-moz-background-size: 22px;
+		-o-background-size: 22px;
+		-webkit-background-size: 22px;
+		background-size: 22px;
+		background-position: 0 -66px;
+	}
+
+
+}
+

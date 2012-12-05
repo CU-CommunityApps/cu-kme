@@ -1,0 +1,26 @@
+[
+   {
+      "title":"Welcome",
+      "description":"A message from the 2012 Orientation Steering Committee",
+      "linkURL":"orientation/welcome",
+      "iconURL":"img/icon.png"
+   },
+   {
+      "title":"Schedule of Events",
+      "description":"College, University-wide, and Welcome Weekend events",
+      "linkURL":"orientation/sessions?date=",
+      "iconURL":"img/icon.png"
+   },
+   {
+      "title":"News & Socialize",
+      "description":"Follow us on Twitter",
+      "linkURL":"orientation/twitter",
+      "iconURL":"images/service-icons/srvc-twitter.png"
+   },
+   {
+      "title":"Resources",
+      "description":"Connections to make",
+      "linkURL":"orientation/attendeeGroups",
+      "iconURL":"img/icon.png"
+   }
+]
