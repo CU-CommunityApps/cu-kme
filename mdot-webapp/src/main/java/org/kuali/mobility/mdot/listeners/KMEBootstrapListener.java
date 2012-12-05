@@ -84,6 +84,16 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);
   
         tool = new Tool();
+        tool.setAlias("orientation");
+        tool.setTitle("Orientation");
+        tool.setUrl("orientation");
+        tool.setDescription("Fall 2012 New Student Orientation<br /><em>Let the Journey Begin!</em>");
+		tool.setIconUrl("images/service-icons/books.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);      
+        
+        tool = new Tool();
         tool.setAlias("people");
         tool.setTitle("People");
         tool.setUrl("people");

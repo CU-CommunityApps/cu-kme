@@ -181,6 +181,12 @@
 		
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
+			<artifactId>orientation-ui</artifactId>
+			<type>war</type>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.kuali.mobility</groupId>
 			<artifactId>dining-ui</artifactId>
 			<type>war</type>
 			<scope>runtime</scope>

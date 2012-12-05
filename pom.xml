@@ -82,6 +82,7 @@
 		<tool.feedback.version>2.0.0</tool.feedback.version>
 		<tool.maps.version>2.0.0</tool.maps.version>
 		<tool.news.version>2.0.0</tool.news.version>
+		<tool.orientation.version>2.0.0</tool.orientation.version>
 		<tool.people.version>2.0.0</tool.people.version>
 		<tool.push.version>2.0.0</tool.push.version>
 		<tool.reporting.version>2.0.0</tool.reporting.version>
@@ -115,6 +116,7 @@
 				<module>feedback</module>
 				<module>maps</module>
 				<module>news</module>
+				<module>orientation</module>
 				<module>people</module>
 				<module>push</module>
 				<module>reporting</module>
@@ -547,6 +549,34 @@
 				<groupId>org.kuali.mobility</groupId>
 				<artifactId>news-ui</artifactId>
 				<version>${tool.news.version}</version>
+				<type>war</type>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- Orientation Service -->
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>orientation-api</artifactId>
+				<version>${tool.orientation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>orientation-config</artifactId>
+				<version>${tool.orientation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>orientation-impl</artifactId>
+				<version>${tool.orientation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>orientation-web</artifactId>
+				<version>${tool.orientation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kuali.mobility</groupId>
+				<artifactId>orientation-ui</artifactId>
+				<version>${tool.orientation.version}</version>
 				<type>war</type>
 				<scope>runtime</scope>
 			</dependency>

@@ -56,6 +56,7 @@
 <!--  <import resource="classpath:FeedbackSpringBeans.xml" />   -->
 <!--  <import resource="classpath:ConferenceSpringBeans.xml" /> -->
 <!--  <import resource="classpath:WeatherSpringBeans.xml" />    -->
+    <import resource="classpath:OrientationSpringBeans.xml" />
 
     <!-- 
 	This is where the basenames for the i18n files are defined. The files themselves
@@ -87,6 +88,7 @@
 		<!--	<value>WEB-INF/classes/alert</value>		-->
 		<!--	<value>WEB-INF/classes/conference</value>	-->
 		<!--	<value>WEB-INF/classes/weather</value>		-->
+				<value>WEB-INF/classes/orientation</value>
 			</list>
 		</property>
 	    <property name="defaultEncoding" value="UTF-8"/>

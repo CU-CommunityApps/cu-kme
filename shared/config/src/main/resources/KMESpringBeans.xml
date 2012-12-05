@@ -34,7 +34,7 @@
 		<property name="value" value="${shared.core.use.bootstrapping}" />
 	</bean>
 		
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
 		<property name="driverClassName" value="${shared.datasource.driver.name}" />
 		<property name="url" value="${shared.datasource.url}" />
 		<property name="maxActive" value="${shared.datasource.pool.maxActive}" />
@@ -47,12 +47,13 @@
 	</bean>
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+			<property name="persistenceUnitName" value="mdot"/>
+	
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="showSql" value="${shared.entitymanager.showSql}" />
 				<property name="generateDdl" value="${shared.entitymanager.generateDdl}" />
-				<property name="database" value="${shared.entitymanager.database}" />
 				<property name="databasePlatform" value="${shared.entitymanager.databasePlatform}" />
 			</bean>
 		</property>
@@ -62,6 +63,25 @@
 	        </props>
 		</property>
 	</bean>
+	
+	
+	<!-- <bean id="diningEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="dining-unit"/>
+		<property name="dataSource" ref="diningDataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="${shared.entitymanager.showSql}" />
+				<property name="generateDdl" value="${shared.entitymanager.generateDdl}" />
+				<property name="databasePlatform" value="${dining.entitymanager.databasePlatform}" />
+			</bean>
+		</property>
+		<property name="jpaPropertyMap">
+			<props>
+	            <prop key="hibernate.hbm2ddl.auto">${shared.hibernate.hbm2ddl.auto}</prop>
+	        </props>
+		</property>
+	</bean>
+	 -->
 	
 	<bean id="mapsService" class="org.kuali.mobility.maps.service.MapsServiceImpl">
 		<property name="kmlUrl" value="${maps.kml.url}" />
