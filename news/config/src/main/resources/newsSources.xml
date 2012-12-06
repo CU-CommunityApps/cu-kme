@@ -2,12 +2,12 @@
 <newsSources>
 	<newsSource>
 		<id>2</id>
-		<name>BBC - News</name>
-		<url>http://feeds.bbci.co.uk/news/rss.xml</url>
+		<name>Cornell - News</name>
+		<url> http://www.news.cornell.edu/cunews2.xml</url>
 		<order>0</order>
 		<active>true</active>
 	</newsSource>
-	<newsSource>
+	<!-- <newsSource>
 		<id>1</id>
 		<name>CNN.com</name>
 		<order>1</order>
@@ -44,5 +44,5 @@
 		<order>4</order>
 		<active>false</active>
 		<parent>1</parent>
-	</newsSource>
+	</newsSource> -->
 </newsSources>

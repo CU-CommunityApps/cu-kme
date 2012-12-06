@@ -145,17 +145,17 @@ public class KMEBootstrapListener extends BootstrapListener {
 		ht = new HomeTool(home, tool, iIndex++);
 		tools.add(ht);
 
-         /*
+         
         tool = new Tool();
 		tool.setAlias("news");
 		tool.setTitle("News");
 		tool.setUrl("news");
-		tool.setDescription("The latest buzz on IU's exciting events and achievements.");
+		tool.setDescription("The latest buzz on Cornell's exciting events and achievements.");
 		tool.setIconUrl("images/service-icons/srvc-news.png");
 		adminService.saveTool(tool);
 		ht = new HomeTool(home, tool, iIndex++);
 		tools.add(ht);
-
+		/*
 		tool = new Tool();
 		tool.setAlias("conference");
 		tool.setTitle("Conference");
