@@ -40,6 +40,7 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 	private Date publishDate;
 	private String articleId;
 	private long sourceId;
+	private String imageUrl;
 	
 	private final SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a");
 	
@@ -60,7 +61,9 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 		}
 		copy.setSourceId(sourceId);
 		copy.setPublishDate(new Date(publishDate.getTime()));
-		
+		if (imageUrl != null) {
+			copy.setImageUrl(new String(imageUrl));
+		}
 		return copy;
 	}
 	
@@ -172,4 +175,19 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 	public void setSourceId(long sourceId) {
 		this.sourceId = sourceId;
 	}
+	
+	@Override
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.kuali.mobility.news.entity.NewsArticle#setImageUrl(java.lang.String)
+	 */
+	@Override
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	
 }

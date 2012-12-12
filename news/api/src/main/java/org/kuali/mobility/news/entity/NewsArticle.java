@@ -92,4 +92,14 @@ public interface NewsArticle {
 	 */
 	public void setSourceId(long sourceId);
 
+	/**
+	 * @return the imageUrl
+	 */
+	public String getImageUrl();
+
+	/**
+	 * @param articleId the article id to set
+	 */
+	public void setImageUrl(String imageUrl);
+	
 }

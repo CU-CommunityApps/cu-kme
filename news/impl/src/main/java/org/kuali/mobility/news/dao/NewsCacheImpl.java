@@ -19,6 +19,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,6 +36,8 @@ import org.springframework.context.ApplicationContextAware;
 import com.sun.syndication.feed.synd.SyndEntryImpl;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
+import com.sun.syndication.feed.module.mediarss.MediaEntryModule;
+import com.sun.syndication.feed.module.mediarss.types.UrlReference;
 
 public class NewsCacheImpl implements NewsCache, ApplicationContextAware {
 
@@ -124,6 +127,11 @@ public class NewsCacheImpl implements NewsCache, ApplicationContextAware {
 				} catch (UnsupportedEncodingException e) {
 					article.setArticleId(entry.getUri());
 				}
+				
+				MediaEntryModule mod = (MediaEntryModule) entry.getModule(MediaEntryModule.URI);
+				UrlReference ref = (UrlReference) mod.getMediaContents()[0].getReference();
+				URI url = ref.getUrl();
+				article.setImageUrl(url.toString());
 				
 				articles.add(article);
 			}

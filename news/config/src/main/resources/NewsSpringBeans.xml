@@ -39,12 +39,12 @@
         <property name="cache" ref="newsCache"/>
     </bean>
     
-    <!--
+    
     <bean id="newsInitBean" class="org.kuali.mobility.news.dao.NewsInitBean" init-method="init" destroy-method="cleanup" depends-on="newsDao">
 		<property name="dao"><ref local="newsDao"/></property>
         <property name="cache"><ref local="newsCache"/></property>
     </bean>
-    -->    
+      
     
 <!--     <jaxws:endpoint id="newsSoapEndpoint" implementor="#newsService" address="/news" />
  -->

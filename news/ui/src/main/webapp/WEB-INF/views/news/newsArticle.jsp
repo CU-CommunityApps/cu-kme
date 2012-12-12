@@ -21,12 +21,12 @@
 		<h3>${article.title}</h3>
 		<h4>${article.publishDateDisplay}</h4>
 		<p>
-			<%-- <c:if test="${!empty topArticle.thumbnailImageUrl}">
+			<c:if test="${!empty article.imageUrl}">
 				<div class="image-caption">
-			    	<img src="${newsArticle.thumbnailImageUrl}" alt="pic">
+			    	<img src="${article.imageUrl}" alt="pic">
 			    	<p><!-- Caption--!></p>
 			   	</div>
-		   	</c:if>--%>
+		   	</c:if>
 			${article.description}
 		</p>
 		<p><a href="${article.link}">${fullarticle}</a></p>
