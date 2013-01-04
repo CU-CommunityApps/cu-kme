@@ -55,83 +55,69 @@ public abstract class BootstrapListener implements ServletContextListener {
 			
 			EmergencyInfo ei = new EmergencyInfo();
 
-/*			
-			ei.setCampus("UA");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("BL");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("IN");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("CO");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("EA");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("KO");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("NW");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("SB");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-	
-			ei = new EmergencyInfo();
-			ei.setCampus("SE");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-			
-			ei = new EmergencyInfo();
-			ei.setCampus("ALL");
-			ei.setLink("1-812-555-1234");
-			ei.setTitle("Police");
-			ei.setType("PHONE");
-			emergencyInfoService.saveEmergencyInfo(ei);
-*/	
 			ei = new EmergencyInfo();
 			ei.setCampus("ALL");
 			ei.setLink("607-255-1111");
 			ei.setTitle("Cornell Police");
 			ei.setType("PHONE");
 			emergencyInfoService.saveEmergencyInfo(ei);
-	
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-7404");
+			ei.setTitle("Cornell Police - Crime Prevention");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-7197");
+			ei.setTitle("Cornell Police - Lost and Found");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-7373");
+			ei.setTitle("Blue Light Escort Service (9pm - 2am, Mon - Fri)");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-8200");
+			ei.setTitle("Cornell Environmental Health and Safety");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-5322");
+			ei.setTitle("Facilities-Related Emergencies");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-5155");
+			ei.setTitle("Gannett Health Services");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-4214");
+			ei.setTitle("Cornell United Religious Works");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
+			ei.setLink("607-255-3377");
+			ei.setTitle("University Operating Status/Inclement Weather");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+			
 			ConfigParam param = new ConfigParam();
 			param.setName("Admin.Group.Name");
 			param.setValue("KME-ADMINISTRATORS");
