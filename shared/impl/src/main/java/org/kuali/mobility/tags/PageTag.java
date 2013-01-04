@@ -347,7 +347,8 @@ public class PageTag extends SimpleTagSupport {
              // se10
              if (this.institutionLogo) {
 				 out.println("<div class=\"cu-identity\">");
-				out.println("<a href=\"./\"></a>");
+//				out.println("<a href=\"./\"></a>");
+				out.println("<a href=\"http://www.cornell.edu\" target=\"_blank\"></a>");
 				out.println("</div>");
             }
             
