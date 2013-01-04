@@ -63,7 +63,8 @@ public class PageTag extends SimpleTagSupport {
 	private String logoutButtonURL;
 	private boolean disableGoogleAnalytics;
 	private String institutionCss;
-
+	private boolean institutionLogo;
+	
 	private static String appcacheEnabled;
 	
 	public void setAppcacheEnabled(String ap){
@@ -256,8 +257,13 @@ public class PageTag extends SimpleTagSupport {
             out.println("<link rel=\"apple-touch-icon\" href=\"" + contextPath + "/apple-touch-icon.png\"/>");
             out.println("<link href=\"" + contextPath + "/css/jquery.mobile.css\" rel=\"stylesheet\" type=\"text/css\" />");
             out.println("<link href=\"" + contextPath + "/css/jquery-mobile-fluid960.css\" rel=\"stylesheet\" type=\"text/css\" />");
-            out.println("<link href=\"" + contextPath + "/css/kme.css\" rel=\"stylesheet\" type=\"text/css\" />");
-            out.println("<link href=\"" + contextPath + "/css/institution.css\" rel=\"stylesheet\" type=\"text/css\" />");
+            
+            if (institutionLogo){
+            	out.println("<link href=\"" + contextPath + "/css/institution.css\" rel=\"stylesheet\" type=\"text/css\" />");
+            }else{
+            	out.println("<link href=\"" + contextPath + "/css/kme.css\" rel=\"stylesheet\" type=\"text/css\" />");
+           	}
+            	
             if (cssFilename != null && !cssFilename.trim().equals("")) {
             	out.println("<link href=\"" + contextPath + "/css/" + cssFilename + ".css\" rel=\"stylesheet\" type=\"text/css\" />");
             }
@@ -277,7 +283,7 @@ public class PageTag extends SimpleTagSupport {
 	            	out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/phonegap-1.4.1.js\"></script>");
 	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/ChildBrowser.js\"></script>");
 	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/barcodescanner.js\"></script>");
-	//                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/Connection.js\"></script>");
+	// se10         out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/Connection.js\"></script>");
 	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/PushHandler.js\"></script>");
 	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/Badge.js\"></script>");
 	                out.println("<script type=\"text/javascript\" src=\"" + contextPath + "/js/iOS/applicationPreferences.js\"></script>");
@@ -338,6 +344,13 @@ public class PageTag extends SimpleTagSupport {
             
             out.println("<div data-role=\"page\" id=\"" + id + "\">");
             
+             // se10
+             if (this.institutionLogo) {
+				 out.println("<div class=\"cu-identity\">");
+				out.println("<a href=\"./\"></a>");
+				out.println("</div>");
+            }
+            
         	//LOG.info("----" + jqmHeader);
             if(jqmHeader != null && jqmHeader.equals("hide")){
             	//LOG.info("---- Hide Header");
@@ -357,7 +370,11 @@ public class PageTag extends SimpleTagSupport {
             if (backButton) {
                 out.println("<a href=\"" + (backButtonURL != null ? backButtonURL : "javascript: history.go(-1)") + "\" class=\"ui-btn-left\" data-icon=\"back\" data-iconpos=\"notext\">Back</a>");
             }
-            out.println("<h1>" + title + "</h1>");
+            
+            // se10: if no institution logo
+            if (!this.institutionLogo)
+            	out.println("<h1>" + title + "</h1>");
+            	
             if (preferencesButton) {
                 out.println("<a href=\"" + (preferencesButtonURL != null ? preferencesButtonURL : contextPath + "/preferences") + "\" class=\"ui-btn-right\" data-icon=\"gear\" data-iconpos=\"notext\">Preferences</a>");
             }
@@ -399,4 +416,13 @@ public class PageTag extends SimpleTagSupport {
 	public void setInstitutionCss(String institutionCss) {
 		this.institutionCss = institutionCss;
 	}
+
+    /**
+     * enable institution logo at top
+     * @param institutionLogo;
+     */
+	public void setInstitutionLogo(boolean institutionLogo) {
+		this.institutionLogo = institutionLogo;
+	}
+
 }

@@ -25,7 +25,7 @@
 <c:set var="header" value="${param['header']}"/>
 <c:set var="phonegap" value="${cookie['phonegap'].value}"/>
 
-<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="true" preferencesButtonURL="preferences" platform="${platform}" phonegap="${phonegap}" onBodyLoad="" jqmHeader="${param['header']}">
+<kme:page title="${title}" id="home" cssFilename="home" backButton="false" homeButton="false" preferencesButton="false" preferencesButtonURL="preferences" platform="${platform}" phonegap="${phonegap}" onBodyLoad="" jqmHeader="${param['header']}" institutionLogo="true">
 	<kme:content>
 
 
