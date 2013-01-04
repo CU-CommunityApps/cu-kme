@@ -25,7 +25,8 @@
 	background-image: -moz-linear-gradient(top, #cc0000, #990000);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #cc0000), color-stop(1, #990000));
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#cc0000', EndColorStr='#990000')";*/
-	background:#7D110C
+/* 	background:#7D110C  */
+	background:#b31b1b; /* se10: use Cornell red for now */
 }
 
 .ui-bar-a, .ui-bar-a input, .ui-bar-a select, .ui-bar-a textarea, .ui-bar-a button {
