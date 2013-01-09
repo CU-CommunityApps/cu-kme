@@ -52,47 +52,6 @@ public class KMEBootstrapListener extends BootstrapListener {
         HomeTool ht = null ;
         int iIndex = -1 ;
 
-        /*
-        tool.setAlias("bus");
-        tool.setTitle("Bus - Hard coded test data.");
-        tool.setUrl("bus");
-        tool.setDescription("Uses KME provided hard coded data, but can peruse features.");
-        tool.setIconUrl("images/service-icons/srvc-bus.png");
-        adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, iIndex++);
-        tools.add(ht);
-        */      
- 
-		tool = new Tool();
-		tool.setAlias("labs");
-		tool.setTitle("Computer Labs");
-		tool.setUrl("computerlabs");
-		tool.setDescription("See which computer labs have an available computer.");
-		tool.setIconUrl("images/service-icons/srvc-stc.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, iIndex++);
-		tools.add(ht);
-		
-        tool = new Tool();
-        tool.setAlias("dining");
-        tool.setTitle("Dining");
-        tool.setUrl("dining");
-        tool.setDescription("Menus for \"All You Care to Eat\" facilities.");
-        tool.setIconUrl("images/service-icons/srvc-dining.png");
-        adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, iIndex++);
-        tools.add(ht);
-  
-        tool = new Tool();
-        tool.setAlias("orientation");
-        tool.setTitle("Orientation");
-        tool.setUrl("orientation");
-        tool.setDescription("Fall 2012 New Student Orientation<br /><em>Let the Journey Begin!</em>");
-		tool.setIconUrl("images/service-icons/books.png");
-        adminService.saveTool(tool);
-        ht = new HomeTool(home, tool, iIndex++);
-        tools.add(ht);      
-        
         tool = new Tool();
         tool.setAlias("people");
         tool.setTitle("People");
@@ -104,11 +63,61 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);      
 
         tool = new Tool();
+		tool.setAlias("news");
+		tool.setTitle("News");
+		tool.setUrl("news");
+		tool.setDescription("The latest buzz on Cornell's exciting events and achievements.");
+		tool.setIconUrl("images/service-icons/srvc-news.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+
+        tool = new Tool();
+        tool.setAlias("dining");
+        tool.setTitle("Dining");
+        tool.setUrl("dining");
+        tool.setDescription("Menus for \"All You Care to Eat\" facilities.");
+        tool.setIconUrl("images/service-icons/srvc-dining.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);
+  
+        tool = new Tool();
+        tool.setAlias("Athletics");
+        tool.setTitle("Athletics");
+        tool.setUrl("http://www.cornellbigred.com/mobile");
+        tool.setDescription("Cornell University Athletics");
+        tool.setIconUrl("images/service-icons/srvc-cuathletics.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);
+
+		tool = new Tool();
+		tool.setAlias("labs");
+		tool.setTitle("Computer Labs");
+		tool.setUrl("computerlabs");
+		tool.setDescription("See which computer labs have an available computer.");
+		tool.setIconUrl("images/service-icons/srvc-stc.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+
+        tool = new Tool();
 		tool.setAlias("maps");
 		tool.setTitle("Maps");
 		tool.setUrl("maps");
 		tool.setDescription("Get from here to there. Search for buildings by name.");
 		tool.setIconUrl("images/service-icons/srvc-maps.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+
+        tool = new Tool();
+		tool.setAlias("emergencycontacts");
+		tool.setTitle("Emergency Contacts");
+		tool.setUrl("emergencycontacts");
+		tool.setDescription("Emergency and Police phone numbers.");
+		tool.setIconUrl("images/service-icons/srvc-emergency.png");
 		adminService.saveTool(tool);
 		ht = new HomeTool(home, tool, iIndex++);
 		tools.add(ht);
@@ -125,37 +134,26 @@ public class KMEBootstrapListener extends BootstrapListener {
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
+		/*
         tool = new Tool();
-        tool.setAlias("Athletics");
-        tool.setTitle("Athletics");
-        tool.setUrl("http://www.cornellbigred.com/mobile");
-        tool.setDescription("Cornell University Athletics");
-        tool.setIconUrl("images/service-icons/srvc-cuathletics.png");
+        tool.setAlias("orientation");
+        tool.setTitle("Orientation");
+        tool.setUrl("orientation");
+        tool.setDescription("Fall 2012 New Student Orientation<br /><em>Let the Journey Begin!</em>");
+		tool.setIconUrl("images/service-icons/books.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
-        tool = new Tool();
-		tool.setAlias("emergencycontacts");
-		tool.setTitle("Emergency Contacts");
-		tool.setUrl("emergencycontacts");
-		tool.setDescription("Emergency and Police phone numbers.");
-		tool.setIconUrl("images/service-icons/srvc-emergency.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, iIndex++);
-		tools.add(ht);
+        tool.setAlias("bus");
+        tool.setTitle("Bus - Hard coded test data.");
+        tool.setUrl("bus");
+        tool.setDescription("Uses KME provided hard coded data, but can peruse features.");
+        tool.setIconUrl("images/service-icons/srvc-bus.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);
 
-         
-        tool = new Tool();
-		tool.setAlias("news");
-		tool.setTitle("News");
-		tool.setUrl("news");
-		tool.setDescription("The latest buzz on Cornell's exciting events and achievements.");
-		tool.setIconUrl("images/service-icons/srvc-news.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, iIndex++);
-		tools.add(ht);
-		/*
 		tool = new Tool();
 		tool.setAlias("conference");
 		tool.setTitle("Conference");
