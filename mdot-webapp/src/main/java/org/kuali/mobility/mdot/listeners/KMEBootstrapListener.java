@@ -43,7 +43,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		
 		HomeScreen home = new HomeScreen();
 		home.setAlias("PUBLIC");
-		home.setTitle("Kuali Mobile - Test Version - (Not a real service. :)");
+		home.setTitle("Cornell Mobile - Test Site");
 		adminService.saveHomeScreen(home);
 
 		List<HomeTool> tools = new ArrayList<HomeTool>();
