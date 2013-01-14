@@ -53,6 +53,26 @@ public class KMEBootstrapListener extends BootstrapListener {
         int iIndex = -1 ;
 
         tool = new Tool();
+        tool.setAlias("CornellCast");
+        tool.setTitle("CornellCast");
+        tool.setUrl("http://www.cornell.edu/video/mobile");
+        tool.setDescription("Now playing on CornellCast.");
+        tool.setIconUrl("images/service-icons/srvc-cuathletics.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);      
+
+        tool = new Tool();
+        tool.setAlias("Cornell NOW 2015");
+        tool.setTitle("Cornell NOW 2015");
+        tool.setUrl("http://now.cornell.edu/mobile");
+        tool.setDescription("Cornell NOW 2015.");
+        tool.setIconUrl("images/service-icons/srvc-cuathletics.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);      
+
+        tool = new Tool();
         tool.setAlias("people");
         tool.setTitle("People");
         tool.setUrl("people");
