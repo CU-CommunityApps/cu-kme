@@ -53,7 +53,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         int iIndex = -1 ;
 
         tool = new Tool();
-        tool.setAlias("CornellCast");
+        tool.setAlias("    Cast    ");
         tool.setTitle("CornellCast");
         tool.setUrl("http://www.cornell.edu/video/mobile");
         tool.setDescription("Now playing on CornellCast.");
@@ -63,7 +63,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);      
 
         tool = new Tool();
-        tool.setAlias("Cornell NOW 2015");
+        tool.setAlias("    NOW     ");
         tool.setTitle("Cornell NOW 2015");
         tool.setUrl("http://now.cornell.edu/mobile");
         tool.setDescription("Cornell NOW 2015.");
@@ -73,7 +73,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);      
 
         tool = new Tool();
-        tool.setAlias("people");
+        tool.setAlias("   People   ");
         tool.setTitle("People");
         tool.setUrl("people");
         tool.setDescription("Search the Cornell Directory for People.");
@@ -83,7 +83,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);      
 
         tool = new Tool();
-		tool.setAlias("news");
+		tool.setAlias("    News    ");
 		tool.setTitle("News");
 		tool.setUrl("news");
 		tool.setDescription("The latest buzz on Cornell's exciting events and achievements.");
@@ -93,7 +93,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
         tool = new Tool();
-        tool.setAlias("dining");
+        tool.setAlias("   Dining   ");
         tool.setTitle("Dining");
         tool.setUrl("dining");
         tool.setDescription("Menus for \"All You Care to Eat\" facilities.");
@@ -103,7 +103,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);
   
         tool = new Tool();
-        tool.setAlias("Athletics");
+        tool.setAlias("  Athletics ");
         tool.setTitle("Athletics");
         tool.setUrl("http://www.cornellbigred.com/mobile");
         tool.setDescription("Cornell University Athletics");
@@ -113,7 +113,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);
 
 		tool = new Tool();
-		tool.setAlias("labs");
+		tool.setAlias("    Labs    ");
 		tool.setTitle("Computer Labs");
 		tool.setUrl("computerlabs");
 		tool.setDescription("See which computer labs have an available computer.");
@@ -123,7 +123,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
         tool = new Tool();
-		tool.setAlias("maps");
+		tool.setAlias("    Maps    ");
 		tool.setTitle("Maps");
 		tool.setUrl("maps");
 		tool.setDescription("Get from here to there. Search for buildings by name.");
@@ -133,7 +133,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
         tool = new Tool();
-		tool.setAlias("emergencycontacts");
+		tool.setAlias("  Emergency ");
 		tool.setTitle("Emergency Contacts");
 		tool.setUrl("emergencycontacts");
 		tool.setDescription("Emergency and Police phone numbers.");
@@ -143,7 +143,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
         tool = new Tool();
-        tool.setAlias("weather");
+        tool.setAlias("   Weather  ");
         tool.setTitle("Weather");
         // tool.setUrl("weather");
         tool.setUrl("http://mobile.weather.gov/index.php?lat=42.435511&lon=-76.52570070000002");

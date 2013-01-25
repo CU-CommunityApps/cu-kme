@@ -376,7 +376,29 @@
 .ui-body-c .ui-link {
 	/*color: #2489CE;*/
 	color: #2F3E46;
-	font-weight: bold;
+	font-weight: normal;
+	text-decoration: none;
+	/* text-aline: center;
+	background-repeat: no-repeat;
+ 	background-position: 8px 13px;
+ 	position: relative;
+ 	min-height: 60px;
+ 	color: #333;
+	 display:block;  */
+}
+
+.ui-block-c .ui-link {
+	/*color: #2489CE;*/
+	color: #2F3E46;
+	font-weight: normal;
+	text-decoration: none;
+	text-aline: center;
+	background-repeat: no-repeat;
+ 	background-position: 8px 13px;
+ 	position: relative;
+ 	min-height: 60px;
+ 	color: #333;
+	 display:block; 
 }
 .ui-btn-up-c {
 	/*border: 1px solid #ccc;*/
@@ -687,7 +709,16 @@ div#home ul li a {
 	min-height: 60px;
 	color: #333;
 }
-
+/*
+div#home img {
+	background-repeat: no-repeat;
+	background-position: 8px 13px;
+	padding: 5px 15px 5px 80px;
+	position: relative;
+	min-height: 60px;
+	color: #333;
+}
+*/
 /* Retina display high resolution icons for home screen */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min--moz-device-pixel-ratio: 1.5),
@@ -697,6 +728,12 @@ div#home ul li a {
     	background-position: 12px -35px;
     	-webkit-background-size: 50px 100px;
 	}
+/*	
+	div#home img {
+    	background-position: 12px -35px;
+    	-webkit-background-size: 50px 100px;
+	}
+	*/
 }
 
 	
@@ -903,6 +940,14 @@ div.error span {
 	white-space:normal;
 }
 
+table {
+	margin:0 auto;
+	width: 24.9%;
+}
+
+/* td {
+	width: 100px;	
+} */
 
 
 .cu-identity {
@@ -920,6 +965,8 @@ div.error span {
 	float: left;
 	color: #b31b1b;
 }
+
+
 
 /* "retina" cu-identity via sprite of cornell 45px and 75px banner (could be better with still higher res) */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),

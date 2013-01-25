@@ -104,5 +104,7 @@
 
 	<bean id="coreService" class="org.kuali.mobility.shared.CoreServiceImpl" >
 		<property name="googleAnalyticsProfileId" value="${shared.google.analytics.profile.id}" />
+		<property name="layout" value="${homescreen.layout}" />
+		
 	</bean>
 </beans>

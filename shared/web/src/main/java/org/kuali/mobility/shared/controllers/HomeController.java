@@ -86,6 +86,10 @@ public class HomeController {
 			} catch (UnknownHostException e) {}
     	}
     	uiModel.addAttribute("ipAddress", ipAddress);
+    	
+    	if (coreService.findLayout().equals("grid"))
+    		return "gridindex";
+    	
     	return "index";
     }
     
@@ -176,7 +180,8 @@ public class HomeController {
     	}
     	
     	uiModel.addAttribute("title", home.getTitle());    
-    	uiModel.addAttribute("tools", copy);    
+    	uiModel.addAttribute("tools", copy);
+    	//uiModel.addAttribute("layout", coreService.findLayout());
     }
     
 }
