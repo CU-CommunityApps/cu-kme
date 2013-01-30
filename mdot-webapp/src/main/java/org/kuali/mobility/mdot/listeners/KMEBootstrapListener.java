@@ -64,7 +64,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 
         tool = new Tool();
         tool.setAlias("    NOW     ");
-        tool.setTitle("Cornell NOW 2015");
+        tool.setTitle("Cornell NOW");
         tool.setUrl("http://now.cornell.edu/mobile");
         tool.setDescription("Cornell NOW 2015.");
         tool.setIconUrl("images/service-icons/srvc-cuathletics.png");
