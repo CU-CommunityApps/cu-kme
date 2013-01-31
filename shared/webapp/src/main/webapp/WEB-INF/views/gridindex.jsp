@@ -52,7 +52,7 @@
 	            <kme:div hideDataIcon="false" cssClass="ui-block-c">
 	            <table >
 	            <tr><td>	<a href="${homeTool.tool.url}" style="width:65px; height:65px; background-image: url('${homeTool.tool.iconUrl}');"> 
-	            <tr><td>	<div align="center" style="font-size:12px;">
+	            <tr><td>	<div align="center" style="font-size:11px;">
 			      		${homeTool.tool.title}
 			      		</d></td></tr>
 			      		<%-- <p class="wrap">${homeTool.tool.description}</p>
