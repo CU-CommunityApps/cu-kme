@@ -112,16 +112,6 @@ public class KMEBootstrapListener extends BootstrapListener {
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
-		tool = new Tool();
-		tool.setAlias("    Labs    ");
-		tool.setTitle("Computer Labs");
-		tool.setUrl("computerlabs");
-		tool.setDescription("See which computer labs have an available computer.");
-		tool.setIconUrl("images/service-icons/srvc-stc.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, iIndex++);
-		tools.add(ht);
-
         tool = new Tool();
 		tool.setAlias("    Maps    ");
 		tool.setTitle("Maps");
@@ -154,6 +144,16 @@ public class KMEBootstrapListener extends BootstrapListener {
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
+        tool = new Tool();
+		tool.setAlias("    Labs    ");
+		tool.setTitle("Computer Labs");
+		tool.setUrl("computerlabs");
+		tool.setDescription("See which computer labs have an available computer.");
+		tool.setIconUrl("images/service-icons/srvc-stc.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+        
 		/*
         tool = new Tool();
         tool.setAlias("orientation");
