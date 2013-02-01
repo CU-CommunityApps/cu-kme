@@ -981,3 +981,42 @@ table {
 		background-size: 169px 45px;
 	}
 }
+
+/* I have no idea what I am doing.
+-----------------------------------------------------------------------------------------------------------*/
+.iconbox {
+  float: left ;
+  height: 80px ;
+  width: 50px ;
+  margin-bottom: 1px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 8px;
+}
+  
+.iconimage {
+  width: 50px ;
+  height: 50px ;
+  background-repeat: no-repeat;
+/*   background-position: 0px -100px ; */
+  float: left;
+}
+
+.icontitle {
+  width: 50px ;
+  height: 20px ;
+  padding-top: 4px;
+  text-align: center;
+  font-size: 12px;
+  float: left;
+}
+
+/* Retina display high resolution icons for home screen */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+       
+	.iconimage {
+    	background-position: 0px -50px;
+    	-webkit-background-size: 50px 100px;
+	}
