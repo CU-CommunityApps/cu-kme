@@ -86,11 +86,14 @@ public class HomeController {
 			} catch (UnknownHostException e) {}
     	}
     	uiModel.addAttribute("ipAddress", ipAddress);
-    	
-    	if (coreService.findLayout().equals("grid"))
-    		return "gridindex";
-    	
-    	return "index";
+    	String sIndexJsp = "index" ;
+    	String sLayout = coreService.findLayout() ;
+    	if (sLayout.equalsIgnoreCase("grid"))
+    		sIndexJsp = "gridindex";
+    	else if (sLayout.equalsIgnoreCase("dynamicgrid"))
+    		sIndexJsp = "dynamicgridindex" ;
+  
+    	return sIndexJsp ;
     }
     
     @RequestMapping(value = "preferences", method = RequestMethod.GET)
@@ -179,7 +182,7 @@ public class HomeController {
     		}
     	}
     	
-    	uiModel.addAttribute("title", home.getTitle());    
+        uiModel.addAttribute("title", home.getTitle());    
     	uiModel.addAttribute("tools", copy);
     	//uiModel.addAttribute("layout", coreService.findLayout());
     }
