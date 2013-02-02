@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.kuali.mobility.dining.entity.PlaceByCampusByType;
 import org.kuali.mobility.dining.service.DiningService;
+import org.kuali.mobility.dining.util.CheapAntiXssHelper;
 import org.kuali.mobility.dining.util.DiningUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,9 +45,17 @@ public class DiningController {
 		this.diningService = diningService;
 	}
 
+    @Autowired
+    private CheapAntiXssHelper cheapAntiXssHelper ;
+    public void setCheapAntiXssHelper(CheapAntiXssHelper cheapAntiXssHelper) {
+    	this.cheapAntiXssHelper = cheapAntiXssHelper ;
+    }
+    
 	@RequestMapping(method = RequestMethod.GET)
     public String getPlaces(Model uiModel) {
     	
+    	LOG.info("getPlaces()") ;
+    
     	List<PlaceByCampusByType> placeGroups = DiningUtil.convertPlaceListForUI(diningService.getPlaces());
     	uiModel.addAttribute("placeGroups", placeGroups);
     	return "dining/placesByCampus2";
@@ -56,6 +65,8 @@ public class DiningController {
     @ResponseBody
     public String getPlaceListJson() {
     
+    	LOG.info("getPlaceListJson()") ;
+    	
        	List<PlaceByCampusByType> placeGroups = DiningUtil.convertPlaceListForUI(diningService.getPlaces());
     	return new JSONSerializer().exclude("*.class").deepSerialize(placeGroups);
     }
@@ -64,7 +75,8 @@ public class DiningController {
     @RequestMapping(value="/{name}", method = RequestMethod.GET)
     public String getMenus(Model uiModel, @PathVariable("name") String name, @RequestParam(value = "location", required = false) String location){
     
-    	LOG.debug( "getMenus() : name = "+name+" location = "+location );
+		name = cheapAntiXssHelper.stripXSS(name) ;
+    	location = cheapAntiXssHelper.stripXSS(location) ;
     	String place = ( (location==null || location.trim().isEmpty()) ? name : (name + " at " + location) );
     	uiModel.addAttribute("place", place);
     	uiModel.addAttribute("name", StringEscapeUtils.escapeJavaScript(name));
@@ -75,10 +87,10 @@ public class DiningController {
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public String getMenusJson(@PathVariable("name") String name, @RequestParam(value = "location", required = false) String location) {
-    
-		LOG.info("getMenusJson() : name= " + name + " location=" + location) ;
-    	String jsonData = diningService.getMenusJson(name, (null==location || "".equalsIgnoreCase(location) ? null : location.trim()));
 
+		name = cheapAntiXssHelper.stripXSS(name) ;
+    	location = cheapAntiXssHelper.stripXSS(location) ;
+    	String jsonData = diningService.getMenusJson(name, (null==location || "".equalsIgnoreCase(location) ? null : location.trim()));
     	return jsonData;
     }
 
