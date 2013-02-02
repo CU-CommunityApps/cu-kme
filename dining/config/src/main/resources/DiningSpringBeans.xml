@@ -45,4 +45,7 @@
 		<property name="accessToUnderlyingConnectionAllowed" value="${shared.datasource.accessToUnderlyingConnectionAllowed}" />
 	</bean>
 
+	<bean id="CheapAntiXssHelper" class="org.kuali.mobility.dining.util.CheapAntiXssHelper">
+	</bean>
+
 </beans>
