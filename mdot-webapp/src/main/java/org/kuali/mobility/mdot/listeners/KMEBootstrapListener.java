@@ -53,7 +53,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         int iIndex = -1 ;
 
         tool = new Tool();
-        tool.setAlias("    Cast    ");
+        tool.setAlias("CornellCast");
         tool.setTitle("CornellCast");
         tool.setUrl("http://www.cornell.edu/video/mobile");
         tool.setDescription("Now playing on CornellCast.");
@@ -63,17 +63,17 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);      
 
         tool = new Tool();
-        tool.setAlias("    NOW     ");
-        tool.setTitle("Cornell NOW");
+        tool.setAlias("Cornell Now");
+        tool.setTitle("Cornell Now");
         tool.setUrl("http://now.cornell.edu/mobile");
-        tool.setDescription("Cornell NOW 2015.");
-        tool.setIconUrl("images/service-icons/srvc-cuathletics.png");
+        tool.setDescription("Cornell Now 2015.");
+        tool.setIconUrl("images/service-icons/srvc-cornellnow.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
 
         tool = new Tool();
-        tool.setAlias("   People   ");
+        tool.setAlias("People");
         tool.setTitle("People");
         tool.setUrl("people");
         tool.setDescription("Search the Cornell Directory for People.");
@@ -83,7 +83,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);      
 
         tool = new Tool();
-		tool.setAlias("    News    ");
+		tool.setAlias("News");
 		tool.setTitle("News");
 		tool.setUrl("news");
 		tool.setDescription("The latest buzz on Cornell's exciting events and achievements.");
@@ -93,7 +93,7 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
         tool = new Tool();
-        tool.setAlias("   Dining   ");
+        tool.setAlias("Dining");
         tool.setTitle("Dining");
         tool.setUrl("dining");
         tool.setDescription("Menus for \"All You Care to Eat\" facilities.");
@@ -103,7 +103,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);
   
         tool = new Tool();
-        tool.setAlias("  Athletics ");
+        tool.setAlias("Athletics");
         tool.setTitle("Athletics");
         tool.setUrl("http://www.cornellbigred.com/mobile");
         tool.setDescription("Cornell University Athletics");
@@ -112,8 +112,18 @@ public class KMEBootstrapListener extends BootstrapListener {
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
+		tool = new Tool();
+		tool.setAlias("Computer Labs");
+		tool.setTitle("Computer Labs");
+		tool.setUrl("computerlabs");
+		tool.setDescription("See which computer labs have an available computer.");
+		tool.setIconUrl("images/service-icons/srvc-stc.png");
+		adminService.saveTool(tool);
+		ht = new HomeTool(home, tool, iIndex++);
+		tools.add(ht);
+
         tool = new Tool();
-		tool.setAlias("    Maps    ");
+		tool.setAlias("Maps");
 		tool.setTitle("Maps");
 		tool.setUrl("maps");
 		tool.setDescription("Get from here to there. Search for buildings by name.");
@@ -123,8 +133,8 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
         tool = new Tool();
-		tool.setAlias("  Emergency ");
-		tool.setTitle("Emergency");
+		tool.setAlias("Emergency");
+		tool.setTitle("Emergency Contacts");
 		tool.setUrl("emergencycontacts");
 		tool.setDescription("Emergency and Police phone numbers.");
 		tool.setIconUrl("images/service-icons/srvc-emergency.png");
@@ -133,27 +143,15 @@ public class KMEBootstrapListener extends BootstrapListener {
 		tools.add(ht);
 
         tool = new Tool();
-        tool.setAlias("   Weather  ");
+        tool.setAlias("Weather");
         tool.setTitle("Weather");
-        // tool.setUrl("weather");
         tool.setUrl("http://mobile.weather.gov/index.php?lat=42.435511&lon=-76.52570070000002");
         tool.setDescription("Weather in the Ithaca area.");
-//        tool.setIconUrl("images/service-icons/srvc-weather.png");
         tool.setIconUrl("images/service-icons/srvc-weather.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
-        tool = new Tool();
-		tool.setAlias("    Labs    ");
-		tool.setTitle("Computer Labs");
-		tool.setUrl("computerlabs");
-		tool.setDescription("See which computer labs have an available computer.");
-		tool.setIconUrl("images/service-icons/srvc-stc.png");
-		adminService.saveTool(tool);
-		ht = new HomeTool(home, tool, iIndex++);
-		tools.add(ht);
-        
 		/*
         tool = new Tool();
         tool.setAlias("orientation");
