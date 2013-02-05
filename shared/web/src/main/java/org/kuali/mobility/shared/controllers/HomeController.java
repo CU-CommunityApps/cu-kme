@@ -74,8 +74,10 @@ public class HomeController {
 	
 	@Autowired
 	private CoreService coreService;
+	
+	private String homeScreenView = "index";  
     
-    @RequestMapping(value = "home", method = RequestMethod.GET)
+	@RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(HttpServletRequest request, Model uiModel) {      
     	buildHomeScreen(request, uiModel);
     	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);
@@ -86,6 +88,8 @@ public class HomeController {
 			} catch (UnknownHostException e) {}
     	}
     	uiModel.addAttribute("ipAddress", ipAddress);
+
+    	/*
     	String sIndexJsp = "index" ;
     	String sLayout = coreService.findLayout() ;
     	if (sLayout.equalsIgnoreCase("grid"))
@@ -94,9 +98,25 @@ public class HomeController {
     		sIndexJsp = "dynamicgridindex" ;
   
     	return sIndexJsp ;
+    	*/
+
+    return (getHomeScreenView()) ;
     }
+ 
+	@RequestMapping(value = "toggleView", method = RequestMethod.GET)
+    public String toggleView(HttpServletRequest request, Model uiModel) {
     
-    @RequestMapping(value = "preferences", method = RequestMethod.GET)
+    String sView = getHomeScreenView() ;
+    if (sView.equalsIgnoreCase("index"))
+    	sView = "dynamicgridindex" ;
+    else
+    	sView = "index" ;
+    
+   	setHomeScreenView(sView) ;
+    return ("redirect:/home") ;
+    }
+	
+	@RequestMapping(value = "preferences", method = RequestMethod.GET)
     public String preferences(HttpServletRequest request, Model uiModel) {   
     	String homeToolName = "home";
 		uiModel.addAttribute("toolName", homeToolName);
@@ -186,5 +206,14 @@ public class HomeController {
     	uiModel.addAttribute("tools", copy);
     	//uiModel.addAttribute("layout", coreService.findLayout());
     }
-    
+
+	public String getHomeScreenView() {
+	
+	return homeScreenView;
+	}
+
+	public void setHomeScreenView(String homeScreenView) {
+	
+	this.homeScreenView = homeScreenView;
+	}
 }
