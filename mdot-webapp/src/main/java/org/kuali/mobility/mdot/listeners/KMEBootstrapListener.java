@@ -152,7 +152,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);
 
-		/*
+		/*		
         tool = new Tool();
         tool.setAlias("orientation");
         tool.setTitle("Orientation");
