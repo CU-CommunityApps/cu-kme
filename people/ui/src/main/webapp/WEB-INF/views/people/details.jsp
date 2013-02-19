@@ -177,6 +177,9 @@ function onSaveError(contactError) {
         {{if (person.locations && person.locations.length > 0) || (person.affiliations && person.affiliations.length > 0)
           || (person.departments && person.departments.length > 0) || person.address }}
         <li>
+          {{if person.nickName}}
+            <h3 class="wrap">Nickname: <span style="font-weight:normal;">\${person.nickName}</span></h3>
+          {{/if}}
           {{if person.locations && person.locations.length > 0}}
             <h3 class="wrap">Campus:
               <span style="font-weight:normal;">

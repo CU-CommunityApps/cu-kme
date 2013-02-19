@@ -40,6 +40,10 @@ public interface Person extends DirectoryEntry {
 
 	public void setDisplayName(String displayName);
 
+	public String getNickName();
+
+	public void setNickName(String nickName);
+
 	public String getEmail();
 
 	public void setEmail(String email);

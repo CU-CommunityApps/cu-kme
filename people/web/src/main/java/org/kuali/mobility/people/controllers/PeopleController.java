@@ -209,6 +209,7 @@ public class PeopleController {
 				results.add(m);
 
 		}
+		
 		return new JSONSerializer().exclude("*.class").deepSerialize(results);
     }
 

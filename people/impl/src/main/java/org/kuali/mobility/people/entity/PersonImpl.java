@@ -26,8 +26,9 @@ public class PersonImpl implements Serializable, Person {
 	private String firstName;
 	private String middleName;
 	
-		private String lastName;
+	private String lastName;
 	private String displayName;
+	private String nickName;
 	private String userName;
 	
 	private List<String> locations;
@@ -117,6 +118,18 @@ public class PersonImpl implements Serializable, Person {
 	@Override
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
+	}
+	
+	@Override
+	public String getNickName() {
+		return nickName;
+	}
+	/* (non-Javadoc)
+	 * @see org.kuali.mobility.people.entity.People#setNickName(java.lang.String)
+	 */
+	@Override
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	/* (non-Javadoc)
 	 * @see org.kuali.mobility.people.entity.People#getEmail()

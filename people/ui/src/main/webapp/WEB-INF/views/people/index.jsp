@@ -56,6 +56,9 @@
                  {{else}}
                    <h3>\${displayName}</h3>
                  {{/if}}
+                 {{if nickName}}
+                   <p><strong>Nickname: \${nickName}</strong>
+                 {{/if}}
                  {{if locations && 0 < locations.length}}
                    <p><strong>Location:</strong>
                    {{each(i,location) locations}}

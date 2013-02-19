@@ -142,14 +142,14 @@ if (sSearch.isEmpty() == false)
 			{
 			sFirst = alTokens.get(0) ;
 			sLast = alTokens.get(1) ;
-			sFilter = "(&(sn=" + sLast + "*)(givenName=" + sFirst + "*))" ;
+			sFilter = "(&(sn=" + sLast + "*)(|(givenName=" + sFirst + "*)(edupersonnickname=" + sFirst +"*)))" ;
 			}
 		else if (alTokens.size() > 2)
 			{
 			sFirst = alTokens.get(0) ;
 			sMiddle = alTokens.get(1) ;
 			sLast = alTokens.get(2) ;
-			sFilter = "(&(sn=" + sLast + "*)(givenName=" + sFirst + "*)(cornelledumiddlename=" + sMiddle + "*))" ;
+			sFilter = "(&(sn=" + sLast + "*)(cornelledumiddlename=" + sMiddle + "*)(|(givenName=" + sFirst + "*)(edupersonnickname=" + sFirst +"*)))" ;
 			}
 		}
 	else
@@ -220,6 +220,10 @@ if (attr != null)
 attr = attrs.get("displayName");
 if (attr != null)
 	p.setDisplayName((String)attr.get()) ;
+
+attr = attrs.get("edupersonnickname");
+if (attr != null)
+	p.setNickName((String)attr.get()) ;
 
 attr = attrs.get("cornelledunetid") ;
 if (attr != null)
