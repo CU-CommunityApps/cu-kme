@@ -63,7 +63,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);      
 
         tool = new Tool();
-        tool.setAlias("Cornell Now");
+        tool.setAlias("CornellNow");
         tool.setTitle("Cornell Now");
         tool.setUrl("http://now.cornell.edu/mobile");
         tool.setDescription("Cornell Now 2015.");
@@ -113,7 +113,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tools.add(ht);
 
 		tool = new Tool();
-		tool.setAlias("Computer Labs");
+		tool.setAlias("ComputerLabs");
 		tool.setTitle("Computer Labs");
 		tool.setUrl("computerlabs");
 		tool.setDescription("See which computer labs have an available computer.");

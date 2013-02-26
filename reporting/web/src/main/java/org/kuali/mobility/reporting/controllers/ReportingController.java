@@ -42,8 +42,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
-@Controller 
-@RequestMapping("/reporting")
+// Disable for initial Cornell deployment
+
+// @Controller 
+// @RequestMapping("/reporting")
 public class ReportingController {
 
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ReportingController.class);

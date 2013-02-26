@@ -46,12 +46,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+// Disable for initial Cornell deployment
+
 /**
  * Controller for performing publishing actions
  * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
  */
-@Controller 
-@RequestMapping("/publishing")
+// @Controller 
+// @RequestMapping("/publishing")
 public class PublishingController {
     
     @Autowired

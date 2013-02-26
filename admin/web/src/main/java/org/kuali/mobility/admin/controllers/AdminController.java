@@ -15,6 +15,8 @@
 
 package org.kuali.mobility.admin.controllers;
 
+// Disable this controller for initial Cornell deployment
+
 import org.kuali.mobility.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +24,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller 
-@RequestMapping("/admin")
+// @Controller 
+// @RequestMapping("/admin")
 public class AdminController {
-    
     @Autowired
     private AdminService adminService;
     
@@ -43,5 +44,4 @@ public class AdminController {
     public String layout(Model uiModel) {
     	return "admin/nodelayout";
     }
-    
 }

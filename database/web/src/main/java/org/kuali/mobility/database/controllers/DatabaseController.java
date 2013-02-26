@@ -35,8 +35,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller 
-@RequestMapping("/database")
+// Disable for initial Cornell deployment
+
+// @Controller 
+// @RequestMapping("/database")
 public class DatabaseController {
 
     @Autowired

@@ -50,7 +50,7 @@
 			if(pgPlatform == null){
 				$.cookie('platform', '${platform}', {expires: 365, path: '/'})
 			}		
-		
+
 			/*  ${cookie['phonegap'].value} */
 			var pgCookie = $.cookie('phonegap');
 			var pgParam = "${param['phonegap']}";

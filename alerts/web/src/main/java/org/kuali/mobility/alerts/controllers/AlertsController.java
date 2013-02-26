@@ -33,8 +33,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import flexjson.JSONSerializer;
 
-@Controller
-@RequestMapping("/alerts")
+// Disable for initial Cornell deployment
+
+// @Controller
+// @RequestMapping("/alerts")
 public class AlertsController {
 
 	@Autowired

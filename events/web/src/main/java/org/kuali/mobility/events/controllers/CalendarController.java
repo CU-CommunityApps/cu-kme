@@ -41,8 +41,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 //import edu.iu.es.espd.ccl.oauth.PendingMeetings;
 //import edu.iu.es.espd.ccl.oauth.ViewDetailedEvent;
 
-@Controller
-@RequestMapping("/calendar")
+// Disable for initial Cornell deployment
+
+// @Controller
+// @RequestMapping("/calendar")
 public class CalendarController {
 
 //	@Autowired

@@ -34,8 +34,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller 
-@RequestMapping("/weather")
+// Disable for initial Cornell deployment
+
+// @Controller 
+// @RequestMapping("/weather")
 public class WeatherController {
     
     @Autowired

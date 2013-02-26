@@ -47,8 +47,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller 
-@RequestMapping("/push")
+// Disable for initial Cornell deployment
+
+// @Controller 
+// @RequestMapping("/push")
 public class PushController {
 
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(PushController.class);		

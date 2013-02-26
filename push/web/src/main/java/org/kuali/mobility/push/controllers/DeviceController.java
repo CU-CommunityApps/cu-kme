@@ -46,8 +46,10 @@ import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import net.sf.json.JSONException;
 
-@Controller 
-@RequestMapping("/device")
+// Disable for initial Cornell deployment
+
+// @Controller 
+// @RequestMapping("/device")
 public class DeviceController {
 
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(DeviceController.class);		

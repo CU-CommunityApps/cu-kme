@@ -116,6 +116,8 @@ public class HomeController {
     return ("redirect:/home") ;
     }
 	
+	// Disable for initial Cornell deployment
+	/*
 	@RequestMapping(value = "preferences", method = RequestMethod.GET)
     public String preferences(HttpServletRequest request, Model uiModel) {   
     	String homeToolName = "home";
@@ -124,7 +126,8 @@ public class HomeController {
 		uiModel.addAttribute("campuses", campuses);		
 		List<HomeScreen> homeScreens = adminService.getAllHomeScreens();
 		uiModel.addAttribute("homeScreens", homeScreens);
-    	return "preferences";
+    	// return "preferences";
+		return "preferences";
     }
     
     @RequestMapping(value = "kme.appcache", method = RequestMethod.GET)
@@ -158,6 +161,7 @@ public class HomeController {
 	    schema.setOutputFile("/tmp/schema.sql");
   	    schema.create(false, false);
 	}
+    */
 
     private void buildHomeScreen(HttpServletRequest request, Model uiModel) {
     	User user = (User) request.getSession().getAttribute(Constants.KME_USER_KEY);

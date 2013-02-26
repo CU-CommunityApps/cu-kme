@@ -31,8 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
-@RequestMapping("/bus")
+// Disable for initial Cornell deployment
+// @Controller
+// @RequestMapping("/bus")
 public class BusController {
 
     private static Logger LOG = Logger.getLogger( BusController.class );

@@ -58,8 +58,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 
-@Controller 
-@RequestMapping("/tours")
+// Disable for Cornell initial deployment
+
+// @Controller 
+// @RequestMapping("/tours")
 public class ToursController {
 	
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ToursController.class);
