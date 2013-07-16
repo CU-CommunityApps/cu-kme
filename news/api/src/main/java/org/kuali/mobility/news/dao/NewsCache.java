@@ -18,7 +18,7 @@ package org.kuali.mobility.news.dao;
 import java.util.Map;
 
 import org.kuali.mobility.news.entity.NewsSource;
-
+//test by Jay
 public interface NewsCache {
 
 	public void updateCache(NewsSource source);
