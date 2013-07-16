@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="orientation-ui">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="shared-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/shared-api/shared-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="shared-impl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/shared-impl/shared-impl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="security.authentication-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/security.authentication/security.authentication">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="shared-config-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/shared-config/shared-config">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="orientation-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/orientation-api/orientation-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="orientation-config-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/orientation-config/orientation-config">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="orientation-impl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/orientation-impl/orientation-impl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="orientation-web-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/orientation-web/orientation-web">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="configparams-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/configparams-api/configparams-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="configparams-impl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/configparams-impl/configparams-impl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="orientation-ui"/>
+        <property name="java-output-path" value="/orientation-ui/target/classes"/>
+    </wb-module>
+</project-modules>
