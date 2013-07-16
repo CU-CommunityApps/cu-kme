@@ -102,7 +102,7 @@ public class HomeController {
 
     return (getHomeScreenView()) ;
     }
- 
+/*
 	@RequestMapping(value = "toggleView", method = RequestMethod.GET)
     public String toggleView(HttpServletRequest request, Model uiModel) {
     
@@ -115,7 +115,8 @@ public class HomeController {
    	setHomeScreenView(sView) ;
     return ("redirect:/home") ;
     }
-	
+*/
+
 	// Disable for initial Cornell deployment
 	/*
 	@RequestMapping(value = "preferences", method = RequestMethod.GET)

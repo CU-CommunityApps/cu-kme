@@ -3,7 +3,7 @@
 	<newsSource>
 		<id>2</id>
 		<name>Cornell - News</name>
-		<url> http://www.news.cornell.edu/cunews2.xml</url>
+		<url> http://news.cornell.edu/cunews.xml</url>
 		<order>0</order>
 		<active>true</active>
 	</newsSource>

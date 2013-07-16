@@ -71,6 +71,13 @@ public abstract class BootstrapListener implements ServletContextListener {
 
 			ei = new EmergencyInfo();
 			ei.setCampus("ALL");
+			ei.setLink("607-272-1616");
+			ei.setTitle("Suicide Crisis Line");
+			ei.setType("PHONE");
+			emergencyInfoService.saveEmergencyInfo(ei);
+
+			ei = new EmergencyInfo();
+			ei.setCampus("ALL");
 			ei.setLink("607-255-7197");
 			ei.setTitle("Cornell Police - Lost and Found");
 			ei.setType("PHONE");

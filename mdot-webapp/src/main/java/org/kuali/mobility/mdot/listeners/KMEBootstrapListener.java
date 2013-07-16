@@ -53,6 +53,36 @@ public class KMEBootstrapListener extends BootstrapListener {
         int iIndex = -1 ;
 
         tool = new Tool();
+        tool.setAlias("Academics");
+        tool.setTitle("Academics");
+        tool.setUrl("http://www.cornell.edu/academics/colleges.cfm");
+        tool.setDescription("Colleges, schools and other academic units.");
+        tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);      
+
+        tool = new Tool();
+        tool.setAlias("Advising");
+        tool.setTitle("Advising");
+        tool.setUrl("http://cals.cornell.edu/academics/advising/");
+        tool.setDescription("Collegs, school and other academic units.");
+        tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);      
+
+        tool = new Tool();
+        tool.setAlias("Visiting Cornell");
+        tool.setTitle("Visiting Cornell");
+        tool.setUrl("http://www.cornell.edu/visiting");
+        tool.setDescription("Visiting Cornell.");
+        tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
+        adminService.saveTool(tool);
+        ht = new HomeTool(home, tool, iIndex++);
+        tools.add(ht);      
+
+        tool = new Tool();
         tool.setAlias("CornellCast");
         tool.setTitle("CornellCast");
         tool.setUrl("http://www.cornell.edu/video/mobile");
@@ -66,7 +96,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setAlias("CornellNow");
         tool.setTitle("Cornell Now");
         tool.setUrl("http://now.cornell.edu/mobile");
-        tool.setDescription("Cornell Now 2015.");
+        tool.setDescription("The Campaign for Cornell.");
         tool.setIconUrl("images/service-icons/srvc-cornellnow.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
