@@ -113,6 +113,12 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
+        <attribute>
+            <name>institutionLogo</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
     </tag>
 
     <tag>
@@ -222,6 +228,39 @@
         <tag-class>org.kuali.mobility.tags.ListItemTag</tag-class>
         <body-content>scriptless</body-content>
         <description>This tag is for listItem</description>
+        <attribute>
+            <name>dataRole</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>dataTheme</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>dataIcon</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hideDataIcon</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+        <attribute>
+            <name>cssClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+	<tag>
+        <name>div</name>
+        <tag-class>org.kuali.mobility.tags.DivTag</tag-class>
+        <body-content>scriptless</body-content>
+        <description>This tag is for div</description>
         <attribute>
             <name>dataRole</name>
             <required>false</required>

@@ -552,6 +552,7 @@
 				<type>war</type>
 				<scope>runtime</scope>
 			</dependency>
+			
 			<!-- Orientation Service -->
 			<dependency>
 				<groupId>org.kuali.mobility</groupId>
@@ -580,6 +581,7 @@
 				<type>war</type>
 				<scope>runtime</scope>
 			</dependency>
+			
 			<!-- People Service -->
 			<dependency>
 				<groupId>org.kuali.mobility</groupId> 

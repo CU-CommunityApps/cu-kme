@@ -185,6 +185,7 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.kuali.mobility</groupId>
 			<artifactId>dining-ui</artifactId>
