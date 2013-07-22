@@ -25,21 +25,35 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-@XmlRootElement(name="newsSource")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class NewsSourceImpl implements NewsSource {
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+//@XmlRootElement(name="newsSource")
+//@XmlAccessorType(XmlAccessType.FIELD)
+@XStreamAlias("channel")
+public class NewsSourceImpl implements NewsSource {
+	
 	private Long id = null;
 	private String name = null;
 	private String url = null;
 	private boolean active = true;
 	private int order = 0;
 	private Long parentId = null;
+	
+	@XStreamAlias("title")
 	private String title;
+	@XStreamAlias("webMaster")
 	private String author;
+	@XStreamAlias("description")
 	private String description;
-	@XmlTransient
-	@XmlElement(type=NewsArticleImpl.class)
+	
+	@XStreamAlias("link")
+	private String link;
+	@XStreamAlias("language")
+	private String lanugage;
+	@XStreamAlias("copyright")
+	private String copyright;
+	//@XmlTransient
+	//@XmlElement(type=NewsArticleImpl.class)
 	private List<NewsArticle> articles;
 
 	public Long getId() {

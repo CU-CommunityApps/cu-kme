@@ -29,15 +29,15 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.kuali.mobility.news.entity.NewsArticle;
+import org.kuali.mobility.news.entity.NewsArticleImpl;
+import org.kuali.mobility.news.entity.NewsArticleImpl.NewsArticleCategory;
 import org.kuali.mobility.news.entity.NewsSource;
+import org.kuali.mobility.news.entity.NewsSourceImpl;
+import org.kuali.mobility.news.entity.NewsSourceWrapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.sun.syndication.feed.synd.SyndEntryImpl;
-import com.sun.syndication.feed.synd.SyndFeed;
-import com.sun.syndication.io.SyndFeedInput;
-import com.sun.syndication.feed.module.mediarss.MediaEntryModule;
-import com.sun.syndication.feed.module.mediarss.types.UrlReference;
+import com.thoughtworks.xstream.XStream;
 
 public class NewsCacheImpl implements NewsCache, ApplicationContextAware {
 
@@ -90,6 +90,43 @@ public class NewsCacheImpl implements NewsCache, ApplicationContextAware {
 		} catch (MalformedURLException e) {
 			LOG.error("Bad feed url: " + source.getUrl(), e);
 		}
+		
+		try {
+			XStream xstream = new XStream();
+			xstream.processAnnotations(NewsSourceWrapper.class);
+			xstream.processAnnotations(NewsSourceImpl.class);
+			xstream.processAnnotations(NewsArticleImpl.class);
+			xstream.processAnnotations(NewsArticleCategory.class);
+			xstream.addImplicitCollection(NewsSourceWrapper.class, "newsSources");
+			xstream.addImplicitCollection(NewsSourceImpl.class, "articles");
+			xstream.addImplicitCollection(NewsArticleImpl.class, "categories");
+			
+			NewsSourceWrapper sourceWrapper = (NewsSourceWrapper) xstream.fromXML(feedUrl);
+			NewsSource s = sourceWrapper.getNewsSources().get(0);
+			source.setArticles(s.getArticles());
+			source.setAuthor(s.getAuthor());
+			source.setDescription(s.getDescription());
+			source.setName(s.getName());
+			source.setTitle(s.getTitle());
+			
+			for (NewsArticle article : source.getArticles()) {
+				article.setSourceId(source.getId());
+				/**
+				 * Set a unique ID for the article.
+				 */
+				try {
+					article.setArticleId(URLEncoder.encode(article.getLink(), "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					article.setArticleId(article.getLink());
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error in doing XStream work: ", e);
+		}
+		
+		/*
 		SyndFeedInput input = new SyndFeedInput();
 		SyndFeed syndFeed = null;
 		try {
@@ -139,6 +176,7 @@ public class NewsCacheImpl implements NewsCache, ApplicationContextAware {
 		} else {
 			source.setTitle( source.getName() );
 		}
+		*/
 	}
 
 	public ApplicationContext getApplicationContext() {

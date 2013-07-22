@@ -18,10 +18,12 @@ package org.kuali.mobility.news.entity;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.sun.jmx.snmp.Timestamp;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Represents a single article present in a news feed.
@@ -29,18 +31,42 @@ import com.sun.jmx.snmp.Timestamp;
  * @author Kuali Mobility Team (moblitiy.collab@kuali.org)
  *
  */
-@XmlRootElement(name="article")
+//@XmlRootElement(name="article")
+@XStreamAlias("item")
 public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, NewsArticle {
-
+	
+	@XStreamAlias("cat")
+	public class NewsArticleCategory {
+		private String category;
+		
+		public String getCategory() {
+			return this.category;
+		}
+		
+		public void setCategory(String category) {
+			this.category = category;
+		}
+	}
+	
 	private static final long serialVersionUID = -133725965130444787L;
 	
+	@XStreamAlias("title")
 	private String title;
+	@XStreamAlias("link")
 	private String link;
+	@XStreamAlias("description")
 	private String description;
+	@XStreamAlias("pubDate")
+	private String publishDateString;
 	private Date publishDate;
 	private String articleId;
 	private long sourceId;
+	@XStreamAlias("thumbnail")
 	private String imageUrl;
+	@XStreamAlias("thumbnail_120x90")
+	private String thumbnail_120x90;
+	
+	private List<NewsArticleCategory> categories;
 	
 	private final SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a");
 	
@@ -60,7 +86,7 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 			copy.setArticleId(new String(articleId));
 		}
 		copy.setSourceId(sourceId);
-		copy.setPublishDate(new Date(publishDate.getTime()));
+		copy.setPublishDate(publishDate);
 		if (imageUrl != null) {
 			copy.setImageUrl(new String(imageUrl));
 		}
@@ -72,12 +98,20 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 	 */
 	@Override
 	public String getPublishDateDisplay() {
-		return format.format(publishDate);
+		//return format.format(publishDate);
+		return this.publishDateString;
 	}
 	
 	@Override
 	public int compareTo(NewsArticle arg0) {
-		return publishDate.compareTo(arg0.getPublishDate());
+		if (publishDate != null) {
+			return publishDate.compareTo(arg0.getPublishDate());
+		} else if (getPublishDateDisplay() != null) {
+			return this.getPublishDateDisplay().compareTo(arg0.getPublishDateDisplay());
+		} else {
+			return this.getArticleId().compareTo(arg0.getArticleId());
+		}
+		
 	}
 	
 	/* (non-Javadoc)
@@ -187,6 +221,14 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 	@Override
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public String getPublishDateString() {
+		return publishDateString;
+	}
+
+	public void setPublishDateString(String publishDateString) {
+		this.publishDateString = publishDateString;
 	}
 	
 	
