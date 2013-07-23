@@ -65,8 +65,9 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool = new Tool();
         tool.setAlias("Advising");
         tool.setTitle("Advising");
-        tool.setUrl("http://cals.cornell.edu/academics/advising/");
-        tool.setDescription("Collegs, school and other academic units.");
+        //tool.setUrl("http://cals.cornell.edu/academics/advising/");
+        tool.setUrl("advisingInfo.jsp");
+        tool.setDescription("Colleges, school and other academic units.");
         tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
