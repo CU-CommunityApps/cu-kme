@@ -55,7 +55,8 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool = new Tool();
         tool.setAlias("Academics");
         tool.setTitle("Academics");
-        tool.setUrl("http://www.cornell.edu/academics/colleges.cfm");
+        //tool.setUrl("http://www.cornell.edu/academics/colleges.cfm");
+        tool.setUrl("academics.jsp");
         tool.setDescription("Colleges, schools and other academic units.");
         tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
         adminService.saveTool(tool);
