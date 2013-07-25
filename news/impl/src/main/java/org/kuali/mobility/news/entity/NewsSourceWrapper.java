@@ -5,6 +5,12 @@ import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+/**
+ * This is a wrapper for news sources to allow XStream to properly read the news rss feed
+ * from the chronocle.  This is a CU customization.
+ * @author jhulslander
+ *
+ */
 @XStreamAlias("rss")
 public class NewsSourceWrapper {
 	private List<NewsSourceImpl> newsSources;

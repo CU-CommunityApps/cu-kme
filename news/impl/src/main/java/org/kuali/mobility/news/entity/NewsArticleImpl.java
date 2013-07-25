@@ -35,6 +35,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("item")
 public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, NewsArticle {
 	
+	/**
+	 * This class is just to allow XStream to read the XML, 
+	 *
+	 */
 	@XStreamAlias("cat")
 	public class NewsArticleCategory {
 		private String category;
@@ -56,6 +60,11 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 	private String link;
 	@XStreamAlias("description")
 	private String description;
+	
+	/**
+	 * the pubDate element  is being mapped to a new field that is just a string because
+	 * the auto XStream conversion doesn't handle the format in the RSS feed.
+	 */
 	@XStreamAlias("pubDate")
 	private String publishDateString;
 	private Date publishDate;
@@ -63,6 +72,10 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 	private long sourceId;
 	@XStreamAlias("thumbnail")
 	private String imageUrl;
+	/**
+	 * added new field for "thumbnail_120x90" as XStream requires each RSS field to be 
+	 * mapped to a Java field.
+	 */
 	@XStreamAlias("thumbnail_120x90")
 	private String thumbnail_120x90;
 	
@@ -102,6 +115,9 @@ public class NewsArticleImpl implements Serializable, Comparable<NewsArticle>, N
 		return this.publishDateString;
 	}
 	
+	/**
+	 * Customized as publish date may very well not be available.
+	 */
 	@Override
 	public int compareTo(NewsArticle arg0) {
 		if (publishDate != null) {

@@ -48,13 +48,18 @@ public class NewsSourceImpl implements NewsSource {
 	
 	@XStreamAlias("link")
 	private String link;
+	
+	//@XmlTransient
+	//@XmlElement(type=NewsArticleImpl.class)
+	private List<NewsArticle> articles;
+	
+	/**
+	 * The following fields have been added just to allow XStream to work properly.
+	 */
 	@XStreamAlias("language")
 	private String lanugage;
 	@XStreamAlias("copyright")
 	private String copyright;
-	//@XmlTransient
-	//@XmlElement(type=NewsArticleImpl.class)
-	private List<NewsArticle> articles;
 
 	public Long getId() {
 		return id;

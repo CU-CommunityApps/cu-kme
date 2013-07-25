@@ -91,6 +91,10 @@ public class NewsCacheImpl implements NewsCache, ApplicationContextAware {
 			LOG.error("Bad feed url: " + source.getUrl(), e);
 		}
 		
+		/**
+		 * This XStream impl is a CU customization.
+		 */
+		
 		try {
 			XStream xstream = new XStream();
 			xstream.processAnnotations(NewsSourceWrapper.class);
@@ -125,6 +129,11 @@ public class NewsCacheImpl implements NewsCache, ApplicationContextAware {
 			e.printStackTrace();
 			LOG.error("Error in doing XStream work: ", e);
 		}
+		
+		/**
+		 * This is the original implementation.  It doesn't work for us concerning publication
+		 * date and thumbnail/image URL.
+		 */
 		
 		/*
 		SyndFeedInput input = new SyndFeedInput();
