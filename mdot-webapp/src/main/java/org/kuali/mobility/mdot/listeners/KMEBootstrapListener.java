@@ -58,7 +58,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         //tool.setUrl("http://www.cornell.edu/academics/colleges.cfm");
         tool.setUrl("academics.jsp");
         tool.setDescription("Colleges, schools and other academic units.");
-        tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
+        tool.setIconUrl("images/service-icons/srvc-cornell-academics.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
@@ -69,7 +69,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         //tool.setUrl("http://cals.cornell.edu/academics/advising/");
         tool.setUrl("advisingInfo.jsp");
         tool.setDescription("Colleges, school and other academic units.");
-        tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
+        tool.setIconUrl("images/service-icons/srvc-cornell-advising.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
@@ -79,7 +79,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setTitle("Visiting Cornell");
         tool.setUrl("http://www.cornell.edu/visiting");
         tool.setDescription("Visiting Cornell.");
-        tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
+        tool.setIconUrl("images/service-icons/srvc-cornell-visiting.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
@@ -99,7 +99,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool.setTitle("Cornell Now");
         tool.setUrl("http://now.cornell.edu/mobile");
         tool.setDescription("The Campaign for Cornell.");
-        tool.setIconUrl("images/service-icons/srvc-cornellnow.png");
+        tool.setIconUrl("images/service-icons/srvc-cornell-cornellnow.png");
         adminService.saveTool(tool);
         ht = new HomeTool(home, tool, iIndex++);
         tools.add(ht);      
