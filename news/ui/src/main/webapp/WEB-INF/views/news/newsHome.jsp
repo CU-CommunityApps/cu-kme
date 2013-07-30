@@ -22,31 +22,39 @@
     <kme:content>
 		<kme:listView dataTheme="c" cssClass="news-index">
 			<c:forEach items="${newsSources}" var="source" varStatus="status">
-		
-				<kme:listItem dataIcon="listview" cssClass="streamTitle linkedHeaderRow">
-					<a href="${pageContext.request.contextPath}/news/${source.id}">${source.title}</a>
-				</kme:listItem> 
-				
-				<c:forEach items="${source.articles}" var="article" varStatus="status">
-					<c:choose>
-						<c:when test="${status.index < sampleSize}">
-							<kme:listItem cssClass="sample">
-								<a href="${pageContext.request.contextPath}/news/${article.sourceId}?articleId=${article.articleId}&referrer=home">
-					        		<!-- <p class="news-title">${article.title}</p>-->
-					        		<p class="wrap">${article.title}</p>
-					        	</a>
-					        </kme:listItem>
-						</c:when>
-						<c:otherwise>
-							<kme:listItem cssClass="extra feed${source.id}">
-								<a href="${pageContext.request.contextPath}/news/${source.id}?articleId=${article.articleId}&referrer=home">
-					        		<!-- <p class="news-title">${article.title}</p>-->
-					        		<p class="wrap">${article.title}</p>
-					        	</a>
-					        </kme:listItem>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${source.articles == null }">
+						<kme:listItem>
+							<div>The news feed is currently unavailable please try again later. </div>
+						</kme:listItem>
+					</c:when>
+					<c:otherwise> 
+						<kme:listItem dataIcon="listview" cssClass="streamTitle linkedHeaderRow">
+							<a href="${pageContext.request.contextPath}/news/${source.id}">${source.title}</a>
+						</kme:listItem> 
+						
+						<c:forEach items="${source.articles}" var="article" varStatus="status">
+							<c:choose>
+								<c:when test="${status.index < sampleSize}">
+									<kme:listItem cssClass="sample">
+										<a href="${pageContext.request.contextPath}/news/${article.sourceId}?articleId=${article.articleId}&referrer=home">
+							        		<!-- <p class="news-title">${article.title}</p>-->
+							        		<p class="wrap">${article.title}</p>
+							        	</a>
+							        </kme:listItem>
+								</c:when>
+								<c:otherwise>
+									<kme:listItem cssClass="extra feed${source.id}">
+										<a href="${pageContext.request.contextPath}/news/${source.id}?articleId=${article.articleId}&referrer=home">
+							        		<!-- <p class="news-title">${article.title}</p>-->
+							        		<p class="wrap">${article.title}</p>
+							        	</a>
+							        </kme:listItem>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 				<c:if test="${fn:length(source.articles) > sampleSize && sampleSize > 0}">
 					<kme:listItem cssClass="expander feed${source.id} collapsed" dataIcon="arrow-d">
 						<!-- These added to support passing of i18n words -->
