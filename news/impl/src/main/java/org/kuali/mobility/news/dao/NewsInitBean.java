@@ -6,16 +6,16 @@ import org.kuali.mobility.news.service.NewsService;
 public class NewsInitBean {
 
 	private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(NewsInitBean.class);
-	   
+
     private NewsDao dao;
     private NewsCache cache;
-    
+
 	private static Thread backgroundThread = null;
-	
+
 	public void init() {
 		backgroundThread = new Thread(new BackgroundThread());
     	backgroundThread.setDaemon(true);
-    	backgroundThread.start();    	
+    	backgroundThread.start();
 	}
 
     public void cleanup() {
@@ -49,13 +49,16 @@ public class NewsInitBean {
     public void setCache(NewsCache cache) {
         this.cache = cache;
     }
-	
+
     private class BackgroundThread implements Runnable {
-	
-        public void run() {    
-			LOG.info("Initializing news...");
-			getDao().findAllActiveNewsSources();
-			LOG.info("Finished initializing news.");
+        public void run() {
+			try {
+				LOG.info("Initializing news...");
+				getDao().findAllActiveNewsSources();
+				LOG.info("Finished initializing news.");
+			} catch( Exception e ) {
+				LOG.error( "Failed to load news feeds.", e );
+			}
         	while (true) {
         		try {
 	    			LOG.info("News sleeping...");
@@ -68,16 +71,13 @@ public class NewsInitBean {
 	    			for (NewsSource newsSource : getDao().findAllActiveNewsSources()) {
 	    				getCache().updateCache(newsSource);
 	    			}
-	    			LOG.info("Finished refreshing news.");	                
+	    			LOG.info("Finished refreshing news.");
         		} catch (Exception e) {
                     LOG.error(e.getMessage(), e);
         		}
         	}
         }
-        
     }
-    
 }
-
 
 
