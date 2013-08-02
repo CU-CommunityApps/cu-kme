@@ -151,9 +151,9 @@ function mapSearch() {
 
 	if (searchKey != previousSearchKey) {
 		//if (inputString.length < 2 || groupCode == "UA") {
-		if (inputString.length < 2) {
+		if (inputString.length <= 2) {
 			// Remove previous results
-			$('#searchresults').html('Nothing!');
+			$('#searchresults').html('');
 		} else {
 			var requestUrlString = '${pageContext.request.contextPath}/maps/building/searchassist?criteria=' + encodeURI(inputString) + '&groupCode=' + encodeURI(groupCode);
 			$.get(requestUrlString, function(data) {
