@@ -107,7 +107,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool = new Tool();
         tool.setAlias("People");
         tool.setTitle("People");
-        tool.setUrl("people");
+        tool.setUrl("people?newSearch");
         tool.setDescription("Search the Cornell Directory for People.");
         tool.setIconUrl("images/service-icons/srvc-people.png");
         adminService.saveTool(tool);

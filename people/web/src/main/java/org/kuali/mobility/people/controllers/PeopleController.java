@@ -63,6 +63,9 @@ public class PeopleController {
 		uiModel.addAttribute("search", s);
 		//removeFromCache(request.getSession(), "People.Search.Results");
 		request.setAttribute("watermark", "Enter a name, NetID, or email address");
+		if (request.getQueryString() != null && request.getQueryString().contains("newSearch")) {
+			clearSearchResultsFromCache(request.getSession());
+		}
 		return "people/index";
 	}
 
@@ -387,6 +390,15 @@ public class PeopleController {
 		statusTypes.put("Employee", "Employee");
 		return statusTypes;
 	}
-
-
+	
+	private void clearSearchResultsFromCache(HttpSession session) {
+		String peopleSearchKey = "People.Search.Results";
+		String uniqueResultsKey = "People.Search.UniqueResult";
+		if (session.getAttribute(peopleSearchKey) != null) {
+			session.setAttribute(peopleSearchKey, null);
+		}
+		if (session.getAttribute(uniqueResultsKey) != null) {
+			session.setAttribute(uniqueResultsKey, null);
+		}
+	}
 }
