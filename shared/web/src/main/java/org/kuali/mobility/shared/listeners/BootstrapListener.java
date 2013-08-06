@@ -129,6 +129,11 @@ public abstract class BootstrapListener implements ServletContextListener {
 			param.setName("Admin.Group.Name");
 			param.setValue("KME-ADMINISTRATORS");
 			configParamService.saveConfigParam(param);
+			
+			param = new ConfigParam();
+			param.setName("News.Sample.Size");
+			param.setValue("5");
+			configParamService.saveConfigParam(param);
 	
 			/*					
 			param = new ConfigParam();
