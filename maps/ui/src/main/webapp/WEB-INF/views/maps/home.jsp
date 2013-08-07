@@ -104,7 +104,7 @@ $('#maps').live("pagebeforeshow", function() {
 	
 	
 	
-	$('#searchText').keypress(function (event) {
+	$('#searchText').keydown(function (event) {
 		$('#searchresults').show();
 		/* Prevent enter key from submitting the form */
 		lastTypedKeyCode = event.keyCode;
