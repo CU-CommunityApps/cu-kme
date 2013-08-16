@@ -87,7 +87,7 @@ public class KMEBootstrapListener extends BootstrapListener {
         tool = new Tool();
         tool.setAlias("CornellCast");
         tool.setTitle("CornellCast");
-        tool.setUrl("http://www.cornell.edu/video/mobile");
+        tool.setUrl("http://www.cornell.edu/video");
         tool.setDescription("Now playing on CornellCast.");
         tool.setIconUrl("images/service-icons/srvc-cornellcast.png");
         adminService.saveTool(tool);
